@@ -1,0 +1,35 @@
+{
+    "generator-jhipster": {
+        "promptValues": {
+            "packageName": "com.ybb.mall",
+            "nativeLanguage": "zh-cn"
+        },
+        "jhipsterVersion": "5.7.2",
+        "applicationType": "monolith",
+        "baseName": "PlantMall",
+        "packageName": "com.ybb.mall",
+        "packageFolder": "com/ybb/mall",
+        "serverPort": "8080",
+        "authenticationType": "jwt",
+        "cacheProvider": "no",
+        "websocket": "spring-websocket",
+        "databaseType": "sql",
+        "devDatabaseType": "h2Disk",
+        "prodDatabaseType": "mysql",
+        "searchEngine": false,
+        "messageBroker": false,
+        "serviceDiscoveryType": false,
+        "buildTool": "maven",
+        "enableSwaggerCodegen": false,
+        "jwtSecretKey": "MThjNDNhOTRlMGQ3ZWY5MDUwMzBiY2Y5MWE3ZGE1YTQ3ODdlNWIzMmQzZGJmYjFlZmE2OTllZTdlMmRhZGNiZWI0MzE4ZWJhNDAxMmU4YTI5ZDI5MzMxMzdmZDU2Y2FkY2I2ZjRkMTZlN2MyNDJlMDE4YjYyZDg3OWY3Y2YwY2M=",
+        "clientFramework": "angularX",
+        "useSass": false,
+        "clientPackageManager": "npm",
+        "testFrameworks": [],
+        "jhiPrefix": "jhi",
+        "otherModules": [],
+        "enableTranslation": true,
+        "nativeLanguage": "zh-cn",
+        "languages": ["zh-cn", "zh-tw"]
+    }
+}

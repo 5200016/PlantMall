@@ -1,0 +1,73 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-sys-member-setting-heading" jhiTranslate="plantMallApp.sysMemberSetting.home.createOrEditLabel">Create or edit a Sys Member Setting</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!sysMemberSetting.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="sysMemberSetting.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysMemberSetting.growthProportion" for="field_growthProportion">Growth Proportion</label>
+                    <input type="number" class="form-control" name="growthProportion" id="field_growthProportion"
+                        [(ngModel)]="sysMemberSetting.growthProportion" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysMemberSetting.reviewGrowthValue" for="field_reviewGrowthValue">Review Growth Value</label>
+                    <input type="number" class="form-control" name="reviewGrowthValue" id="field_reviewGrowthValue"
+                        [(ngModel)]="sysMemberSetting.reviewGrowthValue" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysMemberSetting.checkGrowthValue" for="field_checkGrowthValue">Check Growth Value</label>
+                    <input type="number" class="form-control" name="checkGrowthValue" id="field_checkGrowthValue"
+                        [(ngModel)]="sysMemberSetting.checkGrowthValue" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysMemberSetting.integralProportion" for="field_integralProportion">Integral Proportion</label>
+                    <input type="number" class="form-control" name="integralProportion" id="field_integralProportion"
+                        [(ngModel)]="sysMemberSetting.integralProportion" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysMemberSetting.reviewIntegralValue" for="field_reviewIntegralValue">Review Integral Value</label>
+                    <input type="number" class="form-control" name="reviewIntegralValue" id="field_reviewIntegralValue"
+                        [(ngModel)]="sysMemberSetting.reviewIntegralValue" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysMemberSetting.checkIntegralValue" for="field_checkIntegralValue">Check Integral Value</label>
+                    <input type="number" class="form-control" name="checkIntegralValue" id="field_checkIntegralValue"
+                        [(ngModel)]="sysMemberSetting.checkIntegralValue" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysMemberSetting.integralProportionCash" for="field_integralProportionCash">Integral Proportion Cash</label>
+                    <input type="number" class="form-control" name="integralProportionCash" id="field_integralProportionCash"
+                        [(ngModel)]="sysMemberSetting.integralProportionCash" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysMemberSetting.createTime" for="field_createTime">Create Time</label>
+                    <div class="d-flex">
+                        <input id="field_createTime" type="datetime-local" class="form-control" name="createTime" [(ngModel)]="createTime"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysMemberSetting.updateTime" for="field_updateTime">Update Time</label>
+                    <div class="d-flex">
+                        <input id="field_updateTime" type="datetime-local" class="form-control" name="updateTime" [(ngModel)]="updateTime"
+                        />
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

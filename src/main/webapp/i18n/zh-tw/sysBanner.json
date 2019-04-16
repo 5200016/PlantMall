@@ -1,0 +1,25 @@
+{
+    "plantMallApp": {
+        "sysBanner": {
+            "home": {
+                "title": "Sys Banners",
+                "createLabel": "建立一筆新的 Sys Banner",
+                "createOrEditLabel": "建立或編輯 Sys Banner"
+            },
+            "created": "新的 Sys Banner 建立成功，識別碼為 {{ param }}",
+            "updated": "識別碼為 {{ param }} 的 Sys Banner 更新成功",
+            "deleted": "識別碼為 {{ param }} 的 Sys Banner 刪除成功",
+            "delete": {
+                "question": "您確定要刪除 Sys Banner {{ id }} 嗎?"
+            },
+            "detail": {
+                "title": "Sys Banner"
+            },
+            "image": "Image",
+            "link": "Link",
+            "sort": "Sort",
+            "createTime": "Create Time",
+            "updateTime": "Update Time"
+        }
+    }
+}

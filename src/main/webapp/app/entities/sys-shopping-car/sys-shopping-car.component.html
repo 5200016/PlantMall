@@ -1,0 +1,62 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="plantMallApp.sysShoppingCar.home.title">Sys Shopping Cars</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-sys-shopping-car" [routerLink]="['/sys-shopping-car/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="plantMallApp.sysShoppingCar.home.createLabel">
+            Create new Sys Shopping Car
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="sysShoppingCars">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="plantMallApp.sysShoppingCar.createTime">Create Time</span></th>
+            <th><span jhiTranslate="plantMallApp.sysShoppingCar.updateTime">Update Time</span></th>
+            <th><span jhiTranslate="plantMallApp.sysShoppingCar.product">Product</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let sysShoppingCar of sysShoppingCars ;trackBy: trackId">
+                <td><a [routerLink]="['/sys-shopping-car', sysShoppingCar.id, 'view' ]">{{sysShoppingCar.id}}</a></td>
+                <td>{{sysShoppingCar.createTime | date:'medium'}}</td>
+                <td>{{sysShoppingCar.updateTime | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="sysShoppingCar.product">
+                        <a [routerLink]="['../sys-product', sysShoppingCar.product?.id, 'view' ]" >{{sysShoppingCar.product?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/sys-shopping-car', sysShoppingCar.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/sys-shopping-car', sysShoppingCar.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'sys-shopping-car/'+ sysShoppingCar.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

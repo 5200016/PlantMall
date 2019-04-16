@@ -1,0 +1,59 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="sysOrder">
+            <h2><span jhiTranslate="plantMallApp.sysOrder.detail.title">Sys Order</span> {{sysOrder.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="plantMallApp.sysOrder.tradeNo">Trade No</span></dt>
+                <dd>
+                    <span>{{sysOrder.tradeNo}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysOrder.price">Price</span></dt>
+                <dd>
+                    <span>{{sysOrder.price}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysOrder.type">Type</span></dt>
+                <dd>
+                    <span>{{sysOrder.type}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysOrder.number">Number</span></dt>
+                <dd>
+                    <span>{{sysOrder.number}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysOrder.createTime">Create Time</span></dt>
+                <dd>
+                    <span>{{sysOrder.createTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysOrder.updateTime">Update Time</span></dt>
+                <dd>
+                    <span>{{sysOrder.updateTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysOrder.user">User</span></dt>
+                <dd>
+                    <div *ngIf="sysOrder.user">
+                        <a [routerLink]="['/sys-user', sysOrder.user?.id, 'view']">{{sysOrder.user?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysOrder.product">Product</span></dt>
+                <dd>
+                    <div *ngIf="sysOrder.product">
+                        <a [routerLink]="['/sys-product', sysOrder.product?.id, 'view']">{{sysOrder.product?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/sys-order', sysOrder.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

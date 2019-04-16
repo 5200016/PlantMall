@@ -1,0 +1,24 @@
+{
+    "plantMallApp": {
+        "sysClassify": {
+            "home": {
+                "title": "Sys Classifies",
+                "createLabel": "创建新 Sys Classify",
+                "createOrEditLabel": "创建或编辑 Sys Classify"
+            },
+            "created": "Sys Classify {{ param }} 创建成功",
+            "updated": "Sys Classify {{ param }} 更新成功",
+            "deleted": "Sys Classify {{ param }} 删除成功",
+            "delete": {
+                "question": "你确定要删除 Sys Classify {{ id }} 吗？"
+            },
+            "detail": {
+                "title": "Sys Classify"
+            },
+            "name": "Name",
+            "createTime": "Create Time",
+            "updateTime": "Update Time",
+            "product": "Product"
+        }
+    }
+}

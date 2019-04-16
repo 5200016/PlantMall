@@ -1,0 +1,65 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="sysProduct">
+            <h2><span jhiTranslate="plantMallApp.sysProduct.detail.title">Sys Product</span> {{sysProduct.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="plantMallApp.sysProduct.name">Name</span></dt>
+                <dd>
+                    <span>{{sysProduct.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysProduct.price">Price</span></dt>
+                <dd>
+                    <span>{{sysProduct.price}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysProduct.image">Image</span></dt>
+                <dd>
+                    <span>{{sysProduct.image}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysProduct.specification">Specification</span></dt>
+                <dd>
+                    <span>{{sysProduct.specification}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysProduct.inventory">Inventory</span></dt>
+                <dd>
+                    <span>{{sysProduct.inventory}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysProduct.sale">Sale</span></dt>
+                <dd>
+                    <span>{{sysProduct.sale}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysProduct.description">Description</span></dt>
+                <dd>
+                    <span>{{sysProduct.description}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysProduct.createTime">Create Time</span></dt>
+                <dd>
+                    <span>{{sysProduct.createTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysProduct.updateTime">Update Time</span></dt>
+                <dd>
+                    <span>{{sysProduct.updateTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysProduct.classify">Classify</span></dt>
+                <dd>
+                    <div *ngIf="sysProduct.classify">
+                        <a [routerLink]="['/sys-classify', sysProduct.classify?.id, 'view']">{{sysProduct.classify?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/sys-product', sysProduct.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+{
+    "plantMallApp": {
+        "sysReview": {
+            "home": {
+                "title": "Sys Reviews",
+                "createLabel": "建立一筆新的 Sys Review",
+                "createOrEditLabel": "建立或編輯 Sys Review"
+            },
+            "created": "新的 Sys Review 建立成功，識別碼為 {{ param }}",
+            "updated": "識別碼為 {{ param }} 的 Sys Review 更新成功",
+            "deleted": "識別碼為 {{ param }} 的 Sys Review 刪除成功",
+            "delete": {
+                "question": "您確定要刪除 Sys Review {{ id }} 嗎?"
+            },
+            "detail": {
+                "title": "Sys Review"
+            },
+            "content": "Content",
+            "level": "Level",
+            "createTime": "Create Time",
+            "updateTime": "Update Time",
+            "product": "Product"
+        }
+    }
+}

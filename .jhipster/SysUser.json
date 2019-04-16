@@ -1,0 +1,93 @@
+{
+    "name": "SysUser",
+    "fields": [
+        {
+            "fieldName": "openid",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "phone",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "sessionKey",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "username",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "avatar",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nickname",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "sex",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "integral",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "growthValue",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "createTime",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "updateTime",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "memberLevel",
+            "otherEntityName": "sysMemberLevel",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "user",
+            "relationshipName": "role",
+            "otherEntityName": "sysRole",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "receiveAddress",
+            "otherEntityName": "sysReceiverAddress",
+            "otherEntityRelationshipName": "user"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "order",
+            "otherEntityName": "sysOrder",
+            "otherEntityRelationshipName": "user"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "collection",
+            "otherEntityName": "sysCollection",
+            "otherEntityRelationshipName": "user"
+        }
+    ],
+    "changelogDate": "20190415061351",
+    "javadoc": "用户表",
+    "entityTableName": "sys_user",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

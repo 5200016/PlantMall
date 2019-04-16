@@ -80,17 +80,17 @@ jhipster:
         max-pool-size: 50
         queue-capacity: 10000
     # By default CORS is disabled. Uncomment to enable.
-    #cors:
-        #allowed-origins: "*"
-        #allowed-methods: "*"
-        #allowed-headers: "*"
-        #exposed-headers: "Authorization,Link,X-Total-Count"
-        #allow-credentials: true
-        #max-age: 1800
+    cors:
+        allowed-origins: "*"
+        allowed-methods: "*"
+        allowed-headers: "*"
+        exposed-headers: "Authorization,Link,X-Total-Count"
+        allow-credentials: true
+        max-age: 1800
     mail:
         from: PlantMall@localhost
     swagger:
-        default-include-pattern: /api/.*
+        default-include-pattern: /mall/.*
         title: PlantMall API
         description: PlantMall API documentation
         version: 0.0.1
@@ -110,4 +110,6 @@ jhipster:
 # https://www.jhipster.tech/common-application-properties/
 # ===================================================================
 
-# application:
+application:
+    filePath: F:/CompanyProject/YbbProject/PlantMallPicture/ # 文件保存位置
+    filePrefix: filedir                # 访问文件时 /file/文件路径

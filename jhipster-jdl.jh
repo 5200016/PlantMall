@@ -1,0 +1,182 @@
+/**
+ * 用户表
+ */
+entity SysUser {
+	openid String,
+    phone String,
+    sessionKey String,
+    username String,
+    avatar String,
+    nickname String,
+    sex String,
+    integral Integer,
+    growthValue Integer,
+    createTime ZonedDateTime,
+    updateTime ZonedDateTime
+}
+
+/**
+ * 管理员表
+ */
+entity SysAdmin{
+    username String,
+    password String,
+    avatar String,
+    sex String,
+    role Integer,
+    phone String,
+    createTime ZonedDateTime,
+    updateTime ZonedDateTime
+}
+
+/**
+ * 角色表
+ */
+entity SysRole {
+    code String,
+    name String,
+    remark String,
+    createTime ZonedDateTime,
+    updateTime ZonedDateTime
+}
+
+/**
+ * 会员设置表
+ */
+entity SysMemberSetting{
+    growthProportion Integer,
+    reviewGrowthValue Integer,
+    checkGrowthValue Integer,
+    integralProportion Integer,
+    reviewIntegralValue Integer,
+    checkIntegralValue Integer,
+    integralProportionCash Integer,
+    createTime ZonedDateTime,
+    updateTime ZonedDateTime
+}
+
+/**
+ * 会员等级表
+ */
+entity SysMemberLevel{
+    name String,
+    level Integer,
+    leftValue Integer,
+    rightValue Integer,
+    discount Double,
+    createTime ZonedDateTime,
+    updateTime ZonedDateTime
+}
+
+/**
+ * 收货地址表
+ */
+entity SysReceiverAddress {
+    openid String,
+    status Integer,
+    address TextBlob,
+    createTime ZonedDateTime,
+    updateTime ZonedDateTime
+}
+
+/**
+ * 商品表
+ */
+entity SysProduct {
+	name String,
+    price BigDecimal,
+    image String,
+    specification String,
+    inventory Integer,
+    sale Integer,
+    description TextBlob,
+    createTime ZonedDateTime,
+    updateTime ZonedDateTime
+}
+
+/**
+ * 商品分类表
+ */
+entity SysClassify{
+    name String,
+    createTime ZonedDateTime,
+    updateTime ZonedDateTime
+}
+
+/**
+ * 客服表
+ */
+entity SysCustomerService{
+    phone String,
+    email String,
+    createTime ZonedDateTime,
+    updateTime ZonedDateTime
+}
+
+/**
+ * 轮播图表
+ */
+entity SysBanner{
+    image String,
+    link String,
+    sort Integer,
+    createTime ZonedDateTime,
+    updateTime ZonedDateTime
+}
+
+/**
+ * 订单表
+ */
+entity SysOrder {
+	tradeNo String,
+    price BigDecimal,
+    type Integer,
+    number Integer,
+    createTime ZonedDateTime,
+    updateTime ZonedDateTime
+}
+
+/**
+ * 购物车表
+ */
+entity SysShoppingCar{
+    createTime ZonedDateTime,
+    updateTime ZonedDateTime
+}
+
+/**
+ * 评论表
+ */
+entity SysReview{
+    content TextBlob,
+    level Integer,
+    createTime ZonedDateTime,
+    updateTime ZonedDateTime
+}
+
+/**
+ * 收藏表
+ */
+entity SysCollection{
+    createTime ZonedDateTime,
+    updateTime ZonedDateTime
+}
+
+relationship ManyToOne {
+	SysReceiverAddress{user} to SysUser{receiveAddress},
+    SysOrder{user} to SysUser{order},
+    SysOrder{product} to SysProduct{order},
+    SysProduct{classify} to SysClassify{product},
+    SysShoppingCar{product} to SysProduct{shoppingCar},
+    SysReview{product} to SysProduct{review},
+    SysCollection{user} to SysUser{collection},
+    SysCollection{product} to SysProduct{collection},
+    SysUser{memberLevel} to SysMemberLevel{user}
+}
+
+relationship ManyToMany {
+    SysUser{role} to SysRole{user}
+    SysReceiverAddress{product} to SysOrder{receiveAddress}
+}
+
+service * with serviceImpl

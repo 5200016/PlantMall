@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="sysReceiverAddress">
+            <h2><span jhiTranslate="plantMallApp.sysReceiverAddress.detail.title">Sys Receiver Address</span> {{sysReceiverAddress.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="plantMallApp.sysReceiverAddress.openid">Openid</span></dt>
+                <dd>
+                    <span>{{sysReceiverAddress.openid}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysReceiverAddress.status">Status</span></dt>
+                <dd>
+                    <span>{{sysReceiverAddress.status}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysReceiverAddress.address">Address</span></dt>
+                <dd>
+                    <span>{{sysReceiverAddress.address}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysReceiverAddress.createTime">Create Time</span></dt>
+                <dd>
+                    <span>{{sysReceiverAddress.createTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysReceiverAddress.updateTime">Update Time</span></dt>
+                <dd>
+                    <span>{{sysReceiverAddress.updateTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysReceiverAddress.user">User</span></dt>
+                <dd>
+                    <div *ngIf="sysReceiverAddress.user">
+                        <a [routerLink]="['/sys-user', sysReceiverAddress.user?.id, 'view']">{{sysReceiverAddress.user?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysReceiverAddress.product">Product</span></dt>
+                <dd>
+                    <span *ngFor="let product of sysReceiverAddress.products; let last = last">
+                        <a [routerLink]="['/sys-order', product?.id, 'view' ]">{{product.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/sys-receiver-address', sysReceiverAddress.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

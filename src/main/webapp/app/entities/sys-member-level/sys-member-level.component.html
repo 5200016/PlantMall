@@ -1,0 +1,66 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="plantMallApp.sysMemberLevel.home.title">Sys Member Levels</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-sys-member-level" [routerLink]="['/sys-member-level/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="plantMallApp.sysMemberLevel.home.createLabel">
+            Create new Sys Member Level
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="sysMemberLevels">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="plantMallApp.sysMemberLevel.name">Name</span></th>
+            <th><span jhiTranslate="plantMallApp.sysMemberLevel.level">Level</span></th>
+            <th><span jhiTranslate="plantMallApp.sysMemberLevel.leftValue">Left Value</span></th>
+            <th><span jhiTranslate="plantMallApp.sysMemberLevel.rightValue">Right Value</span></th>
+            <th><span jhiTranslate="plantMallApp.sysMemberLevel.discount">Discount</span></th>
+            <th><span jhiTranslate="plantMallApp.sysMemberLevel.createTime">Create Time</span></th>
+            <th><span jhiTranslate="plantMallApp.sysMemberLevel.updateTime">Update Time</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let sysMemberLevel of sysMemberLevels ;trackBy: trackId">
+                <td><a [routerLink]="['/sys-member-level', sysMemberLevel.id, 'view' ]">{{sysMemberLevel.id}}</a></td>
+                <td>{{sysMemberLevel.name}}</td>
+                <td>{{sysMemberLevel.level}}</td>
+                <td>{{sysMemberLevel.leftValue}}</td>
+                <td>{{sysMemberLevel.rightValue}}</td>
+                <td>{{sysMemberLevel.discount}}</td>
+                <td>{{sysMemberLevel.createTime | date:'medium'}}</td>
+                <td>{{sysMemberLevel.updateTime | date:'medium'}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/sys-member-level', sysMemberLevel.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/sys-member-level', sysMemberLevel.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'sys-member-level/'+ sysMemberLevel.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

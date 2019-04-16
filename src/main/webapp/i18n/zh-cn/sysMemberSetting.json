@@ -1,0 +1,29 @@
+{
+    "plantMallApp": {
+        "sysMemberSetting": {
+            "home": {
+                "title": "Sys Member Settings",
+                "createLabel": "创建新 Sys Member Setting",
+                "createOrEditLabel": "创建或编辑 Sys Member Setting"
+            },
+            "created": "Sys Member Setting {{ param }} 创建成功",
+            "updated": "Sys Member Setting {{ param }} 更新成功",
+            "deleted": "Sys Member Setting {{ param }} 删除成功",
+            "delete": {
+                "question": "你确定要删除 Sys Member Setting {{ id }} 吗？"
+            },
+            "detail": {
+                "title": "Sys Member Setting"
+            },
+            "growthProportion": "Growth Proportion",
+            "reviewGrowthValue": "Review Growth Value",
+            "checkGrowthValue": "Check Growth Value",
+            "integralProportion": "Integral Proportion",
+            "reviewIntegralValue": "Review Integral Value",
+            "checkIntegralValue": "Check Integral Value",
+            "integralProportionCash": "Integral Proportion Cash",
+            "createTime": "Create Time",
+            "updateTime": "Update Time"
+        }
+    }
+}

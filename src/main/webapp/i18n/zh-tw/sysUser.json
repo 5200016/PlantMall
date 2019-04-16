@@ -1,0 +1,36 @@
+{
+    "plantMallApp": {
+        "sysUser": {
+            "home": {
+                "title": "Sys Users",
+                "createLabel": "建立一筆新的 Sys User",
+                "createOrEditLabel": "建立或編輯 Sys User"
+            },
+            "created": "新的 Sys User 建立成功，識別碼為 {{ param }}",
+            "updated": "識別碼為 {{ param }} 的 Sys User 更新成功",
+            "deleted": "識別碼為 {{ param }} 的 Sys User 刪除成功",
+            "delete": {
+                "question": "您確定要刪除 Sys User {{ id }} 嗎?"
+            },
+            "detail": {
+                "title": "Sys User"
+            },
+            "openid": "Openid",
+            "phone": "Phone",
+            "sessionKey": "Session Key",
+            "username": "Username",
+            "avatar": "Avatar",
+            "nickname": "Nickname",
+            "sex": "Sex",
+            "integral": "Integral",
+            "growthValue": "Growth Value",
+            "createTime": "Create Time",
+            "updateTime": "Update Time",
+            "memberLevel": "Member Level",
+            "role": "Role",
+            "receiveAddress": "Receive Address",
+            "order": "Order",
+            "collection": "Collection"
+        }
+    }
+}

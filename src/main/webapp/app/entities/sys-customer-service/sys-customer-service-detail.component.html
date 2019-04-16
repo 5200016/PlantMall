@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="sysCustomerService">
+            <h2><span jhiTranslate="plantMallApp.sysCustomerService.detail.title">Sys Customer Service</span> {{sysCustomerService.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="plantMallApp.sysCustomerService.phone">Phone</span></dt>
+                <dd>
+                    <span>{{sysCustomerService.phone}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysCustomerService.email">Email</span></dt>
+                <dd>
+                    <span>{{sysCustomerService.email}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysCustomerService.createTime">Create Time</span></dt>
+                <dd>
+                    <span>{{sysCustomerService.createTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysCustomerService.updateTime">Update Time</span></dt>
+                <dd>
+                    <span>{{sysCustomerService.updateTime}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/sys-customer-service', sysCustomerService.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

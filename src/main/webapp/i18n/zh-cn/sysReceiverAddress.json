@@ -1,0 +1,27 @@
+{
+    "plantMallApp": {
+        "sysReceiverAddress": {
+            "home": {
+                "title": "Sys Receiver Addresses",
+                "createLabel": "创建新 Sys Receiver Address",
+                "createOrEditLabel": "创建或编辑 Sys Receiver Address"
+            },
+            "created": "Sys Receiver Address {{ param }} 创建成功",
+            "updated": "Sys Receiver Address {{ param }} 更新成功",
+            "deleted": "Sys Receiver Address {{ param }} 删除成功",
+            "delete": {
+                "question": "你确定要删除 Sys Receiver Address {{ id }} 吗？"
+            },
+            "detail": {
+                "title": "Sys Receiver Address"
+            },
+            "openid": "Openid",
+            "status": "Status",
+            "address": "Address",
+            "createTime": "Create Time",
+            "updateTime": "Update Time",
+            "user": "User",
+            "product": "Product"
+        }
+    }
+}

@@ -1,0 +1,66 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-sys-receiver-address-heading" jhiTranslate="plantMallApp.sysReceiverAddress.home.createOrEditLabel">Create or edit a Sys Receiver Address</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!sysReceiverAddress.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="sysReceiverAddress.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysReceiverAddress.openid" for="field_openid">Openid</label>
+                    <input type="text" class="form-control" name="openid" id="field_openid"
+                        [(ngModel)]="sysReceiverAddress.openid" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysReceiverAddress.status" for="field_status">Status</label>
+                    <input type="number" class="form-control" name="status" id="field_status"
+                        [(ngModel)]="sysReceiverAddress.status" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysReceiverAddress.address" for="field_address">Address</label>
+                    <textarea class="form-control" name="address" id="field_address"
+                        [(ngModel)]="sysReceiverAddress.address" ></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysReceiverAddress.createTime" for="field_createTime">Create Time</label>
+                    <div class="d-flex">
+                        <input id="field_createTime" type="datetime-local" class="form-control" name="createTime" [(ngModel)]="createTime"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysReceiverAddress.updateTime" for="field_updateTime">Update Time</label>
+                    <div class="d-flex">
+                        <input id="field_updateTime" type="datetime-local" class="form-control" name="updateTime" [(ngModel)]="updateTime"
+                        />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysReceiverAddress.user" for="field_user">User</label>
+                    <select class="form-control" id="field_user" name="user" [(ngModel)]="sysReceiverAddress.user" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="sysUserOption.id === sysReceiverAddress.user?.id ? sysReceiverAddress.user : sysUserOption" *ngFor="let sysUserOption of sysusers; trackBy: trackSysUserById">{{sysUserOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label jhiTranslate="plantMallApp.sysReceiverAddress.product" for="field_product">Product</label>
+                    <select class="form-control" id="field_product" multiple name="product" [(ngModel)]="sysReceiverAddress.products">
+                        <option [ngValue]="getSelected(sysReceiverAddress.products, sysOrderOption)" *ngFor="let sysOrderOption of sysorders; trackBy: trackSysOrderById">{{sysOrderOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

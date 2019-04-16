@@ -15,11 +15,15 @@
 
 logging:
     level:
-        ROOT: INFO
-        com.ybb.mall: INFO
-        io.github.jhipster: INFO
+        ROOT: DEBUG
+        com.ybb.mall: DEBUG
+        io.github.jhipster: DEBUG
 
 spring:
+    profiles:
+        active: prod
+        include:
+            - swagger
     devtools:
         restart:
             enabled: false

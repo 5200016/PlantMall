@@ -1,0 +1,23 @@
+{
+    "plantMallApp": {
+        "sysShoppingCar": {
+            "home": {
+                "title": "Sys Shopping Cars",
+                "createLabel": "创建新 Sys Shopping Car",
+                "createOrEditLabel": "创建或编辑 Sys Shopping Car"
+            },
+            "created": "Sys Shopping Car {{ param }} 创建成功",
+            "updated": "Sys Shopping Car {{ param }} 更新成功",
+            "deleted": "Sys Shopping Car {{ param }} 删除成功",
+            "delete": {
+                "question": "你确定要删除 Sys Shopping Car {{ id }} 吗？"
+            },
+            "detail": {
+                "title": "Sys Shopping Car"
+            },
+            "createTime": "Create Time",
+            "updateTime": "Update Time",
+            "product": "Product"
+        }
+    }
+}

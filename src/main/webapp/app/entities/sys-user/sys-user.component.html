@@ -1,0 +1,86 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="plantMallApp.sysUser.home.title">Sys Users</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-sys-user" [routerLink]="['/sys-user/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="plantMallApp.sysUser.home.createLabel">
+            Create new Sys User
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="sysUsers">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="plantMallApp.sysUser.openid">Openid</span></th>
+            <th><span jhiTranslate="plantMallApp.sysUser.phone">Phone</span></th>
+            <th><span jhiTranslate="plantMallApp.sysUser.sessionKey">Session Key</span></th>
+            <th><span jhiTranslate="plantMallApp.sysUser.username">Username</span></th>
+            <th><span jhiTranslate="plantMallApp.sysUser.avatar">Avatar</span></th>
+            <th><span jhiTranslate="plantMallApp.sysUser.nickname">Nickname</span></th>
+            <th><span jhiTranslate="plantMallApp.sysUser.sex">Sex</span></th>
+            <th><span jhiTranslate="plantMallApp.sysUser.integral">Integral</span></th>
+            <th><span jhiTranslate="plantMallApp.sysUser.growthValue">Growth Value</span></th>
+            <th><span jhiTranslate="plantMallApp.sysUser.createTime">Create Time</span></th>
+            <th><span jhiTranslate="plantMallApp.sysUser.updateTime">Update Time</span></th>
+            <th><span jhiTranslate="plantMallApp.sysUser.memberLevel">Member Level</span></th>
+            <th><span jhiTranslate="plantMallApp.sysUser.role">Role</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let sysUser of sysUsers ;trackBy: trackId">
+                <td><a [routerLink]="['/sys-user', sysUser.id, 'view' ]">{{sysUser.id}}</a></td>
+                <td>{{sysUser.openid}}</td>
+                <td>{{sysUser.phone}}</td>
+                <td>{{sysUser.sessionKey}}</td>
+                <td>{{sysUser.username}}</td>
+                <td>{{sysUser.avatar}}</td>
+                <td>{{sysUser.nickname}}</td>
+                <td>{{sysUser.sex}}</td>
+                <td>{{sysUser.integral}}</td>
+                <td>{{sysUser.growthValue}}</td>
+                <td>{{sysUser.createTime | date:'medium'}}</td>
+                <td>{{sysUser.updateTime | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="sysUser.memberLevel">
+                        <a [routerLink]="['../sys-member-level', sysUser.memberLevel?.id, 'view' ]" >{{sysUser.memberLevel?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <span *ngFor="let role of sysUser.roles; let last = last">
+                            <a class="form-control-static" [routerLink]="['../sys-role', role?.id, 'view' ]">{{role.id}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/sys-user', sysUser.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/sys-user', sysUser.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'sys-user/'+ sysUser.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

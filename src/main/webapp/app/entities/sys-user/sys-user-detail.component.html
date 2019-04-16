@@ -1,0 +1,79 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="sysUser">
+            <h2><span jhiTranslate="plantMallApp.sysUser.detail.title">Sys User</span> {{sysUser.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="plantMallApp.sysUser.openid">Openid</span></dt>
+                <dd>
+                    <span>{{sysUser.openid}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysUser.phone">Phone</span></dt>
+                <dd>
+                    <span>{{sysUser.phone}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysUser.sessionKey">Session Key</span></dt>
+                <dd>
+                    <span>{{sysUser.sessionKey}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysUser.username">Username</span></dt>
+                <dd>
+                    <span>{{sysUser.username}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysUser.avatar">Avatar</span></dt>
+                <dd>
+                    <span>{{sysUser.avatar}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysUser.nickname">Nickname</span></dt>
+                <dd>
+                    <span>{{sysUser.nickname}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysUser.sex">Sex</span></dt>
+                <dd>
+                    <span>{{sysUser.sex}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysUser.integral">Integral</span></dt>
+                <dd>
+                    <span>{{sysUser.integral}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysUser.growthValue">Growth Value</span></dt>
+                <dd>
+                    <span>{{sysUser.growthValue}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysUser.createTime">Create Time</span></dt>
+                <dd>
+                    <span>{{sysUser.createTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysUser.updateTime">Update Time</span></dt>
+                <dd>
+                    <span>{{sysUser.updateTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysUser.memberLevel">Member Level</span></dt>
+                <dd>
+                    <div *ngIf="sysUser.memberLevel">
+                        <a [routerLink]="['/sys-member-level', sysUser.memberLevel?.id, 'view']">{{sysUser.memberLevel?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysUser.role">Role</span></dt>
+                <dd>
+                    <span *ngFor="let role of sysUser.roles; let last = last">
+                        <a [routerLink]="['/sys-role', role?.id, 'view' ]">{{role.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/sys-user', sysUser.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

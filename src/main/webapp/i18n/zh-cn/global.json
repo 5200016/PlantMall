@@ -7,6 +7,20 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "数据",
+                "sysUser": "Sys User",
+                "sysAdmin": "Sys Admin",
+                "sysRole": "Sys Role",
+                "sysMemberSetting": "Sys Member Setting",
+                "sysMemberLevel": "Sys Member Level",
+                "sysReceiverAddress": "Sys Receiver Address",
+                "sysProduct": "Sys Product",
+                "sysClassify": "Sys Classify",
+                "sysCustomerService": "Sys Customer Service",
+                "sysBanner": "Sys Banner",
+                "sysOrder": "Sys Order",
+                "sysShoppingCar": "Sys Shopping Car",
+                "sysReview": "Sys Review",
+                "sysCollection": "Sys Collection",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

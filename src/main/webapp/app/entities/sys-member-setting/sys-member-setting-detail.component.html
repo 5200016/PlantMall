@@ -1,0 +1,59 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="sysMemberSetting">
+            <h2><span jhiTranslate="plantMallApp.sysMemberSetting.detail.title">Sys Member Setting</span> {{sysMemberSetting.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="plantMallApp.sysMemberSetting.growthProportion">Growth Proportion</span></dt>
+                <dd>
+                    <span>{{sysMemberSetting.growthProportion}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysMemberSetting.reviewGrowthValue">Review Growth Value</span></dt>
+                <dd>
+                    <span>{{sysMemberSetting.reviewGrowthValue}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysMemberSetting.checkGrowthValue">Check Growth Value</span></dt>
+                <dd>
+                    <span>{{sysMemberSetting.checkGrowthValue}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysMemberSetting.integralProportion">Integral Proportion</span></dt>
+                <dd>
+                    <span>{{sysMemberSetting.integralProportion}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysMemberSetting.reviewIntegralValue">Review Integral Value</span></dt>
+                <dd>
+                    <span>{{sysMemberSetting.reviewIntegralValue}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysMemberSetting.checkIntegralValue">Check Integral Value</span></dt>
+                <dd>
+                    <span>{{sysMemberSetting.checkIntegralValue}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysMemberSetting.integralProportionCash">Integral Proportion Cash</span></dt>
+                <dd>
+                    <span>{{sysMemberSetting.integralProportionCash}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysMemberSetting.createTime">Create Time</span></dt>
+                <dd>
+                    <span>{{sysMemberSetting.createTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysMemberSetting.updateTime">Update Time</span></dt>
+                <dd>
+                    <span>{{sysMemberSetting.updateTime}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/sys-member-setting', sysMemberSetting.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

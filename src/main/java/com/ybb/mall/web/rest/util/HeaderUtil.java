@@ -7,7 +7,7 @@ import org.springframework.http.HttpHeaders;
 /**
  * Utility class for HTTP headers creation.
  */
-public final class HeaderUtil {
+public class HeaderUtil {
 
     private static final Logger log = LoggerFactory.getLogger(HeaderUtil.class);
 

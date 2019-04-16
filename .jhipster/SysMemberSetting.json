@@ -1,0 +1,52 @@
+{
+    "name": "SysMemberSetting",
+    "fields": [
+        {
+            "fieldName": "growthProportion",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "reviewGrowthValue",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "checkGrowthValue",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "integralProportion",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "reviewIntegralValue",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "checkIntegralValue",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "integralProportionCash",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "createTime",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "updateTime",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190415061354",
+    "javadoc": "会员设置表",
+    "entityTableName": "sys_member_setting",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

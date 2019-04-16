@@ -1,0 +1,51 @@
+{
+    "name": "SysMemberLevel",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "level",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "leftValue",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "rightValue",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "discount",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "createTime",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "updateTime",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "user",
+            "otherEntityName": "sysUser",
+            "otherEntityRelationshipName": "memberLevel"
+        }
+    ],
+    "changelogDate": "20190415061355",
+    "javadoc": "会员等级表",
+    "entityTableName": "sys_member_level",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

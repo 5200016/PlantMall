@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="sysAdmin">
+            <h2><span jhiTranslate="plantMallApp.sysAdmin.detail.title">Sys Admin</span> {{sysAdmin.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="plantMallApp.sysAdmin.username">Username</span></dt>
+                <dd>
+                    <span>{{sysAdmin.username}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysAdmin.password">Password</span></dt>
+                <dd>
+                    <span>{{sysAdmin.password}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysAdmin.avatar">Avatar</span></dt>
+                <dd>
+                    <span>{{sysAdmin.avatar}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysAdmin.sex">Sex</span></dt>
+                <dd>
+                    <span>{{sysAdmin.sex}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysAdmin.role">Role</span></dt>
+                <dd>
+                    <span>{{sysAdmin.role}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysAdmin.phone">Phone</span></dt>
+                <dd>
+                    <span>{{sysAdmin.phone}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysAdmin.createTime">Create Time</span></dt>
+                <dd>
+                    <span>{{sysAdmin.createTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysAdmin.updateTime">Update Time</span></dt>
+                <dd>
+                    <span>{{sysAdmin.updateTime}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/sys-admin', sysAdmin.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

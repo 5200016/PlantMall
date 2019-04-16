@@ -1,0 +1,28 @@
+{
+    "plantMallApp": {
+        "sysMemberLevel": {
+            "home": {
+                "title": "Sys Member Levels",
+                "createLabel": "创建新 Sys Member Level",
+                "createOrEditLabel": "创建或编辑 Sys Member Level"
+            },
+            "created": "Sys Member Level {{ param }} 创建成功",
+            "updated": "Sys Member Level {{ param }} 更新成功",
+            "deleted": "Sys Member Level {{ param }} 删除成功",
+            "delete": {
+                "question": "你确定要删除 Sys Member Level {{ id }} 吗？"
+            },
+            "detail": {
+                "title": "Sys Member Level"
+            },
+            "name": "Name",
+            "level": "Level",
+            "leftValue": "Left Value",
+            "rightValue": "Right Value",
+            "discount": "Discount",
+            "createTime": "Create Time",
+            "updateTime": "Update Time",
+            "user": "User"
+        }
+    }
+}

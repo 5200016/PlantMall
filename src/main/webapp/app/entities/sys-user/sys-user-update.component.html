@@ -1,0 +1,96 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-sys-user-heading" jhiTranslate="plantMallApp.sysUser.home.createOrEditLabel">Create or edit a Sys User</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!sysUser.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="sysUser.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysUser.openid" for="field_openid">Openid</label>
+                    <input type="text" class="form-control" name="openid" id="field_openid"
+                        [(ngModel)]="sysUser.openid" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysUser.phone" for="field_phone">Phone</label>
+                    <input type="text" class="form-control" name="phone" id="field_phone"
+                        [(ngModel)]="sysUser.phone" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysUser.sessionKey" for="field_sessionKey">Session Key</label>
+                    <input type="text" class="form-control" name="sessionKey" id="field_sessionKey"
+                        [(ngModel)]="sysUser.sessionKey" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysUser.username" for="field_username">Username</label>
+                    <input type="text" class="form-control" name="username" id="field_username"
+                        [(ngModel)]="sysUser.username" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysUser.avatar" for="field_avatar">Avatar</label>
+                    <input type="text" class="form-control" name="avatar" id="field_avatar"
+                        [(ngModel)]="sysUser.avatar" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysUser.nickname" for="field_nickname">Nickname</label>
+                    <input type="text" class="form-control" name="nickname" id="field_nickname"
+                        [(ngModel)]="sysUser.nickname" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysUser.sex" for="field_sex">Sex</label>
+                    <input type="text" class="form-control" name="sex" id="field_sex"
+                        [(ngModel)]="sysUser.sex" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysUser.integral" for="field_integral">Integral</label>
+                    <input type="number" class="form-control" name="integral" id="field_integral"
+                        [(ngModel)]="sysUser.integral" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysUser.growthValue" for="field_growthValue">Growth Value</label>
+                    <input type="number" class="form-control" name="growthValue" id="field_growthValue"
+                        [(ngModel)]="sysUser.growthValue" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysUser.createTime" for="field_createTime">Create Time</label>
+                    <div class="d-flex">
+                        <input id="field_createTime" type="datetime-local" class="form-control" name="createTime" [(ngModel)]="createTime"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysUser.updateTime" for="field_updateTime">Update Time</label>
+                    <div class="d-flex">
+                        <input id="field_updateTime" type="datetime-local" class="form-control" name="updateTime" [(ngModel)]="updateTime"
+                        />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysUser.memberLevel" for="field_memberLevel">Member Level</label>
+                    <select class="form-control" id="field_memberLevel" name="memberLevel" [(ngModel)]="sysUser.memberLevel" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="sysMemberLevelOption.id === sysUser.memberLevel?.id ? sysUser.memberLevel : sysMemberLevelOption" *ngFor="let sysMemberLevelOption of sysmemberlevels; trackBy: trackSysMemberLevelById">{{sysMemberLevelOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label jhiTranslate="plantMallApp.sysUser.role" for="field_role">Role</label>
+                    <select class="form-control" id="field_role" multiple name="role" [(ngModel)]="sysUser.roles">
+                        <option [ngValue]="getSelected(sysUser.roles, sysRoleOption)" *ngFor="let sysRoleOption of sysroles; trackBy: trackSysRoleById">{{sysRoleOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+{
+    "plantMallApp": {
+        "sysAdmin": {
+            "home": {
+                "title": "Sys Admins",
+                "createLabel": "建立一筆新的 Sys Admin",
+                "createOrEditLabel": "建立或編輯 Sys Admin"
+            },
+            "created": "新的 Sys Admin 建立成功，識別碼為 {{ param }}",
+            "updated": "識別碼為 {{ param }} 的 Sys Admin 更新成功",
+            "deleted": "識別碼為 {{ param }} 的 Sys Admin 刪除成功",
+            "delete": {
+                "question": "您確定要刪除 Sys Admin {{ id }} 嗎?"
+            },
+            "detail": {
+                "title": "Sys Admin"
+            },
+            "username": "Username",
+            "password": "Password",
+            "avatar": "Avatar",
+            "sex": "Sex",
+            "role": "Role",
+            "phone": "Phone",
+            "createTime": "Create Time",
+            "updateTime": "Update Time"
+        }
+    }
+}

@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="sysMemberLevel">
+            <h2><span jhiTranslate="plantMallApp.sysMemberLevel.detail.title">Sys Member Level</span> {{sysMemberLevel.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="plantMallApp.sysMemberLevel.name">Name</span></dt>
+                <dd>
+                    <span>{{sysMemberLevel.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysMemberLevel.level">Level</span></dt>
+                <dd>
+                    <span>{{sysMemberLevel.level}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysMemberLevel.leftValue">Left Value</span></dt>
+                <dd>
+                    <span>{{sysMemberLevel.leftValue}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysMemberLevel.rightValue">Right Value</span></dt>
+                <dd>
+                    <span>{{sysMemberLevel.rightValue}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysMemberLevel.discount">Discount</span></dt>
+                <dd>
+                    <span>{{sysMemberLevel.discount}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysMemberLevel.createTime">Create Time</span></dt>
+                <dd>
+                    <span>{{sysMemberLevel.createTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysMemberLevel.updateTime">Update Time</span></dt>
+                <dd>
+                    <span>{{sysMemberLevel.updateTime}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/sys-member-level', sysMemberLevel.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

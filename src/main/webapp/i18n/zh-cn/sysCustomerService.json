@@ -1,0 +1,24 @@
+{
+    "plantMallApp": {
+        "sysCustomerService": {
+            "home": {
+                "title": "Sys Customer Services",
+                "createLabel": "创建新 Sys Customer Service",
+                "createOrEditLabel": "创建或编辑 Sys Customer Service"
+            },
+            "created": "Sys Customer Service {{ param }} 创建成功",
+            "updated": "Sys Customer Service {{ param }} 更新成功",
+            "deleted": "Sys Customer Service {{ param }} 删除成功",
+            "delete": {
+                "question": "你确定要删除 Sys Customer Service {{ id }} 吗？"
+            },
+            "detail": {
+                "title": "Sys Customer Service"
+            },
+            "phone": "Phone",
+            "email": "Email",
+            "createTime": "Create Time",
+            "updateTime": "Update Time"
+        }
+    }
+}

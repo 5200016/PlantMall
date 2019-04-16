@@ -1,0 +1,31 @@
+{
+    "name": "SysShoppingCar",
+    "fields": [
+        {
+            "fieldName": "createTime",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "updateTime",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "product",
+            "otherEntityName": "sysProduct",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190415061402",
+    "javadoc": "购物车表",
+    "entityTableName": "sys_shopping_car",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

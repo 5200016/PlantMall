@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="sysBanner">
+            <h2><span jhiTranslate="plantMallApp.sysBanner.detail.title">Sys Banner</span> {{sysBanner.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="plantMallApp.sysBanner.image">Image</span></dt>
+                <dd>
+                    <span>{{sysBanner.image}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysBanner.link">Link</span></dt>
+                <dd>
+                    <span>{{sysBanner.link}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysBanner.sort">Sort</span></dt>
+                <dd>
+                    <span>{{sysBanner.sort}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysBanner.createTime">Create Time</span></dt>
+                <dd>
+                    <span>{{sysBanner.createTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysBanner.updateTime">Update Time</span></dt>
+                <dd>
+                    <span>{{sysBanner.updateTime}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/sys-banner', sysBanner.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

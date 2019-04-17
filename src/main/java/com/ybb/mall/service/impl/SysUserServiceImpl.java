@@ -3,10 +3,12 @@ package com.ybb.mall.service.impl;
 import com.ybb.mall.service.SysUserService;
 import com.ybb.mall.domain.SysUser;
 import com.ybb.mall.repository.SysUserRepository;
+import com.ybb.mall.service.dto.user.UserListDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -61,7 +63,7 @@ public class SysUserServiceImpl implements SysUserService {
     public Page<SysUser> findAllWithEagerRelationships(Pageable pageable) {
         return sysUserRepository.findAllWithEagerRelationships(pageable);
     }
-    
+
 
     /**
      * Get one sysUser by id.
@@ -85,5 +87,10 @@ public class SysUserServiceImpl implements SysUserService {
     public void delete(Long id) {
         log.debug("Request to delete SysUser : {}", id);
         sysUserRepository.deleteById(id);
+    }
+
+    @Override
+    public Page<UserListDTO> findUserList(String phone, Integer pageNum, Integer pageSize) {
+        return sysUserRepository.findUserList(phone, PageRequest.of(pageNum, pageSize));
     }
 }

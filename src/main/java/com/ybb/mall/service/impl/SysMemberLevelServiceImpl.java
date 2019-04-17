@@ -3,6 +3,10 @@ package com.ybb.mall.service.impl;
 import com.ybb.mall.service.SysMemberLevelService;
 import com.ybb.mall.domain.SysMemberLevel;
 import com.ybb.mall.repository.SysMemberLevelRepository;
+import com.ybb.mall.web.rest.util.DateUtil;
+import com.ybb.mall.web.rest.util.ResultObj;
+import com.ybb.mall.web.rest.util.TypeUtils;
+import com.ybb.mall.web.rest.vm.member.MemberLevelVM;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -74,5 +78,30 @@ public class SysMemberLevelServiceImpl implements SysMemberLevelService {
     public void delete(Long id) {
         log.debug("Request to delete SysMemberLevel : {}", id);
         sysMemberLevelRepository.deleteById(id);
+    }
+
+    @Override
+    public List<SysMemberLevel> findMemberLevelList() {
+        return sysMemberLevelRepository.findMemberLevelList();
+    }
+
+    @Override
+    public ResultObj updateMemberLevel(MemberLevelVM memberLevel) {
+        if(TypeUtils.isEmpty(memberLevel.getId())){
+            return ResultObj.backInfo(false, 200, "修改失败（id不能为空）", null);
+        }
+
+        SysMemberLevel sysMemberLevel = new SysMemberLevel();
+        sysMemberLevel.setId(memberLevel.getId());
+        sysMemberLevel.setCreateTime(memberLevel.getCreateTime());
+        sysMemberLevel.setDiscount(memberLevel.getDiscount());
+        sysMemberLevel.setLeftValue(memberLevel.getLeftValue());
+        sysMemberLevel.setLevel(memberLevel.getLevel());
+        sysMemberLevel.setName(memberLevel.getName());
+        sysMemberLevel.setRightValue(memberLevel.getRightValue());
+        sysMemberLevel.setUpdateTime(DateUtil.getZoneDateTime());
+
+        sysMemberLevelRepository.save(sysMemberLevel);
+        return ResultObj.backInfo(true, 200, "修改成功", null);
     }
 }

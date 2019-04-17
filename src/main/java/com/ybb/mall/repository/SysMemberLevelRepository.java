@@ -4,6 +4,8 @@ import com.ybb.mall.domain.SysMemberLevel;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 
 /**
  * Spring Data  repository for the SysMemberLevel entity.
@@ -17,5 +19,5 @@ public interface SysMemberLevelRepository extends JpaRepository<SysMemberLevel, 
      * @return
      */
     @Query("select sml from SysMemberLevel sml order by sml.level asc")
-    SysMemberLevel findMemberLevelList();
+    List<SysMemberLevel> findMemberLevelList();
 }

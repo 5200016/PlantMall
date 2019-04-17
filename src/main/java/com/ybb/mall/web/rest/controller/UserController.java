@@ -29,13 +29,15 @@ public class UserController {
     }
 
     /**
-     * 根据用户名模糊查询用户列表
+     * 根据手机号模糊查询用户列表（分页）
      */
-    @ApiOperation("根据手机号模糊查询用户列表 RequestBody")
+    @ApiOperation("根据手机号模糊查询用户列表（分页） RequestParam")
     @GetMapping("/users")
     @Timed
-    public ResultObj selectUserList(@ApiParam(name="phone",value="手机号",required=true) @RequestParam String phone) throws URISyntaxException {
-        return null;
+    public ResultObj selectUserList(@ApiParam(name="phone",value="手机号",required=true) @RequestParam String phone,
+                                    @ApiParam(name="pageNum",value="页码",required=true) @RequestParam Integer pageNum,
+                                    @ApiParam(name="pageSize",value="数量",required=true) @RequestParam Integer pageSize) throws URISyntaxException {
+        return ResultObj.back(200, sysUserService.findUserList(phone, pageNum, pageSize));
     }
 
     /**

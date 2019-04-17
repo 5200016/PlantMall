@@ -40,7 +40,7 @@ public class AdminController {
     @ApiOperation("用户登录 RequestBody")
     @PostMapping("/login")
     @Timed
-    public ResultObj userLogin(@ApiParam(name="loginVM",value="用户登录实体",required=true) @RequestBody AdminVM admin) throws URISyntaxException {
+    public ResultObj userLogin(@RequestBody AdminVM admin) throws URISyntaxException {
         return sysAdminService.adminLogin(admin);
     }
 }

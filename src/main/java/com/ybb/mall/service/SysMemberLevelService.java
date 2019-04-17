@@ -1,6 +1,8 @@
 package com.ybb.mall.service;
 
 import com.ybb.mall.domain.SysMemberLevel;
+import com.ybb.mall.web.rest.util.ResultObj;
+import com.ybb.mall.web.rest.vm.member.MemberLevelVM;
 
 import java.util.List;
 import java.util.Optional;
@@ -44,8 +46,10 @@ public interface SysMemberLevelService {
     /**
      * 查询会员等级列表
      */
+    List<SysMemberLevel> findMemberLevelList();
 
     /**
      * 修改会员等级列表
      */
+    ResultObj updateMemberLevel(MemberLevelVM memberLevel);
 }

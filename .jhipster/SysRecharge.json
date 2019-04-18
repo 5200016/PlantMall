@@ -1,18 +1,9 @@
 {
-    "name": "SysCustomerService",
+    "name": "SysRecharge",
     "fields": [
         {
-            "fieldName": "phone",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "email",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "address",
-            "fieldType": "byte[]",
-            "fieldTypeBlobContent": "text"
+            "fieldName": "price",
+            "fieldType": "BigDecimal"
         },
         {
             "fieldName": "createTime",
@@ -24,9 +15,9 @@
         }
     ],
     "relationships": [],
-    "changelogDate": "20190415061359",
-    "javadoc": "客服表",
-    "entityTableName": "sys_customer_service",
+    "changelogDate": "20190417093901",
+    "javadoc": "充值项目表",
+    "entityTableName": "sys_recharge",
     "dto": "no",
     "pagination": "no",
     "service": "serviceImpl",

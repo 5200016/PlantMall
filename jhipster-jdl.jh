@@ -109,6 +109,7 @@ entity SysClassify{
 entity SysCustomerService{
     phone String,
     email String,
+    address TextBlob,
     createTime ZonedDateTime,
     updateTime ZonedDateTime
 }
@@ -158,6 +159,15 @@ entity SysReview{
  * 收藏表
  */
 entity SysCollection{
+    createTime ZonedDateTime,
+    updateTime ZonedDateTime
+}
+
+/**
+ * 充值项目表
+ */
+entity SysRecharge{
+    price BigDecimal,
     createTime ZonedDateTime,
     updateTime ZonedDateTime
 }

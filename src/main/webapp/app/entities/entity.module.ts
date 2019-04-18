@@ -14,6 +14,7 @@ import { PlantMallSysOrderModule } from './sys-order/sys-order.module';
 import { PlantMallSysShoppingCarModule } from './sys-shopping-car/sys-shopping-car.module';
 import { PlantMallSysReviewModule } from './sys-review/sys-review.module';
 import { PlantMallSysCollectionModule } from './sys-collection/sys-collection.module';
+import { PlantMallSysRechargeModule } from './sys-recharge/sys-recharge.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -33,6 +34,7 @@ import { PlantMallSysCollectionModule } from './sys-collection/sys-collection.mo
         PlantMallSysShoppingCarModule,
         PlantMallSysReviewModule,
         PlantMallSysCollectionModule,
+        PlantMallSysRechargeModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

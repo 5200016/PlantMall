@@ -5,16 +5,17 @@ import io.swagger.annotations.ApiModel;
 import javax.persistence.*;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 
 /**
- * 客服表
+ * 充值项目表
  */
-@ApiModel(description = "客服表")
+@ApiModel(description = "充值项目表")
 @Entity
-@Table(name = "sys_customer_service")
-public class SysCustomerService implements Serializable {
+@Table(name = "sys_recharge")
+public class SysRecharge implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -22,15 +23,8 @@ public class SysCustomerService implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "phone")
-    private String phone;
-
-    @Column(name = "email")
-    private String email;
-
-    @Lob
-    @Column(name = "address")
-    private String address;
+    @Column(name = "price", precision = 10, scale = 2)
+    private BigDecimal price;
 
     @Column(name = "create_time")
     private ZonedDateTime createTime;
@@ -47,50 +41,24 @@ public class SysCustomerService implements Serializable {
         this.id = id;
     }
 
-    public String getPhone() {
-        return phone;
+    public BigDecimal getPrice() {
+        return price;
     }
 
-    public SysCustomerService phone(String phone) {
-        this.phone = phone;
+    public SysRecharge price(BigDecimal price) {
+        this.price = price;
         return this;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public SysCustomerService email(String email) {
-        this.email = email;
-        return this;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public SysCustomerService address(String address) {
-        this.address = address;
-        return this;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
     public ZonedDateTime getCreateTime() {
         return createTime;
     }
 
-    public SysCustomerService createTime(ZonedDateTime createTime) {
+    public SysRecharge createTime(ZonedDateTime createTime) {
         this.createTime = createTime;
         return this;
     }
@@ -103,7 +71,7 @@ public class SysCustomerService implements Serializable {
         return updateTime;
     }
 
-    public SysCustomerService updateTime(ZonedDateTime updateTime) {
+    public SysRecharge updateTime(ZonedDateTime updateTime) {
         this.updateTime = updateTime;
         return this;
     }
@@ -121,11 +89,11 @@ public class SysCustomerService implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        SysCustomerService sysCustomerService = (SysCustomerService) o;
-        if (sysCustomerService.getId() == null || getId() == null) {
+        SysRecharge sysRecharge = (SysRecharge) o;
+        if (sysRecharge.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(getId(), sysCustomerService.getId());
+        return Objects.equals(getId(), sysRecharge.getId());
     }
 
     @Override
@@ -135,11 +103,9 @@ public class SysCustomerService implements Serializable {
 
     @Override
     public String toString() {
-        return "SysCustomerService{" +
+        return "SysRecharge{" +
             "id=" + getId() +
-            ", phone='" + getPhone() + "'" +
-            ", email='" + getEmail() + "'" +
-            ", address='" + getAddress() + "'" +
+            ", price=" + getPrice() +
             ", createTime='" + getCreateTime() + "'" +
             ", updateTime='" + getUpdateTime() + "'" +
             "}";

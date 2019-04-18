@@ -20,6 +20,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Base64Utils;
 import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
@@ -51,6 +52,9 @@ public class SysCustomerServiceResourceIntTest {
 
     private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
     private static final String UPDATED_EMAIL = "BBBBBBBBBB";
+
+    private static final String DEFAULT_ADDRESS = "AAAAAAAAAA";
+    private static final String UPDATED_ADDRESS = "BBBBBBBBBB";
 
     private static final ZonedDateTime DEFAULT_CREATE_TIME = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_CREATE_TIME = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
@@ -105,6 +109,7 @@ public class SysCustomerServiceResourceIntTest {
         SysCustomerService sysCustomerService = new SysCustomerService()
             .phone(DEFAULT_PHONE)
             .email(DEFAULT_EMAIL)
+            .address(DEFAULT_ADDRESS)
             .createTime(DEFAULT_CREATE_TIME)
             .updateTime(DEFAULT_UPDATE_TIME);
         return sysCustomerService;
@@ -132,6 +137,7 @@ public class SysCustomerServiceResourceIntTest {
         SysCustomerService testSysCustomerService = sysCustomerServiceList.get(sysCustomerServiceList.size() - 1);
         assertThat(testSysCustomerService.getPhone()).isEqualTo(DEFAULT_PHONE);
         assertThat(testSysCustomerService.getEmail()).isEqualTo(DEFAULT_EMAIL);
+        assertThat(testSysCustomerService.getAddress()).isEqualTo(DEFAULT_ADDRESS);
         assertThat(testSysCustomerService.getCreateTime()).isEqualTo(DEFAULT_CREATE_TIME);
         assertThat(testSysCustomerService.getUpdateTime()).isEqualTo(DEFAULT_UPDATE_TIME);
     }
@@ -168,10 +174,11 @@ public class SysCustomerServiceResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(sysCustomerService.getId().intValue())))
             .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE.toString())))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
+            .andExpect(jsonPath("$.[*].address").value(hasItem(DEFAULT_ADDRESS.toString())))
             .andExpect(jsonPath("$.[*].createTime").value(hasItem(sameInstant(DEFAULT_CREATE_TIME))))
             .andExpect(jsonPath("$.[*].updateTime").value(hasItem(sameInstant(DEFAULT_UPDATE_TIME))));
     }
-
+    
     @Test
     @Transactional
     public void getSysCustomerService() throws Exception {
@@ -185,6 +192,7 @@ public class SysCustomerServiceResourceIntTest {
             .andExpect(jsonPath("$.id").value(sysCustomerService.getId().intValue()))
             .andExpect(jsonPath("$.phone").value(DEFAULT_PHONE.toString()))
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
+            .andExpect(jsonPath("$.address").value(DEFAULT_ADDRESS.toString()))
             .andExpect(jsonPath("$.createTime").value(sameInstant(DEFAULT_CREATE_TIME)))
             .andExpect(jsonPath("$.updateTime").value(sameInstant(DEFAULT_UPDATE_TIME)));
     }
@@ -212,6 +220,7 @@ public class SysCustomerServiceResourceIntTest {
         updatedSysCustomerService
             .phone(UPDATED_PHONE)
             .email(UPDATED_EMAIL)
+            .address(UPDATED_ADDRESS)
             .createTime(UPDATED_CREATE_TIME)
             .updateTime(UPDATED_UPDATE_TIME);
 
@@ -226,6 +235,7 @@ public class SysCustomerServiceResourceIntTest {
         SysCustomerService testSysCustomerService = sysCustomerServiceList.get(sysCustomerServiceList.size() - 1);
         assertThat(testSysCustomerService.getPhone()).isEqualTo(UPDATED_PHONE);
         assertThat(testSysCustomerService.getEmail()).isEqualTo(UPDATED_EMAIL);
+        assertThat(testSysCustomerService.getAddress()).isEqualTo(UPDATED_ADDRESS);
         assertThat(testSysCustomerService.getCreateTime()).isEqualTo(UPDATED_CREATE_TIME);
         assertThat(testSysCustomerService.getUpdateTime()).isEqualTo(UPDATED_UPDATE_TIME);
     }

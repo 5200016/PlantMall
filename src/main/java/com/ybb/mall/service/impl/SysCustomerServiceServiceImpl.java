@@ -3,6 +3,10 @@ package com.ybb.mall.service.impl;
 import com.ybb.mall.service.SysCustomerServiceService;
 import com.ybb.mall.domain.SysCustomerService;
 import com.ybb.mall.repository.SysCustomerServiceRepository;
+import com.ybb.mall.web.rest.util.DateUtil;
+import com.ybb.mall.web.rest.util.ResultObj;
+import com.ybb.mall.web.rest.util.TypeUtils;
+import com.ybb.mall.web.rest.vm.customer.CustomerServiceVM;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -74,5 +78,21 @@ public class SysCustomerServiceServiceImpl implements SysCustomerServiceService 
     public void delete(Long id) {
         log.debug("Request to delete SysCustomerService : {}", id);
         sysCustomerServiceRepository.deleteById(id);
+    }
+
+    @Override
+    public ResultObj updateCustomerService(CustomerServiceVM customerService) {
+        if(TypeUtils.isEmpty(customerService.getId())){
+            return ResultObj.backInfo(false, 200, "编辑失败（id不能为空）", null);
+        }
+        SysCustomerService sysCustomerService = new SysCustomerService();
+        sysCustomerService.setId(customerService.getId());
+        sysCustomerService.setPhone(customerService.getPhone());
+        sysCustomerService.setAddress(customerService.getAddress());
+        sysCustomerService.setEmail(customerService.getEmail());
+        sysCustomerService.setUpdateTime(DateUtil.getZoneDateTime());
+        sysCustomerService.setCreateTime(customerService.getCreateTime());
+        sysCustomerServiceRepository.save(sysCustomerService);
+        return ResultObj.backInfo(true, 200, "编辑成功", null);
     }
 }

@@ -17,6 +17,7 @@
             },
             "phone": "Phone",
             "email": "Email",
+            "address": "Address",
             "createTime": "Create Time",
             "updateTime": "Update Time"
         }

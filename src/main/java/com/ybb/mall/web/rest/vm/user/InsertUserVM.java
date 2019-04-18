@@ -7,5 +7,5 @@ package com.ybb.mall.web.rest.vm.user;
  * @Version
  */
 
-public class InsertUser {
+public class InsertUserVM {
 }

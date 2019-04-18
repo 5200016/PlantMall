@@ -159,7 +159,7 @@ public class SysCollectionResourceIntTest {
             .andExpect(jsonPath("$.[*].createTime").value(hasItem(sameInstant(DEFAULT_CREATE_TIME))))
             .andExpect(jsonPath("$.[*].updateTime").value(hasItem(sameInstant(DEFAULT_UPDATE_TIME))));
     }
-
+    
     @Test
     @Transactional
     public void getSysCollection() throws Exception {

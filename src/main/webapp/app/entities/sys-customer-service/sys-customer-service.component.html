@@ -17,6 +17,7 @@
             <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="plantMallApp.sysCustomerService.phone">Phone</span></th>
             <th><span jhiTranslate="plantMallApp.sysCustomerService.email">Email</span></th>
+            <th><span jhiTranslate="plantMallApp.sysCustomerService.address">Address</span></th>
             <th><span jhiTranslate="plantMallApp.sysCustomerService.createTime">Create Time</span></th>
             <th><span jhiTranslate="plantMallApp.sysCustomerService.updateTime">Update Time</span></th>
             <th></th>
@@ -27,6 +28,7 @@
                 <td><a [routerLink]="['/sys-customer-service', sysCustomerService.id, 'view' ]">{{sysCustomerService.id}}</a></td>
                 <td>{{sysCustomerService.phone}}</td>
                 <td>{{sysCustomerService.email}}</td>
+                <td>{{sysCustomerService.address}}</td>
                 <td>{{sysCustomerService.createTime | date:'medium'}}</td>
                 <td>{{sysCustomerService.updateTime | date:'medium'}}</td>
                 <td class="text-right">

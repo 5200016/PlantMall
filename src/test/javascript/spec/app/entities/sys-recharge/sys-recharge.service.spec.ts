@@ -6,26 +6,26 @@ import { of } from 'rxjs';
 import { take, map } from 'rxjs/operators';
 import * as moment from 'moment';
 import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
-import { SysCustomerServiceService } from 'app/entities/sys-customer-service/sys-customer-service.service';
-import { ISysCustomerService, SysCustomerService } from 'app/shared/model/sys-customer-service.model';
+import { SysRechargeService } from 'app/entities/sys-recharge/sys-recharge.service';
+import { ISysRecharge, SysRecharge } from 'app/shared/model/sys-recharge.model';
 
 describe('Service Tests', () => {
-    describe('SysCustomerService Service', () => {
+    describe('SysRecharge Service', () => {
         let injector: TestBed;
-        let service: SysCustomerServiceService;
+        let service: SysRechargeService;
         let httpMock: HttpTestingController;
-        let elemDefault: ISysCustomerService;
+        let elemDefault: ISysRecharge;
         let currentDate: moment.Moment;
         beforeEach(() => {
             TestBed.configureTestingModule({
                 imports: [HttpClientTestingModule]
             });
             injector = getTestBed();
-            service = injector.get(SysCustomerServiceService);
+            service = injector.get(SysRechargeService);
             httpMock = injector.get(HttpTestingController);
             currentDate = moment();
 
-            elemDefault = new SysCustomerService(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', currentDate, currentDate);
+            elemDefault = new SysRecharge(0, 0, currentDate, currentDate);
         });
 
         describe('Service methods', async () => {
@@ -46,7 +46,7 @@ describe('Service Tests', () => {
                 req.flush(JSON.stringify(returnedFromService));
             });
 
-            it('should create a SysCustomerService', async () => {
+            it('should create a SysRecharge', async () => {
                 const returnedFromService = Object.assign(
                     {
                         id: 0,
@@ -63,19 +63,17 @@ describe('Service Tests', () => {
                     returnedFromService
                 );
                 service
-                    .create(new SysCustomerService(null))
+                    .create(new SysRecharge(null))
                     .pipe(take(1))
                     .subscribe(resp => expect(resp).toMatchObject({ body: expected }));
                 const req = httpMock.expectOne({ method: 'POST' });
                 req.flush(JSON.stringify(returnedFromService));
             });
 
-            it('should update a SysCustomerService', async () => {
+            it('should update a SysRecharge', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        phone: 'BBBBBB',
-                        email: 'BBBBBB',
-                        address: 'BBBBBB',
+                        price: 1,
                         createTime: currentDate.format(DATE_TIME_FORMAT),
                         updateTime: currentDate.format(DATE_TIME_FORMAT)
                     },
@@ -97,12 +95,10 @@ describe('Service Tests', () => {
                 req.flush(JSON.stringify(returnedFromService));
             });
 
-            it('should return a list of SysCustomerService', async () => {
+            it('should return a list of SysRecharge', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        phone: 'BBBBBB',
-                        email: 'BBBBBB',
-                        address: 'BBBBBB',
+                        price: 1,
                         createTime: currentDate.format(DATE_TIME_FORMAT),
                         updateTime: currentDate.format(DATE_TIME_FORMAT)
                     },
@@ -127,7 +123,7 @@ describe('Service Tests', () => {
                 httpMock.verify();
             });
 
-            it('should delete a SysCustomerService', async () => {
+            it('should delete a SysRecharge', async () => {
                 const rxPromise = service.delete(123).subscribe(resp => expect(resp.ok));
 
                 const req = httpMock.expectOne({ method: 'DELETE' });

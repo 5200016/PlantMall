@@ -4,6 +4,7 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
 import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
+import { JhiDataUtils } from 'ng-jhipster';
 
 import { ISysCustomerService } from 'app/shared/model/sys-customer-service.model';
 import { SysCustomerServiceService } from './sys-customer-service.service';
@@ -18,7 +19,11 @@ export class SysCustomerServiceUpdateComponent implements OnInit {
     createTime: string;
     updateTime: string;
 
-    constructor(protected sysCustomerServiceService: SysCustomerServiceService, protected activatedRoute: ActivatedRoute) {}
+    constructor(
+        protected dataUtils: JhiDataUtils,
+        protected sysCustomerServiceService: SysCustomerServiceService,
+        protected activatedRoute: ActivatedRoute
+    ) {}
 
     ngOnInit() {
         this.isSaving = false;
@@ -29,6 +34,18 @@ export class SysCustomerServiceUpdateComponent implements OnInit {
             this.updateTime =
                 this.sysCustomerService.updateTime != null ? this.sysCustomerService.updateTime.format(DATE_TIME_FORMAT) : null;
         });
+    }
+
+    byteSize(field) {
+        return this.dataUtils.byteSize(field);
+    }
+
+    openFile(contentType, field) {
+        return this.dataUtils.openFile(contentType, field);
+    }
+
+    setFileData(event, entity, field, isImage) {
+        this.dataUtils.setFileData(event, entity, field, isImage);
     }
 
     previousState() {

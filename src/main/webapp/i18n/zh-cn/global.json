@@ -21,6 +21,7 @@
                 "sysShoppingCar": "Sys Shopping Car",
                 "sysReview": "Sys Review",
                 "sysCollection": "Sys Collection",
+                "sysRecharge": "Sys Recharge",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

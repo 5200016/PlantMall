@@ -15,22 +15,14 @@
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
     <!--
-        Added the entity SysCustomerService.
+        Added the entity SysRecharge.
     -->
-    <changeSet id="20190415061359-1" author="jhipster">
-        <createTable tableName="sys_customer_service" remarks="客服表">
+    <changeSet id="20190417093901-1" author="jhipster">
+        <createTable tableName="sys_recharge" remarks="充值项目表">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="phone" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="email" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="address" type="clob">
+            <column name="price" type="decimal(10,2)">
                 <constraints nullable="true" />
             </column>
 
@@ -44,8 +36,8 @@
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        <dropDefaultValue tableName="sys_customer_service" columnName="create_time" columnDataType="datetime"/>
-        <dropDefaultValue tableName="sys_customer_service" columnName="update_time" columnDataType="datetime"/>
+        <dropDefaultValue tableName="sys_recharge" columnName="create_time" columnDataType="datetime"/>
+        <dropDefaultValue tableName="sys_recharge" columnName="update_time" columnDataType="datetime"/>
         
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->

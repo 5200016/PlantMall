@@ -2,6 +2,7 @@ package com.ybb.mall.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 
@@ -25,8 +26,26 @@ public class SysClassify implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * 分类名称
+     */
+    @ApiModelProperty(value = "分类名称")
     @Column(name = "name")
     private String name;
+
+    /**
+     * 分类类型（0：出售 1：租赁）
+     */
+    @ApiModelProperty(value = "分类类型（0：出售 1：租赁）")
+    @Column(name = "jhi_type")
+    private Integer type;
+
+    /**
+     * 排序等级
+     */
+    @ApiModelProperty(value = "排序等级")
+    @Column(name = "jhi_sort")
+    private Integer sort;
 
     @Column(name = "create_time")
     private ZonedDateTime createTime;
@@ -34,8 +53,10 @@ public class SysClassify implements Serializable {
     @Column(name = "update_time")
     private ZonedDateTime updateTime;
 
-    @OneToMany(mappedBy = "classify")
+    @ManyToMany(mappedBy = "classifies")
+    @JsonIgnore
     private Set<SysProduct> products = new HashSet<>();
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -56,6 +77,32 @@ public class SysClassify implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public SysClassify type(Integer type) {
+        this.type = type;
+        return this;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public Integer getSort() {
+        return sort;
+    }
+
+    public SysClassify sort(Integer sort) {
+        this.sort = sort;
+        return this;
+    }
+
+    public void setSort(Integer sort) {
+        this.sort = sort;
     }
 
     public ZonedDateTime getCreateTime() {
@@ -95,13 +142,13 @@ public class SysClassify implements Serializable {
 
     public SysClassify addProduct(SysProduct sysProduct) {
         this.products.add(sysProduct);
-        sysProduct.setClassify(this);
+        sysProduct.getClassifies().add(this);
         return this;
     }
 
     public SysClassify removeProduct(SysProduct sysProduct) {
         this.products.remove(sysProduct);
-        sysProduct.setClassify(null);
+        sysProduct.getClassifies().remove(this);
         return this;
     }
 
@@ -135,6 +182,8 @@ public class SysClassify implements Serializable {
         return "SysClassify{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
+            ", type=" + getType() +
+            ", sort=" + getSort() +
             ", createTime='" + getCreateTime() + "'" +
             ", updateTime='" + getUpdateTime() + "'" +
             "}";

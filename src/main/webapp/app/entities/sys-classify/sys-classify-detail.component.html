@@ -5,9 +5,17 @@
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="plantMallApp.sysClassify.name">Name</span></dt>
+                <dt><span jhiTranslate="plantMallApp.sysClassify.name" [ngbTooltip]="'plantMallApp.sysClassify.help.name' | translate">Name</span></dt>
                 <dd>
                     <span>{{sysClassify.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysClassify.type" [ngbTooltip]="'plantMallApp.sysClassify.help.type' | translate">Type</span></dt>
+                <dd>
+                    <span>{{sysClassify.type}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysClassify.sort" [ngbTooltip]="'plantMallApp.sysClassify.help.sort' | translate">Sort</span></dt>
+                <dd>
+                    <span>{{sysClassify.sort}}</span>
                 </dd>
                 <dt><span jhiTranslate="plantMallApp.sysClassify.createTime">Create Time</span></dt>
                 <dd>

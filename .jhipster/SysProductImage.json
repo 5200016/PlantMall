@@ -1,0 +1,36 @@
+{
+    "name": "SysProductImage",
+    "fields": [
+        {
+            "fieldName": "url",
+            "javadoc": "商品图片路径",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createTime",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "updateTime",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "product",
+            "otherEntityName": "sysProduct",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190422102042",
+    "javadoc": "商品图片表",
+    "entityTableName": "sys_product_image",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

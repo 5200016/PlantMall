@@ -8,11 +8,16 @@
     -->
     <changeSet id="20190415061357-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="classify_id"
-                                 baseTableName="sys_product"
-                                 constraintName="fk_sys_product_classify_id"
+        <addForeignKeyConstraint baseColumnNames="sys_products_id"
+                                 baseTableName="sys_product_classify"
+                                 constraintName="fk_sys_product_classify_sys_products_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sys_product"/>
+        <addForeignKeyConstraint baseColumnNames="classifies_id"
+                                 baseTableName="sys_product_classify"
+                                 constraintName="fk_sys_product_classify_classifies_id"
                                  referencedColumnNames="id"
                                  referencedTableName="sys_classify"/>
-
+        
     </changeSet>
 </databaseChangeLog>

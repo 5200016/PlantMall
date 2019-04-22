@@ -16,9 +16,16 @@
                 "title": "Sys Classify"
             },
             "name": "Name",
+            "type": "Type",
+            "sort": "Sort",
             "createTime": "Create Time",
             "updateTime": "Update Time",
-            "product": "Product"
+            "product": "Product",
+            "help": {
+                "name": "分类名称",
+                "type": "分类类型（0：出售 1：租赁）",
+                "sort": "排序等级"
+            }
         }
     }
 }

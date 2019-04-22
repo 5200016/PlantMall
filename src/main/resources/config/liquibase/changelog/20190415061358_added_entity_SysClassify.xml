@@ -22,7 +22,15 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="name" type="varchar(255)">
+            <column name="name" type="varchar(255)" remarks="分类名称">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="jhi_type" type="integer" remarks="分类类型（0：出售 1：租赁）">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="jhi_sort" type="integer" remarks="排序等级">
                 <constraints nullable="true" />
             </column>
 

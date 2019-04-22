@@ -49,6 +49,12 @@ public class SysClassifyResourceIntTest {
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
+    private static final Integer DEFAULT_TYPE = 1;
+    private static final Integer UPDATED_TYPE = 2;
+
+    private static final Integer DEFAULT_SORT = 1;
+    private static final Integer UPDATED_SORT = 2;
+
     private static final ZonedDateTime DEFAULT_CREATE_TIME = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_CREATE_TIME = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
 
@@ -101,6 +107,8 @@ public class SysClassifyResourceIntTest {
     public static SysClassify createEntity(EntityManager em) {
         SysClassify sysClassify = new SysClassify()
             .name(DEFAULT_NAME)
+            .type(DEFAULT_TYPE)
+            .sort(DEFAULT_SORT)
             .createTime(DEFAULT_CREATE_TIME)
             .updateTime(DEFAULT_UPDATE_TIME);
         return sysClassify;
@@ -127,6 +135,8 @@ public class SysClassifyResourceIntTest {
         assertThat(sysClassifyList).hasSize(databaseSizeBeforeCreate + 1);
         SysClassify testSysClassify = sysClassifyList.get(sysClassifyList.size() - 1);
         assertThat(testSysClassify.getName()).isEqualTo(DEFAULT_NAME);
+        assertThat(testSysClassify.getType()).isEqualTo(DEFAULT_TYPE);
+        assertThat(testSysClassify.getSort()).isEqualTo(DEFAULT_SORT);
         assertThat(testSysClassify.getCreateTime()).isEqualTo(DEFAULT_CREATE_TIME);
         assertThat(testSysClassify.getUpdateTime()).isEqualTo(DEFAULT_UPDATE_TIME);
     }
@@ -162,10 +172,12 @@ public class SysClassifyResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(sysClassify.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
+            .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE)))
+            .andExpect(jsonPath("$.[*].sort").value(hasItem(DEFAULT_SORT)))
             .andExpect(jsonPath("$.[*].createTime").value(hasItem(sameInstant(DEFAULT_CREATE_TIME))))
             .andExpect(jsonPath("$.[*].updateTime").value(hasItem(sameInstant(DEFAULT_UPDATE_TIME))));
     }
-
+    
     @Test
     @Transactional
     public void getSysClassify() throws Exception {
@@ -178,6 +190,8 @@ public class SysClassifyResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(sysClassify.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
+            .andExpect(jsonPath("$.type").value(DEFAULT_TYPE))
+            .andExpect(jsonPath("$.sort").value(DEFAULT_SORT))
             .andExpect(jsonPath("$.createTime").value(sameInstant(DEFAULT_CREATE_TIME)))
             .andExpect(jsonPath("$.updateTime").value(sameInstant(DEFAULT_UPDATE_TIME)));
     }
@@ -204,6 +218,8 @@ public class SysClassifyResourceIntTest {
         em.detach(updatedSysClassify);
         updatedSysClassify
             .name(UPDATED_NAME)
+            .type(UPDATED_TYPE)
+            .sort(UPDATED_SORT)
             .createTime(UPDATED_CREATE_TIME)
             .updateTime(UPDATED_UPDATE_TIME);
 
@@ -217,6 +233,8 @@ public class SysClassifyResourceIntTest {
         assertThat(sysClassifyList).hasSize(databaseSizeBeforeUpdate);
         SysClassify testSysClassify = sysClassifyList.get(sysClassifyList.size() - 1);
         assertThat(testSysClassify.getName()).isEqualTo(UPDATED_NAME);
+        assertThat(testSysClassify.getType()).isEqualTo(UPDATED_TYPE);
+        assertThat(testSysClassify.getSort()).isEqualTo(UPDATED_SORT);
         assertThat(testSysClassify.getCreateTime()).isEqualTo(UPDATED_CREATE_TIME);
         assertThat(testSysClassify.getUpdateTime()).isEqualTo(UPDATED_UPDATE_TIME);
     }

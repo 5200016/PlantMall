@@ -157,7 +157,7 @@ public enum ErrorCode {
                 errmsg = "不合法的UserID列表长度";
                 break;
             case 40033:
-                errmsg = "不合法的请求字符，不能包含\\uxxxx格式的字符 ";
+                errmsg = "不合法的请求字符，不能包含格式的字符 ";
                 break;
             case 40035:
                 errmsg = "不合法的参数 ";

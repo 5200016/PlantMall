@@ -9,7 +9,12 @@ import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
 @Configuration
-public class LocaleConfiguration implements WebMvcConfigurer {
+public class LocaleConfiguration implements WebMvcConfigurer{
+    private final ApplicationProperties applicationProperties;
+
+    public LocaleConfiguration(ApplicationProperties applicationProperties) {
+        this.applicationProperties = applicationProperties;
+    }
 
     @Bean(name = "localeResolver")
     public LocaleResolver localeResolver() {
@@ -24,4 +29,10 @@ public class LocaleConfiguration implements WebMvcConfigurer {
         localeChangeInterceptor.setParamName("language");
         registry.addInterceptor(localeChangeInterceptor);
     }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/"+applicationProperties.getFilePrefix()+"/**").addResourceLocations("file:" + applicationProperties.getFilePath());
+    }
+
 }

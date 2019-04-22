@@ -16,6 +16,8 @@
             <tr>
             <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="plantMallApp.sysClassify.name">Name</span></th>
+            <th><span jhiTranslate="plantMallApp.sysClassify.type">Type</span></th>
+            <th><span jhiTranslate="plantMallApp.sysClassify.sort">Sort</span></th>
             <th><span jhiTranslate="plantMallApp.sysClassify.createTime">Create Time</span></th>
             <th><span jhiTranslate="plantMallApp.sysClassify.updateTime">Update Time</span></th>
             <th></th>
@@ -25,6 +27,8 @@
             <tr *ngFor="let sysClassify of sysClassifies ;trackBy: trackId">
                 <td><a [routerLink]="['/sys-classify', sysClassify.id, 'view' ]">{{sysClassify.id}}</a></td>
                 <td>{{sysClassify.name}}</td>
+                <td>{{sysClassify.type}}</td>
+                <td>{{sysClassify.sort}}</td>
                 <td>{{sysClassify.createTime | date:'medium'}}</td>
                 <td>{{sysClassify.updateTime | date:'medium'}}</td>
                 <td class="text-right">

@@ -14,6 +14,16 @@ public class ApplicationProperties {
 
     private String filePrefix;
 
+    private String plantImage;
+
+    public String getPlantImage() {
+        return plantImage;
+    }
+
+    public void setPlantImage(String plantImage) {
+        this.plantImage = plantImage;
+    }
+
     public String getFilePath() {
         return filePath;
     }

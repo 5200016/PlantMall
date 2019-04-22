@@ -3,30 +3,37 @@
     "fields": [
         {
             "fieldName": "name",
+            "javadoc": "商品名称",
             "fieldType": "String"
         },
         {
+            "fieldName": "leasePrice",
+            "javadoc": "商品租赁价格",
+            "fieldType": "BigDecimal"
+        },
+        {
             "fieldName": "price",
+            "javadoc": "商品出售价格",
             "fieldType": "BigDecimal"
         },
         {
             "fieldName": "image",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "specification",
+            "javadoc": "商品图片",
             "fieldType": "String"
         },
         {
             "fieldName": "inventory",
+            "javadoc": "商品库存",
             "fieldType": "Integer"
         },
         {
             "fieldName": "sale",
+            "javadoc": "商品销售量",
             "fieldType": "Integer"
         },
         {
             "fieldName": "description",
+            "javadoc": "商品描述",
             "fieldType": "byte[]",
             "fieldTypeBlobContent": "text"
         },
@@ -41,15 +48,23 @@
     ],
     "relationships": [
         {
-            "relationshipType": "many-to-one",
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "product",
             "relationshipName": "classify",
             "otherEntityName": "sysClassify",
-            "otherEntityField": "id"
+            "otherEntityField": "id",
+            "ownerSide": true
         },
         {
             "relationshipType": "one-to-many",
             "relationshipName": "order",
             "otherEntityName": "sysOrder",
+            "otherEntityRelationshipName": "product"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "image",
+            "otherEntityName": "sysProductImage",
             "otherEntityRelationshipName": "product"
         },
         {

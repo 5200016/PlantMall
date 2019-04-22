@@ -83,12 +83,39 @@ entity SysReceiverAddress {
  * 商品表
  */
 entity SysProduct {
+    /**
+     * 商品名称
+     */
 	name String,
+
+	/**
+     * 商品租赁价格
+     */
+    leasePrice BigDecimal,
+
+	/**
+     * 商品出售价格
+     */
     price BigDecimal,
+
+    /**
+     * 商品图片
+     */
     image String,
-    specification String,
+
+    /**
+     * 商品库存
+     */
     inventory Integer,
+
+    /**
+     * 商品销售量
+     */
     sale Integer,
+
+    /**
+     * 商品描述
+     */
     description TextBlob,
     createTime ZonedDateTime,
     updateTime ZonedDateTime
@@ -98,7 +125,20 @@ entity SysProduct {
  * 商品分类表
  */
 entity SysClassify{
+    /**
+     * 分类名称
+     */
     name String,
+
+    /**
+     * 分类类型（0：出售 1：租赁）
+     */
+    type Integer,
+
+    /**
+     * 排序等级
+     */
+    sort Integer,
     createTime ZonedDateTime,
     updateTime ZonedDateTime
 }
@@ -172,11 +212,34 @@ entity SysRecharge{
     updateTime ZonedDateTime
 }
 
+/**
+ * 植物志表
+ */
+entity SysPlantLog{
+    name String,
+    image String,
+    description TextBlob,
+    createTime ZonedDateTime,
+    updateTime ZonedDateTime
+}
+
+/**
+ * 商品图片表
+ */
+entity SysProductImage{
+   /**
+    * 商品图片路径
+    */
+    url String,
+    createTime ZonedDateTime,
+    updateTime ZonedDateTime
+}
+
 relationship ManyToOne {
 	SysReceiverAddress{user} to SysUser{receiveAddress},
     SysOrder{user} to SysUser{order},
     SysOrder{product} to SysProduct{order},
-    SysProduct{classify} to SysClassify{product},
+    SysProductImage{product} to SysProduct{image},
     SysShoppingCar{product} to SysProduct{shoppingCar},
     SysReview{product} to SysProduct{review},
     SysCollection{user} to SysUser{collection},
@@ -185,7 +248,8 @@ relationship ManyToOne {
 }
 
 relationship ManyToMany {
-    SysUser{role} to SysRole{user}
+    SysUser{role} to SysRole{user},
+    SysProduct{classify} to SysClassify{product},
     SysReceiverAddress{product} to SysOrder{receiveAddress}
 }
 

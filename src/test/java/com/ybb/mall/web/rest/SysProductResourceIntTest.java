@@ -10,9 +10,12 @@ import com.ybb.mall.web.rest.errors.ExceptionTranslator;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -20,6 +23,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Base64Utils;
 import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
@@ -28,6 +32,7 @@ import java.time.Instant;
 import java.time.ZonedDateTime;
 import java.time.ZoneOffset;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -35,6 +40,7 @@ import static com.ybb.mall.web.rest.TestUtil.sameInstant;
 import static com.ybb.mall.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -50,14 +56,14 @@ public class SysProductResourceIntTest {
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
+    private static final BigDecimal DEFAULT_LEASE_PRICE = new BigDecimal(1);
+    private static final BigDecimal UPDATED_LEASE_PRICE = new BigDecimal(2);
+
     private static final BigDecimal DEFAULT_PRICE = new BigDecimal(1);
     private static final BigDecimal UPDATED_PRICE = new BigDecimal(2);
 
     private static final String DEFAULT_IMAGE = "AAAAAAAAAA";
     private static final String UPDATED_IMAGE = "BBBBBBBBBB";
-
-    private static final String DEFAULT_SPECIFICATION = "AAAAAAAAAA";
-    private static final String UPDATED_SPECIFICATION = "BBBBBBBBBB";
 
     private static final Integer DEFAULT_INVENTORY = 1;
     private static final Integer UPDATED_INVENTORY = 2;
@@ -76,6 +82,12 @@ public class SysProductResourceIntTest {
 
     @Autowired
     private SysProductRepository sysProductRepository;
+
+    @Mock
+    private SysProductRepository sysProductRepositoryMock;
+
+    @Mock
+    private SysProductService sysProductServiceMock;
 
     @Autowired
     private SysProductService sysProductService;
@@ -120,9 +132,9 @@ public class SysProductResourceIntTest {
     public static SysProduct createEntity(EntityManager em) {
         SysProduct sysProduct = new SysProduct()
             .name(DEFAULT_NAME)
+            .leasePrice(DEFAULT_LEASE_PRICE)
             .price(DEFAULT_PRICE)
             .image(DEFAULT_IMAGE)
-            .specification(DEFAULT_SPECIFICATION)
             .inventory(DEFAULT_INVENTORY)
             .sale(DEFAULT_SALE)
             .description(DEFAULT_DESCRIPTION)
@@ -152,9 +164,9 @@ public class SysProductResourceIntTest {
         assertThat(sysProductList).hasSize(databaseSizeBeforeCreate + 1);
         SysProduct testSysProduct = sysProductList.get(sysProductList.size() - 1);
         assertThat(testSysProduct.getName()).isEqualTo(DEFAULT_NAME);
+        assertThat(testSysProduct.getLeasePrice()).isEqualTo(DEFAULT_LEASE_PRICE);
         assertThat(testSysProduct.getPrice()).isEqualTo(DEFAULT_PRICE);
         assertThat(testSysProduct.getImage()).isEqualTo(DEFAULT_IMAGE);
-        assertThat(testSysProduct.getSpecification()).isEqualTo(DEFAULT_SPECIFICATION);
         assertThat(testSysProduct.getInventory()).isEqualTo(DEFAULT_INVENTORY);
         assertThat(testSysProduct.getSale()).isEqualTo(DEFAULT_SALE);
         assertThat(testSysProduct.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
@@ -193,14 +205,47 @@ public class SysProductResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(sysProduct.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
+            .andExpect(jsonPath("$.[*].leasePrice").value(hasItem(DEFAULT_LEASE_PRICE.intValue())))
             .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.intValue())))
             .andExpect(jsonPath("$.[*].image").value(hasItem(DEFAULT_IMAGE.toString())))
-            .andExpect(jsonPath("$.[*].specification").value(hasItem(DEFAULT_SPECIFICATION.toString())))
             .andExpect(jsonPath("$.[*].inventory").value(hasItem(DEFAULT_INVENTORY)))
             .andExpect(jsonPath("$.[*].sale").value(hasItem(DEFAULT_SALE)))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
             .andExpect(jsonPath("$.[*].createTime").value(hasItem(sameInstant(DEFAULT_CREATE_TIME))))
             .andExpect(jsonPath("$.[*].updateTime").value(hasItem(sameInstant(DEFAULT_UPDATE_TIME))));
+    }
+    
+    @SuppressWarnings({"unchecked"})
+    public void getAllSysProductsWithEagerRelationshipsIsEnabled() throws Exception {
+        SysProductResource sysProductResource = new SysProductResource(sysProductServiceMock);
+        when(sysProductServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        MockMvc restSysProductMockMvc = MockMvcBuilders.standaloneSetup(sysProductResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter).build();
+
+        restSysProductMockMvc.perform(get("/api/sys-products?eagerload=true"))
+        .andExpect(status().isOk());
+
+        verify(sysProductServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
+    @SuppressWarnings({"unchecked"})
+    public void getAllSysProductsWithEagerRelationshipsIsNotEnabled() throws Exception {
+        SysProductResource sysProductResource = new SysProductResource(sysProductServiceMock);
+            when(sysProductServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+            MockMvc restSysProductMockMvc = MockMvcBuilders.standaloneSetup(sysProductResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter).build();
+
+        restSysProductMockMvc.perform(get("/api/sys-products?eagerload=true"))
+        .andExpect(status().isOk());
+
+            verify(sysProductServiceMock, times(1)).findAllWithEagerRelationships(any());
     }
 
     @Test
@@ -215,9 +260,9 @@ public class SysProductResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(sysProduct.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
+            .andExpect(jsonPath("$.leasePrice").value(DEFAULT_LEASE_PRICE.intValue()))
             .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.intValue()))
             .andExpect(jsonPath("$.image").value(DEFAULT_IMAGE.toString()))
-            .andExpect(jsonPath("$.specification").value(DEFAULT_SPECIFICATION.toString()))
             .andExpect(jsonPath("$.inventory").value(DEFAULT_INVENTORY))
             .andExpect(jsonPath("$.sale").value(DEFAULT_SALE))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
@@ -247,9 +292,9 @@ public class SysProductResourceIntTest {
         em.detach(updatedSysProduct);
         updatedSysProduct
             .name(UPDATED_NAME)
+            .leasePrice(UPDATED_LEASE_PRICE)
             .price(UPDATED_PRICE)
             .image(UPDATED_IMAGE)
-            .specification(UPDATED_SPECIFICATION)
             .inventory(UPDATED_INVENTORY)
             .sale(UPDATED_SALE)
             .description(UPDATED_DESCRIPTION)
@@ -266,9 +311,9 @@ public class SysProductResourceIntTest {
         assertThat(sysProductList).hasSize(databaseSizeBeforeUpdate);
         SysProduct testSysProduct = sysProductList.get(sysProductList.size() - 1);
         assertThat(testSysProduct.getName()).isEqualTo(UPDATED_NAME);
+        assertThat(testSysProduct.getLeasePrice()).isEqualTo(UPDATED_LEASE_PRICE);
         assertThat(testSysProduct.getPrice()).isEqualTo(UPDATED_PRICE);
         assertThat(testSysProduct.getImage()).isEqualTo(UPDATED_IMAGE);
-        assertThat(testSysProduct.getSpecification()).isEqualTo(UPDATED_SPECIFICATION);
         assertThat(testSysProduct.getInventory()).isEqualTo(UPDATED_INVENTORY);
         assertThat(testSysProduct.getSale()).isEqualTo(UPDATED_SALE);
         assertThat(testSysProduct.getDescription()).isEqualTo(UPDATED_DESCRIPTION);

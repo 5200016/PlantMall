@@ -22,6 +22,8 @@
                 "sysReview": "Sys Review",
                 "sysCollection": "Sys Collection",
                 "sysRecharge": "Sys Recharge",
+                "sysPlantLog": "Sys Plant Log",
+                "sysProductImage": "Sys Product Image",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

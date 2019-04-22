@@ -1,8 +1,8 @@
 package com.ybb.mall.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 
@@ -27,24 +27,52 @@ public class SysProduct implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * 商品名称
+     */
+    @ApiModelProperty(value = "商品名称")
     @Column(name = "name")
     private String name;
 
+    /**
+     * 商品租赁价格
+     */
+    @ApiModelProperty(value = "商品租赁价格")
+    @Column(name = "lease_price", precision = 10, scale = 2)
+    private BigDecimal leasePrice;
+
+    /**
+     * 商品出售价格
+     */
+    @ApiModelProperty(value = "商品出售价格")
     @Column(name = "price", precision = 10, scale = 2)
     private BigDecimal price;
 
+    /**
+     * 商品图片
+     */
+    @ApiModelProperty(value = "商品图片")
     @Column(name = "image")
     private String image;
 
-    @Column(name = "jhi_specification")
-    private String specification;
-
+    /**
+     * 商品库存
+     */
+    @ApiModelProperty(value = "商品库存")
     @Column(name = "inventory")
     private Integer inventory;
 
+    /**
+     * 商品销售量
+     */
+    @ApiModelProperty(value = "商品销售量")
     @Column(name = "sale")
     private Integer sale;
 
+    /**
+     * 商品描述
+     */
+    @ApiModelProperty(value = "商品描述")
     @Lob
     @Column(name = "description")
     private String description;
@@ -55,12 +83,16 @@ public class SysProduct implements Serializable {
     @Column(name = "update_time")
     private ZonedDateTime updateTime;
 
-    @ManyToOne
-    @JsonIgnoreProperties("products")
-    private SysClassify classify;
+    @ManyToMany
+    @JoinTable(name = "sys_product_classify",
+               joinColumns = @JoinColumn(name = "sys_products_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "classifies_id", referencedColumnName = "id"))
+    private Set<SysClassify> classifies = new HashSet<>();
 
     @OneToMany(mappedBy = "product")
     private Set<SysOrder> orders = new HashSet<>();
+    @OneToMany(mappedBy = "product")
+    private Set<SysProductImage> images = new HashSet<>();
     @OneToMany(mappedBy = "product")
     private Set<SysShoppingCar> shoppingCars = new HashSet<>();
     @OneToMany(mappedBy = "product")
@@ -89,6 +121,19 @@ public class SysProduct implements Serializable {
         this.name = name;
     }
 
+    public BigDecimal getLeasePrice() {
+        return leasePrice;
+    }
+
+    public SysProduct leasePrice(BigDecimal leasePrice) {
+        this.leasePrice = leasePrice;
+        return this;
+    }
+
+    public void setLeasePrice(BigDecimal leasePrice) {
+        this.leasePrice = leasePrice;
+    }
+
     public BigDecimal getPrice() {
         return price;
     }
@@ -113,19 +158,6 @@ public class SysProduct implements Serializable {
 
     public void setImage(String image) {
         this.image = image;
-    }
-
-    public String getSpecification() {
-        return specification;
-    }
-
-    public SysProduct specification(String specification) {
-        this.specification = specification;
-        return this;
-    }
-
-    public void setSpecification(String specification) {
-        this.specification = specification;
     }
 
     public Integer getInventory() {
@@ -193,17 +225,29 @@ public class SysProduct implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public SysClassify getClassify() {
-        return classify;
+    public Set<SysClassify> getClassifies() {
+        return classifies;
     }
 
-    public SysProduct classify(SysClassify sysClassify) {
-        this.classify = sysClassify;
+    public SysProduct classifies(Set<SysClassify> sysClassifies) {
+        this.classifies = sysClassifies;
         return this;
     }
 
-    public void setClassify(SysClassify sysClassify) {
-        this.classify = sysClassify;
+    public SysProduct addClassify(SysClassify sysClassify) {
+        this.classifies.add(sysClassify);
+        sysClassify.getProducts().add(this);
+        return this;
+    }
+
+    public SysProduct removeClassify(SysClassify sysClassify) {
+        this.classifies.remove(sysClassify);
+        sysClassify.getProducts().remove(this);
+        return this;
+    }
+
+    public void setClassifies(Set<SysClassify> sysClassifies) {
+        this.classifies = sysClassifies;
     }
 
     public Set<SysOrder> getOrders() {
@@ -229,6 +273,31 @@ public class SysProduct implements Serializable {
 
     public void setOrders(Set<SysOrder> sysOrders) {
         this.orders = sysOrders;
+    }
+
+    public Set<SysProductImage> getImages() {
+        return images;
+    }
+
+    public SysProduct images(Set<SysProductImage> sysProductImages) {
+        this.images = sysProductImages;
+        return this;
+    }
+
+    public SysProduct addImage(SysProductImage sysProductImage) {
+        this.images.add(sysProductImage);
+        sysProductImage.setProduct(this);
+        return this;
+    }
+
+    public SysProduct removeImage(SysProductImage sysProductImage) {
+        this.images.remove(sysProductImage);
+        sysProductImage.setProduct(null);
+        return this;
+    }
+
+    public void setImages(Set<SysProductImage> sysProductImages) {
+        this.images = sysProductImages;
     }
 
     public Set<SysShoppingCar> getShoppingCars() {
@@ -332,9 +401,9 @@ public class SysProduct implements Serializable {
         return "SysProduct{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
+            ", leasePrice=" + getLeasePrice() +
             ", price=" + getPrice() +
             ", image='" + getImage() + "'" +
-            ", specification='" + getSpecification() + "'" +
             ", inventory=" + getInventory() +
             ", sale=" + getSale() +
             ", description='" + getDescription() + "'" +

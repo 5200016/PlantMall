@@ -10,37 +10,37 @@
                         [(ngModel)]="sysProduct.id" readonly />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysProduct.name" for="field_name">Name</label>
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysProduct.name" for="field_name" [ngbTooltip]="'plantMallApp.sysProduct.help.name' | translate">Name</label>
                     <input type="text" class="form-control" name="name" id="field_name"
                         [(ngModel)]="sysProduct.name" />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysProduct.price" for="field_price">Price</label>
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysProduct.leasePrice" for="field_leasePrice" [ngbTooltip]="'plantMallApp.sysProduct.help.leasePrice' | translate">Lease Price</label>
+                    <input type="number" class="form-control" name="leasePrice" id="field_leasePrice"
+                        [(ngModel)]="sysProduct.leasePrice" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysProduct.price" for="field_price" [ngbTooltip]="'plantMallApp.sysProduct.help.price' | translate">Price</label>
                     <input type="number" class="form-control" name="price" id="field_price"
                         [(ngModel)]="sysProduct.price" />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysProduct.image" for="field_image">Image</label>
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysProduct.image" for="field_image" [ngbTooltip]="'plantMallApp.sysProduct.help.image' | translate">Image</label>
                     <input type="text" class="form-control" name="image" id="field_image"
                         [(ngModel)]="sysProduct.image" />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysProduct.specification" for="field_specification">Specification</label>
-                    <input type="text" class="form-control" name="specification" id="field_specification"
-                        [(ngModel)]="sysProduct.specification" />
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysProduct.inventory" for="field_inventory">Inventory</label>
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysProduct.inventory" for="field_inventory" [ngbTooltip]="'plantMallApp.sysProduct.help.inventory' | translate">Inventory</label>
                     <input type="number" class="form-control" name="inventory" id="field_inventory"
                         [(ngModel)]="sysProduct.inventory" />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysProduct.sale" for="field_sale">Sale</label>
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysProduct.sale" for="field_sale" [ngbTooltip]="'plantMallApp.sysProduct.help.sale' | translate">Sale</label>
                     <input type="number" class="form-control" name="sale" id="field_sale"
                         [(ngModel)]="sysProduct.sale" />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysProduct.description" for="field_description">Description</label>
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysProduct.description" for="field_description" [ngbTooltip]="'plantMallApp.sysProduct.help.description' | translate">Description</label>
                     <textarea class="form-control" name="description" id="field_description"
                         [(ngModel)]="sysProduct.description" ></textarea>
                 </div>
@@ -60,10 +60,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysProduct.classify" for="field_classify">Classify</label>
-                    <select class="form-control" id="field_classify" name="classify" [(ngModel)]="sysProduct.classify" >
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="sysClassifyOption.id === sysProduct.classify?.id ? sysProduct.classify : sysClassifyOption" *ngFor="let sysClassifyOption of sysclassifies; trackBy: trackSysClassifyById">{{sysClassifyOption.id}}</option>
+                    <label jhiTranslate="plantMallApp.sysProduct.classify" for="field_classify">Classify</label>
+                    <select class="form-control" id="field_classify" multiple name="classify" [(ngModel)]="sysProduct.classifies">
+                        <option [ngValue]="getSelected(sysProduct.classifies, sysClassifyOption)" *ngFor="let sysClassifyOption of sysclassifies; trackBy: trackSysClassifyById">{{sysClassifyOption.id}}</option>
                     </select>
                 </div>
             </div>

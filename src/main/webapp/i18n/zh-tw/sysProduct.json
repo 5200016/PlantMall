@@ -16,9 +16,9 @@
                 "title": "Sys Product"
             },
             "name": "Name",
+            "leasePrice": "Lease Price",
             "price": "Price",
             "image": "Image",
-            "specification": "Specification",
             "inventory": "Inventory",
             "sale": "Sale",
             "description": "Description",
@@ -26,9 +26,19 @@
             "updateTime": "Update Time",
             "classify": "Classify",
             "order": "Order",
+            "image": "Image",
             "shoppingCar": "Shopping Car",
             "review": "Review",
-            "collection": "Collection"
+            "collection": "Collection",
+            "help": {
+                "name": "商品名称",
+                "leasePrice": "商品租赁价格",
+                "price": "商品出售价格",
+                "image": "商品图片",
+                "inventory": "商品库存",
+                "sale": "商品销售量",
+                "description": "商品描述"
+            }
         }
     }
 }

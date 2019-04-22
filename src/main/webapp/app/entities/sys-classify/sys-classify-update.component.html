@@ -10,9 +10,19 @@
                         [(ngModel)]="sysClassify.id" readonly />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysClassify.name" for="field_name">Name</label>
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysClassify.name" for="field_name" [ngbTooltip]="'plantMallApp.sysClassify.help.name' | translate">Name</label>
                     <input type="text" class="form-control" name="name" id="field_name"
                         [(ngModel)]="sysClassify.name" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysClassify.type" for="field_type" [ngbTooltip]="'plantMallApp.sysClassify.help.type' | translate">Type</label>
+                    <input type="number" class="form-control" name="type" id="field_type"
+                        [(ngModel)]="sysClassify.type" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysClassify.sort" for="field_sort" [ngbTooltip]="'plantMallApp.sysClassify.help.sort' | translate">Sort</label>
+                    <input type="number" class="form-control" name="sort" id="field_sort"
+                        [(ngModel)]="sysClassify.sort" />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="plantMallApp.sysClassify.createTime" for="field_createTime">Create Time</label>

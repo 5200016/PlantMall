@@ -2,6 +2,9 @@ package com.ybb.mall.service;
 
 import com.ybb.mall.domain.SysProduct;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +28,13 @@ public interface SysProductService {
      */
     List<SysProduct> findAll();
 
-
+    /**
+     * Get all the SysProduct with eager load of many-to-many relationships.
+     *
+     * @return the list of entities
+     */
+    Page<SysProduct> findAllWithEagerRelationships(Pageable pageable);
+    
     /**
      * Get the "id" sysProduct.
      *

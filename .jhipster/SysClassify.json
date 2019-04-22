@@ -3,7 +3,18 @@
     "fields": [
         {
             "fieldName": "name",
+            "javadoc": "分类名称",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "type",
+            "javadoc": "分类类型（0：出售 1：租赁）",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "sort",
+            "javadoc": "排序等级",
+            "fieldType": "Integer"
         },
         {
             "fieldName": "createTime",
@@ -16,9 +27,10 @@
     ],
     "relationships": [
         {
-            "relationshipType": "one-to-many",
+            "relationshipType": "many-to-many",
             "relationshipName": "product",
             "otherEntityName": "sysProduct",
+            "ownerSide": false,
             "otherEntityRelationshipName": "classify"
         }
     ],

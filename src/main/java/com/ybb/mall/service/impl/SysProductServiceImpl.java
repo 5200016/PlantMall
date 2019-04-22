@@ -6,6 +6,8 @@ import com.ybb.mall.repository.SysProductRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,9 +50,18 @@ public class SysProductServiceImpl implements SysProductService {
     @Transactional(readOnly = true)
     public List<SysProduct> findAll() {
         log.debug("Request to get all SysProducts");
-        return sysProductRepository.findAll();
+        return sysProductRepository.findAllWithEagerRelationships();
     }
 
+    /**
+     * Get all the SysProduct with eager load of many-to-many relationships.
+     *
+     * @return the list of entities
+     */
+    public Page<SysProduct> findAllWithEagerRelationships(Pageable pageable) {
+        return sysProductRepository.findAllWithEagerRelationships(pageable);
+    }
+    
 
     /**
      * Get one sysProduct by id.
@@ -62,7 +73,7 @@ public class SysProductServiceImpl implements SysProductService {
     @Transactional(readOnly = true)
     public Optional<SysProduct> findOne(Long id) {
         log.debug("Request to get SysProduct : {}", id);
-        return sysProductRepository.findById(id);
+        return sysProductRepository.findOneWithEagerRelationships(id);
     }
 
     /**

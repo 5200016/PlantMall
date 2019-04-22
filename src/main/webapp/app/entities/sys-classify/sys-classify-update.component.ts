@@ -4,9 +4,12 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
 import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
+import { JhiAlertService } from 'ng-jhipster';
 
 import { ISysClassify } from 'app/shared/model/sys-classify.model';
 import { SysClassifyService } from './sys-classify.service';
+import { ISysProduct } from 'app/shared/model/sys-product.model';
+import { SysProductService } from 'app/entities/sys-product';
 
 @Component({
     selector: 'jhi-sys-classify-update',
@@ -15,10 +18,17 @@ import { SysClassifyService } from './sys-classify.service';
 export class SysClassifyUpdateComponent implements OnInit {
     sysClassify: ISysClassify;
     isSaving: boolean;
+
+    sysproducts: ISysProduct[];
     createTime: string;
     updateTime: string;
 
-    constructor(protected sysClassifyService: SysClassifyService, protected activatedRoute: ActivatedRoute) {}
+    constructor(
+        protected jhiAlertService: JhiAlertService,
+        protected sysClassifyService: SysClassifyService,
+        protected sysProductService: SysProductService,
+        protected activatedRoute: ActivatedRoute
+    ) {}
 
     ngOnInit() {
         this.isSaving = false;
@@ -27,6 +37,12 @@ export class SysClassifyUpdateComponent implements OnInit {
             this.createTime = this.sysClassify.createTime != null ? this.sysClassify.createTime.format(DATE_TIME_FORMAT) : null;
             this.updateTime = this.sysClassify.updateTime != null ? this.sysClassify.updateTime.format(DATE_TIME_FORMAT) : null;
         });
+        this.sysProductService.query().subscribe(
+            (res: HttpResponse<ISysProduct[]>) => {
+                this.sysproducts = res.body;
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
     }
 
     previousState() {
@@ -55,5 +71,24 @@ export class SysClassifyUpdateComponent implements OnInit {
 
     protected onSaveError() {
         this.isSaving = false;
+    }
+
+    protected onError(errorMessage: string) {
+        this.jhiAlertService.error(errorMessage, null, null);
+    }
+
+    trackSysProductById(index: number, item: ISysProduct) {
+        return item.id;
+    }
+
+    getSelected(selectedVals: Array<any>, option: any) {
+        if (selectedVals) {
+            for (let i = 0; i < selectedVals.length; i++) {
+                if (option.id === selectedVals[i].id) {
+                    return selectedVals[i];
+                }
+            }
+        }
+        return option;
     }
 }

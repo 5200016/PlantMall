@@ -5,31 +5,31 @@
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="plantMallApp.sysProduct.name">Name</span></dt>
+                <dt><span jhiTranslate="plantMallApp.sysProduct.name" [ngbTooltip]="'plantMallApp.sysProduct.help.name' | translate">Name</span></dt>
                 <dd>
                     <span>{{sysProduct.name}}</span>
                 </dd>
-                <dt><span jhiTranslate="plantMallApp.sysProduct.price">Price</span></dt>
+                <dt><span jhiTranslate="plantMallApp.sysProduct.leasePrice" [ngbTooltip]="'plantMallApp.sysProduct.help.leasePrice' | translate">Lease Price</span></dt>
+                <dd>
+                    <span>{{sysProduct.leasePrice}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysProduct.price" [ngbTooltip]="'plantMallApp.sysProduct.help.price' | translate">Price</span></dt>
                 <dd>
                     <span>{{sysProduct.price}}</span>
                 </dd>
-                <dt><span jhiTranslate="plantMallApp.sysProduct.image">Image</span></dt>
+                <dt><span jhiTranslate="plantMallApp.sysProduct.image" [ngbTooltip]="'plantMallApp.sysProduct.help.image' | translate">Image</span></dt>
                 <dd>
                     <span>{{sysProduct.image}}</span>
                 </dd>
-                <dt><span jhiTranslate="plantMallApp.sysProduct.specification">Specification</span></dt>
-                <dd>
-                    <span>{{sysProduct.specification}}</span>
-                </dd>
-                <dt><span jhiTranslate="plantMallApp.sysProduct.inventory">Inventory</span></dt>
+                <dt><span jhiTranslate="plantMallApp.sysProduct.inventory" [ngbTooltip]="'plantMallApp.sysProduct.help.inventory' | translate">Inventory</span></dt>
                 <dd>
                     <span>{{sysProduct.inventory}}</span>
                 </dd>
-                <dt><span jhiTranslate="plantMallApp.sysProduct.sale">Sale</span></dt>
+                <dt><span jhiTranslate="plantMallApp.sysProduct.sale" [ngbTooltip]="'plantMallApp.sysProduct.help.sale' | translate">Sale</span></dt>
                 <dd>
                     <span>{{sysProduct.sale}}</span>
                 </dd>
-                <dt><span jhiTranslate="plantMallApp.sysProduct.description">Description</span></dt>
+                <dt><span jhiTranslate="plantMallApp.sysProduct.description" [ngbTooltip]="'plantMallApp.sysProduct.help.description' | translate">Description</span></dt>
                 <dd>
                     <span>{{sysProduct.description}}</span>
                 </dd>
@@ -43,9 +43,9 @@
                 </dd>
                 <dt><span jhiTranslate="plantMallApp.sysProduct.classify">Classify</span></dt>
                 <dd>
-                    <div *ngIf="sysProduct.classify">
-                        <a [routerLink]="['/sys-classify', sysProduct.classify?.id, 'view']">{{sysProduct.classify?.id}}</a>
-                    </div>
+                    <span *ngFor="let classify of sysProduct.classifies; let last = last">
+                        <a [routerLink]="['/sys-classify', classify?.id, 'view' ]">{{classify.id}}</a>{{last ? '' : ', '}}
+                    </span>
                 </dd>
             </dl>
 

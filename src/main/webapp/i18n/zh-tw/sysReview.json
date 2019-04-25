@@ -19,7 +19,12 @@
             "level": "Level",
             "createTime": "Create Time",
             "updateTime": "Update Time",
-            "product": "Product"
+            "product": "Product",
+            "user": "User",
+            "help": {
+                "content": "评论内容",
+                "level": "评论等级"
+            }
         }
     }
 }

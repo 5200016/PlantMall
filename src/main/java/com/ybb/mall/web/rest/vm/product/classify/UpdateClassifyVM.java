@@ -1,4 +1,4 @@
-package com.ybb.mall.web.rest.vm.classify;
+package com.ybb.mall.web.rest.vm.product.classify;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

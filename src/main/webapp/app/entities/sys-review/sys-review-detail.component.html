@@ -5,11 +5,11 @@
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="plantMallApp.sysReview.content">Content</span></dt>
+                <dt><span jhiTranslate="plantMallApp.sysReview.content" [ngbTooltip]="'plantMallApp.sysReview.help.content' | translate">Content</span></dt>
                 <dd>
                     <span>{{sysReview.content}}</span>
                 </dd>
-                <dt><span jhiTranslate="plantMallApp.sysReview.level">Level</span></dt>
+                <dt><span jhiTranslate="plantMallApp.sysReview.level" [ngbTooltip]="'plantMallApp.sysReview.help.level' | translate">Level</span></dt>
                 <dd>
                     <span>{{sysReview.level}}</span>
                 </dd>
@@ -25,6 +25,12 @@
                 <dd>
                     <div *ngIf="sysReview.product">
                         <a [routerLink]="['/sys-product', sysReview.product?.id, 'view']">{{sysReview.product?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysReview.user">User</span></dt>
+                <dd>
+                    <div *ngIf="sysReview.user">
+                        <a [routerLink]="['/sys-user', sysReview.user?.id, 'view']">{{sysReview.user?.id}}</a>
                     </div>
                 </dd>
             </dl>

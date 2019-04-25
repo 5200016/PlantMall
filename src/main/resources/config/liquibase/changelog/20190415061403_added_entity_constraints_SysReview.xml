@@ -14,5 +14,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="sys_product"/>
 
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="sys_review"
+                                 constraintName="fk_sys_review_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sys_user"/>
+
     </changeSet>
 </databaseChangeLog>

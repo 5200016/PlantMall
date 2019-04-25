@@ -22,11 +22,11 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="content" type="clob">
+            <column name="content" type="clob" remarks="评论内容">
                 <constraints nullable="true" />
             </column>
 
-            <column name="jhi_level" type="integer">
+            <column name="jhi_level" type="integer" remarks="评论等级">
                 <constraints nullable="true" />
             </column>
 
@@ -39,6 +39,10 @@
             </column>
 
             <column name="product_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="user_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 

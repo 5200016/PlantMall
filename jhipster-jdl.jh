@@ -2,14 +2,49 @@
  * 用户表
  */
 entity SysUser {
+    /**
+     * 微信openid
+     */
 	openid String,
+
+	/**
+     * 手机号
+     */
     phone String,
+
+    /**
+     * 微信session_key
+     */
     sessionKey String,
+
+    /**
+     * 用户姓名
+     */
     username String,
+
+    /**
+     * 用户头像
+     */
     avatar String,
+
+    /**
+     * 用户昵称
+     */
     nickname String,
+
+    /**
+     * 用户性别
+     */
     sex String,
+
+    /**
+     * 用户积分
+     */
     integral Integer,
+
+    /**
+     * 用户成长值
+     */
     growthValue Integer,
     createTime ZonedDateTime,
     updateTime ZonedDateTime
@@ -72,9 +107,31 @@ entity SysMemberLevel{
  * 收货地址表
  */
 entity SysReceiverAddress {
-    openid String,
-    status Integer,
+
+    /**
+     * 收货人姓名
+     */
+    name String,
+
+    /**
+     * 手机号
+     */
+    phone String,
+
+    /**
+     * 收货地区
+     */
+    area String,
+
+    /**
+     * 收货详细地址
+     */
     address TextBlob,
+
+    /**
+     * 是否为默认地址（0：否 1：是）
+     */
+    status Integer,
     createTime ZonedDateTime,
     updateTime ZonedDateTime
 }
@@ -169,10 +226,46 @@ entity SysBanner{
  * 订单表
  */
 entity SysOrder {
+    /**
+     * 订单号
+     */
 	tradeNo String,
+
+	/**
+     * 支付单号
+     */
+    payNO String,
+
+	/**
+     * 订单金额
+     */
     price BigDecimal,
+
+    /**
+     * 订单类型
+     */
     type Integer,
+
+    /**
+     * 支付类型
+     */
+    payType Integer,
+
+    /**
+     * 订单状态
+     */
+    status Integer,
+
+    /**
+     * 购买数量
+     */
     number Integer,
+
+    /**
+     * 订单描述
+     */
+    description TextBlob,
+
     createTime ZonedDateTime,
     updateTime ZonedDateTime
 }
@@ -189,7 +282,14 @@ entity SysShoppingCar{
  * 评论表
  */
 entity SysReview{
+    /**
+     * 评论内容
+     */
     content TextBlob,
+
+    /**
+     * 评论等级
+     */
     level Integer,
     createTime ZonedDateTime,
     updateTime ZonedDateTime
@@ -239,9 +339,11 @@ relationship ManyToOne {
 	SysReceiverAddress{user} to SysUser{receiveAddress},
     SysOrder{user} to SysUser{order},
     SysOrder{product} to SysProduct{order},
+    SysOrder{receiverAddress} to SysReceiverAddress{order},
     SysProductImage{product} to SysProduct{image},
     SysShoppingCar{product} to SysProduct{shoppingCar},
     SysReview{product} to SysProduct{review},
+    SysReview{user} to SysUser{review},
     SysCollection{user} to SysUser{collection},
     SysCollection{product} to SysProduct{collection},
     SysUser{memberLevel} to SysMemberLevel{user}

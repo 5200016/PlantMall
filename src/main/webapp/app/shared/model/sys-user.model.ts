@@ -3,6 +3,7 @@ import { ISysMemberLevel } from 'app/shared/model//sys-member-level.model';
 import { ISysRole } from 'app/shared/model//sys-role.model';
 import { ISysReceiverAddress } from 'app/shared/model//sys-receiver-address.model';
 import { ISysOrder } from 'app/shared/model//sys-order.model';
+import { ISysReview } from 'app/shared/model//sys-review.model';
 import { ISysCollection } from 'app/shared/model//sys-collection.model';
 
 export interface ISysUser {
@@ -22,6 +23,7 @@ export interface ISysUser {
     roles?: ISysRole[];
     receiveAddresses?: ISysReceiverAddress[];
     orders?: ISysOrder[];
+    reviews?: ISysReview[];
     collections?: ISysCollection[];
 }
 
@@ -43,6 +45,7 @@ export class SysUser implements ISysUser {
         public roles?: ISysRole[],
         public receiveAddresses?: ISysReceiverAddress[],
         public orders?: ISysOrder[],
+        public reviews?: ISysReview[],
         public collections?: ISysCollection[]
     ) {}
 }

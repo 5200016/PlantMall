@@ -1,4 +1,4 @@
-package com.ybb.mall.web.rest.vm.product;
+package com.ybb.mall.web.rest.vm.product.plant;
 
 import java.time.ZonedDateTime;
 

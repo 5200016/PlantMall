@@ -2,8 +2,8 @@ package com.ybb.mall.service;
 
 import com.ybb.mall.domain.SysPlantLog;
 import com.ybb.mall.web.rest.util.ResultObj;
-import com.ybb.mall.web.rest.vm.product.InsertPlantLogVM;
-import com.ybb.mall.web.rest.vm.product.UpdatePlantLogVM;
+import com.ybb.mall.web.rest.vm.product.plant.InsertPlantLogVM;
+import com.ybb.mall.web.rest.vm.product.plant.UpdatePlantLogVM;
 import org.springframework.data.domain.Page;
 
 import java.util.List;

@@ -10,6 +10,8 @@ import { ISysReview } from 'app/shared/model/sys-review.model';
 import { SysReviewService } from './sys-review.service';
 import { ISysProduct } from 'app/shared/model/sys-product.model';
 import { SysProductService } from 'app/entities/sys-product';
+import { ISysUser } from 'app/shared/model/sys-user.model';
+import { SysUserService } from 'app/entities/sys-user';
 
 @Component({
     selector: 'jhi-sys-review-update',
@@ -20,6 +22,8 @@ export class SysReviewUpdateComponent implements OnInit {
     isSaving: boolean;
 
     sysproducts: ISysProduct[];
+
+    sysusers: ISysUser[];
     createTime: string;
     updateTime: string;
 
@@ -28,6 +32,7 @@ export class SysReviewUpdateComponent implements OnInit {
         protected jhiAlertService: JhiAlertService,
         protected sysReviewService: SysReviewService,
         protected sysProductService: SysProductService,
+        protected sysUserService: SysUserService,
         protected activatedRoute: ActivatedRoute
     ) {}
 
@@ -41,6 +46,12 @@ export class SysReviewUpdateComponent implements OnInit {
         this.sysProductService.query().subscribe(
             (res: HttpResponse<ISysProduct[]>) => {
                 this.sysproducts = res.body;
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
+        this.sysUserService.query().subscribe(
+            (res: HttpResponse<ISysUser[]>) => {
+                this.sysusers = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
@@ -91,6 +102,10 @@ export class SysReviewUpdateComponent implements OnInit {
     }
 
     trackSysProductById(index: number, item: ISysProduct) {
+        return item.id;
+    }
+
+    trackSysUserById(index: number, item: ISysUser) {
         return item.id;
     }
 }

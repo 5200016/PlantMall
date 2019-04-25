@@ -2,6 +2,7 @@ package com.ybb.mall.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 
@@ -23,10 +24,18 @@ public class SysReview implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * 评论内容
+     */
+    @ApiModelProperty(value = "评论内容")
     @Lob
     @Column(name = "content")
     private String content;
 
+    /**
+     * 评论等级
+     */
+    @ApiModelProperty(value = "评论等级")
     @Column(name = "jhi_level")
     private Integer level;
 
@@ -39,6 +48,10 @@ public class SysReview implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties("reviews")
     private SysProduct product;
+
+    @ManyToOne
+    @JsonIgnoreProperties("reviews")
+    private SysUser user;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -112,6 +125,19 @@ public class SysReview implements Serializable {
 
     public void setProduct(SysProduct sysProduct) {
         this.product = sysProduct;
+    }
+
+    public SysUser getUser() {
+        return user;
+    }
+
+    public SysReview user(SysUser sysUser) {
+        this.user = sysUser;
+        return this;
+    }
+
+    public void setUser(SysUser sysUser) {
+        this.user = sysUser;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

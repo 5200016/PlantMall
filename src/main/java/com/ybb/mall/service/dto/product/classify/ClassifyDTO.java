@@ -1,4 +1,4 @@
-package com.ybb.mall.service.dto.classify;
+package com.ybb.mall.service.dto.product.classify;
 
 import java.time.ZonedDateTime;
 
@@ -31,15 +31,6 @@ public class ClassifyDTO {
     private ZonedDateTime createTime;
 
     private ZonedDateTime updateTime;
-
-    public ClassifyDTO(Long id, String name, Integer type, Integer sort, ZonedDateTime createTime, ZonedDateTime updateTime) {
-        this.id = id;
-        this.name = name;
-        this.type = type;
-        this.sort = sort;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
-    }
 
     public Long getId() {
         return id;

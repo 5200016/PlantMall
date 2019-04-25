@@ -3,12 +3,18 @@ package com.ybb.mall.service.impl;
 import com.ybb.mall.service.SysReviewService;
 import com.ybb.mall.domain.SysReview;
 import com.ybb.mall.repository.SysReviewRepository;
+import com.ybb.mall.service.dto.product.ReviewDTO;
+import com.ybb.mall.web.rest.util.ResultObj;
+import com.ybb.mall.web.rest.util.TypeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -74,5 +80,34 @@ public class SysReviewServiceImpl implements SysReviewService {
     public void delete(Long id) {
         log.debug("Request to delete SysReview : {}", id);
         sysReviewRepository.deleteById(id);
+    }
+
+    @Override
+    public Page<ReviewDTO> findByProductId(Long id, String nickname, Integer pageNum, Integer pageSize) {
+        return sysReviewRepository.findByProductId(id, nickname, PageRequest.of(pageNum, pageSize));
+    }
+
+    @Override
+    public ResultObj deleteProductReview(Long id) {
+        if(TypeUtils.isEmpty(id)){
+            return ResultObj.backCRUDError("删除失败（id不能为空）");
+        }
+        sysReviewRepository.deleteById(id);
+        return ResultObj.backCRUDSuccess("删除成功");
+    }
+
+    @Override
+    public ResultObj deleteProductReviewBatch(List<Long> id) {
+        if(TypeUtils.isEmpty(id)){
+            return ResultObj.backCRUDError("请选择删除项");
+        }
+        List<SysReview> reviews = new ArrayList<>();
+        for (Long data : id){
+            SysReview sysReview = new SysReview();
+            sysReview.setId(data);
+            reviews.add(sysReview);
+        }
+        sysReviewRepository.deleteInBatch(reviews);
+        return ResultObj.backCRUDSuccess("删除成功");
     }
 }

@@ -1,10 +1,11 @@
 package com.ybb.mall.service;
 
 import com.ybb.mall.domain.SysClassify;
-import com.ybb.mall.service.dto.classify.ClassifyDTO;
+import com.ybb.mall.service.dto.product.classify.ClassifyGroupDTO;
+import com.ybb.mall.service.dto.product.classify.ClassifyDTO;
 import com.ybb.mall.web.rest.util.ResultObj;
-import com.ybb.mall.web.rest.vm.classify.InsertClassifyVM;
-import com.ybb.mall.web.rest.vm.classify.UpdateClassifyVM;
+import com.ybb.mall.web.rest.vm.product.classify.InsertClassifyVM;
+import com.ybb.mall.web.rest.vm.product.classify.UpdateClassifyVM;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
@@ -53,17 +54,22 @@ public interface SysClassifyService {
     Page<ClassifyDTO> findClassifyList(String name, Integer type, Integer pageNum, Integer pageSize);
 
     /**
-     * 新增植物志
+     * 新增商品分类
      */
     ResultObj insertClassify(InsertClassifyVM classifyVM);
 
     /**
-     * 修改植物志
+     * 修改商品分类
      */
     ResultObj updateClassify(UpdateClassifyVM classifyVM);
 
     /**
-     * 删除植物志
+     * 删除商品分类
      */
     ResultObj deleteClassify(Long id);
+
+    /**
+     * 根据类型查询分类
+     */
+    ClassifyGroupDTO findSysClassifyGroup();
 }

@@ -3,6 +3,7 @@ package com.ybb.mall.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 
@@ -26,30 +27,66 @@ public class SysUser implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * 微信openid
+     */
+    @ApiModelProperty(value = "微信openid")
     @Column(name = "openid")
     private String openid;
 
+    /**
+     * 手机号
+     */
+    @ApiModelProperty(value = "手机号")
     @Column(name = "phone")
     private String phone;
 
+    /**
+     * 微信session_key
+     */
+    @ApiModelProperty(value = "微信session_key")
     @Column(name = "session_key")
     private String sessionKey;
 
+    /**
+     * 用户姓名
+     */
+    @ApiModelProperty(value = "用户姓名")
     @Column(name = "username")
     private String username;
 
+    /**
+     * 用户头像
+     */
+    @ApiModelProperty(value = "用户头像")
     @Column(name = "avatar")
     private String avatar;
 
+    /**
+     * 用户昵称
+     */
+    @ApiModelProperty(value = "用户昵称")
     @Column(name = "nickname")
     private String nickname;
 
+    /**
+     * 用户性别
+     */
+    @ApiModelProperty(value = "用户性别")
     @Column(name = "sex")
     private String sex;
 
+    /**
+     * 用户积分
+     */
+    @ApiModelProperty(value = "用户积分")
     @Column(name = "integral")
     private Integer integral;
 
+    /**
+     * 用户成长值
+     */
+    @ApiModelProperty(value = "用户成长值")
     @Column(name = "growth_value")
     private Integer growthValue;
 
@@ -73,6 +110,8 @@ public class SysUser implements Serializable {
     private Set<SysReceiverAddress> receiveAddresses = new HashSet<>();
     @OneToMany(mappedBy = "user")
     private Set<SysOrder> orders = new HashSet<>();
+    @OneToMany(mappedBy = "user")
+    private Set<SysReview> reviews = new HashSet<>();
     @OneToMany(mappedBy = "user")
     private Set<SysCollection> collections = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -313,6 +352,31 @@ public class SysUser implements Serializable {
 
     public void setOrders(Set<SysOrder> sysOrders) {
         this.orders = sysOrders;
+    }
+
+    public Set<SysReview> getReviews() {
+        return reviews;
+    }
+
+    public SysUser reviews(Set<SysReview> sysReviews) {
+        this.reviews = sysReviews;
+        return this;
+    }
+
+    public SysUser addReview(SysReview sysReview) {
+        this.reviews.add(sysReview);
+        sysReview.setUser(this);
+        return this;
+    }
+
+    public SysUser removeReview(SysReview sysReview) {
+        this.reviews.remove(sysReview);
+        sysReview.setUser(null);
+        return this;
+    }
+
+    public void setReviews(Set<SysReview> sysReviews) {
+        this.reviews = sysReviews;
     }
 
     public Set<SysCollection> getCollections() {

@@ -30,7 +30,19 @@
             "role": "Role",
             "receiveAddress": "Receive Address",
             "order": "Order",
-            "collection": "Collection"
+            "review": "Review",
+            "collection": "Collection",
+            "help": {
+                "openid": "微信openid",
+                "phone": "手机号",
+                "sessionKey": "微信session_key",
+                "username": "用户姓名",
+                "avatar": "用户头像",
+                "nickname": "用户昵称",
+                "sex": "用户性别",
+                "integral": "用户积分",
+                "growthValue": "用户成长值"
+            }
         }
     }
 }

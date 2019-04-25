@@ -10,12 +10,12 @@
                         [(ngModel)]="sysReview.id" readonly />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysReview.content" for="field_content">Content</label>
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysReview.content" for="field_content" [ngbTooltip]="'plantMallApp.sysReview.help.content' | translate">Content</label>
                     <textarea class="form-control" name="content" id="field_content"
                         [(ngModel)]="sysReview.content" ></textarea>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysReview.level" for="field_level">Level</label>
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysReview.level" for="field_level" [ngbTooltip]="'plantMallApp.sysReview.help.level' | translate">Level</label>
                     <input type="number" class="form-control" name="level" id="field_level"
                         [(ngModel)]="sysReview.level" />
                 </div>
@@ -39,6 +39,13 @@
                     <select class="form-control" id="field_product" name="product" [(ngModel)]="sysReview.product" >
                         <option [ngValue]="null"></option>
                         <option [ngValue]="sysProductOption.id === sysReview.product?.id ? sysReview.product : sysProductOption" *ngFor="let sysProductOption of sysproducts; trackBy: trackSysProductById">{{sysProductOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysReview.user" for="field_user">User</label>
+                    <select class="form-control" id="field_user" name="user" [(ngModel)]="sysReview.user" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="sysUserOption.id === sysReview.user?.id ? sysReview.user : sysUserOption" *ngFor="let sysUserOption of sysusers; trackBy: trackSysUserById">{{sysUserOption.id}}</option>
                     </select>
                 </div>
             </div>

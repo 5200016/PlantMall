@@ -3,38 +3,47 @@
     "fields": [
         {
             "fieldName": "openid",
+            "javadoc": "微信openid",
             "fieldType": "String"
         },
         {
             "fieldName": "phone",
+            "javadoc": "手机号",
             "fieldType": "String"
         },
         {
             "fieldName": "sessionKey",
+            "javadoc": "微信session_key",
             "fieldType": "String"
         },
         {
             "fieldName": "username",
+            "javadoc": "用户姓名",
             "fieldType": "String"
         },
         {
             "fieldName": "avatar",
+            "javadoc": "用户头像",
             "fieldType": "String"
         },
         {
             "fieldName": "nickname",
+            "javadoc": "用户昵称",
             "fieldType": "String"
         },
         {
             "fieldName": "sex",
+            "javadoc": "用户性别",
             "fieldType": "String"
         },
         {
             "fieldName": "integral",
+            "javadoc": "用户积分",
             "fieldType": "Integer"
         },
         {
             "fieldName": "growthValue",
+            "javadoc": "用户成长值",
             "fieldType": "Integer"
         },
         {
@@ -71,6 +80,12 @@
             "relationshipType": "one-to-many",
             "relationshipName": "order",
             "otherEntityName": "sysOrder",
+            "otherEntityRelationshipName": "user"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "review",
+            "otherEntityName": "sysReview",
             "otherEntityRelationshipName": "user"
         },
         {

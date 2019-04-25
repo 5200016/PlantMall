@@ -89,6 +89,24 @@ public class ResultObj {
         return resultObj;
     }
 
+    /**
+     * CRUD操作成功
+     * @param msg
+     * @return
+     */
+    public static ResultObj backCRUDSuccess(String msg){
+        return new ResultObj(true, 200, msg, null);
+    }
+
+    /**
+     * CRUD操作失败
+     * @param msg
+     * @return
+     */
+    public static ResultObj backCRUDError(String msg){
+        return new ResultObj(false, 200, msg, null);
+    }
+
     public String toJsonString() {
         return "{\"code\": "+
             code + ", " +

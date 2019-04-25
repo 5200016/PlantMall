@@ -6,8 +6,8 @@ import com.ybb.mall.repository.SysPlantLogRepository;
 import com.ybb.mall.web.rest.util.DateUtil;
 import com.ybb.mall.web.rest.util.ResultObj;
 import com.ybb.mall.web.rest.util.TypeUtils;
-import com.ybb.mall.web.rest.vm.product.InsertPlantLogVM;
-import com.ybb.mall.web.rest.vm.product.UpdatePlantLogVM;
+import com.ybb.mall.web.rest.vm.product.plant.InsertPlantLogVM;
+import com.ybb.mall.web.rest.vm.product.plant.UpdatePlantLogVM;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

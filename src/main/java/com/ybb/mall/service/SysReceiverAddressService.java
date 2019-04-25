@@ -2,9 +2,6 @@ package com.ybb.mall.service;
 
 import com.ybb.mall.domain.SysReceiverAddress;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -28,13 +25,7 @@ public interface SysReceiverAddressService {
      */
     List<SysReceiverAddress> findAll();
 
-    /**
-     * Get all the SysReceiverAddress with eager load of many-to-many relationships.
-     *
-     * @return the list of entities
-     */
-    Page<SysReceiverAddress> findAllWithEagerRelationships(Pageable pageable);
-    
+
     /**
      * Get the "id" sysReceiverAddress.
      *

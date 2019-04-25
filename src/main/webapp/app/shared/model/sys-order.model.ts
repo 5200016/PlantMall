@@ -6,27 +6,35 @@ import { ISysReceiverAddress } from 'app/shared/model//sys-receiver-address.mode
 export interface ISysOrder {
     id?: number;
     tradeNo?: string;
+    payNO?: string;
     price?: number;
     type?: number;
+    payType?: number;
+    status?: number;
     number?: number;
+    description?: any;
     createTime?: Moment;
     updateTime?: Moment;
     user?: ISysUser;
     product?: ISysProduct;
-    receiveAddresses?: ISysReceiverAddress[];
+    receiverAddress?: ISysReceiverAddress;
 }
 
 export class SysOrder implements ISysOrder {
     constructor(
         public id?: number,
         public tradeNo?: string,
+        public payNO?: string,
         public price?: number,
         public type?: number,
+        public payType?: number,
+        public status?: number,
         public number?: number,
+        public description?: any,
         public createTime?: Moment,
         public updateTime?: Moment,
         public user?: ISysUser,
         public product?: ISysProduct,
-        public receiveAddresses?: ISysReceiverAddress[]
+        public receiverAddress?: ISysReceiverAddress
     ) {}
 }

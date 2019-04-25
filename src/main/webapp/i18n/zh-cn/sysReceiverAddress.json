@@ -15,13 +15,22 @@
             "detail": {
                 "title": "Sys Receiver Address"
             },
-            "openid": "Openid",
-            "status": "Status",
+            "name": "Name",
+            "phone": "Phone",
+            "area": "Area",
             "address": "Address",
+            "status": "Status",
             "createTime": "Create Time",
             "updateTime": "Update Time",
             "user": "User",
-            "product": "Product"
+            "order": "Order",
+            "help": {
+                "name": "收货人姓名",
+                "phone": "手机号",
+                "area": "收货地区",
+                "address": "收货详细地址",
+                "status": "是否为默认地址（0：否 1：是）"
+            }
         }
     }
 }

@@ -79,12 +79,11 @@ public class SysReceiverAddressResource {
     /**
      * GET  /sys-receiver-addresses : get all the sysReceiverAddresses.
      *
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many)
      * @return the ResponseEntity with status 200 (OK) and the list of sysReceiverAddresses in body
      */
     @GetMapping("/sys-receiver-addresses")
     @Timed
-    public List<SysReceiverAddress> getAllSysReceiverAddresses(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
+    public List<SysReceiverAddress> getAllSysReceiverAddresses() {
         log.debug("REST request to get all SysReceiverAddresses");
         return sysReceiverAddressService.findAll();
     }

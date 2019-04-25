@@ -10,24 +10,44 @@
                         [(ngModel)]="sysOrder.id" readonly />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysOrder.tradeNo" for="field_tradeNo">Trade No</label>
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysOrder.tradeNo" for="field_tradeNo" [ngbTooltip]="'plantMallApp.sysOrder.help.tradeNo' | translate">Trade No</label>
                     <input type="text" class="form-control" name="tradeNo" id="field_tradeNo"
                         [(ngModel)]="sysOrder.tradeNo" />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysOrder.price" for="field_price">Price</label>
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysOrder.payNO" for="field_payNO" [ngbTooltip]="'plantMallApp.sysOrder.help.payNO' | translate">Pay NO</label>
+                    <input type="text" class="form-control" name="payNO" id="field_payNO"
+                        [(ngModel)]="sysOrder.payNO" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysOrder.price" for="field_price" [ngbTooltip]="'plantMallApp.sysOrder.help.price' | translate">Price</label>
                     <input type="number" class="form-control" name="price" id="field_price"
                         [(ngModel)]="sysOrder.price" />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysOrder.type" for="field_type">Type</label>
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysOrder.type" for="field_type" [ngbTooltip]="'plantMallApp.sysOrder.help.type' | translate">Type</label>
                     <input type="number" class="form-control" name="type" id="field_type"
                         [(ngModel)]="sysOrder.type" />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysOrder.number" for="field_number">Number</label>
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysOrder.payType" for="field_payType" [ngbTooltip]="'plantMallApp.sysOrder.help.payType' | translate">Pay Type</label>
+                    <input type="number" class="form-control" name="payType" id="field_payType"
+                        [(ngModel)]="sysOrder.payType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysOrder.status" for="field_status" [ngbTooltip]="'plantMallApp.sysOrder.help.status' | translate">Status</label>
+                    <input type="number" class="form-control" name="status" id="field_status"
+                        [(ngModel)]="sysOrder.status" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysOrder.number" for="field_number" [ngbTooltip]="'plantMallApp.sysOrder.help.number' | translate">Number</label>
                     <input type="number" class="form-control" name="number" id="field_number"
                         [(ngModel)]="sysOrder.number" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysOrder.description" for="field_description" [ngbTooltip]="'plantMallApp.sysOrder.help.description' | translate">Description</label>
+                    <textarea class="form-control" name="description" id="field_description"
+                        [(ngModel)]="sysOrder.description" ></textarea>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="plantMallApp.sysOrder.createTime" for="field_createTime">Create Time</label>
@@ -56,6 +76,13 @@
                     <select class="form-control" id="field_product" name="product" [(ngModel)]="sysOrder.product" >
                         <option [ngValue]="null"></option>
                         <option [ngValue]="sysProductOption.id === sysOrder.product?.id ? sysOrder.product : sysProductOption" *ngFor="let sysProductOption of sysproducts; trackBy: trackSysProductById">{{sysProductOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysOrder.receiverAddress" for="field_receiverAddress">Receiver Address</label>
+                    <select class="form-control" id="field_receiverAddress" name="receiverAddress" [(ngModel)]="sysOrder.receiverAddress" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="sysReceiverAddressOption.id === sysOrder.receiverAddress?.id ? sysOrder.receiverAddress : sysReceiverAddressOption" *ngFor="let sysReceiverAddressOption of sysreceiveraddresses; trackBy: trackSysReceiverAddressById">{{sysReceiverAddressOption.id}}</option>
                     </select>
                 </div>
             </div>

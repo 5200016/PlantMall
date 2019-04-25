@@ -10,19 +10,29 @@
                         [(ngModel)]="sysReceiverAddress.id" readonly />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysReceiverAddress.openid" for="field_openid">Openid</label>
-                    <input type="text" class="form-control" name="openid" id="field_openid"
-                        [(ngModel)]="sysReceiverAddress.openid" />
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysReceiverAddress.name" for="field_name" [ngbTooltip]="'plantMallApp.sysReceiverAddress.help.name' | translate">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                        [(ngModel)]="sysReceiverAddress.name" />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysReceiverAddress.status" for="field_status">Status</label>
-                    <input type="number" class="form-control" name="status" id="field_status"
-                        [(ngModel)]="sysReceiverAddress.status" />
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysReceiverAddress.phone" for="field_phone" [ngbTooltip]="'plantMallApp.sysReceiverAddress.help.phone' | translate">Phone</label>
+                    <input type="text" class="form-control" name="phone" id="field_phone"
+                        [(ngModel)]="sysReceiverAddress.phone" />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysReceiverAddress.address" for="field_address">Address</label>
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysReceiverAddress.area" for="field_area" [ngbTooltip]="'plantMallApp.sysReceiverAddress.help.area' | translate">Area</label>
+                    <input type="text" class="form-control" name="area" id="field_area"
+                        [(ngModel)]="sysReceiverAddress.area" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysReceiverAddress.address" for="field_address" [ngbTooltip]="'plantMallApp.sysReceiverAddress.help.address' | translate">Address</label>
                     <textarea class="form-control" name="address" id="field_address"
                         [(ngModel)]="sysReceiverAddress.address" ></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysReceiverAddress.status" for="field_status" [ngbTooltip]="'plantMallApp.sysReceiverAddress.help.status' | translate">Status</label>
+                    <input type="number" class="form-control" name="status" id="field_status"
+                        [(ngModel)]="sysReceiverAddress.status" />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="plantMallApp.sysReceiverAddress.createTime" for="field_createTime">Create Time</label>
@@ -44,12 +54,6 @@
                     <select class="form-control" id="field_user" name="user" [(ngModel)]="sysReceiverAddress.user" >
                         <option [ngValue]="null"></option>
                         <option [ngValue]="sysUserOption.id === sysReceiverAddress.user?.id ? sysReceiverAddress.user : sysUserOption" *ngFor="let sysUserOption of sysusers; trackBy: trackSysUserById">{{sysUserOption.id}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label jhiTranslate="plantMallApp.sysReceiverAddress.product" for="field_product">Product</label>
-                    <select class="form-control" id="field_product" multiple name="product" [(ngModel)]="sysReceiverAddress.products">
-                        <option [ngValue]="getSelected(sysReceiverAddress.products, sysOrderOption)" *ngFor="let sysOrderOption of sysorders; trackBy: trackSysOrderById">{{sysOrderOption.id}}</option>
                     </select>
                 </div>
             </div>

@@ -336,7 +336,7 @@ entity SysProductImage{
 }
 
 relationship ManyToOne {
-	SysReceiverAddress{user} to SysUser{receiveAddress},
+	SysReceiverAddress{user} to SysUser{receiverAddress},
     SysOrder{user} to SysUser{order},
     SysOrder{product} to SysProduct{order},
     SysOrder{receiverAddress} to SysReceiverAddress{order},
@@ -351,8 +351,7 @@ relationship ManyToOne {
 
 relationship ManyToMany {
     SysUser{role} to SysRole{user},
-    SysProduct{classify} to SysClassify{product},
-    SysReceiverAddress{product} to SysOrder{receiveAddress}
+    SysProduct{classify} to SysClassify{product}
 }
 
 service * with serviceImpl

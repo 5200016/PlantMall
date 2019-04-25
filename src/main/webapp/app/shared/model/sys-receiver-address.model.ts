@@ -4,24 +4,28 @@ import { ISysOrder } from 'app/shared/model//sys-order.model';
 
 export interface ISysReceiverAddress {
     id?: number;
-    openid?: string;
-    status?: number;
+    name?: string;
+    phone?: string;
+    area?: string;
     address?: any;
+    status?: number;
     createTime?: Moment;
     updateTime?: Moment;
     user?: ISysUser;
-    products?: ISysOrder[];
+    orders?: ISysOrder[];
 }
 
 export class SysReceiverAddress implements ISysReceiverAddress {
     constructor(
         public id?: number,
-        public openid?: string,
-        public status?: number,
+        public name?: string,
+        public phone?: string,
+        public area?: string,
         public address?: any,
+        public status?: number,
         public createTime?: Moment,
         public updateTime?: Moment,
         public user?: ISysUser,
-        public products?: ISysOrder[]
+        public orders?: ISysOrder[]
     ) {}
 }

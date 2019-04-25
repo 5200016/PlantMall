@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { JhiDataUtils } from 'ng-jhipster';
 
 import { ISysOrder } from 'app/shared/model/sys-order.model';
 
@@ -10,7 +11,7 @@ import { ISysOrder } from 'app/shared/model/sys-order.model';
 export class SysOrderDetailComponent implements OnInit {
     sysOrder: ISysOrder;
 
-    constructor(protected activatedRoute: ActivatedRoute) {}
+    constructor(protected dataUtils: JhiDataUtils, protected activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ sysOrder }) => {
@@ -18,6 +19,13 @@ export class SysOrderDetailComponent implements OnInit {
         });
     }
 
+    byteSize(field) {
+        return this.dataUtils.byteSize(field);
+    }
+
+    openFile(contentType, field) {
+        return this.dataUtils.openFile(contentType, field);
+    }
     previousState() {
         window.history.back();
     }

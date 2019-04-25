@@ -20,5 +20,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="sys_product"/>
 
+        <addForeignKeyConstraint baseColumnNames="receiver_address_id"
+                                 baseTableName="sys_order"
+                                 constraintName="fk_sys_order_receiver_address_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sys_receiver_address"/>
+
     </changeSet>
 </databaseChangeLog>

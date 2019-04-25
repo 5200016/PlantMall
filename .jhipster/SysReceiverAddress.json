@@ -2,17 +2,30 @@
     "name": "SysReceiverAddress",
     "fields": [
         {
-            "fieldName": "openid",
+            "fieldName": "name",
+            "javadoc": "收货人姓名",
             "fieldType": "String"
         },
         {
-            "fieldName": "status",
-            "fieldType": "Integer"
+            "fieldName": "phone",
+            "javadoc": "手机号",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "area",
+            "javadoc": "收货地区",
+            "fieldType": "String"
         },
         {
             "fieldName": "address",
+            "javadoc": "收货详细地址",
             "fieldType": "byte[]",
             "fieldTypeBlobContent": "text"
+        },
+        {
+            "fieldName": "status",
+            "javadoc": "是否为默认地址（0：否 1：是）",
+            "fieldType": "Integer"
         },
         {
             "fieldName": "createTime",
@@ -31,12 +44,10 @@
             "otherEntityField": "id"
         },
         {
-            "relationshipType": "many-to-many",
-            "otherEntityRelationshipName": "receiveAddress",
-            "relationshipName": "product",
+            "relationshipType": "one-to-many",
+            "relationshipName": "order",
             "otherEntityName": "sysOrder",
-            "otherEntityField": "id",
-            "ownerSide": true
+            "otherEntityRelationshipName": "receiverAddress"
         }
     ],
     "changelogDate": "20190415061356",

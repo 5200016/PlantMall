@@ -72,7 +72,7 @@
         },
         {
             "relationshipType": "one-to-many",
-            "relationshipName": "receiveAddress",
+            "relationshipName": "receiverAddress",
             "otherEntityName": "sysReceiverAddress",
             "otherEntityRelationshipName": "user"
         },

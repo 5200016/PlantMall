@@ -6,8 +6,6 @@ import com.ybb.mall.repository.SysReceiverAddressRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -50,18 +48,9 @@ public class SysReceiverAddressServiceImpl implements SysReceiverAddressService 
     @Transactional(readOnly = true)
     public List<SysReceiverAddress> findAll() {
         log.debug("Request to get all SysReceiverAddresses");
-        return sysReceiverAddressRepository.findAllWithEagerRelationships();
+        return sysReceiverAddressRepository.findAll();
     }
 
-    /**
-     * Get all the SysReceiverAddress with eager load of many-to-many relationships.
-     *
-     * @return the list of entities
-     */
-    public Page<SysReceiverAddress> findAllWithEagerRelationships(Pageable pageable) {
-        return sysReceiverAddressRepository.findAllWithEagerRelationships(pageable);
-    }
-    
 
     /**
      * Get one sysReceiverAddress by id.
@@ -73,7 +62,7 @@ public class SysReceiverAddressServiceImpl implements SysReceiverAddressService 
     @Transactional(readOnly = true)
     public Optional<SysReceiverAddress> findOne(Long id) {
         log.debug("Request to get SysReceiverAddress : {}", id);
-        return sysReceiverAddressRepository.findOneWithEagerRelationships(id);
+        return sysReceiverAddressRepository.findById(id);
     }
 
     /**

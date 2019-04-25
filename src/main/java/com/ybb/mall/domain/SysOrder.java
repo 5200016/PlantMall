@@ -1,16 +1,14 @@
 package com.ybb.mall.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -27,17 +25,62 @@ public class SysOrder implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * 订单号
+     */
+    @ApiModelProperty(value = "订单号")
     @Column(name = "trade_no")
     private String tradeNo;
 
+    /**
+     * 支付单号
+     */
+    @ApiModelProperty(value = "支付单号")
+    @Column(name = "pay_no")
+    private String payNO;
+
+    /**
+     * 订单金额
+     */
+    @ApiModelProperty(value = "订单金额")
     @Column(name = "price", precision = 10, scale = 2)
     private BigDecimal price;
 
+    /**
+     * 订单类型
+     */
+    @ApiModelProperty(value = "订单类型")
     @Column(name = "jhi_type")
     private Integer type;
 
+    /**
+     * 支付类型
+     */
+    @ApiModelProperty(value = "支付类型")
+    @Column(name = "pay_type")
+    private Integer payType;
+
+    /**
+     * 订单状态
+     */
+    @ApiModelProperty(value = "订单状态")
+    @Column(name = "status")
+    private Integer status;
+
+    /**
+     * 购买数量
+     */
+    @ApiModelProperty(value = "购买数量")
     @Column(name = "jhi_number")
     private Integer number;
+
+    /**
+     * 订单描述
+     */
+    @ApiModelProperty(value = "订单描述")
+    @Lob
+    @Column(name = "description")
+    private String description;
 
     @Column(name = "create_time")
     private ZonedDateTime createTime;
@@ -53,9 +96,9 @@ public class SysOrder implements Serializable {
     @JsonIgnoreProperties("orders")
     private SysProduct product;
 
-    @ManyToMany(mappedBy = "products")
-    @JsonIgnore
-    private Set<SysReceiverAddress> receiveAddresses = new HashSet<>();
+    @ManyToOne
+    @JsonIgnoreProperties("orders")
+    private SysReceiverAddress receiverAddress;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -77,6 +120,19 @@ public class SysOrder implements Serializable {
 
     public void setTradeNo(String tradeNo) {
         this.tradeNo = tradeNo;
+    }
+
+    public String getPayNO() {
+        return payNO;
+    }
+
+    public SysOrder payNO(String payNO) {
+        this.payNO = payNO;
+        return this;
+    }
+
+    public void setPayNO(String payNO) {
+        this.payNO = payNO;
     }
 
     public BigDecimal getPrice() {
@@ -105,6 +161,32 @@ public class SysOrder implements Serializable {
         this.type = type;
     }
 
+    public Integer getPayType() {
+        return payType;
+    }
+
+    public SysOrder payType(Integer payType) {
+        this.payType = payType;
+        return this;
+    }
+
+    public void setPayType(Integer payType) {
+        this.payType = payType;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public SysOrder status(Integer status) {
+        this.status = status;
+        return this;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
     public Integer getNumber() {
         return number;
     }
@@ -116,6 +198,19 @@ public class SysOrder implements Serializable {
 
     public void setNumber(Integer number) {
         this.number = number;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public SysOrder description(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public ZonedDateTime getCreateTime() {
@@ -170,29 +265,17 @@ public class SysOrder implements Serializable {
         this.product = sysProduct;
     }
 
-    public Set<SysReceiverAddress> getReceiveAddresses() {
-        return receiveAddresses;
+    public SysReceiverAddress getReceiverAddress() {
+        return receiverAddress;
     }
 
-    public SysOrder receiveAddresses(Set<SysReceiverAddress> sysReceiverAddresses) {
-        this.receiveAddresses = sysReceiverAddresses;
+    public SysOrder receiverAddress(SysReceiverAddress sysReceiverAddress) {
+        this.receiverAddress = sysReceiverAddress;
         return this;
     }
 
-    public SysOrder addReceiveAddress(SysReceiverAddress sysReceiverAddress) {
-        this.receiveAddresses.add(sysReceiverAddress);
-        sysReceiverAddress.getProducts().add(this);
-        return this;
-    }
-
-    public SysOrder removeReceiveAddress(SysReceiverAddress sysReceiverAddress) {
-        this.receiveAddresses.remove(sysReceiverAddress);
-        sysReceiverAddress.getProducts().remove(this);
-        return this;
-    }
-
-    public void setReceiveAddresses(Set<SysReceiverAddress> sysReceiverAddresses) {
-        this.receiveAddresses = sysReceiverAddresses;
+    public void setReceiverAddress(SysReceiverAddress sysReceiverAddress) {
+        this.receiverAddress = sysReceiverAddress;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -221,9 +304,13 @@ public class SysOrder implements Serializable {
         return "SysOrder{" +
             "id=" + getId() +
             ", tradeNo='" + getTradeNo() + "'" +
+            ", payNO='" + getPayNO() + "'" +
             ", price=" + getPrice() +
             ", type=" + getType() +
+            ", payType=" + getPayType() +
+            ", status=" + getStatus() +
             ", number=" + getNumber() +
+            ", description='" + getDescription() + "'" +
             ", createTime='" + getCreateTime() + "'" +
             ", updateTime='" + getUpdateTime() + "'" +
             "}";

@@ -107,7 +107,7 @@ public class SysUser implements Serializable {
     private Set<SysRole> roles = new HashSet<>();
 
     @OneToMany(mappedBy = "user")
-    private Set<SysReceiverAddress> receiveAddresses = new HashSet<>();
+    private Set<SysReceiverAddress> receiverAddresses = new HashSet<>();
     @OneToMany(mappedBy = "user")
     private Set<SysOrder> orders = new HashSet<>();
     @OneToMany(mappedBy = "user")
@@ -304,29 +304,29 @@ public class SysUser implements Serializable {
         this.roles = sysRoles;
     }
 
-    public Set<SysReceiverAddress> getReceiveAddresses() {
-        return receiveAddresses;
+    public Set<SysReceiverAddress> getReceiverAddresses() {
+        return receiverAddresses;
     }
 
-    public SysUser receiveAddresses(Set<SysReceiverAddress> sysReceiverAddresses) {
-        this.receiveAddresses = sysReceiverAddresses;
+    public SysUser receiverAddresses(Set<SysReceiverAddress> sysReceiverAddresses) {
+        this.receiverAddresses = sysReceiverAddresses;
         return this;
     }
 
-    public SysUser addReceiveAddress(SysReceiverAddress sysReceiverAddress) {
-        this.receiveAddresses.add(sysReceiverAddress);
+    public SysUser addReceiverAddress(SysReceiverAddress sysReceiverAddress) {
+        this.receiverAddresses.add(sysReceiverAddress);
         sysReceiverAddress.setUser(this);
         return this;
     }
 
-    public SysUser removeReceiveAddress(SysReceiverAddress sysReceiverAddress) {
-        this.receiveAddresses.remove(sysReceiverAddress);
+    public SysUser removeReceiverAddress(SysReceiverAddress sysReceiverAddress) {
+        this.receiverAddresses.remove(sysReceiverAddress);
         sysReceiverAddress.setUser(null);
         return this;
     }
 
-    public void setReceiveAddresses(Set<SysReceiverAddress> sysReceiverAddresses) {
-        this.receiveAddresses = sysReceiverAddresses;
+    public void setReceiverAddresses(Set<SysReceiverAddress> sysReceiverAddresses) {
+        this.receiverAddresses = sysReceiverAddresses;
     }
 
     public Set<SysOrder> getOrders() {

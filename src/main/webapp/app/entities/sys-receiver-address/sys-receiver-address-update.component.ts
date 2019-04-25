@@ -10,8 +10,6 @@ import { ISysReceiverAddress } from 'app/shared/model/sys-receiver-address.model
 import { SysReceiverAddressService } from './sys-receiver-address.service';
 import { ISysUser } from 'app/shared/model/sys-user.model';
 import { SysUserService } from 'app/entities/sys-user';
-import { ISysOrder } from 'app/shared/model/sys-order.model';
-import { SysOrderService } from 'app/entities/sys-order';
 
 @Component({
     selector: 'jhi-sys-receiver-address-update',
@@ -22,8 +20,6 @@ export class SysReceiverAddressUpdateComponent implements OnInit {
     isSaving: boolean;
 
     sysusers: ISysUser[];
-
-    sysorders: ISysOrder[];
     createTime: string;
     updateTime: string;
 
@@ -32,7 +28,6 @@ export class SysReceiverAddressUpdateComponent implements OnInit {
         protected jhiAlertService: JhiAlertService,
         protected sysReceiverAddressService: SysReceiverAddressService,
         protected sysUserService: SysUserService,
-        protected sysOrderService: SysOrderService,
         protected activatedRoute: ActivatedRoute
     ) {}
 
@@ -48,12 +43,6 @@ export class SysReceiverAddressUpdateComponent implements OnInit {
         this.sysUserService.query().subscribe(
             (res: HttpResponse<ISysUser[]>) => {
                 this.sysusers = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
-        this.sysOrderService.query().subscribe(
-            (res: HttpResponse<ISysOrder[]>) => {
-                this.sysorders = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
@@ -105,20 +94,5 @@ export class SysReceiverAddressUpdateComponent implements OnInit {
 
     trackSysUserById(index: number, item: ISysUser) {
         return item.id;
-    }
-
-    trackSysOrderById(index: number, item: ISysOrder) {
-        return item.id;
-    }
-
-    getSelected(selectedVals: Array<any>, option: any) {
-        if (selectedVals) {
-            for (let i = 0; i < selectedVals.length; i++) {
-                if (option.id === selectedVals[i].id) {
-                    return selectedVals[i];
-                }
-            }
-        }
-        return option;
     }
 }

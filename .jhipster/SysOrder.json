@@ -3,19 +3,44 @@
     "fields": [
         {
             "fieldName": "tradeNo",
+            "javadoc": "订单号",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "payNO",
+            "javadoc": "支付单号",
             "fieldType": "String"
         },
         {
             "fieldName": "price",
+            "javadoc": "订单金额",
             "fieldType": "BigDecimal"
         },
         {
             "fieldName": "type",
+            "javadoc": "订单类型",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "payType",
+            "javadoc": "支付类型",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "status",
+            "javadoc": "订单状态",
             "fieldType": "Integer"
         },
         {
             "fieldName": "number",
+            "javadoc": "购买数量",
             "fieldType": "Integer"
+        },
+        {
+            "fieldName": "description",
+            "javadoc": "订单描述",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
         },
         {
             "fieldName": "createTime",
@@ -40,11 +65,10 @@
             "otherEntityField": "id"
         },
         {
-            "relationshipType": "many-to-many",
-            "relationshipName": "receiveAddress",
+            "relationshipType": "many-to-one",
+            "relationshipName": "receiverAddress",
             "otherEntityName": "sysReceiverAddress",
-            "ownerSide": false,
-            "otherEntityRelationshipName": "product"
+            "otherEntityField": "id"
         }
     ],
     "changelogDate": "20190415061401",

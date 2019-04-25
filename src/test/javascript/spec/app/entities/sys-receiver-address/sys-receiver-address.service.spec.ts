@@ -25,7 +25,7 @@ describe('Service Tests', () => {
             httpMock = injector.get(HttpTestingController);
             currentDate = moment();
 
-            elemDefault = new SysReceiverAddress(0, 'AAAAAAA', 0, 'AAAAAAA', currentDate, currentDate);
+            elemDefault = new SysReceiverAddress(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 0, currentDate, currentDate);
         });
 
         describe('Service methods', async () => {
@@ -73,9 +73,11 @@ describe('Service Tests', () => {
             it('should update a SysReceiverAddress', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        openid: 'BBBBBB',
-                        status: 1,
+                        name: 'BBBBBB',
+                        phone: 'BBBBBB',
+                        area: 'BBBBBB',
                         address: 'BBBBBB',
+                        status: 1,
                         createTime: currentDate.format(DATE_TIME_FORMAT),
                         updateTime: currentDate.format(DATE_TIME_FORMAT)
                     },
@@ -100,9 +102,11 @@ describe('Service Tests', () => {
             it('should return a list of SysReceiverAddress', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        openid: 'BBBBBB',
-                        status: 1,
+                        name: 'BBBBBB',
+                        phone: 'BBBBBB',
+                        area: 'BBBBBB',
                         address: 'BBBBBB',
+                        status: 1,
                         createTime: currentDate.format(DATE_TIME_FORMAT),
                         updateTime: currentDate.format(DATE_TIME_FORMAT)
                     },

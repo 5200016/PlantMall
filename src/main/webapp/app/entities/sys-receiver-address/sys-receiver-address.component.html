@@ -15,33 +15,31 @@
             <thead>
             <tr>
             <th><span jhiTranslate="global.field.id">ID</span></th>
-            <th><span jhiTranslate="plantMallApp.sysReceiverAddress.openid">Openid</span></th>
-            <th><span jhiTranslate="plantMallApp.sysReceiverAddress.status">Status</span></th>
+            <th><span jhiTranslate="plantMallApp.sysReceiverAddress.name">Name</span></th>
+            <th><span jhiTranslate="plantMallApp.sysReceiverAddress.phone">Phone</span></th>
+            <th><span jhiTranslate="plantMallApp.sysReceiverAddress.area">Area</span></th>
             <th><span jhiTranslate="plantMallApp.sysReceiverAddress.address">Address</span></th>
+            <th><span jhiTranslate="plantMallApp.sysReceiverAddress.status">Status</span></th>
             <th><span jhiTranslate="plantMallApp.sysReceiverAddress.createTime">Create Time</span></th>
             <th><span jhiTranslate="plantMallApp.sysReceiverAddress.updateTime">Update Time</span></th>
             <th><span jhiTranslate="plantMallApp.sysReceiverAddress.user">User</span></th>
-            <th><span jhiTranslate="plantMallApp.sysReceiverAddress.product">Product</span></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let sysReceiverAddress of sysReceiverAddresses ;trackBy: trackId">
                 <td><a [routerLink]="['/sys-receiver-address', sysReceiverAddress.id, 'view' ]">{{sysReceiverAddress.id}}</a></td>
-                <td>{{sysReceiverAddress.openid}}</td>
-                <td>{{sysReceiverAddress.status}}</td>
+                <td>{{sysReceiverAddress.name}}</td>
+                <td>{{sysReceiverAddress.phone}}</td>
+                <td>{{sysReceiverAddress.area}}</td>
                 <td>{{sysReceiverAddress.address}}</td>
+                <td>{{sysReceiverAddress.status}}</td>
                 <td>{{sysReceiverAddress.createTime | date:'medium'}}</td>
                 <td>{{sysReceiverAddress.updateTime | date:'medium'}}</td>
                 <td>
                     <div *ngIf="sysReceiverAddress.user">
                         <a [routerLink]="['../sys-user', sysReceiverAddress.user?.id, 'view' ]" >{{sysReceiverAddress.user?.id}}</a>
                     </div>
-                </td>
-                <td>
-                    <span *ngFor="let product of sysReceiverAddress.products; let last = last">
-                            <a class="form-control-static" [routerLink]="['../sys-order', product?.id, 'view' ]">{{product.id}}</a>{{last ? '' : ', '}}
-                        </span>
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">

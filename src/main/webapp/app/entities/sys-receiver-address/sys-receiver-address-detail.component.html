@@ -5,17 +5,25 @@
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="plantMallApp.sysReceiverAddress.openid">Openid</span></dt>
+                <dt><span jhiTranslate="plantMallApp.sysReceiverAddress.name" [ngbTooltip]="'plantMallApp.sysReceiverAddress.help.name' | translate">Name</span></dt>
                 <dd>
-                    <span>{{sysReceiverAddress.openid}}</span>
+                    <span>{{sysReceiverAddress.name}}</span>
                 </dd>
-                <dt><span jhiTranslate="plantMallApp.sysReceiverAddress.status">Status</span></dt>
+                <dt><span jhiTranslate="plantMallApp.sysReceiverAddress.phone" [ngbTooltip]="'plantMallApp.sysReceiverAddress.help.phone' | translate">Phone</span></dt>
                 <dd>
-                    <span>{{sysReceiverAddress.status}}</span>
+                    <span>{{sysReceiverAddress.phone}}</span>
                 </dd>
-                <dt><span jhiTranslate="plantMallApp.sysReceiverAddress.address">Address</span></dt>
+                <dt><span jhiTranslate="plantMallApp.sysReceiverAddress.area" [ngbTooltip]="'plantMallApp.sysReceiverAddress.help.area' | translate">Area</span></dt>
+                <dd>
+                    <span>{{sysReceiverAddress.area}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysReceiverAddress.address" [ngbTooltip]="'plantMallApp.sysReceiverAddress.help.address' | translate">Address</span></dt>
                 <dd>
                     <span>{{sysReceiverAddress.address}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysReceiverAddress.status" [ngbTooltip]="'plantMallApp.sysReceiverAddress.help.status' | translate">Status</span></dt>
+                <dd>
+                    <span>{{sysReceiverAddress.status}}</span>
                 </dd>
                 <dt><span jhiTranslate="plantMallApp.sysReceiverAddress.createTime">Create Time</span></dt>
                 <dd>
@@ -30,12 +38,6 @@
                     <div *ngIf="sysReceiverAddress.user">
                         <a [routerLink]="['/sys-user', sysReceiverAddress.user?.id, 'view']">{{sysReceiverAddress.user?.id}}</a>
                     </div>
-                </dd>
-                <dt><span jhiTranslate="plantMallApp.sysReceiverAddress.product">Product</span></dt>
-                <dd>
-                    <span *ngFor="let product of sysReceiverAddress.products; let last = last">
-                        <a [routerLink]="['/sys-order', product?.id, 'view' ]">{{product.id}}</a>{{last ? '' : ', '}}
-                    </span>
                 </dd>
             </dl>
 

@@ -25,7 +25,7 @@ describe('Service Tests', () => {
             httpMock = injector.get(HttpTestingController);
             currentDate = moment();
 
-            elemDefault = new SysOrder(0, 'AAAAAAA', 0, 0, 0, currentDate, currentDate);
+            elemDefault = new SysOrder(0, 'AAAAAAA', 'AAAAAAA', 0, 0, 0, 0, 0, 'AAAAAAA', currentDate, currentDate);
         });
 
         describe('Service methods', async () => {
@@ -74,9 +74,13 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         tradeNo: 'BBBBBB',
+                        payNO: 'BBBBBB',
                         price: 1,
                         type: 1,
+                        payType: 1,
+                        status: 1,
                         number: 1,
+                        description: 'BBBBBB',
                         createTime: currentDate.format(DATE_TIME_FORMAT),
                         updateTime: currentDate.format(DATE_TIME_FORMAT)
                     },
@@ -102,9 +106,13 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         tradeNo: 'BBBBBB',
+                        payNO: 'BBBBBB',
                         price: 1,
                         type: 1,
+                        payType: 1,
+                        status: 1,
                         number: 1,
+                        description: 'BBBBBB',
                         createTime: currentDate.format(DATE_TIME_FORMAT),
                         updateTime: currentDate.format(DATE_TIME_FORMAT)
                     },

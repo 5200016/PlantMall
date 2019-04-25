@@ -21,7 +21,7 @@ export interface ISysUser {
     updateTime?: Moment;
     memberLevel?: ISysMemberLevel;
     roles?: ISysRole[];
-    receiveAddresses?: ISysReceiverAddress[];
+    receiverAddresses?: ISysReceiverAddress[];
     orders?: ISysOrder[];
     reviews?: ISysReview[];
     collections?: ISysCollection[];
@@ -43,7 +43,7 @@ export class SysUser implements ISysUser {
         public updateTime?: Moment,
         public memberLevel?: ISysMemberLevel,
         public roles?: ISysRole[],
-        public receiveAddresses?: ISysReceiverAddress[],
+        public receiverAddresses?: ISysReceiverAddress[],
         public orders?: ISysOrder[],
         public reviews?: ISysReview[],
         public collections?: ISysCollection[]

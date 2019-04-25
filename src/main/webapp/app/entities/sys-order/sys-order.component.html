@@ -16,13 +16,18 @@
             <tr>
             <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="plantMallApp.sysOrder.tradeNo">Trade No</span></th>
+            <th><span jhiTranslate="plantMallApp.sysOrder.payNO">Pay NO</span></th>
             <th><span jhiTranslate="plantMallApp.sysOrder.price">Price</span></th>
             <th><span jhiTranslate="plantMallApp.sysOrder.type">Type</span></th>
+            <th><span jhiTranslate="plantMallApp.sysOrder.payType">Pay Type</span></th>
+            <th><span jhiTranslate="plantMallApp.sysOrder.status">Status</span></th>
             <th><span jhiTranslate="plantMallApp.sysOrder.number">Number</span></th>
+            <th><span jhiTranslate="plantMallApp.sysOrder.description">Description</span></th>
             <th><span jhiTranslate="plantMallApp.sysOrder.createTime">Create Time</span></th>
             <th><span jhiTranslate="plantMallApp.sysOrder.updateTime">Update Time</span></th>
             <th><span jhiTranslate="plantMallApp.sysOrder.user">User</span></th>
             <th><span jhiTranslate="plantMallApp.sysOrder.product">Product</span></th>
+            <th><span jhiTranslate="plantMallApp.sysOrder.receiverAddress">Receiver Address</span></th>
             <th></th>
             </tr>
             </thead>
@@ -30,9 +35,13 @@
             <tr *ngFor="let sysOrder of sysOrders ;trackBy: trackId">
                 <td><a [routerLink]="['/sys-order', sysOrder.id, 'view' ]">{{sysOrder.id}}</a></td>
                 <td>{{sysOrder.tradeNo}}</td>
+                <td>{{sysOrder.payNO}}</td>
                 <td>{{sysOrder.price}}</td>
                 <td>{{sysOrder.type}}</td>
+                <td>{{sysOrder.payType}}</td>
+                <td>{{sysOrder.status}}</td>
                 <td>{{sysOrder.number}}</td>
+                <td>{{sysOrder.description}}</td>
                 <td>{{sysOrder.createTime | date:'medium'}}</td>
                 <td>{{sysOrder.updateTime | date:'medium'}}</td>
                 <td>
@@ -43,6 +52,11 @@
                 <td>
                     <div *ngIf="sysOrder.product">
                         <a [routerLink]="['../sys-product', sysOrder.product?.id, 'view' ]" >{{sysOrder.product?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="sysOrder.receiverAddress">
+                        <a [routerLink]="['../sys-receiver-address', sysOrder.receiverAddress?.id, 'view' ]" >{{sysOrder.receiverAddress?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">

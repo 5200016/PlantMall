@@ -20,6 +20,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Base64Utils;
 import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
@@ -50,14 +51,26 @@ public class SysOrderResourceIntTest {
     private static final String DEFAULT_TRADE_NO = "AAAAAAAAAA";
     private static final String UPDATED_TRADE_NO = "BBBBBBBBBB";
 
+    private static final String DEFAULT_PAY_NO = "AAAAAAAAAA";
+    private static final String UPDATED_PAY_NO = "BBBBBBBBBB";
+
     private static final BigDecimal DEFAULT_PRICE = new BigDecimal(1);
     private static final BigDecimal UPDATED_PRICE = new BigDecimal(2);
 
     private static final Integer DEFAULT_TYPE = 1;
     private static final Integer UPDATED_TYPE = 2;
 
+    private static final Integer DEFAULT_PAY_TYPE = 1;
+    private static final Integer UPDATED_PAY_TYPE = 2;
+
+    private static final Integer DEFAULT_STATUS = 1;
+    private static final Integer UPDATED_STATUS = 2;
+
     private static final Integer DEFAULT_NUMBER = 1;
     private static final Integer UPDATED_NUMBER = 2;
+
+    private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
+    private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
 
     private static final ZonedDateTime DEFAULT_CREATE_TIME = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_CREATE_TIME = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
@@ -111,9 +124,13 @@ public class SysOrderResourceIntTest {
     public static SysOrder createEntity(EntityManager em) {
         SysOrder sysOrder = new SysOrder()
             .tradeNo(DEFAULT_TRADE_NO)
+            .payNO(DEFAULT_PAY_NO)
             .price(DEFAULT_PRICE)
             .type(DEFAULT_TYPE)
+            .payType(DEFAULT_PAY_TYPE)
+            .status(DEFAULT_STATUS)
             .number(DEFAULT_NUMBER)
+            .description(DEFAULT_DESCRIPTION)
             .createTime(DEFAULT_CREATE_TIME)
             .updateTime(DEFAULT_UPDATE_TIME);
         return sysOrder;
@@ -140,9 +157,13 @@ public class SysOrderResourceIntTest {
         assertThat(sysOrderList).hasSize(databaseSizeBeforeCreate + 1);
         SysOrder testSysOrder = sysOrderList.get(sysOrderList.size() - 1);
         assertThat(testSysOrder.getTradeNo()).isEqualTo(DEFAULT_TRADE_NO);
+        assertThat(testSysOrder.getPayNO()).isEqualTo(DEFAULT_PAY_NO);
         assertThat(testSysOrder.getPrice()).isEqualTo(DEFAULT_PRICE);
         assertThat(testSysOrder.getType()).isEqualTo(DEFAULT_TYPE);
+        assertThat(testSysOrder.getPayType()).isEqualTo(DEFAULT_PAY_TYPE);
+        assertThat(testSysOrder.getStatus()).isEqualTo(DEFAULT_STATUS);
         assertThat(testSysOrder.getNumber()).isEqualTo(DEFAULT_NUMBER);
+        assertThat(testSysOrder.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
         assertThat(testSysOrder.getCreateTime()).isEqualTo(DEFAULT_CREATE_TIME);
         assertThat(testSysOrder.getUpdateTime()).isEqualTo(DEFAULT_UPDATE_TIME);
     }
@@ -178,13 +199,17 @@ public class SysOrderResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(sysOrder.getId().intValue())))
             .andExpect(jsonPath("$.[*].tradeNo").value(hasItem(DEFAULT_TRADE_NO.toString())))
+            .andExpect(jsonPath("$.[*].payNO").value(hasItem(DEFAULT_PAY_NO.toString())))
             .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.intValue())))
             .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE)))
+            .andExpect(jsonPath("$.[*].payType").value(hasItem(DEFAULT_PAY_TYPE)))
+            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS)))
             .andExpect(jsonPath("$.[*].number").value(hasItem(DEFAULT_NUMBER)))
+            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
             .andExpect(jsonPath("$.[*].createTime").value(hasItem(sameInstant(DEFAULT_CREATE_TIME))))
             .andExpect(jsonPath("$.[*].updateTime").value(hasItem(sameInstant(DEFAULT_UPDATE_TIME))));
     }
-
+    
     @Test
     @Transactional
     public void getSysOrder() throws Exception {
@@ -197,9 +222,13 @@ public class SysOrderResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(sysOrder.getId().intValue()))
             .andExpect(jsonPath("$.tradeNo").value(DEFAULT_TRADE_NO.toString()))
+            .andExpect(jsonPath("$.payNO").value(DEFAULT_PAY_NO.toString()))
             .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.intValue()))
             .andExpect(jsonPath("$.type").value(DEFAULT_TYPE))
+            .andExpect(jsonPath("$.payType").value(DEFAULT_PAY_TYPE))
+            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS))
             .andExpect(jsonPath("$.number").value(DEFAULT_NUMBER))
+            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
             .andExpect(jsonPath("$.createTime").value(sameInstant(DEFAULT_CREATE_TIME)))
             .andExpect(jsonPath("$.updateTime").value(sameInstant(DEFAULT_UPDATE_TIME)));
     }
@@ -226,9 +255,13 @@ public class SysOrderResourceIntTest {
         em.detach(updatedSysOrder);
         updatedSysOrder
             .tradeNo(UPDATED_TRADE_NO)
+            .payNO(UPDATED_PAY_NO)
             .price(UPDATED_PRICE)
             .type(UPDATED_TYPE)
+            .payType(UPDATED_PAY_TYPE)
+            .status(UPDATED_STATUS)
             .number(UPDATED_NUMBER)
+            .description(UPDATED_DESCRIPTION)
             .createTime(UPDATED_CREATE_TIME)
             .updateTime(UPDATED_UPDATE_TIME);
 
@@ -242,9 +275,13 @@ public class SysOrderResourceIntTest {
         assertThat(sysOrderList).hasSize(databaseSizeBeforeUpdate);
         SysOrder testSysOrder = sysOrderList.get(sysOrderList.size() - 1);
         assertThat(testSysOrder.getTradeNo()).isEqualTo(UPDATED_TRADE_NO);
+        assertThat(testSysOrder.getPayNO()).isEqualTo(UPDATED_PAY_NO);
         assertThat(testSysOrder.getPrice()).isEqualTo(UPDATED_PRICE);
         assertThat(testSysOrder.getType()).isEqualTo(UPDATED_TYPE);
+        assertThat(testSysOrder.getPayType()).isEqualTo(UPDATED_PAY_TYPE);
+        assertThat(testSysOrder.getStatus()).isEqualTo(UPDATED_STATUS);
         assertThat(testSysOrder.getNumber()).isEqualTo(UPDATED_NUMBER);
+        assertThat(testSysOrder.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
         assertThat(testSysOrder.getCreateTime()).isEqualTo(UPDATED_CREATE_TIME);
         assertThat(testSysOrder.getUpdateTime()).isEqualTo(UPDATED_UPDATE_TIME);
     }

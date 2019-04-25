@@ -28,7 +28,7 @@
             "updateTime": "Update Time",
             "memberLevel": "Member Level",
             "role": "Role",
-            "receiveAddress": "Receive Address",
+            "receiverAddress": "Receiver Address",
             "order": "Order",
             "review": "Review",
             "collection": "Collection",

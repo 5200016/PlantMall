@@ -1,7 +1,9 @@
 package com.ybb.mall.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 
@@ -25,15 +27,41 @@ public class SysReceiverAddress implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "openid")
-    private String openid;
+    /**
+     * 收货人姓名
+     */
+    @ApiModelProperty(value = "收货人姓名")
+    @Column(name = "name")
+    private String name;
 
-    @Column(name = "status")
-    private Integer status;
+    /**
+     * 手机号
+     */
+    @ApiModelProperty(value = "手机号")
+    @Column(name = "phone")
+    private String phone;
 
+    /**
+     * 收货地区
+     */
+    @ApiModelProperty(value = "收货地区")
+    @Column(name = "area")
+    private String area;
+
+    /**
+     * 收货详细地址
+     */
+    @ApiModelProperty(value = "收货详细地址")
     @Lob
     @Column(name = "address")
     private String address;
+
+    /**
+     * 是否为默认地址（0：否 1：是）
+     */
+    @ApiModelProperty(value = "是否为默认地址（0：否 1：是）")
+    @Column(name = "status")
+    private Integer status;
 
     @Column(name = "create_time")
     private ZonedDateTime createTime;
@@ -45,12 +73,8 @@ public class SysReceiverAddress implements Serializable {
     @JsonIgnoreProperties("receiveAddresses")
     private SysUser user;
 
-    @ManyToMany
-    @JoinTable(name = "sys_receiver_address_product",
-               joinColumns = @JoinColumn(name = "sys_receiver_addresses_id", referencedColumnName = "id"),
-               inverseJoinColumns = @JoinColumn(name = "products_id", referencedColumnName = "id"))
-    private Set<SysOrder> products = new HashSet<>();
-
+    @OneToMany(mappedBy = "receiverAddress")
+    private Set<SysOrder> orders = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -60,30 +84,43 @@ public class SysReceiverAddress implements Serializable {
         this.id = id;
     }
 
-    public String getOpenid() {
-        return openid;
+    public String getName() {
+        return name;
     }
 
-    public SysReceiverAddress openid(String openid) {
-        this.openid = openid;
+    public SysReceiverAddress name(String name) {
+        this.name = name;
         return this;
     }
 
-    public void setOpenid(String openid) {
-        this.openid = openid;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Integer getStatus() {
-        return status;
+    public String getPhone() {
+        return phone;
     }
 
-    public SysReceiverAddress status(Integer status) {
-        this.status = status;
+    public SysReceiverAddress phone(String phone) {
+        this.phone = phone;
         return this;
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public SysReceiverAddress area(String area) {
+        this.area = area;
+        return this;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
     }
 
     public String getAddress() {
@@ -97,6 +134,19 @@ public class SysReceiverAddress implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public SysReceiverAddress status(Integer status) {
+        this.status = status;
+        return this;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public ZonedDateTime getCreateTime() {
@@ -138,29 +188,29 @@ public class SysReceiverAddress implements Serializable {
         this.user = sysUser;
     }
 
-    public Set<SysOrder> getProducts() {
-        return products;
+    public Set<SysOrder> getOrders() {
+        return orders;
     }
 
-    public SysReceiverAddress products(Set<SysOrder> sysOrders) {
-        this.products = sysOrders;
+    public SysReceiverAddress orders(Set<SysOrder> sysOrders) {
+        this.orders = sysOrders;
         return this;
     }
 
-    public SysReceiverAddress addProduct(SysOrder sysOrder) {
-        this.products.add(sysOrder);
-        sysOrder.getReceiveAddresses().add(this);
+    public SysReceiverAddress addOrder(SysOrder sysOrder) {
+        this.orders.add(sysOrder);
+        sysOrder.setReceiverAddress(this);
         return this;
     }
 
-    public SysReceiverAddress removeProduct(SysOrder sysOrder) {
-        this.products.remove(sysOrder);
-        sysOrder.getReceiveAddresses().remove(this);
+    public SysReceiverAddress removeOrder(SysOrder sysOrder) {
+        this.orders.remove(sysOrder);
+        sysOrder.setReceiverAddress(null);
         return this;
     }
 
-    public void setProducts(Set<SysOrder> sysOrders) {
-        this.products = sysOrders;
+    public void setOrders(Set<SysOrder> sysOrders) {
+        this.orders = sysOrders;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -188,9 +238,11 @@ public class SysReceiverAddress implements Serializable {
     public String toString() {
         return "SysReceiverAddress{" +
             "id=" + getId() +
-            ", openid='" + getOpenid() + "'" +
-            ", status=" + getStatus() +
+            ", name='" + getName() + "'" +
+            ", phone='" + getPhone() + "'" +
+            ", area='" + getArea() + "'" +
             ", address='" + getAddress() + "'" +
+            ", status=" + getStatus() +
             ", createTime='" + getCreateTime() + "'" +
             ", updateTime='" + getUpdateTime() + "'" +
             "}";

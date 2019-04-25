@@ -5,21 +5,37 @@
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="plantMallApp.sysOrder.tradeNo">Trade No</span></dt>
+                <dt><span jhiTranslate="plantMallApp.sysOrder.tradeNo" [ngbTooltip]="'plantMallApp.sysOrder.help.tradeNo' | translate">Trade No</span></dt>
                 <dd>
                     <span>{{sysOrder.tradeNo}}</span>
                 </dd>
-                <dt><span jhiTranslate="plantMallApp.sysOrder.price">Price</span></dt>
+                <dt><span jhiTranslate="plantMallApp.sysOrder.payNO" [ngbTooltip]="'plantMallApp.sysOrder.help.payNO' | translate">Pay NO</span></dt>
+                <dd>
+                    <span>{{sysOrder.payNO}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysOrder.price" [ngbTooltip]="'plantMallApp.sysOrder.help.price' | translate">Price</span></dt>
                 <dd>
                     <span>{{sysOrder.price}}</span>
                 </dd>
-                <dt><span jhiTranslate="plantMallApp.sysOrder.type">Type</span></dt>
+                <dt><span jhiTranslate="plantMallApp.sysOrder.type" [ngbTooltip]="'plantMallApp.sysOrder.help.type' | translate">Type</span></dt>
                 <dd>
                     <span>{{sysOrder.type}}</span>
                 </dd>
-                <dt><span jhiTranslate="plantMallApp.sysOrder.number">Number</span></dt>
+                <dt><span jhiTranslate="plantMallApp.sysOrder.payType" [ngbTooltip]="'plantMallApp.sysOrder.help.payType' | translate">Pay Type</span></dt>
+                <dd>
+                    <span>{{sysOrder.payType}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysOrder.status" [ngbTooltip]="'plantMallApp.sysOrder.help.status' | translate">Status</span></dt>
+                <dd>
+                    <span>{{sysOrder.status}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysOrder.number" [ngbTooltip]="'plantMallApp.sysOrder.help.number' | translate">Number</span></dt>
                 <dd>
                     <span>{{sysOrder.number}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysOrder.description" [ngbTooltip]="'plantMallApp.sysOrder.help.description' | translate">Description</span></dt>
+                <dd>
+                    <span>{{sysOrder.description}}</span>
                 </dd>
                 <dt><span jhiTranslate="plantMallApp.sysOrder.createTime">Create Time</span></dt>
                 <dd>
@@ -39,6 +55,12 @@
                 <dd>
                     <div *ngIf="sysOrder.product">
                         <a [routerLink]="['/sys-product', sysOrder.product?.id, 'view']">{{sysOrder.product?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysOrder.receiverAddress">Receiver Address</span></dt>
+                <dd>
+                    <div *ngIf="sysOrder.receiverAddress">
+                        <a [routerLink]="['/sys-receiver-address', sysOrder.receiverAddress?.id, 'view']">{{sysOrder.receiverAddress?.id}}</a>
                     </div>
                 </dd>
             </dl>

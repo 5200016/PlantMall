@@ -7,7 +7,7 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "payNO",
+            "fieldName": "payNo",
             "javadoc": "支付单号",
             "fieldType": "String"
         },
@@ -18,12 +18,12 @@
         },
         {
             "fieldName": "type",
-            "javadoc": "订单类型",
+            "javadoc": "订单类型（0：商品订单，1：租赁订单）",
             "fieldType": "Integer"
         },
         {
             "fieldName": "payType",
-            "javadoc": "支付类型",
+            "javadoc": "支付类型（0：线上支付，1：余额支付）",
             "fieldType": "Integer"
         },
         {
@@ -41,6 +41,11 @@
             "javadoc": "订单描述",
             "fieldType": "byte[]",
             "fieldTypeBlobContent": "text"
+        },
+        {
+            "fieldName": "maintenancePlanStatus",
+            "javadoc": "养护计划状态（0：未设置，1：已设置）",
+            "fieldType": "Integer"
         },
         {
             "fieldName": "createTime",

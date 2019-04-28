@@ -37,7 +37,7 @@ public class SysOrder implements Serializable {
      */
     @ApiModelProperty(value = "支付单号")
     @Column(name = "pay_no")
-    private String payNO;
+    private String payNo;
 
     /**
      * 订单金额
@@ -47,16 +47,16 @@ public class SysOrder implements Serializable {
     private BigDecimal price;
 
     /**
-     * 订单类型
+     * 订单类型（0：商品订单，1：租赁订单）
      */
-    @ApiModelProperty(value = "订单类型")
+    @ApiModelProperty(value = "订单类型（0：商品订单，1：租赁订单）")
     @Column(name = "jhi_type")
     private Integer type;
 
     /**
-     * 支付类型
+     * 支付类型（0：线上支付，1：余额支付）
      */
-    @ApiModelProperty(value = "支付类型")
+    @ApiModelProperty(value = "支付类型（0：线上支付，1：余额支付）")
     @Column(name = "pay_type")
     private Integer payType;
 
@@ -81,6 +81,13 @@ public class SysOrder implements Serializable {
     @Lob
     @Column(name = "description")
     private String description;
+
+    /**
+     * 养护计划状态（0：未设置，1：已设置）
+     */
+    @ApiModelProperty(value = "养护计划状态（0：未设置，1：已设置）")
+    @Column(name = "maintenance_plan_status")
+    private Integer maintenancePlanStatus;
 
     @Column(name = "create_time")
     private ZonedDateTime createTime;
@@ -122,17 +129,17 @@ public class SysOrder implements Serializable {
         this.tradeNo = tradeNo;
     }
 
-    public String getPayNO() {
-        return payNO;
+    public String getPayNo() {
+        return payNo;
     }
 
-    public SysOrder payNO(String payNO) {
-        this.payNO = payNO;
+    public SysOrder payNo(String payNo) {
+        this.payNo = payNo;
         return this;
     }
 
-    public void setPayNO(String payNO) {
-        this.payNO = payNO;
+    public void setPayNo(String payNo) {
+        this.payNo = payNo;
     }
 
     public BigDecimal getPrice() {
@@ -211,6 +218,19 @@ public class SysOrder implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Integer getMaintenancePlanStatus() {
+        return maintenancePlanStatus;
+    }
+
+    public SysOrder maintenancePlanStatus(Integer maintenancePlanStatus) {
+        this.maintenancePlanStatus = maintenancePlanStatus;
+        return this;
+    }
+
+    public void setMaintenancePlanStatus(Integer maintenancePlanStatus) {
+        this.maintenancePlanStatus = maintenancePlanStatus;
     }
 
     public ZonedDateTime getCreateTime() {
@@ -304,13 +324,14 @@ public class SysOrder implements Serializable {
         return "SysOrder{" +
             "id=" + getId() +
             ", tradeNo='" + getTradeNo() + "'" +
-            ", payNO='" + getPayNO() + "'" +
+            ", payNo='" + getPayNo() + "'" +
             ", price=" + getPrice() +
             ", type=" + getType() +
             ", payType=" + getPayType() +
             ", status=" + getStatus() +
             ", number=" + getNumber() +
             ", description='" + getDescription() + "'" +
+            ", maintenancePlanStatus=" + getMaintenancePlanStatus() +
             ", createTime='" + getCreateTime() + "'" +
             ", updateTime='" + getUpdateTime() + "'" +
             "}";

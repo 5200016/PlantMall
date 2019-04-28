@@ -16,13 +16,14 @@
                 "title": "Sys Order"
             },
             "tradeNo": "Trade No",
-            "payNO": "Pay NO",
+            "payNo": "Pay No",
             "price": "Price",
             "type": "Type",
             "payType": "Pay Type",
             "status": "Status",
             "number": "Number",
             "description": "Description",
+            "maintenancePlanStatus": "Maintenance Plan Status",
             "createTime": "Create Time",
             "updateTime": "Update Time",
             "user": "User",
@@ -30,13 +31,14 @@
             "receiverAddress": "Receiver Address",
             "help": {
                 "tradeNo": "订单号",
-                "payNO": "支付单号",
+                "payNo": "支付单号",
                 "price": "订单金额",
-                "type": "订单类型",
-                "payType": "支付类型",
+                "type": "订单类型（0：商品订单，1：租赁订单）",
+                "payType": "支付类型（0：线上支付，1：余额支付）",
                 "status": "订单状态",
                 "number": "购买数量",
-                "description": "订单描述"
+                "description": "订单描述",
+                "maintenancePlanStatus": "养护计划状态（0：未设置，1：已设置）"
             }
         }
     }

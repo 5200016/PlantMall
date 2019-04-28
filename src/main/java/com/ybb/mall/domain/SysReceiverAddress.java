@@ -70,7 +70,7 @@ public class SysReceiverAddress implements Serializable {
     private ZonedDateTime updateTime;
 
     @ManyToOne
-    @JsonIgnoreProperties("receiveAddresses")
+    @JsonIgnoreProperties("receiverAddresses")
     private SysUser user;
 
     @OneToMany(mappedBy = "receiverAddress")

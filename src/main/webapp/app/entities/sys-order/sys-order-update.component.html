@@ -15,9 +15,9 @@
                         [(ngModel)]="sysOrder.tradeNo" />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysOrder.payNO" for="field_payNO" [ngbTooltip]="'plantMallApp.sysOrder.help.payNO' | translate">Pay NO</label>
-                    <input type="text" class="form-control" name="payNO" id="field_payNO"
-                        [(ngModel)]="sysOrder.payNO" />
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysOrder.payNo" for="field_payNo" [ngbTooltip]="'plantMallApp.sysOrder.help.payNo' | translate">Pay No</label>
+                    <input type="text" class="form-control" name="payNo" id="field_payNo"
+                        [(ngModel)]="sysOrder.payNo" />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="plantMallApp.sysOrder.price" for="field_price" [ngbTooltip]="'plantMallApp.sysOrder.help.price' | translate">Price</label>
@@ -48,6 +48,11 @@
                     <label class="form-control-label" jhiTranslate="plantMallApp.sysOrder.description" for="field_description" [ngbTooltip]="'plantMallApp.sysOrder.help.description' | translate">Description</label>
                     <textarea class="form-control" name="description" id="field_description"
                         [(ngModel)]="sysOrder.description" ></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysOrder.maintenancePlanStatus" for="field_maintenancePlanStatus" [ngbTooltip]="'plantMallApp.sysOrder.help.maintenancePlanStatus' | translate">Maintenance Plan Status</label>
+                    <input type="number" class="form-control" name="maintenancePlanStatus" id="field_maintenancePlanStatus"
+                        [(ngModel)]="sysOrder.maintenancePlanStatus" />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="plantMallApp.sysOrder.createTime" for="field_createTime">Create Time</label>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity SysAppointment.
+    -->
+    <changeSet id="20190429031429-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="receiver_address_id"
+                                 baseTableName="sys_appointment"
+                                 constraintName="fk_sys_appointment_receiver_address_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sys_receiver_address"/>
+
+    </changeSet>
+</databaseChangeLog>

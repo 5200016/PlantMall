@@ -16,10 +16,13 @@
             <tr>
             <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="plantMallApp.sysBanner.image">Image</span></th>
-            <th><span jhiTranslate="plantMallApp.sysBanner.link">Link</span></th>
+            <th><span jhiTranslate="plantMallApp.sysBanner.path">Path</span></th>
+            <th><span jhiTranslate="plantMallApp.sysBanner.type">Type</span></th>
             <th><span jhiTranslate="plantMallApp.sysBanner.sort">Sort</span></th>
             <th><span jhiTranslate="plantMallApp.sysBanner.createTime">Create Time</span></th>
             <th><span jhiTranslate="plantMallApp.sysBanner.updateTime">Update Time</span></th>
+            <th><span jhiTranslate="plantMallApp.sysBanner.product">Product</span></th>
+            <th><span jhiTranslate="plantMallApp.sysBanner.classify">Classify</span></th>
             <th></th>
             </tr>
             </thead>
@@ -27,10 +30,21 @@
             <tr *ngFor="let sysBanner of sysBanners ;trackBy: trackId">
                 <td><a [routerLink]="['/sys-banner', sysBanner.id, 'view' ]">{{sysBanner.id}}</a></td>
                 <td>{{sysBanner.image}}</td>
-                <td>{{sysBanner.link}}</td>
+                <td>{{sysBanner.path}}</td>
+                <td>{{sysBanner.type}}</td>
                 <td>{{sysBanner.sort}}</td>
                 <td>{{sysBanner.createTime | date:'medium'}}</td>
                 <td>{{sysBanner.updateTime | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="sysBanner.product">
+                        <a [routerLink]="['../sys-product', sysBanner.product?.id, 'view' ]" >{{sysBanner.product?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="sysBanner.classify">
+                        <a [routerLink]="['../sys-classify', sysBanner.classify?.id, 'view' ]" >{{sysBanner.classify?.id}}</a>
+                    </div>
+                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

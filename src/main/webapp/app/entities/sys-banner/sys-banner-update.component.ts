@@ -4,9 +4,14 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
 import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
+import { JhiAlertService } from 'ng-jhipster';
 
 import { ISysBanner } from 'app/shared/model/sys-banner.model';
 import { SysBannerService } from './sys-banner.service';
+import { ISysProduct } from 'app/shared/model/sys-product.model';
+import { SysProductService } from 'app/entities/sys-product';
+import { ISysClassify } from 'app/shared/model/sys-classify.model';
+import { SysClassifyService } from 'app/entities/sys-classify';
 
 @Component({
     selector: 'jhi-sys-banner-update',
@@ -15,10 +20,20 @@ import { SysBannerService } from './sys-banner.service';
 export class SysBannerUpdateComponent implements OnInit {
     sysBanner: ISysBanner;
     isSaving: boolean;
+
+    sysproducts: ISysProduct[];
+
+    sysclassifies: ISysClassify[];
     createTime: string;
     updateTime: string;
 
-    constructor(protected sysBannerService: SysBannerService, protected activatedRoute: ActivatedRoute) {}
+    constructor(
+        protected jhiAlertService: JhiAlertService,
+        protected sysBannerService: SysBannerService,
+        protected sysProductService: SysProductService,
+        protected sysClassifyService: SysClassifyService,
+        protected activatedRoute: ActivatedRoute
+    ) {}
 
     ngOnInit() {
         this.isSaving = false;
@@ -27,6 +42,18 @@ export class SysBannerUpdateComponent implements OnInit {
             this.createTime = this.sysBanner.createTime != null ? this.sysBanner.createTime.format(DATE_TIME_FORMAT) : null;
             this.updateTime = this.sysBanner.updateTime != null ? this.sysBanner.updateTime.format(DATE_TIME_FORMAT) : null;
         });
+        this.sysProductService.query().subscribe(
+            (res: HttpResponse<ISysProduct[]>) => {
+                this.sysproducts = res.body;
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
+        this.sysClassifyService.query().subscribe(
+            (res: HttpResponse<ISysClassify[]>) => {
+                this.sysclassifies = res.body;
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
     }
 
     previousState() {
@@ -55,5 +82,17 @@ export class SysBannerUpdateComponent implements OnInit {
 
     protected onSaveError() {
         this.isSaving = false;
+    }
+
+    protected onError(errorMessage: string) {
+        this.jhiAlertService.error(errorMessage, null, null);
+    }
+
+    trackSysProductById(index: number, item: ISysProduct) {
+        return item.id;
+    }
+
+    trackSysClassifyById(index: number, item: ISysClassify) {
+        return item.id;
     }
 }

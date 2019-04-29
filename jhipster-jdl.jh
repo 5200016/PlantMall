@@ -364,7 +364,51 @@ entity SysProductImage{
     updateTime ZonedDateTime
 }
 
+/**
+ * 预约表
+ */
+entity SysAppointment{
+    /**
+     * 预约时间
+     */
+    time ZonedDateTime,
+
+    /**
+     * 预约备注
+     */
+    remark TextBlob,
+
+    /**
+     * 预约状态（0：未处理 1：已处理）
+     */
+    status Integer,
+
+    /**
+     * 创建时间
+     */
+    createTime ZonedDateTime,
+
+    /**
+     * 更新时间
+     */
+    updateTime ZonedDateTime
+}
+
 relationship ManyToOne {
+    /**
+     * 广告图片关联商品
+     */
+    SysBanner{product} to SysProduct,
+
+    /**
+     * 广告图片关联商品分类
+     */
+    SysBanner{classify} to SysClassify,
+
+    /**
+     * 预约关联收货地址
+     */
+    SysAppointment{receiverAddress} to SysReceiverAddress,
 	SysReceiverAddress{user} to SysUser{receiverAddress},
     SysOrder{user} to SysUser{order},
     SysOrder{product} to SysProduct{order},

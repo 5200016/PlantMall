@@ -45,12 +45,22 @@ public class UploadController {
     @ApiOperation("上传植物图片")
     @PostMapping("/file/plant_image")
     @Timed
-    public ResultObj uploadMenuLogo(@ApiParam(name="file",value="上传文件",required=true) HttpServletRequest request, @RequestParam MultipartFile file) throws URISyntaxException {
-        String plantImage = applicationProperties.getPlantImage();
-        new File(UploadUtils.getFullPath(applicationProperties.getFilePath(),plantImage)).mkdirs();                               //创建文件夹
-        if (!TypeUtils.isEmpty(file)) {
-            return ResultObj.back(200,UploadUtils.start(file,plantImage));
-        }
-        return ResultObj.back(200,false);
+    public ResultObj uploadPlantImage(@ApiParam(name="file",value="上传文件",required=true) HttpServletRequest request, @RequestParam MultipartFile file) throws URISyntaxException {
+        return UploadUtils.start(file, applicationProperties.getFilePath(), applicationProperties.getPlantImage());
+    }
+
+    /**
+     * 上传首页广告图片
+     * @param request
+     * @param file
+     * @return
+     * @throws URISyntaxException
+     */
+    @ApiOperation("上传首页广告图片")
+    @PostMapping("/file/home_image")
+    @Timed
+    public ResultObj uploadHomeImage(@ApiParam(name="file",value="上传文件",required=true) HttpServletRequest request, @RequestParam MultipartFile file) throws URISyntaxException {
+        return UploadUtils.start(file, applicationProperties.getFilePath(), applicationProperties.getHomeImage());
+
     }
 }

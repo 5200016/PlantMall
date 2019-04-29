@@ -1,0 +1,68 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="plantMallApp.sysAppointment.home.title">Sys Appointments</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-sys-appointment" [routerLink]="['/sys-appointment/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="plantMallApp.sysAppointment.home.createLabel">
+            Create new Sys Appointment
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="sysAppointments">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="plantMallApp.sysAppointment.time">Time</span></th>
+            <th><span jhiTranslate="plantMallApp.sysAppointment.remark">Remark</span></th>
+            <th><span jhiTranslate="plantMallApp.sysAppointment.status">Status</span></th>
+            <th><span jhiTranslate="plantMallApp.sysAppointment.createTime">Create Time</span></th>
+            <th><span jhiTranslate="plantMallApp.sysAppointment.updateTime">Update Time</span></th>
+            <th><span jhiTranslate="plantMallApp.sysAppointment.receiverAddress">Receiver Address</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let sysAppointment of sysAppointments ;trackBy: trackId">
+                <td><a [routerLink]="['/sys-appointment', sysAppointment.id, 'view' ]">{{sysAppointment.id}}</a></td>
+                <td>{{sysAppointment.time | date:'medium'}}</td>
+                <td>{{sysAppointment.remark}}</td>
+                <td>{{sysAppointment.status}}</td>
+                <td>{{sysAppointment.createTime | date:'medium'}}</td>
+                <td>{{sysAppointment.updateTime | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="sysAppointment.receiverAddress">
+                        <a [routerLink]="['../sys-receiver-address', sysAppointment.receiverAddress?.id, 'view' ]" >{{sysAppointment.receiverAddress?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/sys-appointment', sysAppointment.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/sys-appointment', sysAppointment.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'sys-appointment/'+ sysAppointment.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

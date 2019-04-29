@@ -1,0 +1,33 @@
+{
+    "plantMallApp": {
+        "sysAppointment": {
+            "home": {
+                "title": "Sys Appointments",
+                "createLabel": "建立一筆新的 Sys Appointment",
+                "createOrEditLabel": "建立或編輯 Sys Appointment"
+            },
+            "created": "新的 Sys Appointment 建立成功，識別碼為 {{ param }}",
+            "updated": "識別碼為 {{ param }} 的 Sys Appointment 更新成功",
+            "deleted": "識別碼為 {{ param }} 的 Sys Appointment 刪除成功",
+            "delete": {
+                "question": "您確定要刪除 Sys Appointment {{ id }} 嗎?"
+            },
+            "detail": {
+                "title": "Sys Appointment"
+            },
+            "time": "Time",
+            "remark": "Remark",
+            "status": "Status",
+            "createTime": "Create Time",
+            "updateTime": "Update Time",
+            "receiverAddress": "Receiver Address",
+            "help": {
+                "time": "预约时间",
+                "remark": "预约备注",
+                "status": "预约状态（0：未处理 1：已处理）",
+                "createTime": "创建时间",
+                "updateTime": "更新时间"
+            }
+        }
+    }
+}

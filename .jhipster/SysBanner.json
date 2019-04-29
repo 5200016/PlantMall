@@ -3,28 +3,53 @@
     "fields": [
         {
             "fieldName": "image",
+            "javadoc": "图片地址",
             "fieldType": "String"
         },
         {
-            "fieldName": "link",
+            "fieldName": "path",
+            "javadoc": "图片跳转路径（微信小程序）",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "type",
+            "javadoc": "图片类型（0：轮播图 1：图文信息）",
+            "fieldType": "Integer"
         },
         {
             "fieldName": "sort",
+            "javadoc": "排序字段",
             "fieldType": "Integer"
         },
         {
             "fieldName": "createTime",
+            "javadoc": "创建时间",
             "fieldType": "ZonedDateTime"
         },
         {
             "fieldName": "updateTime",
+            "javadoc": "更新时间",
             "fieldType": "ZonedDateTime"
         }
     ],
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "javadoc": "广告图片关联商品",
+            "relationshipName": "product",
+            "otherEntityName": "sysProduct",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "javadoc": "广告图片关联商品分类",
+            "relationshipName": "classify",
+            "otherEntityName": "sysClassify",
+            "otherEntityField": "id"
+        }
+    ],
     "changelogDate": "20190415061400",
-    "javadoc": "轮播图表",
+    "javadoc": "广告图片表",
     "entityTableName": "sys_banner",
     "dto": "no",
     "pagination": "no",

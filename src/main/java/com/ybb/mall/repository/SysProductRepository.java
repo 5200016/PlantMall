@@ -1,7 +1,6 @@
 package com.ybb.mall.repository;
 
 import com.ybb.mall.domain.SysProduct;
-import com.ybb.mall.service.dto.product.ProductDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
@@ -28,17 +27,4 @@ public interface SysProductRepository extends JpaRepository<SysProduct, Long> {
     @Query("select sys_product from SysProduct sys_product left join fetch sys_product.classifies where sys_product.id =:id")
     Optional<SysProduct> findOneWithEagerRelationships(@Param("id") Long id);
 
-    /**
-     * 分页模糊查询商品列表（根据创建时间倒序）
-     * 条件：名称
-     */
-    @Query(value = "select sp from SysProduct sp" +
-        " left join fetch sp.classifies" +
-        " left join fetch sp.images" +
-        " where sp.name like concat('%', ?1, '%')" +
-        " order by sp.createTime desc",
-        countQuery = "select count(sp) from SysProduct sp" +
-            " where sp.name like concat('%', ?1, '%')" +
-            " order by sp.createTime desc")
-    Page<SysProduct> findProductList(String name, Pageable pageable);
 }

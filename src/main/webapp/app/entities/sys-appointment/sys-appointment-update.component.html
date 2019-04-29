@@ -1,0 +1,62 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-sys-appointment-heading" jhiTranslate="plantMallApp.sysAppointment.home.createOrEditLabel">Create or edit a Sys Appointment</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!sysAppointment.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="sysAppointment.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysAppointment.time" for="field_time" [ngbTooltip]="'plantMallApp.sysAppointment.help.time' | translate">Time</label>
+                    <div class="d-flex">
+                        <input id="field_time" type="datetime-local" class="form-control" name="time" [(ngModel)]="time"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysAppointment.remark" for="field_remark" [ngbTooltip]="'plantMallApp.sysAppointment.help.remark' | translate">Remark</label>
+                    <textarea class="form-control" name="remark" id="field_remark"
+                        [(ngModel)]="sysAppointment.remark" ></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysAppointment.status" for="field_status" [ngbTooltip]="'plantMallApp.sysAppointment.help.status' | translate">Status</label>
+                    <input type="number" class="form-control" name="status" id="field_status"
+                        [(ngModel)]="sysAppointment.status" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysAppointment.createTime" for="field_createTime" [ngbTooltip]="'plantMallApp.sysAppointment.help.createTime' | translate">Create Time</label>
+                    <div class="d-flex">
+                        <input id="field_createTime" type="datetime-local" class="form-control" name="createTime" [(ngModel)]="createTime"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysAppointment.updateTime" for="field_updateTime" [ngbTooltip]="'plantMallApp.sysAppointment.help.updateTime' | translate">Update Time</label>
+                    <div class="d-flex">
+                        <input id="field_updateTime" type="datetime-local" class="form-control" name="updateTime" [(ngModel)]="updateTime"
+                        />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysAppointment.receiverAddress" for="field_receiverAddress">Receiver Address</label>
+                    <select class="form-control" id="field_receiverAddress" name="receiverAddress" [(ngModel)]="sysAppointment.receiverAddress" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="sysReceiverAddressOption.id === sysAppointment.receiverAddress?.id ? sysAppointment.receiverAddress : sysReceiverAddressOption" *ngFor="let sysReceiverAddressOption of sysreceiveraddresses; trackBy: trackSysReceiverAddressById">{{sysReceiverAddressOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

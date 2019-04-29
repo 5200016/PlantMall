@@ -24,6 +24,7 @@
                 "sysRecharge": "Sys Recharge",
                 "sysPlantLog": "Sys Plant Log",
                 "sysProductImage": "Sys Product Image",
+                "sysAppointment": "Sys Appointment",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

@@ -5,25 +5,41 @@
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="plantMallApp.sysBanner.image">Image</span></dt>
+                <dt><span jhiTranslate="plantMallApp.sysBanner.image" [ngbTooltip]="'plantMallApp.sysBanner.help.image' | translate">Image</span></dt>
                 <dd>
                     <span>{{sysBanner.image}}</span>
                 </dd>
-                <dt><span jhiTranslate="plantMallApp.sysBanner.link">Link</span></dt>
+                <dt><span jhiTranslate="plantMallApp.sysBanner.path" [ngbTooltip]="'plantMallApp.sysBanner.help.path' | translate">Path</span></dt>
                 <dd>
-                    <span>{{sysBanner.link}}</span>
+                    <span>{{sysBanner.path}}</span>
                 </dd>
-                <dt><span jhiTranslate="plantMallApp.sysBanner.sort">Sort</span></dt>
+                <dt><span jhiTranslate="plantMallApp.sysBanner.type" [ngbTooltip]="'plantMallApp.sysBanner.help.type' | translate">Type</span></dt>
+                <dd>
+                    <span>{{sysBanner.type}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysBanner.sort" [ngbTooltip]="'plantMallApp.sysBanner.help.sort' | translate">Sort</span></dt>
                 <dd>
                     <span>{{sysBanner.sort}}</span>
                 </dd>
-                <dt><span jhiTranslate="plantMallApp.sysBanner.createTime">Create Time</span></dt>
+                <dt><span jhiTranslate="plantMallApp.sysBanner.createTime" [ngbTooltip]="'plantMallApp.sysBanner.help.createTime' | translate">Create Time</span></dt>
                 <dd>
                     <span>{{sysBanner.createTime}}</span>
                 </dd>
-                <dt><span jhiTranslate="plantMallApp.sysBanner.updateTime">Update Time</span></dt>
+                <dt><span jhiTranslate="plantMallApp.sysBanner.updateTime" [ngbTooltip]="'plantMallApp.sysBanner.help.updateTime' | translate">Update Time</span></dt>
                 <dd>
                     <span>{{sysBanner.updateTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysBanner.product">Product</span></dt>
+                <dd>
+                    <div *ngIf="sysBanner.product">
+                        <a [routerLink]="['/sys-product', sysBanner.product?.id, 'view']">{{sysBanner.product?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysBanner.classify">Classify</span></dt>
+                <dd>
+                    <div *ngIf="sysBanner.classify">
+                        <a [routerLink]="['/sys-classify', sysBanner.classify?.id, 'view']">{{sysBanner.classify?.id}}</a>
+                    </div>
                 </dd>
             </dl>
 

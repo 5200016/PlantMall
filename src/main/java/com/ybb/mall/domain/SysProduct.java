@@ -91,7 +91,7 @@ public class SysProduct implements Serializable {
 
     @OneToMany(mappedBy = "product")
     private Set<SysOrder> orders = new HashSet<>();
-    @OneToMany(cascade={CascadeType.REMOVE}, mappedBy = "product")
+    @OneToMany(mappedBy = "product")
     private Set<SysProductImage> images = new HashSet<>();
     @OneToMany(mappedBy = "product")
     private Set<SysShoppingCar> shoppingCars = new HashSet<>();

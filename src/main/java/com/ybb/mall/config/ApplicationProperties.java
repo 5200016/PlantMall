@@ -16,6 +16,16 @@ public class ApplicationProperties {
 
     private String plantImage;
 
+    private String homeImage;
+
+    public String getHomeImage() {
+        return homeImage;
+    }
+
+    public void setHomeImage(String homeImage) {
+        this.homeImage = homeImage;
+    }
+
     public String getPlantImage() {
         return plantImage;
     }

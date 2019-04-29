@@ -16,10 +16,21 @@
                 "title": "Sys Banner"
             },
             "image": "Image",
-            "link": "Link",
+            "path": "Path",
+            "type": "Type",
             "sort": "Sort",
             "createTime": "Create Time",
-            "updateTime": "Update Time"
+            "updateTime": "Update Time",
+            "product": "Product",
+            "classify": "Classify",
+            "help": {
+                "image": "图片地址",
+                "path": "图片跳转路径（微信小程序）",
+                "type": "图片类型（0：轮播图 1：图文信息）",
+                "sort": "排序字段",
+                "createTime": "创建时间",
+                "updateTime": "更新时间"
+            }
         }
     }
 }

@@ -49,8 +49,11 @@ public class SysBannerResourceIntTest {
     private static final String DEFAULT_IMAGE = "AAAAAAAAAA";
     private static final String UPDATED_IMAGE = "BBBBBBBBBB";
 
-    private static final String DEFAULT_LINK = "AAAAAAAAAA";
-    private static final String UPDATED_LINK = "BBBBBBBBBB";
+    private static final String DEFAULT_PATH = "AAAAAAAAAA";
+    private static final String UPDATED_PATH = "BBBBBBBBBB";
+
+    private static final Integer DEFAULT_TYPE = 1;
+    private static final Integer UPDATED_TYPE = 2;
 
     private static final Integer DEFAULT_SORT = 1;
     private static final Integer UPDATED_SORT = 2;
@@ -107,7 +110,8 @@ public class SysBannerResourceIntTest {
     public static SysBanner createEntity(EntityManager em) {
         SysBanner sysBanner = new SysBanner()
             .image(DEFAULT_IMAGE)
-            .link(DEFAULT_LINK)
+            .path(DEFAULT_PATH)
+            .type(DEFAULT_TYPE)
             .sort(DEFAULT_SORT)
             .createTime(DEFAULT_CREATE_TIME)
             .updateTime(DEFAULT_UPDATE_TIME);
@@ -135,7 +139,8 @@ public class SysBannerResourceIntTest {
         assertThat(sysBannerList).hasSize(databaseSizeBeforeCreate + 1);
         SysBanner testSysBanner = sysBannerList.get(sysBannerList.size() - 1);
         assertThat(testSysBanner.getImage()).isEqualTo(DEFAULT_IMAGE);
-        assertThat(testSysBanner.getLink()).isEqualTo(DEFAULT_LINK);
+        assertThat(testSysBanner.getPath()).isEqualTo(DEFAULT_PATH);
+        assertThat(testSysBanner.getType()).isEqualTo(DEFAULT_TYPE);
         assertThat(testSysBanner.getSort()).isEqualTo(DEFAULT_SORT);
         assertThat(testSysBanner.getCreateTime()).isEqualTo(DEFAULT_CREATE_TIME);
         assertThat(testSysBanner.getUpdateTime()).isEqualTo(DEFAULT_UPDATE_TIME);
@@ -172,12 +177,13 @@ public class SysBannerResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(sysBanner.getId().intValue())))
             .andExpect(jsonPath("$.[*].image").value(hasItem(DEFAULT_IMAGE.toString())))
-            .andExpect(jsonPath("$.[*].link").value(hasItem(DEFAULT_LINK.toString())))
+            .andExpect(jsonPath("$.[*].path").value(hasItem(DEFAULT_PATH.toString())))
+            .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE)))
             .andExpect(jsonPath("$.[*].sort").value(hasItem(DEFAULT_SORT)))
             .andExpect(jsonPath("$.[*].createTime").value(hasItem(sameInstant(DEFAULT_CREATE_TIME))))
             .andExpect(jsonPath("$.[*].updateTime").value(hasItem(sameInstant(DEFAULT_UPDATE_TIME))));
     }
-
+    
     @Test
     @Transactional
     public void getSysBanner() throws Exception {
@@ -190,7 +196,8 @@ public class SysBannerResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(sysBanner.getId().intValue()))
             .andExpect(jsonPath("$.image").value(DEFAULT_IMAGE.toString()))
-            .andExpect(jsonPath("$.link").value(DEFAULT_LINK.toString()))
+            .andExpect(jsonPath("$.path").value(DEFAULT_PATH.toString()))
+            .andExpect(jsonPath("$.type").value(DEFAULT_TYPE))
             .andExpect(jsonPath("$.sort").value(DEFAULT_SORT))
             .andExpect(jsonPath("$.createTime").value(sameInstant(DEFAULT_CREATE_TIME)))
             .andExpect(jsonPath("$.updateTime").value(sameInstant(DEFAULT_UPDATE_TIME)));
@@ -218,7 +225,8 @@ public class SysBannerResourceIntTest {
         em.detach(updatedSysBanner);
         updatedSysBanner
             .image(UPDATED_IMAGE)
-            .link(UPDATED_LINK)
+            .path(UPDATED_PATH)
+            .type(UPDATED_TYPE)
             .sort(UPDATED_SORT)
             .createTime(UPDATED_CREATE_TIME)
             .updateTime(UPDATED_UPDATE_TIME);
@@ -233,7 +241,8 @@ public class SysBannerResourceIntTest {
         assertThat(sysBannerList).hasSize(databaseSizeBeforeUpdate);
         SysBanner testSysBanner = sysBannerList.get(sysBannerList.size() - 1);
         assertThat(testSysBanner.getImage()).isEqualTo(UPDATED_IMAGE);
-        assertThat(testSysBanner.getLink()).isEqualTo(UPDATED_LINK);
+        assertThat(testSysBanner.getPath()).isEqualTo(UPDATED_PATH);
+        assertThat(testSysBanner.getType()).isEqualTo(UPDATED_TYPE);
         assertThat(testSysBanner.getSort()).isEqualTo(UPDATED_SORT);
         assertThat(testSysBanner.getCreateTime()).isEqualTo(UPDATED_CREATE_TIME);
         assertThat(testSysBanner.getUpdateTime()).isEqualTo(UPDATED_UPDATE_TIME);

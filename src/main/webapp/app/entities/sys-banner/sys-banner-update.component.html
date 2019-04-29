@@ -10,35 +10,54 @@
                         [(ngModel)]="sysBanner.id" readonly />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysBanner.image" for="field_image">Image</label>
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysBanner.image" for="field_image" [ngbTooltip]="'plantMallApp.sysBanner.help.image' | translate">Image</label>
                     <input type="text" class="form-control" name="image" id="field_image"
                         [(ngModel)]="sysBanner.image" />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysBanner.link" for="field_link">Link</label>
-                    <input type="text" class="form-control" name="link" id="field_link"
-                        [(ngModel)]="sysBanner.link" />
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysBanner.path" for="field_path" [ngbTooltip]="'plantMallApp.sysBanner.help.path' | translate">Path</label>
+                    <input type="text" class="form-control" name="path" id="field_path"
+                        [(ngModel)]="sysBanner.path" />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysBanner.sort" for="field_sort">Sort</label>
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysBanner.type" for="field_type" [ngbTooltip]="'plantMallApp.sysBanner.help.type' | translate">Type</label>
+                    <input type="number" class="form-control" name="type" id="field_type"
+                        [(ngModel)]="sysBanner.type" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysBanner.sort" for="field_sort" [ngbTooltip]="'plantMallApp.sysBanner.help.sort' | translate">Sort</label>
                     <input type="number" class="form-control" name="sort" id="field_sort"
                         [(ngModel)]="sysBanner.sort" />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysBanner.createTime" for="field_createTime">Create Time</label>
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysBanner.createTime" for="field_createTime" [ngbTooltip]="'plantMallApp.sysBanner.help.createTime' | translate">Create Time</label>
                     <div class="d-flex">
                         <input id="field_createTime" type="datetime-local" class="form-control" name="createTime" [(ngModel)]="createTime"
                         />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysBanner.updateTime" for="field_updateTime">Update Time</label>
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysBanner.updateTime" for="field_updateTime" [ngbTooltip]="'plantMallApp.sysBanner.help.updateTime' | translate">Update Time</label>
                     <div class="d-flex">
                         <input id="field_updateTime" type="datetime-local" class="form-control" name="updateTime" [(ngModel)]="updateTime"
                         />
                     </div>
                 </div>
 
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysBanner.product" for="field_product">Product</label>
+                    <select class="form-control" id="field_product" name="product" [(ngModel)]="sysBanner.product" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="sysProductOption.id === sysBanner.product?.id ? sysBanner.product : sysProductOption" *ngFor="let sysProductOption of sysproducts; trackBy: trackSysProductById">{{sysProductOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysBanner.classify" for="field_classify">Classify</label>
+                    <select class="form-control" id="field_classify" name="classify" [(ngModel)]="sysBanner.classify" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="sysClassifyOption.id === sysBanner.classify?.id ? sysBanner.classify : sysClassifyOption" *ngFor="let sysClassifyOption of sysclassifies; trackBy: trackSysClassifyById">{{sysClassifyOption.id}}</option>
+                    </select>
+                </div>
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

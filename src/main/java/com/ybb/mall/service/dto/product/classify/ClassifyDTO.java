@@ -1,6 +1,10 @@
 package com.ybb.mall.service.dto.product.classify;
 
+import com.ybb.mall.domain.SysProduct;
+
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Description : 商品分类信息
@@ -31,6 +35,8 @@ public class ClassifyDTO {
     private ZonedDateTime createTime;
 
     private ZonedDateTime updateTime;
+
+    private List<SysProduct> products = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -80,6 +86,14 @@ public class ClassifyDTO {
         this.updateTime = updateTime;
     }
 
+    public List<SysProduct> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<SysProduct> products) {
+        this.products = products;
+    }
+
     @Override
     public String toString() {
         return "ClassifyDTO{" +
@@ -89,6 +103,7 @@ public class ClassifyDTO {
             ", sort=" + sort +
             ", createTime=" + createTime +
             ", updateTime=" + updateTime +
+            ", products=" + products +
             '}';
     }
 }

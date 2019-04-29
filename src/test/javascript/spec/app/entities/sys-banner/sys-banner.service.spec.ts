@@ -25,7 +25,7 @@ describe('Service Tests', () => {
             httpMock = injector.get(HttpTestingController);
             currentDate = moment();
 
-            elemDefault = new SysBanner(0, 'AAAAAAA', 'AAAAAAA', 0, currentDate, currentDate);
+            elemDefault = new SysBanner(0, 'AAAAAAA', 'AAAAAAA', 0, 0, currentDate, currentDate);
         });
 
         describe('Service methods', async () => {
@@ -74,7 +74,8 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         image: 'BBBBBB',
-                        link: 'BBBBBB',
+                        path: 'BBBBBB',
+                        type: 1,
                         sort: 1,
                         createTime: currentDate.format(DATE_TIME_FORMAT),
                         updateTime: currentDate.format(DATE_TIME_FORMAT)
@@ -101,7 +102,8 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         image: 'BBBBBB',
-                        link: 'BBBBBB',
+                        path: 'BBBBBB',
+                        type: 1,
                         sort: 1,
                         createTime: currentDate.format(DATE_TIME_FORMAT),
                         updateTime: currentDate.format(DATE_TIME_FORMAT)

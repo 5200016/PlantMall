@@ -1,10 +1,7 @@
 package com.ybb.mall.web.rest.controller;
 
 import com.codahale.metrics.annotation.Timed;
-import com.ybb.mall.service.SysClassifyService;
-import com.ybb.mall.service.SysPlantLogService;
-import com.ybb.mall.service.SysProductService;
-import com.ybb.mall.service.SysReviewService;
+import com.ybb.mall.service.*;
 import com.ybb.mall.web.rest.util.ResultObj;
 import com.ybb.mall.web.rest.vm.product.InsertProductVM;
 import com.ybb.mall.web.rest.vm.product.UpdateProductVM;
@@ -32,13 +29,13 @@ import java.util.List;
 public class ProductController {
     private final SysPlantLogService plantLogService;
 
-    private final SysClassifyService classifyService;
+    private final ClassifyService classifyService;
 
-    private final SysProductService productService;
+    private final ProductService productService;
 
     private final SysReviewService reviewService;
 
-    public ProductController(SysPlantLogService plantLogService, SysClassifyService classifyService, SysProductService productService, SysReviewService reviewService) {
+    public ProductController(SysPlantLogService plantLogService, ClassifyService classifyService, ProductService productService, SysReviewService reviewService) {
         this.plantLogService = plantLogService;
         this.classifyService = classifyService;
         this.productService = productService;
@@ -174,6 +171,19 @@ public class ProductController {
     @Timed
     public ResultObj selectClassifyGroup() throws URISyntaxException {
         return ResultObj.back(200, classifyService.findSysClassifyGroup());
+    }
+
+    /**
+     * 查询商品分类及其关联商品
+     *
+     * @return
+     * @throws URISyntaxException
+     */
+    @ApiOperation("查询商品分类及其关联商品")
+    @GetMapping("/classify/product")
+    @Timed
+    public ResultObj selectClassifyAndProduct() throws URISyntaxException {
+        return ResultObj.back(200, classifyService.findClassifyAndProduct());
     }
 
     /**

@@ -1,0 +1,50 @@
+{
+    "name": "SysAppointment",
+    "fields": [
+        {
+            "fieldName": "time",
+            "javadoc": "预约时间",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "remark",
+            "javadoc": "预约备注",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        },
+        {
+            "fieldName": "status",
+            "javadoc": "预约状态（0：未处理 1：已处理）",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "createTime",
+            "javadoc": "创建时间",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "updateTime",
+            "javadoc": "更新时间",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "javadoc": "预约关联收货地址",
+            "relationshipName": "receiverAddress",
+            "otherEntityName": "sysReceiverAddress",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190429031429",
+    "javadoc": "预约表",
+    "entityTableName": "sys_appointment",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -12,7 +12,7 @@ import org.mapstruct.Mapping;
 public interface SysClassifyMapper extends EntityMapper<ClassifyDTO, SysClassify> {
 
 
-    @Mapping(target = "products", ignore = true)
+//    @Mapping(target = "products", ignore = true)
     SysClassify toEntity(ClassifyDTO sysClassifyDTO);
 
     default SysClassify fromId(Long id) {

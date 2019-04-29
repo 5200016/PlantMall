@@ -22,14 +22,17 @@
     <include file="config/liquibase/changelog/20190417093901_added_entity_SysRecharge.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190419062753_added_entity_SysPlantLog.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190422102042_added_entity_SysProductImage.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190429031429_added_entity_SysAppointment.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20190415061351_added_entity_constraints_SysUser.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190415061356_added_entity_constraints_SysReceiverAddress.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190415061357_added_entity_constraints_SysProduct.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190415061401_added_entity_constraints_SysOrder.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190415061402_added_entity_constraints_SysShoppingCar.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190415061403_added_entity_constraints_SysReview.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190415061404_added_entity_constraints_SysCollection.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190422102042_added_entity_constraints_SysProductImage.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190415061400_added_entity_constraints_SysBanner.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190415061357_added_entity_constraints_SysProduct.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190429031429_added_entity_constraints_SysAppointment.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

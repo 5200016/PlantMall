@@ -18,27 +18,39 @@
         Added the entity SysBanner.
     -->
     <changeSet id="20190415061400-1" author="jhipster">
-        <createTable tableName="sys_banner" remarks="轮播图表">
+        <createTable tableName="sys_banner" remarks="广告图片表">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="image" type="varchar(255)">
+            <column name="image" type="varchar(255)" remarks="图片地址">
                 <constraints nullable="true" />
             </column>
 
-            <column name="jhi_link" type="varchar(255)">
+            <column name="path" type="varchar(255)" remarks="图片跳转路径（微信小程序）">
                 <constraints nullable="true" />
             </column>
 
-            <column name="jhi_sort" type="integer">
+            <column name="jhi_type" type="integer" remarks="图片类型（0：轮播图 1：图文信息）">
                 <constraints nullable="true" />
             </column>
 
-            <column name="create_time" type="datetime">
+            <column name="jhi_sort" type="integer" remarks="排序字段">
                 <constraints nullable="true" />
             </column>
 
-            <column name="update_time" type="datetime">
+            <column name="create_time" type="datetime" remarks="创建时间">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="update_time" type="datetime" remarks="更新时间">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="product_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="classify_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 

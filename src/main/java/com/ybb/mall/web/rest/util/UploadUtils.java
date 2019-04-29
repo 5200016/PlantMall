@@ -72,11 +72,19 @@ public class UploadUtils {
         return fullPath.trim();
     }
 
-    public static JSONObject start(MultipartFile myfile, String fileName){
-        String url = UploadUtils.uploadDoc(myfile, fileName);
+    public static ResultObj start(MultipartFile file, String filePath, String fileName){
+        if (TypeUtils.isEmpty(file)) {
+            return ResultObj.backInfo(false, 200, "上传失败", null);
+        }
+
+        //创建文件夹
+        new File(getFullPath(filePath, fileName)).mkdirs();
+
+        String url = uploadDoc(file, fileName);
         String fullUrl = documentUrl + url ;
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("url",fullUrl);
-        return jsonObject;
+
+        return ResultObj.backInfo(true, 200, "上传成功", jsonObject);
     }
 }

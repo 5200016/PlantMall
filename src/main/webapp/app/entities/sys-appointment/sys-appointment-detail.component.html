@@ -1,0 +1,49 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="sysAppointment">
+            <h2><span jhiTranslate="plantMallApp.sysAppointment.detail.title">Sys Appointment</span> {{sysAppointment.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="plantMallApp.sysAppointment.time" [ngbTooltip]="'plantMallApp.sysAppointment.help.time' | translate">Time</span></dt>
+                <dd>
+                    <span>{{sysAppointment.time}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysAppointment.remark" [ngbTooltip]="'plantMallApp.sysAppointment.help.remark' | translate">Remark</span></dt>
+                <dd>
+                    <span>{{sysAppointment.remark}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysAppointment.status" [ngbTooltip]="'plantMallApp.sysAppointment.help.status' | translate">Status</span></dt>
+                <dd>
+                    <span>{{sysAppointment.status}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysAppointment.createTime" [ngbTooltip]="'plantMallApp.sysAppointment.help.createTime' | translate">Create Time</span></dt>
+                <dd>
+                    <span>{{sysAppointment.createTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysAppointment.updateTime" [ngbTooltip]="'plantMallApp.sysAppointment.help.updateTime' | translate">Update Time</span></dt>
+                <dd>
+                    <span>{{sysAppointment.updateTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysAppointment.receiverAddress">Receiver Address</span></dt>
+                <dd>
+                    <div *ngIf="sysAppointment.receiverAddress">
+                        <a [routerLink]="['/sys-receiver-address', sysAppointment.receiverAddress?.id, 'view']">{{sysAppointment.receiverAddress?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/sys-appointment', sysAppointment.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

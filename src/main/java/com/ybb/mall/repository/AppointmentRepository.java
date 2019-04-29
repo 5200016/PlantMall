@@ -1,6 +1,7 @@
 package com.ybb.mall.repository;
 
 import com.ybb.mall.domain.SysAppointment;
+import com.ybb.mall.service.dto.appointment.AppointmentDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -30,7 +31,14 @@ public interface AppointmentRepository extends JpaRepository<SysAppointment, Lon
     void updateAppointmentStatus(Long id, Integer status);
 
     /**
-     * 根据预约状态分页查询预约列表
+     * 分页查询预约列表
+     * 条件：用户姓名、联系方式（模糊查询），订单状态，（预留时间查询）
      */
-    Page<SysAppointment> findAppointmentList(Integer status, Pageable pageable);
+    @Query("select new com.ybb.mall.service.dto.appointment.AppointmentDTO(sa.id, sa.time, sa.remark, sa.status, sa.createTime, sra.name, sra.phone)" +
+        " from SysAppointment sa" +
+        " left join SysReceiverAddress sra on sa.receiverAddress.id = sra.id" +
+        " where (sra.name like concat('%', ?1, '%') or sra.phone like concat('%', ?1, '%'))" +
+        " and (0 = ?3 or sa.status = ?2)" +
+        " order by sa.time desc")
+    Page<AppointmentDTO> findAppointmentList(String value, Integer status, Integer statusFlag, Pageable pageable);
 }

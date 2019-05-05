@@ -24,10 +24,13 @@
             <th><span jhiTranslate="plantMallApp.sysOrder.number">Number</span></th>
             <th><span jhiTranslate="plantMallApp.sysOrder.description">Description</span></th>
             <th><span jhiTranslate="plantMallApp.sysOrder.maintenancePlanStatus">Maintenance Plan Status</span></th>
+            <th><span jhiTranslate="plantMallApp.sysOrder.maintenanceTime">Maintenance Time</span></th>
+            <th><span jhiTranslate="plantMallApp.sysOrder.maintenanceDescription">Maintenance Description</span></th>
             <th><span jhiTranslate="plantMallApp.sysOrder.createTime">Create Time</span></th>
             <th><span jhiTranslate="plantMallApp.sysOrder.updateTime">Update Time</span></th>
             <th><span jhiTranslate="plantMallApp.sysOrder.user">User</span></th>
             <th><span jhiTranslate="plantMallApp.sysOrder.receiverAddress">Receiver Address</span></th>
+            <th><span jhiTranslate="plantMallApp.sysOrder.maintenancePersonnel">Maintenance Personnel</span></th>
             <th></th>
             </tr>
             </thead>
@@ -43,6 +46,8 @@
                 <td>{{sysOrder.number}}</td>
                 <td>{{sysOrder.description}}</td>
                 <td>{{sysOrder.maintenancePlanStatus}}</td>
+                <td>{{sysOrder.maintenanceTime}}</td>
+                <td>{{sysOrder.maintenanceDescription}}</td>
                 <td>{{sysOrder.createTime | date:'medium'}}</td>
                 <td>{{sysOrder.updateTime | date:'medium'}}</td>
                 <td>
@@ -53,6 +58,11 @@
                 <td>
                     <div *ngIf="sysOrder.receiverAddress">
                         <a [routerLink]="['../sys-receiver-address', sysOrder.receiverAddress?.id, 'view' ]" >{{sysOrder.receiverAddress?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="sysOrder.maintenancePersonnel">
+                        <a [routerLink]="['../sys-maintenance-personnel', sysOrder.maintenancePersonnel?.id, 'view' ]" >{{sysOrder.maintenancePersonnel?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">

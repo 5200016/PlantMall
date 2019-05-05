@@ -1,0 +1,48 @@
+{
+    "name": "SysMaintenancePersonnel",
+    "fields": [
+        {
+            "fieldName": "openid",
+            "javadoc": "微信openid",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "name",
+            "javadoc": "姓名",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "phone",
+            "javadoc": "手机号",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createTime",
+            "javadoc": "创建时间",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "updateTime",
+            "javadoc": "更新时间",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "order",
+            "otherEntityName": "sysOrder",
+            "otherEntityRelationshipName": "maintenancePersonnel"
+        }
+    ],
+    "changelogDate": "20190505064432",
+    "javadoc": "养护人员表",
+    "entityTableName": "sys_maintenance_personnel",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,5 +1,6 @@
 package com.ybb.mall.service.impl;
 
+import com.ybb.mall.domain.SysMaintenancePersonnel;
 import com.ybb.mall.domain.SysOrder;
 import com.ybb.mall.domain.SysOrderProduct;
 import com.ybb.mall.domain.SysProduct;
@@ -14,16 +15,19 @@ import com.ybb.mall.web.rest.util.ResultObj;
 import com.ybb.mall.web.rest.util.TypeUtils;
 import com.ybb.mall.web.rest.vm.order.OrderVM;
 import com.ybb.mall.web.rest.vm.order.ReissueProductVM;
+import com.ybb.mall.web.rest.vm.order.SetMaintenanceVM;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Description :
+ * @Description : 订单
  * @Author 黄志成
  * @Date 2019-04-26
  * @Version
@@ -136,5 +140,25 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<SysOrderProduct> findOrderProductByOrderId(Long orderId) {
         return orderProductRepository.findSysOrderProductsByOrder_Id(orderId);
+    }
+
+    @Override
+    public ResultObj setMaintenancePlan(SetMaintenanceVM setMaintenanceVM) {
+        SysOrder order = orderRepository.findSysOrderById(setMaintenanceVM.getOrderId());
+        order.setMaintenancePlanStatus(1);
+        order.setMaintenanceDescription(setMaintenanceVM.getMaintenanceDescription());
+        if(!TypeUtils.isEmpty(setMaintenanceVM.getMaintenanceTime())){
+            List<String> timeList = new ArrayList<>();
+            for(ZonedDateTime time : setMaintenanceVM.getMaintenanceTime()){
+                timeList.add(DateUtil.zonedDateTimeFormat(time.plusHours(8), "yyyy-MM-dd"));
+            }
+            order.setMaintenanceTime(StringUtils.join(timeList.toArray(), ","));
+        }
+        SysMaintenancePersonnel sysMaintenancePersonnel = new SysMaintenancePersonnel();
+        sysMaintenancePersonnel.setId(setMaintenanceVM.getMaintenancePersonnelId());
+        order.setMaintenancePersonnel(sysMaintenancePersonnel);
+
+        orderRepository.save(order);
+        return ResultObj.backCRUDSuccess("设置成功");
     }
 }

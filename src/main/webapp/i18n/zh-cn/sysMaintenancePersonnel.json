@@ -1,0 +1,33 @@
+{
+    "plantMallApp": {
+        "sysMaintenancePersonnel": {
+            "home": {
+                "title": "Sys Maintenance Personnels",
+                "createLabel": "创建新 Sys Maintenance Personnel",
+                "createOrEditLabel": "创建或编辑 Sys Maintenance Personnel"
+            },
+            "created": "Sys Maintenance Personnel {{ param }} 创建成功",
+            "updated": "Sys Maintenance Personnel {{ param }} 更新成功",
+            "deleted": "Sys Maintenance Personnel {{ param }} 删除成功",
+            "delete": {
+                "question": "你确定要删除 Sys Maintenance Personnel {{ id }} 吗？"
+            },
+            "detail": {
+                "title": "Sys Maintenance Personnel"
+            },
+            "openid": "Openid",
+            "name": "Name",
+            "phone": "Phone",
+            "createTime": "Create Time",
+            "updateTime": "Update Time",
+            "order": "Order",
+            "help": {
+                "openid": "微信openid",
+                "name": "姓名",
+                "phone": "手机号",
+                "createTime": "创建时间",
+                "updateTime": "更新时间"
+            }
+        }
+    }
+}

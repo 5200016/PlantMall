@@ -48,11 +48,25 @@
             "fieldType": "Integer"
         },
         {
+            "fieldName": "maintenanceTime",
+            "javadoc": "养护时间",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        },
+        {
+            "fieldName": "maintenanceDescription",
+            "javadoc": "养护描述",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        },
+        {
             "fieldName": "createTime",
+            "javadoc": "创建时间",
             "fieldType": "ZonedDateTime"
         },
         {
             "fieldName": "updateTime",
+            "javadoc": "更新时间",
             "fieldType": "ZonedDateTime"
         }
     ],
@@ -67,6 +81,12 @@
             "relationshipType": "many-to-one",
             "relationshipName": "receiverAddress",
             "otherEntityName": "sysReceiverAddress",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "maintenancePersonnel",
+            "otherEntityName": "sysMaintenancePersonnel",
             "otherEntityField": "id"
         },
         {

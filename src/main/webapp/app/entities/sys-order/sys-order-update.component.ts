@@ -12,6 +12,8 @@ import { ISysUser } from 'app/shared/model/sys-user.model';
 import { SysUserService } from 'app/entities/sys-user';
 import { ISysReceiverAddress } from 'app/shared/model/sys-receiver-address.model';
 import { SysReceiverAddressService } from 'app/entities/sys-receiver-address';
+import { ISysMaintenancePersonnel } from 'app/shared/model/sys-maintenance-personnel.model';
+import { SysMaintenancePersonnelService } from 'app/entities/sys-maintenance-personnel';
 
 @Component({
     selector: 'jhi-sys-order-update',
@@ -24,6 +26,8 @@ export class SysOrderUpdateComponent implements OnInit {
     sysusers: ISysUser[];
 
     sysreceiveraddresses: ISysReceiverAddress[];
+
+    sysmaintenancepersonnels: ISysMaintenancePersonnel[];
     createTime: string;
     updateTime: string;
 
@@ -33,6 +37,7 @@ export class SysOrderUpdateComponent implements OnInit {
         protected sysOrderService: SysOrderService,
         protected sysUserService: SysUserService,
         protected sysReceiverAddressService: SysReceiverAddressService,
+        protected sysMaintenancePersonnelService: SysMaintenancePersonnelService,
         protected activatedRoute: ActivatedRoute
     ) {}
 
@@ -52,6 +57,12 @@ export class SysOrderUpdateComponent implements OnInit {
         this.sysReceiverAddressService.query().subscribe(
             (res: HttpResponse<ISysReceiverAddress[]>) => {
                 this.sysreceiveraddresses = res.body;
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
+        this.sysMaintenancePersonnelService.query().subscribe(
+            (res: HttpResponse<ISysMaintenancePersonnel[]>) => {
+                this.sysmaintenancepersonnels = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
@@ -106,6 +117,10 @@ export class SysOrderUpdateComponent implements OnInit {
     }
 
     trackSysReceiverAddressById(index: number, item: ISysReceiverAddress) {
+        return item.id;
+    }
+
+    trackSysMaintenancePersonnelById(index: number, item: ISysMaintenancePersonnel) {
         return item.id;
     }
 }

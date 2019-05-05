@@ -39,6 +39,10 @@ public class OrderDTO {
 
     private Integer maintenancePlanStatus;
 
+    private String maintenanceTime;
+
+    private String maintenanceDescription;
+
     private ZonedDateTime createTime;
 
     private ZonedDateTime updateTime;
@@ -47,18 +51,26 @@ public class OrderDTO {
 
     private Long receiverAddressId;
 
+    private Long maintenancePersonnelId;
+
     private SysUser user;
 
     private SysReceiverAddress receiverAddress;
 
-    private Set<SysOrderProduct> orderProducts = new HashSet<>();
-
-    public Set<SysOrderProduct> getOrderProducts() {
-        return orderProducts;
+    public String getMaintenanceTime() {
+        return maintenanceTime;
     }
 
-    public void setOrderProducts(Set<SysOrderProduct> orderProducts) {
-        this.orderProducts = orderProducts;
+    public void setMaintenanceTime(String maintenanceTime) {
+        this.maintenanceTime = maintenanceTime;
+    }
+
+    public String getMaintenanceDescription() {
+        return maintenanceDescription;
+    }
+
+    public void setMaintenanceDescription(String maintenanceDescription) {
+        this.maintenanceDescription = maintenanceDescription;
     }
 
     public SysUser getUser() {
@@ -189,9 +201,17 @@ public class OrderDTO {
         this.receiverAddressId = sysReceiverAddressId;
     }
 
+    public Long getMaintenancePersonnelId() {
+        return maintenancePersonnelId;
+    }
+
+    public void setMaintenancePersonnelId(Long maintenancePersonnelId) {
+        this.maintenancePersonnelId = maintenancePersonnelId;
+    }
+
     @Override
     public String toString() {
-        return "SysOrderDTO{" +
+        return "OrderDTO{" +
             "id=" + id +
             ", tradeNo='" + tradeNo + '\'' +
             ", payNo='" + payNo + '\'' +
@@ -202,13 +222,15 @@ public class OrderDTO {
             ", number=" + number +
             ", description='" + description + '\'' +
             ", maintenancePlanStatus=" + maintenancePlanStatus +
+            ", maintenanceTime='" + maintenanceTime + '\'' +
+            ", maintenanceDescription='" + maintenanceDescription + '\'' +
             ", createTime=" + createTime +
             ", updateTime=" + updateTime +
             ", userId=" + userId +
             ", receiverAddressId=" + receiverAddressId +
+            ", maintenancePersonnelId=" + maintenancePersonnelId +
             ", user=" + user +
             ", receiverAddress=" + receiverAddress +
-            ", orderProducts=" + orderProducts +
             '}';
     }
 }

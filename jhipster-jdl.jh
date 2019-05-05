@@ -295,7 +295,24 @@ entity SysOrder {
      */
     maintenancePlanStatus Integer,
 
+    /**
+     * 养护时间
+     */
+    maintenanceTime TextBlob,
+
+    /**
+     * 养护描述
+     */
+    maintenanceDescription TextBlob,
+
+    /**
+     * 创建时间
+     */
     createTime ZonedDateTime,
+
+    /**
+     * 更新时间
+     */
     updateTime ZonedDateTime
 }
 
@@ -424,12 +441,12 @@ entity SysMaintenancePersonnel{
     openid String,
 
     /**
-     * 养护人员姓名
+     * 姓名
      */
     name String,
 
     /**
-     * 养护人员手机号
+     * 手机号
      */
     phone String,
 
@@ -464,6 +481,7 @@ relationship ManyToOne {
     SysOrderProduct{order} to SysOrder{orderProduct},
     SysOrderProduct{product} to SysProduct,
     SysOrder{receiverAddress} to SysReceiverAddress{order},
+    SysOrder{maintenancePersonnel} to SysMaintenancePersonnel{order},
     SysProductImage{product} to SysProduct{image},
     SysShoppingCar{product} to SysProduct{shoppingCar},
     SysReview{product} to SysProduct{review},

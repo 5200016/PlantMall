@@ -75,6 +75,12 @@ public class SysOrderResourceIntTest {
     private static final Integer DEFAULT_MAINTENANCE_PLAN_STATUS = 1;
     private static final Integer UPDATED_MAINTENANCE_PLAN_STATUS = 2;
 
+    private static final String DEFAULT_MAINTENANCE_TIME = "AAAAAAAAAA";
+    private static final String UPDATED_MAINTENANCE_TIME = "BBBBBBBBBB";
+
+    private static final String DEFAULT_MAINTENANCE_DESCRIPTION = "AAAAAAAAAA";
+    private static final String UPDATED_MAINTENANCE_DESCRIPTION = "BBBBBBBBBB";
+
     private static final ZonedDateTime DEFAULT_CREATE_TIME = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_CREATE_TIME = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
 
@@ -135,6 +141,8 @@ public class SysOrderResourceIntTest {
             .number(DEFAULT_NUMBER)
             .description(DEFAULT_DESCRIPTION)
             .maintenancePlanStatus(DEFAULT_MAINTENANCE_PLAN_STATUS)
+            .maintenanceTime(DEFAULT_MAINTENANCE_TIME)
+            .maintenanceDescription(DEFAULT_MAINTENANCE_DESCRIPTION)
             .createTime(DEFAULT_CREATE_TIME)
             .updateTime(DEFAULT_UPDATE_TIME);
         return sysOrder;
@@ -169,6 +177,8 @@ public class SysOrderResourceIntTest {
         assertThat(testSysOrder.getNumber()).isEqualTo(DEFAULT_NUMBER);
         assertThat(testSysOrder.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
         assertThat(testSysOrder.getMaintenancePlanStatus()).isEqualTo(DEFAULT_MAINTENANCE_PLAN_STATUS);
+        assertThat(testSysOrder.getMaintenanceTime()).isEqualTo(DEFAULT_MAINTENANCE_TIME);
+        assertThat(testSysOrder.getMaintenanceDescription()).isEqualTo(DEFAULT_MAINTENANCE_DESCRIPTION);
         assertThat(testSysOrder.getCreateTime()).isEqualTo(DEFAULT_CREATE_TIME);
         assertThat(testSysOrder.getUpdateTime()).isEqualTo(DEFAULT_UPDATE_TIME);
     }
@@ -212,6 +222,8 @@ public class SysOrderResourceIntTest {
             .andExpect(jsonPath("$.[*].number").value(hasItem(DEFAULT_NUMBER)))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
             .andExpect(jsonPath("$.[*].maintenancePlanStatus").value(hasItem(DEFAULT_MAINTENANCE_PLAN_STATUS)))
+            .andExpect(jsonPath("$.[*].maintenanceTime").value(hasItem(DEFAULT_MAINTENANCE_TIME.toString())))
+            .andExpect(jsonPath("$.[*].maintenanceDescription").value(hasItem(DEFAULT_MAINTENANCE_DESCRIPTION.toString())))
             .andExpect(jsonPath("$.[*].createTime").value(hasItem(sameInstant(DEFAULT_CREATE_TIME))))
             .andExpect(jsonPath("$.[*].updateTime").value(hasItem(sameInstant(DEFAULT_UPDATE_TIME))));
     }
@@ -236,6 +248,8 @@ public class SysOrderResourceIntTest {
             .andExpect(jsonPath("$.number").value(DEFAULT_NUMBER))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
             .andExpect(jsonPath("$.maintenancePlanStatus").value(DEFAULT_MAINTENANCE_PLAN_STATUS))
+            .andExpect(jsonPath("$.maintenanceTime").value(DEFAULT_MAINTENANCE_TIME.toString()))
+            .andExpect(jsonPath("$.maintenanceDescription").value(DEFAULT_MAINTENANCE_DESCRIPTION.toString()))
             .andExpect(jsonPath("$.createTime").value(sameInstant(DEFAULT_CREATE_TIME)))
             .andExpect(jsonPath("$.updateTime").value(sameInstant(DEFAULT_UPDATE_TIME)));
     }
@@ -270,6 +284,8 @@ public class SysOrderResourceIntTest {
             .number(UPDATED_NUMBER)
             .description(UPDATED_DESCRIPTION)
             .maintenancePlanStatus(UPDATED_MAINTENANCE_PLAN_STATUS)
+            .maintenanceTime(UPDATED_MAINTENANCE_TIME)
+            .maintenanceDescription(UPDATED_MAINTENANCE_DESCRIPTION)
             .createTime(UPDATED_CREATE_TIME)
             .updateTime(UPDATED_UPDATE_TIME);
 
@@ -291,6 +307,8 @@ public class SysOrderResourceIntTest {
         assertThat(testSysOrder.getNumber()).isEqualTo(UPDATED_NUMBER);
         assertThat(testSysOrder.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
         assertThat(testSysOrder.getMaintenancePlanStatus()).isEqualTo(UPDATED_MAINTENANCE_PLAN_STATUS);
+        assertThat(testSysOrder.getMaintenanceTime()).isEqualTo(UPDATED_MAINTENANCE_TIME);
+        assertThat(testSysOrder.getMaintenanceDescription()).isEqualTo(UPDATED_MAINTENANCE_DESCRIPTION);
         assertThat(testSysOrder.getCreateTime()).isEqualTo(UPDATED_CREATE_TIME);
         assertThat(testSysOrder.getUpdateTime()).isEqualTo(UPDATED_UPDATE_TIME);
     }

@@ -58,11 +58,19 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="create_time" type="datetime">
+            <column name="maintenance_time" type="clob" remarks="养护时间">
                 <constraints nullable="true" />
             </column>
 
-            <column name="update_time" type="datetime">
+            <column name="maintenance_description" type="clob" remarks="养护描述">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="create_time" type="datetime" remarks="创建时间">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="update_time" type="datetime" remarks="更新时间">
                 <constraints nullable="true" />
             </column>
 
@@ -71,6 +79,10 @@
             </column>
 
             <column name="receiver_address_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="maintenance_personnel_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 

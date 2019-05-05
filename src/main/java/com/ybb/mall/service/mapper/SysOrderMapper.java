@@ -6,18 +6,19 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 /**
- * Mapper for the entity SysOrder and its DTO SysOrderDTO.
+ * OrderDTO映射
  */
-@Mapper(componentModel = "spring", uses = {SysUserMapper.class, SysReceiverAddressMapper.class})
+@Mapper(componentModel = "spring", uses = {SysUserMapper.class, SysReceiverAddressMapper.class, SysMaintenancePersonnelMapper.class})
 public interface SysOrderMapper extends EntityMapper<OrderDTO, SysOrder> {
 
     @Mapping(source = "user.id", target = "userId")
     @Mapping(source = "receiverAddress.id", target = "receiverAddressId")
+    @Mapping(source = "maintenancePersonnel.id", target = "maintenancePersonnelId")
     OrderDTO toDto(SysOrder sysOrder);
 
     @Mapping(source = "userId", target = "user")
     @Mapping(source = "receiverAddressId", target = "receiverAddress")
-    @Mapping(target = "orderProducts", ignore = false)
+    @Mapping(source = "maintenancePersonnelId", target = "maintenancePersonnel")
     SysOrder toEntity(OrderDTO orderDTO);
 
     default SysOrder fromId(Long id) {

@@ -153,6 +153,12 @@
                             <span jhiTranslate="global.menu.entities.sysOrderProduct">Sys Order Product</span>
                         </a>
                     </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="sys-maintenance-personnel" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.sysMaintenancePersonnel">Sys Maintenance Personnel</span>
+                        </a>
+                    </li>
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                 </ul>
             </li>

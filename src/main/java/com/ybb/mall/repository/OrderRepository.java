@@ -26,8 +26,8 @@ public interface OrderRepository extends JpaRepository<SysOrder, Long> {
         value = "select so" +
             " from SysOrder so" +
             " left join fetch so.user" +
-            " left join fetch so.orderProducts" +
             " left join fetch so.receiverAddress" +
+            " left join fetch so.maintenancePersonnel" +
             " where so.tradeNo like concat('%', ?1, '%')" +
             " and so.type = ?2" +
             " and (0 = ?4 or so.status = ?3)" +
@@ -37,4 +37,9 @@ public interface OrderRepository extends JpaRepository<SysOrder, Long> {
             " order by so.createTime desc"
     )
     Page<SysOrder> findOrderList(String tradeNo, Integer type, Integer status, Integer statusFlag, String value, Pageable pageable);
+
+    /**
+     * 根据订单id查询
+     */
+    SysOrder findSysOrderById(Long id);
 }

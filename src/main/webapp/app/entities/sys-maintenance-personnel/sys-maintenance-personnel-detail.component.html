@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="sysMaintenancePersonnel">
+            <h2><span jhiTranslate="plantMallApp.sysMaintenancePersonnel.detail.title">Sys Maintenance Personnel</span> {{sysMaintenancePersonnel.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="plantMallApp.sysMaintenancePersonnel.openid" [ngbTooltip]="'plantMallApp.sysMaintenancePersonnel.help.openid' | translate">Openid</span></dt>
+                <dd>
+                    <span>{{sysMaintenancePersonnel.openid}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysMaintenancePersonnel.name" [ngbTooltip]="'plantMallApp.sysMaintenancePersonnel.help.name' | translate">Name</span></dt>
+                <dd>
+                    <span>{{sysMaintenancePersonnel.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysMaintenancePersonnel.phone" [ngbTooltip]="'plantMallApp.sysMaintenancePersonnel.help.phone' | translate">Phone</span></dt>
+                <dd>
+                    <span>{{sysMaintenancePersonnel.phone}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysMaintenancePersonnel.createTime" [ngbTooltip]="'plantMallApp.sysMaintenancePersonnel.help.createTime' | translate">Create Time</span></dt>
+                <dd>
+                    <span>{{sysMaintenancePersonnel.createTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysMaintenancePersonnel.updateTime" [ngbTooltip]="'plantMallApp.sysMaintenancePersonnel.help.updateTime' | translate">Update Time</span></dt>
+                <dd>
+                    <span>{{sysMaintenancePersonnel.updateTime}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/sys-maintenance-personnel', sysMaintenancePersonnel.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

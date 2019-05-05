@@ -6,41 +6,26 @@ import { of } from 'rxjs';
 import { take, map } from 'rxjs/operators';
 import * as moment from 'moment';
 import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
-import { SysOrderService } from 'app/entities/sys-order/sys-order.service';
-import { ISysOrder, SysOrder } from 'app/shared/model/sys-order.model';
+import { SysMaintenancePersonnelService } from 'app/entities/sys-maintenance-personnel/sys-maintenance-personnel.service';
+import { ISysMaintenancePersonnel, SysMaintenancePersonnel } from 'app/shared/model/sys-maintenance-personnel.model';
 
 describe('Service Tests', () => {
-    describe('SysOrder Service', () => {
+    describe('SysMaintenancePersonnel Service', () => {
         let injector: TestBed;
-        let service: SysOrderService;
+        let service: SysMaintenancePersonnelService;
         let httpMock: HttpTestingController;
-        let elemDefault: ISysOrder;
+        let elemDefault: ISysMaintenancePersonnel;
         let currentDate: moment.Moment;
         beforeEach(() => {
             TestBed.configureTestingModule({
                 imports: [HttpClientTestingModule]
             });
             injector = getTestBed();
-            service = injector.get(SysOrderService);
+            service = injector.get(SysMaintenancePersonnelService);
             httpMock = injector.get(HttpTestingController);
             currentDate = moment();
 
-            elemDefault = new SysOrder(
-                0,
-                'AAAAAAA',
-                'AAAAAAA',
-                0,
-                0,
-                0,
-                0,
-                0,
-                'AAAAAAA',
-                0,
-                'AAAAAAA',
-                'AAAAAAA',
-                currentDate,
-                currentDate
-            );
+            elemDefault = new SysMaintenancePersonnel(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', currentDate, currentDate);
         });
 
         describe('Service methods', async () => {
@@ -61,7 +46,7 @@ describe('Service Tests', () => {
                 req.flush(JSON.stringify(returnedFromService));
             });
 
-            it('should create a SysOrder', async () => {
+            it('should create a SysMaintenancePersonnel', async () => {
                 const returnedFromService = Object.assign(
                     {
                         id: 0,
@@ -78,27 +63,19 @@ describe('Service Tests', () => {
                     returnedFromService
                 );
                 service
-                    .create(new SysOrder(null))
+                    .create(new SysMaintenancePersonnel(null))
                     .pipe(take(1))
                     .subscribe(resp => expect(resp).toMatchObject({ body: expected }));
                 const req = httpMock.expectOne({ method: 'POST' });
                 req.flush(JSON.stringify(returnedFromService));
             });
 
-            it('should update a SysOrder', async () => {
+            it('should update a SysMaintenancePersonnel', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        tradeNo: 'BBBBBB',
-                        payNo: 'BBBBBB',
-                        price: 1,
-                        type: 1,
-                        payType: 1,
-                        status: 1,
-                        number: 1,
-                        description: 'BBBBBB',
-                        maintenancePlanStatus: 1,
-                        maintenanceTime: 'BBBBBB',
-                        maintenanceDescription: 'BBBBBB',
+                        openid: 'BBBBBB',
+                        name: 'BBBBBB',
+                        phone: 'BBBBBB',
                         createTime: currentDate.format(DATE_TIME_FORMAT),
                         updateTime: currentDate.format(DATE_TIME_FORMAT)
                     },
@@ -120,20 +97,12 @@ describe('Service Tests', () => {
                 req.flush(JSON.stringify(returnedFromService));
             });
 
-            it('should return a list of SysOrder', async () => {
+            it('should return a list of SysMaintenancePersonnel', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        tradeNo: 'BBBBBB',
-                        payNo: 'BBBBBB',
-                        price: 1,
-                        type: 1,
-                        payType: 1,
-                        status: 1,
-                        number: 1,
-                        description: 'BBBBBB',
-                        maintenancePlanStatus: 1,
-                        maintenanceTime: 'BBBBBB',
-                        maintenanceDescription: 'BBBBBB',
+                        openid: 'BBBBBB',
+                        name: 'BBBBBB',
+                        phone: 'BBBBBB',
                         createTime: currentDate.format(DATE_TIME_FORMAT),
                         updateTime: currentDate.format(DATE_TIME_FORMAT)
                     },
@@ -158,7 +127,7 @@ describe('Service Tests', () => {
                 httpMock.verify();
             });
 
-            it('should delete a SysOrder', async () => {
+            it('should delete a SysMaintenancePersonnel', async () => {
                 const rxPromise = service.delete(123).subscribe(resp => expect(resp.ok));
 
                 const req = httpMock.expectOne({ method: 'DELETE' });

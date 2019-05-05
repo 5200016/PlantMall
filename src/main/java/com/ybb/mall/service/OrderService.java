@@ -6,12 +6,13 @@ import com.ybb.mall.service.dto.order.OrderListDTO;
 import com.ybb.mall.web.rest.util.ResultObj;
 import com.ybb.mall.web.rest.vm.order.OrderVM;
 import com.ybb.mall.web.rest.vm.order.ReissueProductVM;
+import com.ybb.mall.web.rest.vm.order.SetMaintenanceVM;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
 
 /**
- * @Description :
+ * @Description : 订单
  * @Author 黄志成
  * @Date 2019-04-26
  * @Version
@@ -52,5 +53,12 @@ public interface OrderService {
      * @return
      */
     List<SysOrderProduct> findOrderProductByOrderId(Long orderId);
+
+    /**
+     * 设置养护计划
+     * @param setMaintenanceVM
+     * @return
+     */
+    ResultObj setMaintenancePlan(SetMaintenanceVM setMaintenanceVM);
 
 }

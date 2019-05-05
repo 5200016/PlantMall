@@ -41,11 +41,19 @@
                 <dd>
                     <span>{{sysOrder.maintenancePlanStatus}}</span>
                 </dd>
-                <dt><span jhiTranslate="plantMallApp.sysOrder.createTime">Create Time</span></dt>
+                <dt><span jhiTranslate="plantMallApp.sysOrder.maintenanceTime" [ngbTooltip]="'plantMallApp.sysOrder.help.maintenanceTime' | translate">Maintenance Time</span></dt>
+                <dd>
+                    <span>{{sysOrder.maintenanceTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysOrder.maintenanceDescription" [ngbTooltip]="'plantMallApp.sysOrder.help.maintenanceDescription' | translate">Maintenance Description</span></dt>
+                <dd>
+                    <span>{{sysOrder.maintenanceDescription}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysOrder.createTime" [ngbTooltip]="'plantMallApp.sysOrder.help.createTime' | translate">Create Time</span></dt>
                 <dd>
                     <span>{{sysOrder.createTime}}</span>
                 </dd>
-                <dt><span jhiTranslate="plantMallApp.sysOrder.updateTime">Update Time</span></dt>
+                <dt><span jhiTranslate="plantMallApp.sysOrder.updateTime" [ngbTooltip]="'plantMallApp.sysOrder.help.updateTime' | translate">Update Time</span></dt>
                 <dd>
                     <span>{{sysOrder.updateTime}}</span>
                 </dd>
@@ -59,6 +67,12 @@
                 <dd>
                     <div *ngIf="sysOrder.receiverAddress">
                         <a [routerLink]="['/sys-receiver-address', sysOrder.receiverAddress?.id, 'view']">{{sysOrder.receiverAddress?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysOrder.maintenancePersonnel">Maintenance Personnel</span></dt>
+                <dd>
+                    <div *ngIf="sysOrder.maintenancePersonnel">
+                        <a [routerLink]="['/sys-maintenance-personnel', sysOrder.maintenancePersonnel?.id, 'view']">{{sysOrder.maintenancePersonnel?.id}}</a>
                     </div>
                 </dd>
             </dl>

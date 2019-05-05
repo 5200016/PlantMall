@@ -20,5 +20,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="sys_receiver_address"/>
 
+        <addForeignKeyConstraint baseColumnNames="maintenance_personnel_id"
+                                 baseTableName="sys_order"
+                                 constraintName="fk_sys_order_maintenance_personnel_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sys_maintenance_personnel"/>
+
     </changeSet>
 </databaseChangeLog>

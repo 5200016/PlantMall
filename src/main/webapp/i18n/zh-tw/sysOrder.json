@@ -24,10 +24,13 @@
             "number": "Number",
             "description": "Description",
             "maintenancePlanStatus": "Maintenance Plan Status",
+            "maintenanceTime": "Maintenance Time",
+            "maintenanceDescription": "Maintenance Description",
             "createTime": "Create Time",
             "updateTime": "Update Time",
             "user": "User",
             "receiverAddress": "Receiver Address",
+            "maintenancePersonnel": "Maintenance Personnel",
             "orderProduct": "Order Product",
             "help": {
                 "tradeNo": "订单号",
@@ -38,7 +41,11 @@
                 "status": "订单状态",
                 "number": "购买数量",
                 "description": "订单描述",
-                "maintenancePlanStatus": "养护计划状态（0：未设置，1：已设置）"
+                "maintenancePlanStatus": "养护计划状态（0：未设置，1：已设置）",
+                "maintenanceTime": "养护时间",
+                "maintenanceDescription": "养护描述",
+                "createTime": "创建时间",
+                "updateTime": "更新时间"
             }
         }
     }

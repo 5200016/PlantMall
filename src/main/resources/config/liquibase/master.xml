@@ -24,6 +24,7 @@
     <include file="config/liquibase/changelog/20190422102042_added_entity_SysProductImage.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190429031429_added_entity_SysAppointment.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190429091030_added_entity_SysOrderProduct.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190505064432_added_entity_SysMaintenancePersonnel.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20190415061351_added_entity_constraints_SysUser.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190415061356_added_entity_constraints_SysReceiverAddress.xml" relativeToChangelogFile="false"/>

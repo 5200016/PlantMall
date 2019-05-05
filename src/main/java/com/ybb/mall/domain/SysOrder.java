@@ -92,9 +92,33 @@ public class SysOrder implements Serializable {
     @Column(name = "maintenance_plan_status")
     private Integer maintenancePlanStatus;
 
+    /**
+     * 养护时间
+     */
+    @ApiModelProperty(value = "养护时间")
+    @Lob
+    @Column(name = "maintenance_time")
+    private String maintenanceTime;
+
+    /**
+     * 养护描述
+     */
+    @ApiModelProperty(value = "养护描述")
+    @Lob
+    @Column(name = "maintenance_description")
+    private String maintenanceDescription;
+
+    /**
+     * 创建时间
+     */
+    @ApiModelProperty(value = "创建时间")
     @Column(name = "create_time")
     private ZonedDateTime createTime;
 
+    /**
+     * 更新时间
+     */
+    @ApiModelProperty(value = "更新时间")
     @Column(name = "update_time")
     private ZonedDateTime updateTime;
 
@@ -106,7 +130,11 @@ public class SysOrder implements Serializable {
     @JsonIgnoreProperties("orders")
     private SysReceiverAddress receiverAddress;
 
-    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "order")
+    @ManyToOne
+    @JsonIgnoreProperties("orders")
+    private SysMaintenancePersonnel maintenancePersonnel;
+
+    @OneToMany(mappedBy = "order")
     private Set<SysOrderProduct> orderProducts = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -234,6 +262,32 @@ public class SysOrder implements Serializable {
         this.maintenancePlanStatus = maintenancePlanStatus;
     }
 
+    public String getMaintenanceTime() {
+        return maintenanceTime;
+    }
+
+    public SysOrder maintenanceTime(String maintenanceTime) {
+        this.maintenanceTime = maintenanceTime;
+        return this;
+    }
+
+    public void setMaintenanceTime(String maintenanceTime) {
+        this.maintenanceTime = maintenanceTime;
+    }
+
+    public String getMaintenanceDescription() {
+        return maintenanceDescription;
+    }
+
+    public SysOrder maintenanceDescription(String maintenanceDescription) {
+        this.maintenanceDescription = maintenanceDescription;
+        return this;
+    }
+
+    public void setMaintenanceDescription(String maintenanceDescription) {
+        this.maintenanceDescription = maintenanceDescription;
+    }
+
     public ZonedDateTime getCreateTime() {
         return createTime;
     }
@@ -284,6 +338,19 @@ public class SysOrder implements Serializable {
 
     public void setReceiverAddress(SysReceiverAddress sysReceiverAddress) {
         this.receiverAddress = sysReceiverAddress;
+    }
+
+    public SysMaintenancePersonnel getMaintenancePersonnel() {
+        return maintenancePersonnel;
+    }
+
+    public SysOrder maintenancePersonnel(SysMaintenancePersonnel sysMaintenancePersonnel) {
+        this.maintenancePersonnel = sysMaintenancePersonnel;
+        return this;
+    }
+
+    public void setMaintenancePersonnel(SysMaintenancePersonnel sysMaintenancePersonnel) {
+        this.maintenancePersonnel = sysMaintenancePersonnel;
     }
 
     public Set<SysOrderProduct> getOrderProducts() {
@@ -345,6 +412,8 @@ public class SysOrder implements Serializable {
             ", number=" + getNumber() +
             ", description='" + getDescription() + "'" +
             ", maintenancePlanStatus=" + getMaintenancePlanStatus() +
+            ", maintenanceTime='" + getMaintenanceTime() + "'" +
+            ", maintenanceDescription='" + getMaintenanceDescription() + "'" +
             ", createTime='" + getCreateTime() + "'" +
             ", updateTime='" + getUpdateTime() + "'" +
             "}";

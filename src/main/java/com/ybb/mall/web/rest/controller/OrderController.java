@@ -6,6 +6,7 @@ import com.ybb.mall.service.OrderService;
 import com.ybb.mall.web.rest.util.ResultObj;
 import com.ybb.mall.web.rest.vm.order.OrderVM;
 import com.ybb.mall.web.rest.vm.order.ReissueProductVM;
+import com.ybb.mall.web.rest.vm.order.SetMaintenanceVM;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -99,5 +100,18 @@ public class OrderController {
     @Timed
     public ResultObj deleteOrderProductBatch(@RequestBody List<SysOrderProduct> orderProducts) throws URISyntaxException {
         return orderService.deleteOrderProductBatch(orderProducts);
+    }
+
+    /**
+     * 设置养护计划
+     *
+     * @return
+     * @throws URISyntaxException
+     */
+    @ApiOperation("设置养护计划")
+    @PutMapping("/order/maintenance")
+    @Timed
+    public ResultObj setMaintenancePlan(@RequestBody SetMaintenanceVM setMaintenanceVM) throws URISyntaxException {
+        return orderService.setMaintenancePlan(setMaintenanceVM);
     }
 }

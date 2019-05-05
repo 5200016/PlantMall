@@ -27,8 +27,8 @@
             "createTime": "Create Time",
             "updateTime": "Update Time",
             "user": "User",
-            "product": "Product",
             "receiverAddress": "Receiver Address",
+            "orderProduct": "Order Product",
             "help": {
                 "tradeNo": "订单号",
                 "payNo": "支付单号",

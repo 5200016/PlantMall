@@ -394,6 +394,56 @@ entity SysAppointment{
     updateTime ZonedDateTime
 }
 
+/**
+ * 订单商品关联表
+ */
+entity SysOrderProduct{
+    /**
+     * 商品状态（0：无状态 1：已清除 2：补加）
+     */
+    productStatus Integer,
+
+    /**
+     * 创建时间
+     */
+    createTime ZonedDateTime,
+
+    /**
+     * 更新时间
+     */
+    updateTime ZonedDateTime
+}
+
+/**
+ * 养护人员表
+ */
+entity SysMaintenancePersonnel{
+    /**
+     * 微信openid
+     */
+    openid String,
+
+    /**
+     * 养护人员姓名
+     */
+    name String,
+
+    /**
+     * 养护人员手机号
+     */
+    phone String,
+
+    /**
+     * 创建时间
+     */
+    createTime ZonedDateTime,
+
+    /**
+     * 更新时间
+     */
+    updateTime ZonedDateTime
+}
+
 relationship ManyToOne {
     /**
      * 广告图片关联商品
@@ -411,7 +461,8 @@ relationship ManyToOne {
     SysAppointment{receiverAddress} to SysReceiverAddress,
 	SysReceiverAddress{user} to SysUser{receiverAddress},
     SysOrder{user} to SysUser{order},
-    SysOrder{product} to SysProduct{order},
+    SysOrderProduct{order} to SysOrder{orderProduct},
+    SysOrderProduct{product} to SysProduct,
     SysOrder{receiverAddress} to SysReceiverAddress{order},
     SysProductImage{product} to SysProduct{image},
     SysShoppingCar{product} to SysProduct{shoppingCar},

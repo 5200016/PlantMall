@@ -27,7 +27,6 @@
             <th><span jhiTranslate="plantMallApp.sysOrder.createTime">Create Time</span></th>
             <th><span jhiTranslate="plantMallApp.sysOrder.updateTime">Update Time</span></th>
             <th><span jhiTranslate="plantMallApp.sysOrder.user">User</span></th>
-            <th><span jhiTranslate="plantMallApp.sysOrder.product">Product</span></th>
             <th><span jhiTranslate="plantMallApp.sysOrder.receiverAddress">Receiver Address</span></th>
             <th></th>
             </tr>
@@ -49,11 +48,6 @@
                 <td>
                     <div *ngIf="sysOrder.user">
                         <a [routerLink]="['../sys-user', sysOrder.user?.id, 'view' ]" >{{sysOrder.user?.id}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="sysOrder.product">
-                        <a [routerLink]="['../sys-product', sysOrder.product?.id, 'view' ]" >{{sysOrder.product?.id}}</a>
                     </div>
                 </td>
                 <td>

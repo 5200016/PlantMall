@@ -1,5 +1,6 @@
 package com.ybb.mall.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -9,6 +10,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -101,12 +104,10 @@ public class SysOrder implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties("orders")
-    private SysProduct product;
-
-    @ManyToOne
-    @JsonIgnoreProperties("orders")
     private SysReceiverAddress receiverAddress;
 
+    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "order")
+    private Set<SysOrderProduct> orderProducts = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -272,19 +273,6 @@ public class SysOrder implements Serializable {
         this.user = sysUser;
     }
 
-    public SysProduct getProduct() {
-        return product;
-    }
-
-    public SysOrder product(SysProduct sysProduct) {
-        this.product = sysProduct;
-        return this;
-    }
-
-    public void setProduct(SysProduct sysProduct) {
-        this.product = sysProduct;
-    }
-
     public SysReceiverAddress getReceiverAddress() {
         return receiverAddress;
     }
@@ -296,6 +284,31 @@ public class SysOrder implements Serializable {
 
     public void setReceiverAddress(SysReceiverAddress sysReceiverAddress) {
         this.receiverAddress = sysReceiverAddress;
+    }
+
+    public Set<SysOrderProduct> getOrderProducts() {
+        return orderProducts;
+    }
+
+    public SysOrder orderProducts(Set<SysOrderProduct> sysOrderProducts) {
+        this.orderProducts = sysOrderProducts;
+        return this;
+    }
+
+    public SysOrder addOrderProduct(SysOrderProduct sysOrderProduct) {
+        this.orderProducts.add(sysOrderProduct);
+        sysOrderProduct.setOrder(this);
+        return this;
+    }
+
+    public SysOrder removeOrderProduct(SysOrderProduct sysOrderProduct) {
+        this.orderProducts.remove(sysOrderProduct);
+        sysOrderProduct.setOrder(null);
+        return this;
+    }
+
+    public void setOrderProducts(Set<SysOrderProduct> sysOrderProducts) {
+        this.orderProducts = sysOrderProducts;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

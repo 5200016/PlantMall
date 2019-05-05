@@ -6,6 +6,7 @@ import com.ybb.mall.domain.SysProductImage;
 import com.ybb.mall.repository.ProductImageRepository;
 import com.ybb.mall.repository.ProductRepository;
 import com.ybb.mall.service.ProductService;
+import com.ybb.mall.service.dto.product.ProductBriefDTO;
 import com.ybb.mall.service.dto.product.ProductDTO;
 import com.ybb.mall.service.dto.product.ProductImageDTO;
 import com.ybb.mall.service.mapper.SysProductMapper;
@@ -73,6 +74,11 @@ public class ProductServiceImpl implements ProductService {
             data.setClassifyId(classifyId);
         }
         return productPage;
+    }
+
+    @Override
+    public List<ProductBriefDTO> findProductBrief() {
+        return productRepository.findProductBrief();
     }
 
     @Override

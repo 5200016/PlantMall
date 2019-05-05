@@ -11,8 +11,6 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring", uses = {SysClassifyMapper.class})
 public interface SysProductMapper extends EntityMapper<ProductDTO, SysProduct> {
 
-
-    @Mapping(target = "orders", ignore = true)
     @Mapping(target = "images", ignore = true)
     @Mapping(target = "shoppingCars", ignore = true)
     @Mapping(target = "reviews", ignore = true)

@@ -25,6 +25,7 @@
                 "sysPlantLog": "Sys Plant Log",
                 "sysProductImage": "Sys Product Image",
                 "sysAppointment": "Sys Appointment",
+                "sysOrderProduct": "Sys Order Product",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

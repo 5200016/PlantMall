@@ -1,0 +1,30 @@
+{
+    "plantMallApp": {
+        "sysOrderProduct": {
+            "home": {
+                "title": "Sys Order Products",
+                "createLabel": "建立一筆新的 Sys Order Product",
+                "createOrEditLabel": "建立或編輯 Sys Order Product"
+            },
+            "created": "新的 Sys Order Product 建立成功，識別碼為 {{ param }}",
+            "updated": "識別碼為 {{ param }} 的 Sys Order Product 更新成功",
+            "deleted": "識別碼為 {{ param }} 的 Sys Order Product 刪除成功",
+            "delete": {
+                "question": "您確定要刪除 Sys Order Product {{ id }} 嗎?"
+            },
+            "detail": {
+                "title": "Sys Order Product"
+            },
+            "productStatus": "Product Status",
+            "createTime": "Create Time",
+            "updateTime": "Update Time",
+            "order": "Order",
+            "product": "Product",
+            "help": {
+                "productStatus": "商品状态（0：无状态 1：已清除 2：补加）",
+                "createTime": "创建时间",
+                "updateTime": "更新时间"
+            }
+        }
+    }
+}

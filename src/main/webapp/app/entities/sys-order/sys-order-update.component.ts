@@ -10,8 +10,6 @@ import { ISysOrder } from 'app/shared/model/sys-order.model';
 import { SysOrderService } from './sys-order.service';
 import { ISysUser } from 'app/shared/model/sys-user.model';
 import { SysUserService } from 'app/entities/sys-user';
-import { ISysProduct } from 'app/shared/model/sys-product.model';
-import { SysProductService } from 'app/entities/sys-product';
 import { ISysReceiverAddress } from 'app/shared/model/sys-receiver-address.model';
 import { SysReceiverAddressService } from 'app/entities/sys-receiver-address';
 
@@ -25,8 +23,6 @@ export class SysOrderUpdateComponent implements OnInit {
 
     sysusers: ISysUser[];
 
-    sysproducts: ISysProduct[];
-
     sysreceiveraddresses: ISysReceiverAddress[];
     createTime: string;
     updateTime: string;
@@ -36,7 +32,6 @@ export class SysOrderUpdateComponent implements OnInit {
         protected jhiAlertService: JhiAlertService,
         protected sysOrderService: SysOrderService,
         protected sysUserService: SysUserService,
-        protected sysProductService: SysProductService,
         protected sysReceiverAddressService: SysReceiverAddressService,
         protected activatedRoute: ActivatedRoute
     ) {}
@@ -51,12 +46,6 @@ export class SysOrderUpdateComponent implements OnInit {
         this.sysUserService.query().subscribe(
             (res: HttpResponse<ISysUser[]>) => {
                 this.sysusers = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
-        this.sysProductService.query().subscribe(
-            (res: HttpResponse<ISysProduct[]>) => {
-                this.sysproducts = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
@@ -113,10 +102,6 @@ export class SysOrderUpdateComponent implements OnInit {
     }
 
     trackSysUserById(index: number, item: ISysUser) {
-        return item.id;
-    }
-
-    trackSysProductById(index: number, item: ISysProduct) {
         return item.id;
     }
 

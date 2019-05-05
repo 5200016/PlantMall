@@ -1,11 +1,14 @@
 package com.ybb.mall.repository;
 
 import com.ybb.mall.domain.SysProduct;
+import com.ybb.mall.service.dto.product.ProductBriefDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @Description : 商品
@@ -30,4 +33,16 @@ public interface ProductRepository extends JpaRepository<SysProduct, Long> {
             " where sp.name like concat('%', ?1, '%')" +
             " order by sp.createTime desc")
     Page<SysProduct> findProductList(String name, Pageable pageable);
+
+    /**
+     * 查询商品列表（简略信息：id，name，inventory）
+     */
+    @Query("select new com.ybb.mall.service.dto.product.ProductBriefDTO(sp.id, sp.name, sp.inventory)" +
+        " from SysProduct sp")
+    List<ProductBriefDTO> findProductBrief();
+
+    /**
+     * 根据id查询商品
+     */
+    SysProduct findSysProductById(Long id);
 }

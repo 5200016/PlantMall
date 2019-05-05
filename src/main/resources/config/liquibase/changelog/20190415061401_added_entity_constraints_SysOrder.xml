@@ -14,12 +14,6 @@
                                  referencedColumnNames="id"
                                  referencedTableName="sys_user"/>
 
-        <addForeignKeyConstraint baseColumnNames="product_id"
-                                 baseTableName="sys_order"
-                                 constraintName="fk_sys_order_product_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="sys_product"/>
-
         <addForeignKeyConstraint baseColumnNames="receiver_address_id"
                                  baseTableName="sys_order"
                                  constraintName="fk_sys_order_receiver_address_id"

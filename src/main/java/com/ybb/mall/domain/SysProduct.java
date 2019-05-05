@@ -90,8 +90,6 @@ public class SysProduct implements Serializable {
     private Set<SysClassify> classifies = new HashSet<>();
 
     @OneToMany(mappedBy = "product")
-    private Set<SysOrder> orders = new HashSet<>();
-    @OneToMany(mappedBy = "product")
     private Set<SysProductImage> images = new HashSet<>();
     @OneToMany(mappedBy = "product")
     private Set<SysShoppingCar> shoppingCars = new HashSet<>();
@@ -248,31 +246,6 @@ public class SysProduct implements Serializable {
 
     public void setClassifies(Set<SysClassify> sysClassifies) {
         this.classifies = sysClassifies;
-    }
-
-    public Set<SysOrder> getOrders() {
-        return orders;
-    }
-
-    public SysProduct orders(Set<SysOrder> sysOrders) {
-        this.orders = sysOrders;
-        return this;
-    }
-
-    public SysProduct addOrder(SysOrder sysOrder) {
-        this.orders.add(sysOrder);
-        sysOrder.setProduct(this);
-        return this;
-    }
-
-    public SysProduct removeOrder(SysOrder sysOrder) {
-        this.orders.remove(sysOrder);
-        sysOrder.setProduct(null);
-        return this;
-    }
-
-    public void setOrders(Set<SysOrder> sysOrders) {
-        this.orders = sysOrders;
     }
 
     public Set<SysProductImage> getImages() {

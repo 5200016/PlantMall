@@ -77,13 +77,6 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysOrder.product" for="field_product">Product</label>
-                    <select class="form-control" id="field_product" name="product" [(ngModel)]="sysOrder.product" >
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="sysProductOption.id === sysOrder.product?.id ? sysOrder.product : sysProductOption" *ngFor="let sysProductOption of sysproducts; trackBy: trackSysProductById">{{sysProductOption.id}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="plantMallApp.sysOrder.receiverAddress" for="field_receiverAddress">Receiver Address</label>
                     <select class="form-control" id="field_receiverAddress" name="receiverAddress" [(ngModel)]="sysOrder.receiverAddress" >
                         <option [ngValue]="null"></option>

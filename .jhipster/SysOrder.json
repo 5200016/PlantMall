@@ -65,15 +65,15 @@
         },
         {
             "relationshipType": "many-to-one",
-            "relationshipName": "product",
-            "otherEntityName": "sysProduct",
-            "otherEntityField": "id"
-        },
-        {
-            "relationshipType": "many-to-one",
             "relationshipName": "receiverAddress",
             "otherEntityName": "sysReceiverAddress",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "orderProduct",
+            "otherEntityName": "sysOrderProduct",
+            "otherEntityRelationshipName": "order"
         }
     ],
     "changelogDate": "20190415061401",

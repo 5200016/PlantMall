@@ -1,9 +1,11 @@
 package com.ybb.mall.web.rest.controller;
 
 import com.codahale.metrics.annotation.Timed;
+import com.ybb.mall.domain.SysOrderProduct;
 import com.ybb.mall.service.OrderService;
 import com.ybb.mall.web.rest.util.ResultObj;
 import com.ybb.mall.web.rest.vm.order.OrderVM;
+import com.ybb.mall.web.rest.vm.order.ReissueProductVM;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -30,12 +32,12 @@ public class OrderController {
     }
 
     /**
-     * 分页订单列表
+     * 分页查询订单列表
      *
      * @return
      * @throws URISyntaxException
      */
-    @ApiOperation("分页订单列表")
+    @ApiOperation("分页查询订单列表")
     @GetMapping("/order")
     @Timed
     public ResultObj selectOrderList(@ApiParam(name = "tradeNo", value = "订单号", required = true) @RequestParam String tradeNo,
@@ -58,5 +60,44 @@ public class OrderController {
     @Timed
     public ResultObj shipmentsBatch(@RequestBody List<OrderVM> orderList) throws URISyntaxException {
         return orderService.shipmentsBatch(orderList);
+    }
+
+    /**
+     * 根据订单id查询订单商品
+     *
+     * @return
+     * @throws URISyntaxException
+     */
+    @ApiOperation("根据订单id查询订单商品")
+    @GetMapping("/order/products")
+    @Timed
+    public ResultObj selectOrderProductByOrderId(@ApiParam(name = "orderId", value = "订单id", required = true) @RequestParam Long orderId) throws URISyntaxException {
+        return ResultObj.back(200, orderService.findOrderProductByOrderId(orderId));
+    }
+
+    /**
+     * 补发订单商品
+     *
+     * @return
+     * @throws URISyntaxException
+     */
+    @ApiOperation("补发订单商品")
+    @PostMapping("/order/reissue")
+    @Timed
+    public ResultObj reissueProducts(@RequestBody ReissueProductVM reissueProductVM) throws URISyntaxException {
+        return orderService.insertOrderProduct(reissueProductVM);
+    }
+
+    /**
+     * 批量删除订单商品
+     *
+     * @return
+     * @throws URISyntaxException
+     */
+    @ApiOperation("批量删除订单商品")
+    @PutMapping("/order/products")
+    @Timed
+    public ResultObj deleteOrderProductBatch(@RequestBody List<SysOrderProduct> orderProducts) throws URISyntaxException {
+        return orderService.deleteOrderProductBatch(orderProducts);
     }
 }

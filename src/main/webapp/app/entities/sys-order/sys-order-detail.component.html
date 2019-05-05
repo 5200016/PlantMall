@@ -55,12 +55,6 @@
                         <a [routerLink]="['/sys-user', sysOrder.user?.id, 'view']">{{sysOrder.user?.id}}</a>
                     </div>
                 </dd>
-                <dt><span jhiTranslate="plantMallApp.sysOrder.product">Product</span></dt>
-                <dd>
-                    <div *ngIf="sysOrder.product">
-                        <a [routerLink]="['/sys-product', sysOrder.product?.id, 'view']">{{sysOrder.product?.id}}</a>
-                    </div>
-                </dd>
                 <dt><span jhiTranslate="plantMallApp.sysOrder.receiverAddress">Receiver Address</span></dt>
                 <dd>
                     <div *ngIf="sysOrder.receiverAddress">

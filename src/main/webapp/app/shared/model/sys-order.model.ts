@@ -1,7 +1,7 @@
 import { Moment } from 'moment';
 import { ISysUser } from 'app/shared/model//sys-user.model';
-import { ISysProduct } from 'app/shared/model//sys-product.model';
 import { ISysReceiverAddress } from 'app/shared/model//sys-receiver-address.model';
+import { ISysOrderProduct } from 'app/shared/model//sys-order-product.model';
 
 export interface ISysOrder {
     id?: number;
@@ -17,8 +17,8 @@ export interface ISysOrder {
     createTime?: Moment;
     updateTime?: Moment;
     user?: ISysUser;
-    product?: ISysProduct;
     receiverAddress?: ISysReceiverAddress;
+    orderProducts?: ISysOrderProduct[];
 }
 
 export class SysOrder implements ISysOrder {
@@ -36,7 +36,7 @@ export class SysOrder implements ISysOrder {
         public createTime?: Moment,
         public updateTime?: Moment,
         public user?: ISysUser,
-        public product?: ISysProduct,
-        public receiverAddress?: ISysReceiverAddress
+        public receiverAddress?: ISysReceiverAddress,
+        public orderProducts?: ISysOrderProduct[]
     ) {}
 }

@@ -104,6 +104,20 @@ public class ProductController {
     }
 
     /**
+     * 查询商品列表（简略信息）
+     *
+     * @return
+     * @throws URISyntaxException
+     */
+    @ApiOperation("查询商品列表（简略信息）")
+    @GetMapping("/product/brief")
+    @Timed
+    public ResultObj selectProductBrief() throws URISyntaxException {
+        return ResultObj.back(200, productService.findProductBrief());
+    }
+
+
+    /**
      * 新增商品
      *
      * @return

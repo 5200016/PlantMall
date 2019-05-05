@@ -57,12 +57,6 @@
         },
         {
             "relationshipType": "one-to-many",
-            "relationshipName": "order",
-            "otherEntityName": "sysOrder",
-            "otherEntityRelationshipName": "product"
-        },
-        {
-            "relationshipType": "one-to-many",
             "relationshipName": "image",
             "otherEntityName": "sysProductImage",
             "otherEntityRelationshipName": "product"

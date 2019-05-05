@@ -1,0 +1,47 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="sysOrderProduct">
+            <h2><span jhiTranslate="plantMallApp.sysOrderProduct.detail.title">Sys Order Product</span> {{sysOrderProduct.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="plantMallApp.sysOrderProduct.productStatus" [ngbTooltip]="'plantMallApp.sysOrderProduct.help.productStatus' | translate">Product Status</span></dt>
+                <dd>
+                    <span>{{sysOrderProduct.productStatus}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysOrderProduct.createTime" [ngbTooltip]="'plantMallApp.sysOrderProduct.help.createTime' | translate">Create Time</span></dt>
+                <dd>
+                    <span>{{sysOrderProduct.createTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysOrderProduct.updateTime" [ngbTooltip]="'plantMallApp.sysOrderProduct.help.updateTime' | translate">Update Time</span></dt>
+                <dd>
+                    <span>{{sysOrderProduct.updateTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysOrderProduct.order">Order</span></dt>
+                <dd>
+                    <div *ngIf="sysOrderProduct.order">
+                        <a [routerLink]="['/sys-order', sysOrderProduct.order?.id, 'view']">{{sysOrderProduct.order?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysOrderProduct.product">Product</span></dt>
+                <dd>
+                    <div *ngIf="sysOrderProduct.product">
+                        <a [routerLink]="['/sys-product', sysOrderProduct.product?.id, 'view']">{{sysOrderProduct.product?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/sys-order-product', sysOrderProduct.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

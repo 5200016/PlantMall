@@ -1,10 +1,12 @@
 package com.ybb.mall.service.dto.product;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.ybb.mall.domain.SysClassify;
 import com.ybb.mall.domain.SysProductImage;
 import com.ybb.mall.service.dto.product.classify.ClassifyWebDTO;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -19,7 +21,7 @@ import java.util.Set;
  * @Version
  */
 
-public class ProductDTO {
+public class ProductDTO implements Serializable {
 
     private Long id;
 

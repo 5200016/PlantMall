@@ -1,10 +1,13 @@
 package com.ybb.mall.service;
 
+import com.ybb.mall.service.dto.product.ProductBriefDTO;
 import com.ybb.mall.service.dto.product.ProductDTO;
 import com.ybb.mall.web.rest.util.ResultObj;
 import com.ybb.mall.web.rest.vm.product.InsertProductVM;
 import com.ybb.mall.web.rest.vm.product.UpdateProductVM;
 import org.springframework.data.domain.Page;
+
+import java.util.List;
 
 /**
  * @Description : 商品
@@ -20,6 +23,12 @@ public interface ProductService {
      * 条件：名称
      */
     Page<ProductDTO> findProductList(String name, Integer pageNum, Integer pageSize);
+
+    /**
+     * 查询商品列表（简略信息）
+     */
+    List<ProductBriefDTO> findProductBrief();
+
 
     /**
      * 新增商品

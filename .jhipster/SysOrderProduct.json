@@ -1,0 +1,44 @@
+{
+    "name": "SysOrderProduct",
+    "fields": [
+        {
+            "fieldName": "productStatus",
+            "javadoc": "商品状态（0：无状态 1：已清除 2：补加）",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "createTime",
+            "javadoc": "创建时间",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "updateTime",
+            "javadoc": "更新时间",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "order",
+            "otherEntityName": "sysOrder",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "product",
+            "otherEntityName": "sysProduct",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190429091030",
+    "javadoc": "订单商品关联表",
+    "entityTableName": "sys_order_product",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

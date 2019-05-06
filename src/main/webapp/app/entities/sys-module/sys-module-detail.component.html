@@ -1,0 +1,77 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="sysModule">
+            <h2><span jhiTranslate="plantMallApp.sysModule.detail.title">Sys Module</span> {{sysModule.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="plantMallApp.sysModule.name" [ngbTooltip]="'plantMallApp.sysModule.help.name' | translate">Name</span></dt>
+                <dd>
+                    <span>{{sysModule.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysModule.icon" [ngbTooltip]="'plantMallApp.sysModule.help.icon' | translate">Icon</span></dt>
+                <dd>
+                    <span>{{sysModule.icon}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysModule.image" [ngbTooltip]="'plantMallApp.sysModule.help.image' | translate">Image</span></dt>
+                <dd>
+                    <span>{{sysModule.image}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysModule.imageDisable" [ngbTooltip]="'plantMallApp.sysModule.help.imageDisable' | translate">Image Disable</span></dt>
+                <dd>
+                    <span>{{sysModule.imageDisable}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysModule.type" [ngbTooltip]="'plantMallApp.sysModule.help.type' | translate">Type</span></dt>
+                <dd>
+                    <span>{{sysModule.type}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysModule.styleType" [ngbTooltip]="'plantMallApp.sysModule.help.styleType' | translate">Style Type</span></dt>
+                <dd>
+                    <span>{{sysModule.styleType}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysModule.homeMenu" [ngbTooltip]="'plantMallApp.sysModule.help.homeMenu' | translate">Home Menu</span></dt>
+                <dd>
+                    <span>{{sysModule.homeMenu}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysModule.homeBottom" [ngbTooltip]="'plantMallApp.sysModule.help.homeBottom' | translate">Home Bottom</span></dt>
+                <dd>
+                    <span>{{sysModule.homeBottom}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysModule.path" [ngbTooltip]="'plantMallApp.sysModule.help.path' | translate">Path</span></dt>
+                <dd>
+                    <span>{{sysModule.path}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysModule.sort" [ngbTooltip]="'plantMallApp.sysModule.help.sort' | translate">Sort</span></dt>
+                <dd>
+                    <span>{{sysModule.sort}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysModule.createTime" [ngbTooltip]="'plantMallApp.sysModule.help.createTime' | translate">Create Time</span></dt>
+                <dd>
+                    <span>{{sysModule.createTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysModule.updateTime" [ngbTooltip]="'plantMallApp.sysModule.help.updateTime' | translate">Update Time</span></dt>
+                <dd>
+                    <span>{{sysModule.updateTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysModule.classify">Classify</span></dt>
+                <dd>
+                    <div *ngIf="sysModule.classify">
+                        <a [routerLink]="['/sys-classify', sysModule.classify?.id, 'view']">{{sysModule.classify?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/sys-module', sysModule.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

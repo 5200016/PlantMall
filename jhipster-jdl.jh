@@ -461,6 +461,71 @@ entity SysMaintenancePersonnel{
     updateTime ZonedDateTime
 }
 
+/**
+ * 模块表
+ */
+entity SysModule{
+    /**
+     * 模块名称
+     */
+    name String,
+
+    /**
+     * 模块图标
+     */
+    icon String,
+
+    /**
+     * 模块大图
+     */
+    image String,
+
+    /**
+     * 大图显示（0：不显示 1：显示）
+     */
+    imageDisable Integer,
+
+    /**
+     * 类型（0：商品分类 1：预约服务，2：植物志）
+     */
+    type Integer,
+
+    /**
+     * 风格类型（0：纵向排列 1：横向排列）
+     */
+    styleType Integer,
+
+    /**
+     * 首页菜单显示（0：不显示 1：显示）
+     */
+    homeMenu Integer,
+
+    /**
+     * 首页底部显示（0：不显示 1：显示）
+     */
+    homeBottom Integer,
+
+    /**
+     * 小程序跳转路径
+     */
+    path String,
+
+    /**
+     * 排序字段
+     */
+    sort Integer,
+
+    /**
+     * 创建时间
+     */
+    createTime ZonedDateTime,
+
+    /**
+     * 更新时间
+     */
+    updateTime ZonedDateTime
+}
+
 relationship ManyToOne {
     /**
      * 广告图片关联商品
@@ -476,6 +541,8 @@ relationship ManyToOne {
      * 预约关联收货地址
      */
     SysAppointment{receiverAddress} to SysReceiverAddress,
+
+    SysModule{classify} to SysClassify,
 	SysReceiverAddress{user} to SysUser{receiverAddress},
     SysOrder{user} to SysUser{order},
     SysOrderProduct{order} to SysOrder{orderProduct},

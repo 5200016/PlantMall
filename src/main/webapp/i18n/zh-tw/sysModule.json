@@ -1,0 +1,47 @@
+{
+    "plantMallApp": {
+        "sysModule": {
+            "home": {
+                "title": "Sys Modules",
+                "createLabel": "建立一筆新的 Sys Module",
+                "createOrEditLabel": "建立或編輯 Sys Module"
+            },
+            "created": "新的 Sys Module 建立成功，識別碼為 {{ param }}",
+            "updated": "識別碼為 {{ param }} 的 Sys Module 更新成功",
+            "deleted": "識別碼為 {{ param }} 的 Sys Module 刪除成功",
+            "delete": {
+                "question": "您確定要刪除 Sys Module {{ id }} 嗎?"
+            },
+            "detail": {
+                "title": "Sys Module"
+            },
+            "name": "Name",
+            "icon": "Icon",
+            "image": "Image",
+            "imageDisable": "Image Disable",
+            "type": "Type",
+            "styleType": "Style Type",
+            "homeMenu": "Home Menu",
+            "homeBottom": "Home Bottom",
+            "path": "Path",
+            "sort": "Sort",
+            "createTime": "Create Time",
+            "updateTime": "Update Time",
+            "classify": "Classify",
+            "help": {
+                "name": "模块名称",
+                "icon": "模块图标",
+                "image": "模块大图",
+                "imageDisable": "大图显示（0：不显示 1：显示）",
+                "type": "类型（0：商品分类 1：预约服务，2：植物志）",
+                "styleType": "风格类型（0：纵向排列 1：横向排列）",
+                "homeMenu": "首页菜单显示（0：不显示 1：显示）",
+                "homeBottom": "首页底部显示（0：不显示 1：显示）",
+                "path": "小程序跳转路径",
+                "sort": "排序字段",
+                "createTime": "创建时间",
+                "updateTime": "更新时间"
+            }
+        }
+    }
+}

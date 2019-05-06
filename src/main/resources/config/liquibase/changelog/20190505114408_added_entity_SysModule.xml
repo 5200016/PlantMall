@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="now()" dbms="mysql"/>
+    <property name="autoIncrement" value="true"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added the entity SysModule.
+    -->
+    <changeSet id="20190505114408-1" author="jhipster">
+        <createTable tableName="sys_module" remarks="模块表">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)" remarks="模块名称">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="icon" type="varchar(255)" remarks="模块图标">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="image" type="varchar(255)" remarks="模块大图">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="image_disable" type="integer" remarks="大图显示（0：不显示 1：显示）">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="jhi_type" type="integer" remarks="类型（0：商品分类 1：预约服务，2：植物志）">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="style_type" type="integer" remarks="风格类型（0：纵向排列 1：横向排列）">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="home_menu" type="integer" remarks="首页菜单显示（0：不显示 1：显示）">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="home_bottom" type="integer" remarks="首页底部显示（0：不显示 1：显示）">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="path" type="varchar(255)" remarks="小程序跳转路径">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="jhi_sort" type="integer" remarks="排序字段">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="create_time" type="datetime" remarks="创建时间">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="update_time" type="datetime" remarks="更新时间">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="classify_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        <dropDefaultValue tableName="sys_module" columnName="create_time" columnDataType="datetime"/>
+        <dropDefaultValue tableName="sys_module" columnName="update_time" columnDataType="datetime"/>
+        
+    </changeSet>
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
+</databaseChangeLog>

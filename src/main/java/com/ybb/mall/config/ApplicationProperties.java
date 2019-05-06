@@ -18,6 +18,16 @@ public class ApplicationProperties {
 
     private String homeImage;
 
+    private String moduleImage;
+
+    public String getModuleImage() {
+        return moduleImage;
+    }
+
+    public void setModuleImage(String moduleImage) {
+        this.moduleImage = moduleImage;
+    }
+
     public String getHomeImage() {
         return homeImage;
     }

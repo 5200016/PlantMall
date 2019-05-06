@@ -63,4 +63,19 @@ public class UploadController {
         return UploadUtils.start(file, applicationProperties.getFilePath(), applicationProperties.getHomeImage());
 
     }
+
+    /**
+     * 上传首页模块图片
+     * @param request
+     * @param file
+     * @return
+     * @throws URISyntaxException
+     */
+    @ApiOperation("上传首页模块图片")
+    @PostMapping("/file/module_image")
+    @Timed
+    public ResultObj uploadModuleImage(@ApiParam(name="file",value="上传文件",required=true) HttpServletRequest request, @RequestParam MultipartFile file) throws URISyntaxException {
+        return UploadUtils.start(file, applicationProperties.getFilePath(), applicationProperties.getModuleImage());
+
+    }
 }

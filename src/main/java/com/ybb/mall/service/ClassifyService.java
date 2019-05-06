@@ -46,7 +46,12 @@ public interface ClassifyService {
     ClassifyGroupDTO findSysClassifyGroup();
 
     /**
-     * 查询商品分类及其关联商品
+     * 查询商品分类及其关联商品（级联）
      */
     List<ClassifyCascadeDTO> findClassifyAndProduct();
+
+    /**
+     * 查询商品分类（级联）
+     */
+    List<ClassifyCascadeDTO> findClassifyCascade();
 }

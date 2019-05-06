@@ -201,6 +201,19 @@ public class ProductController {
     }
 
     /**
+     * 查询商品分类（级联）
+     *
+     * @return
+     * @throws URISyntaxException
+     */
+    @ApiOperation("查询商品分类（级联）")
+    @GetMapping("/classify/cascade")
+    @Timed
+    public ResultObj selectClassifyCascade() throws URISyntaxException {
+        return ResultObj.back(200, classifyService.findClassifyCascade());
+    }
+
+    /**
      * 新增商品分类
      *
      * @return

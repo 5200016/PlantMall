@@ -39,6 +39,13 @@ public interface ClassifyRepository extends JpaRepository<SysClassify, Long> {
         " order by sc.sort asc")
     List<ClassifyWebDTO> findSysClassifyByType(Integer type);
 
+    /**
+     * 查询商品分类列表（根据排序字段正序）
+     */
+    @Query("select new com.ybb.mall.service.dto.product.classify.ClassifyWebDTO(sc.id, sc.name) from SysClassify sc" +
+        " order by sc.sort asc")
+    List<ClassifyWebDTO> findSysClassify();
+
     @Query("select sc from SysClassify sc order by sc.sort asc")
     List<SysClassify> findSysClassifyAndProduct();
 }

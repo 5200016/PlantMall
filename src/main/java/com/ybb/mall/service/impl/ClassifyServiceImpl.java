@@ -8,6 +8,7 @@ import com.ybb.mall.service.dto.product.cascade.ClassifyCascadeDTO;
 import com.ybb.mall.service.dto.product.cascade.ProductCascadeDTO;
 import com.ybb.mall.service.dto.product.classify.ClassifyDTO;
 import com.ybb.mall.service.dto.product.classify.ClassifyGroupDTO;
+import com.ybb.mall.service.dto.product.classify.ClassifyWebDTO;
 import com.ybb.mall.service.mapper.SysClassifyMapper;
 import com.ybb.mall.web.rest.util.DateUtil;
 import com.ybb.mall.web.rest.util.ResultObj;
@@ -117,6 +118,20 @@ public class ClassifyServiceImpl implements ClassifyService {
             }
             cascadeDTO.setChildren(resultCascade);
             result.add(cascadeDTO);
+        }
+        return result;
+    }
+
+    @Override
+    public List<ClassifyCascadeDTO> findClassifyCascade() {
+        List<ClassifyWebDTO> classifyWebDTO = classifyRepository.findSysClassify();
+        List<ClassifyCascadeDTO> result = new ArrayList<>();
+
+        for(ClassifyWebDTO data : classifyWebDTO){
+            ClassifyCascadeDTO classifyCascade = new ClassifyCascadeDTO();
+            classifyCascade.setValue(data.getId());
+            classifyCascade.setLabel(data.getName());
+            result.add(classifyCascade);
         }
         return result;
     }

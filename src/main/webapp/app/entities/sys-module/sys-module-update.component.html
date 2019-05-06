@@ -1,0 +1,95 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-sys-module-heading" jhiTranslate="plantMallApp.sysModule.home.createOrEditLabel">Create or edit a Sys Module</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!sysModule.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="sysModule.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysModule.name" for="field_name" [ngbTooltip]="'plantMallApp.sysModule.help.name' | translate">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                        [(ngModel)]="sysModule.name" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysModule.icon" for="field_icon" [ngbTooltip]="'plantMallApp.sysModule.help.icon' | translate">Icon</label>
+                    <input type="text" class="form-control" name="icon" id="field_icon"
+                        [(ngModel)]="sysModule.icon" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysModule.image" for="field_image" [ngbTooltip]="'plantMallApp.sysModule.help.image' | translate">Image</label>
+                    <input type="text" class="form-control" name="image" id="field_image"
+                        [(ngModel)]="sysModule.image" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysModule.imageDisable" for="field_imageDisable" [ngbTooltip]="'plantMallApp.sysModule.help.imageDisable' | translate">Image Disable</label>
+                    <input type="number" class="form-control" name="imageDisable" id="field_imageDisable"
+                        [(ngModel)]="sysModule.imageDisable" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysModule.type" for="field_type" [ngbTooltip]="'plantMallApp.sysModule.help.type' | translate">Type</label>
+                    <input type="number" class="form-control" name="type" id="field_type"
+                        [(ngModel)]="sysModule.type" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysModule.styleType" for="field_styleType" [ngbTooltip]="'plantMallApp.sysModule.help.styleType' | translate">Style Type</label>
+                    <input type="number" class="form-control" name="styleType" id="field_styleType"
+                        [(ngModel)]="sysModule.styleType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysModule.homeMenu" for="field_homeMenu" [ngbTooltip]="'plantMallApp.sysModule.help.homeMenu' | translate">Home Menu</label>
+                    <input type="number" class="form-control" name="homeMenu" id="field_homeMenu"
+                        [(ngModel)]="sysModule.homeMenu" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysModule.homeBottom" for="field_homeBottom" [ngbTooltip]="'plantMallApp.sysModule.help.homeBottom' | translate">Home Bottom</label>
+                    <input type="number" class="form-control" name="homeBottom" id="field_homeBottom"
+                        [(ngModel)]="sysModule.homeBottom" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysModule.path" for="field_path" [ngbTooltip]="'plantMallApp.sysModule.help.path' | translate">Path</label>
+                    <input type="text" class="form-control" name="path" id="field_path"
+                        [(ngModel)]="sysModule.path" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysModule.sort" for="field_sort" [ngbTooltip]="'plantMallApp.sysModule.help.sort' | translate">Sort</label>
+                    <input type="number" class="form-control" name="sort" id="field_sort"
+                        [(ngModel)]="sysModule.sort" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysModule.createTime" for="field_createTime" [ngbTooltip]="'plantMallApp.sysModule.help.createTime' | translate">Create Time</label>
+                    <div class="d-flex">
+                        <input id="field_createTime" type="datetime-local" class="form-control" name="createTime" [(ngModel)]="createTime"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysModule.updateTime" for="field_updateTime" [ngbTooltip]="'plantMallApp.sysModule.help.updateTime' | translate">Update Time</label>
+                    <div class="d-flex">
+                        <input id="field_updateTime" type="datetime-local" class="form-control" name="updateTime" [(ngModel)]="updateTime"
+                        />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysModule.classify" for="field_classify">Classify</label>
+                    <select class="form-control" id="field_classify" name="classify" [(ngModel)]="sysModule.classify" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="sysClassifyOption.id === sysModule.classify?.id ? sysModule.classify : sysClassifyOption" *ngFor="let sysClassifyOption of sysclassifies; trackBy: trackSysClassifyById">{{sysClassifyOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

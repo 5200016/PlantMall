@@ -20,6 +20,7 @@ import { PlantMallSysProductImageModule } from './sys-product-image/sys-product-
 import { PlantMallSysAppointmentModule } from './sys-appointment/sys-appointment.module';
 import { PlantMallSysOrderProductModule } from './sys-order-product/sys-order-product.module';
 import { PlantMallSysMaintenancePersonnelModule } from './sys-maintenance-personnel/sys-maintenance-personnel.module';
+import { PlantMallSysModuleModule } from './sys-module/sys-module.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -45,6 +46,7 @@ import { PlantMallSysMaintenancePersonnelModule } from './sys-maintenance-person
         PlantMallSysAppointmentModule,
         PlantMallSysOrderProductModule,
         PlantMallSysMaintenancePersonnelModule,
+        PlantMallSysModuleModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

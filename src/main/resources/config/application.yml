@@ -115,3 +115,4 @@ application:
     filePrefix: filedir                # 访问文件时 /file/文件路径
     plantImage: plantImage             # 植物图片
     homeImage: homeImage               # 首页广告图片
+    moduleImage: moduleImage           # 首页模块图片

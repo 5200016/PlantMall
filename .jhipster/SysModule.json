@@ -1,0 +1,83 @@
+{
+    "name": "SysModule",
+    "fields": [
+        {
+            "fieldName": "name",
+            "javadoc": "模块名称",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "icon",
+            "javadoc": "模块图标",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "image",
+            "javadoc": "模块大图",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "imageDisable",
+            "javadoc": "大图显示（0：不显示 1：显示）",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "type",
+            "javadoc": "类型（0：商品分类 1：预约服务，2：植物志）",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "styleType",
+            "javadoc": "风格类型（0：纵向排列 1：横向排列）",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "homeMenu",
+            "javadoc": "首页菜单显示（0：不显示 1：显示）",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "homeBottom",
+            "javadoc": "首页底部显示（0：不显示 1：显示）",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "path",
+            "javadoc": "小程序跳转路径",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "sort",
+            "javadoc": "排序字段",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "createTime",
+            "javadoc": "创建时间",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "updateTime",
+            "javadoc": "更新时间",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "classify",
+            "otherEntityName": "sysClassify",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190505114408",
+    "javadoc": "模块表",
+    "entityTableName": "sys_module",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

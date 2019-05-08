@@ -19,7 +19,6 @@
             <th><span jhiTranslate="plantMallApp.sysCouponUser.createTime">Create Time</span></th>
             <th><span jhiTranslate="plantMallApp.sysCouponUser.updateTime">Update Time</span></th>
             <th><span jhiTranslate="plantMallApp.sysCouponUser.user">User</span></th>
-            <th><span jhiTranslate="plantMallApp.sysCouponUser.couponProduct">Coupon Product</span></th>
             <th><span jhiTranslate="plantMallApp.sysCouponUser.coupon">Coupon</span></th>
             <th></th>
             </tr>
@@ -33,11 +32,6 @@
                 <td>
                     <div *ngIf="sysCouponUser.user">
                         <a [routerLink]="['../sys-user', sysCouponUser.user?.id, 'view' ]" >{{sysCouponUser.user?.id}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="sysCouponUser.couponProduct">
-                        <a [routerLink]="['../sys-coupon-product', sysCouponUser.couponProduct?.id, 'view' ]" >{{sysCouponUser.couponProduct?.id}}</a>
                     </div>
                 </td>
                 <td>

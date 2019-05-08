@@ -37,13 +37,6 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysCouponUser.couponProduct" for="field_couponProduct">Coupon Product</label>
-                    <select class="form-control" id="field_couponProduct" name="couponProduct" [(ngModel)]="sysCouponUser.couponProduct" >
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="sysCouponProductOption.id === sysCouponUser.couponProduct?.id ? sysCouponUser.couponProduct : sysCouponProductOption" *ngFor="let sysCouponProductOption of syscouponproducts; trackBy: trackSysCouponProductById">{{sysCouponProductOption.id}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="plantMallApp.sysCouponUser.coupon" for="field_coupon">Coupon</label>
                     <select class="form-control" id="field_coupon" name="coupon" [(ngModel)]="sysCouponUser.coupon" >
                         <option [ngValue]="null"></option>

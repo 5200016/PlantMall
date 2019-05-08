@@ -1,6 +1,7 @@
 package com.ybb.mall.service;
 
 import com.ybb.mall.domain.SysCoupon;
+import com.ybb.mall.service.dto.coupon.BriefListDTO;
 import com.ybb.mall.web.rest.util.ResultObj;
 import com.ybb.mall.web.rest.vm.coupon.InsertCouponVM;
 import com.ybb.mall.web.rest.vm.coupon.UpdateCouponVM;
@@ -41,8 +42,15 @@ public interface CouponService {
 
     /**
      * 删除优惠券
-     * @param couponVM
+     * @param id
      * @return
      */
-    ResultObj deleteCoupon(UpdateCouponVM couponVM);
+    ResultObj deleteCoupon(Long id);
+
+    /**
+     * 查询某优惠券下商品及分类简略信息
+     * @param id
+     * @return
+     */
+    BriefListDTO findCouponProductAndClassify(Long id);
 }

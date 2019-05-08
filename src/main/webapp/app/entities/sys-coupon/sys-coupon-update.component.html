@@ -30,6 +30,11 @@
                         [(ngModel)]="sysCoupon.quantity" />
                 </div>
                 <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysCoupon.getNumber" for="field_getNumber" [ngbTooltip]="'plantMallApp.sysCoupon.help.getNumber' | translate">Get Number</label>
+                    <input type="number" class="form-control" name="getNumber" id="field_getNumber"
+                        [(ngModel)]="sysCoupon.getNumber" />
+                </div>
+                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="plantMallApp.sysCoupon.limit" for="field_limit" [ngbTooltip]="'plantMallApp.sysCoupon.help.limit' | translate">Limit</label>
                     <input type="number" class="form-control" name="limit" id="field_limit"
                         [(ngModel)]="sysCoupon.limit" />

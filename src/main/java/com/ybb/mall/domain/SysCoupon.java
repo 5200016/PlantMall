@@ -56,6 +56,13 @@ public class SysCoupon implements Serializable {
     private Integer quantity;
 
     /**
+     * 已领张数
+     */
+    @ApiModelProperty(value = "已领张数")
+    @Column(name = "get_number")
+    private Integer getNumber;
+
+    /**
      * 限领数量
      */
     @ApiModelProperty(value = "限领数量")
@@ -112,10 +119,12 @@ public class SysCoupon implements Serializable {
     @Column(name = "update_time")
     private ZonedDateTime updateTime;
 
-    @OneToMany(mappedBy = "coupon")
+    @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "coupon")
     private Set<SysCouponUser> couponUsers = new HashSet<>();
-    @OneToMany(mappedBy = "coupon")
+    @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "coupon")
     private Set<SysCouponProduct> couponProducts = new HashSet<>();
+    @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "coupon")
+    private Set<SysCouponClassify> couponClassifies = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -175,6 +184,19 @@ public class SysCoupon implements Serializable {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public Integer getGetNumber() {
+        return getNumber;
+    }
+
+    public SysCoupon getNumber(Integer getNumber) {
+        this.getNumber = getNumber;
+        return this;
+    }
+
+    public void setGetNumber(Integer getNumber) {
+        this.getNumber = getNumber;
     }
 
     public Integer getLimit() {
@@ -330,6 +352,31 @@ public class SysCoupon implements Serializable {
     public void setCouponProducts(Set<SysCouponProduct> sysCouponProducts) {
         this.couponProducts = sysCouponProducts;
     }
+
+    public Set<SysCouponClassify> getCouponClassifies() {
+        return couponClassifies;
+    }
+
+    public SysCoupon couponClassifies(Set<SysCouponClassify> sysCouponClassifies) {
+        this.couponClassifies = sysCouponClassifies;
+        return this;
+    }
+
+    public SysCoupon addCouponClassify(SysCouponClassify sysCouponClassify) {
+        this.couponClassifies.add(sysCouponClassify);
+        sysCouponClassify.setCoupon(this);
+        return this;
+    }
+
+    public SysCoupon removeCouponClassify(SysCouponClassify sysCouponClassify) {
+        this.couponClassifies.remove(sysCouponClassify);
+        sysCouponClassify.setCoupon(null);
+        return this;
+    }
+
+    public void setCouponClassifies(Set<SysCouponClassify> sysCouponClassifies) {
+        this.couponClassifies = sysCouponClassifies;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -360,6 +407,7 @@ public class SysCoupon implements Serializable {
             ", name='" + getName() + "'" +
             ", value=" + getValue() +
             ", quantity=" + getQuantity() +
+            ", getNumber=" + getGetNumber() +
             ", limit=" + getLimit() +
             ", startTime='" + getStartTime() + "'" +
             ", endTime='" + getEndTime() + "'" +

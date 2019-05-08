@@ -25,10 +25,10 @@
             "otherEntityField": "id"
         },
         {
-            "relationshipType": "one-to-many",
-            "relationshipName": "couponUser",
-            "otherEntityName": "sysCouponUser",
-            "otherEntityRelationshipName": "couponProduct"
+            "relationshipType": "many-to-one",
+            "relationshipName": "product",
+            "otherEntityName": "sysProduct",
+            "otherEntityField": "id"
         }
     ],
     "changelogDate": "20190506110931",

@@ -36,6 +36,13 @@
                         <option [ngValue]="sysCouponOption.id === sysCouponProduct.coupon?.id ? sysCouponProduct.coupon : sysCouponOption" *ngFor="let sysCouponOption of syscoupons; trackBy: trackSysCouponById">{{sysCouponOption.id}}</option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysCouponProduct.product" for="field_product">Product</label>
+                    <select class="form-control" id="field_product" name="product" [(ngModel)]="sysCouponProduct.product" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="sysProductOption.id === sysCouponProduct.product?.id ? sysCouponProduct.product : sysProductOption" *ngFor="let sysProductOption of sysproducts; trackBy: trackSysProductById">{{sysProductOption.id}}</option>
+                    </select>
+                </div>
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

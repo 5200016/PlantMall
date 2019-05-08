@@ -552,6 +552,11 @@ entity SysCoupon{
     quantity Integer,
 
     /**
+     * 已领张数
+     */
+    getNumber Integer,
+
+    /**
      * 限领数量
      */
     limit Integer,
@@ -671,10 +676,11 @@ relationship ManyToOne {
 	SysReceiverAddress{user} to SysUser{receiverAddress},
 
 	SysCouponUser{user} to SysUser{couponUser},
-	SysCouponUser{couponProduct} to SysCouponProduct{couponUser},
 	SysCouponUser{coupon} to SysCoupon{couponUser},
 	SysCouponProduct{coupon} to SysCoupon{couponProduct},
+	SysCouponProduct{product} to SysProduct,
 	SysCouponClassify{coupon} to SysCoupon{couponClassify},
+	SysCouponClassify{classify} to SysClassify,
 
     SysOrder{user} to SysUser{order},
     SysOrderProduct{order} to SysOrder{orderProduct},

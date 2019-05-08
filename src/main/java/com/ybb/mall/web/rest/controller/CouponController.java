@@ -47,16 +47,29 @@ public class CouponController {
     }
 
     /**
+     * 查询某优惠券下商品及分类简略信息
+     *
+     * @return
+     * @throws URISyntaxException
+     */
+    @ApiOperation("查询某优惠券下商品及分类简略信息")
+    @GetMapping("/coupon/product_classify")
+    @Timed
+    public ResultObj selectCouponClassifyAndProduct(@ApiParam(name = "id", value = "优惠券id", required = true) @RequestParam Long id) throws URISyntaxException {
+        return ResultObj.back(200, couponService.findCouponProductAndClassify(id));
+    }
+
+    /**
      * 新增优惠券
      *
      * @return
      * @throws URISyntaxException
      */
-    @ApiOperation("新增广告")
+    @ApiOperation("新增优惠券")
     @PostMapping("/coupon")
     @Timed
     public ResultObj insertCoupon(@RequestBody InsertCouponVM couponVM) throws URISyntaxException {
-        return null;
+        return couponService.insertCoupon(couponVM);
     }
 
     /**
@@ -69,19 +82,19 @@ public class CouponController {
     @PutMapping("/coupon")
     @Timed
     public ResultObj updateCoupon(@RequestBody UpdateCouponVM couponVM) throws URISyntaxException {
-        return null;
+        return couponService.updateCoupon(couponVM);
     }
 
     /**
-     * 删除广告
+     * 删除优惠券
      *
      * @return
      * @throws URISyntaxException
      */
-    @ApiOperation("删除广告")
+    @ApiOperation("删除优惠券")
     @DeleteMapping("/coupon/{id}")
     @Timed
     public ResultObj deleteCoupon(@ApiParam(name = "id", value = "主键id", required = true) @PathVariable Long id) throws URISyntaxException {
-        return null;
+        return couponService.deleteCoupon(id);
     }
 }

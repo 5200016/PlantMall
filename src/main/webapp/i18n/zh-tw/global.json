@@ -31,6 +31,7 @@
                 "sysCoupon": "Sys Coupon",
                 "sysCouponProduct": "Sys Coupon Product",
                 "sysCouponUser": "Sys Coupon User",
+                "sysCouponClassify": "Sys Coupon Classify",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

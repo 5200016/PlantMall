@@ -10,8 +10,6 @@ import { ISysCouponUser } from 'app/shared/model/sys-coupon-user.model';
 import { SysCouponUserService } from './sys-coupon-user.service';
 import { ISysUser } from 'app/shared/model/sys-user.model';
 import { SysUserService } from 'app/entities/sys-user';
-import { ISysCouponProduct } from 'app/shared/model/sys-coupon-product.model';
-import { SysCouponProductService } from 'app/entities/sys-coupon-product';
 import { ISysCoupon } from 'app/shared/model/sys-coupon.model';
 import { SysCouponService } from 'app/entities/sys-coupon';
 
@@ -25,8 +23,6 @@ export class SysCouponUserUpdateComponent implements OnInit {
 
     sysusers: ISysUser[];
 
-    syscouponproducts: ISysCouponProduct[];
-
     syscoupons: ISysCoupon[];
     createTime: string;
     updateTime: string;
@@ -35,7 +31,6 @@ export class SysCouponUserUpdateComponent implements OnInit {
         protected jhiAlertService: JhiAlertService,
         protected sysCouponUserService: SysCouponUserService,
         protected sysUserService: SysUserService,
-        protected sysCouponProductService: SysCouponProductService,
         protected sysCouponService: SysCouponService,
         protected activatedRoute: ActivatedRoute
     ) {}
@@ -50,12 +45,6 @@ export class SysCouponUserUpdateComponent implements OnInit {
         this.sysUserService.query().subscribe(
             (res: HttpResponse<ISysUser[]>) => {
                 this.sysusers = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
-        this.sysCouponProductService.query().subscribe(
-            (res: HttpResponse<ISysCouponProduct[]>) => {
-                this.syscouponproducts = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
@@ -100,10 +89,6 @@ export class SysCouponUserUpdateComponent implements OnInit {
     }
 
     trackSysUserById(index: number, item: ISysUser) {
-        return item.id;
-    }
-
-    trackSysCouponProductById(index: number, item: ISysCouponProduct) {
         return item.id;
     }
 

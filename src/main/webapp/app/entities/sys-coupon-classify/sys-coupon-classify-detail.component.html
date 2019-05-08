@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="sysCouponClassify">
+            <h2><span jhiTranslate="plantMallApp.sysCouponClassify.detail.title">Sys Coupon Classify</span> {{sysCouponClassify.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="plantMallApp.sysCouponClassify.createTime" [ngbTooltip]="'plantMallApp.sysCouponClassify.help.createTime' | translate">Create Time</span></dt>
+                <dd>
+                    <span>{{sysCouponClassify.createTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysCouponClassify.updateTime" [ngbTooltip]="'plantMallApp.sysCouponClassify.help.updateTime' | translate">Update Time</span></dt>
+                <dd>
+                    <span>{{sysCouponClassify.updateTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysCouponClassify.coupon">Coupon</span></dt>
+                <dd>
+                    <div *ngIf="sysCouponClassify.coupon">
+                        <a [routerLink]="['/sys-coupon', sysCouponClassify.coupon?.id, 'view']">{{sysCouponClassify.coupon?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysCouponClassify.classify">Classify</span></dt>
+                <dd>
+                    <div *ngIf="sysCouponClassify.classify">
+                        <a [routerLink]="['/sys-classify', sysCouponClassify.classify?.id, 'view']">{{sysCouponClassify.classify?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/sys-coupon-classify', sysCouponClassify.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -11,9 +11,9 @@ import java.time.ZonedDateTime;
 import java.util.Objects;
 
 /**
- * 优惠券使用表
+ * 优惠券用户关联表
  */
-@ApiModel(description = "优惠券使用表")
+@ApiModel(description = "优惠券用户关联表")
 @Entity
 @Table(name = "sys_coupon_user")
 public class SysCouponUser implements Serializable {
@@ -48,10 +48,6 @@ public class SysCouponUser implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties("couponUsers")
     private SysUser user;
-
-    @ManyToOne
-    @JsonIgnoreProperties("couponUsers")
-    private SysCouponProduct couponProduct;
 
     @ManyToOne
     @JsonIgnoreProperties("couponUsers")
@@ -116,19 +112,6 @@ public class SysCouponUser implements Serializable {
 
     public void setUser(SysUser sysUser) {
         this.user = sysUser;
-    }
-
-    public SysCouponProduct getCouponProduct() {
-        return couponProduct;
-    }
-
-    public SysCouponUser couponProduct(SysCouponProduct sysCouponProduct) {
-        this.couponProduct = sysCouponProduct;
-        return this;
-    }
-
-    public void setCouponProduct(SysCouponProduct sysCouponProduct) {
-        this.couponProduct = sysCouponProduct;
     }
 
     public SysCoupon getCoupon() {

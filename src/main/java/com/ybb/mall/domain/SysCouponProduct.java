@@ -1,6 +1,5 @@
 package com.ybb.mall.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -9,8 +8,6 @@ import javax.persistence.*;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -52,8 +49,10 @@ public class SysCouponProduct implements Serializable {
     @JsonIgnoreProperties("couponProducts")
     private SysCoupon coupon;
 
-    @OneToMany(mappedBy = "couponProduct")
-    private Set<SysCouponUser> couponUsers = new HashSet<>();
+    @ManyToOne
+    @JsonIgnoreProperties("")
+    private SysProduct product;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -115,29 +114,17 @@ public class SysCouponProduct implements Serializable {
         this.coupon = sysCoupon;
     }
 
-    public Set<SysCouponUser> getCouponUsers() {
-        return couponUsers;
+    public SysProduct getProduct() {
+        return product;
     }
 
-    public SysCouponProduct couponUsers(Set<SysCouponUser> sysCouponUsers) {
-        this.couponUsers = sysCouponUsers;
+    public SysCouponProduct product(SysProduct sysProduct) {
+        this.product = sysProduct;
         return this;
     }
 
-    public SysCouponProduct addCouponUser(SysCouponUser sysCouponUser) {
-        this.couponUsers.add(sysCouponUser);
-        sysCouponUser.setCouponProduct(this);
-        return this;
-    }
-
-    public SysCouponProduct removeCouponUser(SysCouponUser sysCouponUser) {
-        this.couponUsers.remove(sysCouponUser);
-        sysCouponUser.setCouponProduct(null);
-        return this;
-    }
-
-    public void setCouponUsers(Set<SysCouponUser> sysCouponUsers) {
-        this.couponUsers = sysCouponUsers;
+    public void setProduct(SysProduct sysProduct) {
+        this.product = sysProduct;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

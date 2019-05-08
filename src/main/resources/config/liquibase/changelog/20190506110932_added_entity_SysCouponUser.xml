@@ -18,7 +18,7 @@
         Added the entity SysCouponUser.
     -->
     <changeSet id="20190506110932-1" author="jhipster">
-        <createTable tableName="sys_coupon_user" remarks="优惠券使用表">
+        <createTable tableName="sys_coupon_user" remarks="优惠券用户关联表">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -35,10 +35,6 @@
             </column>
 
             <column name="user_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="coupon_product_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 

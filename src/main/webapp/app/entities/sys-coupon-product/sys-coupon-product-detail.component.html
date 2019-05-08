@@ -23,6 +23,12 @@
                         <a [routerLink]="['/sys-coupon', sysCouponProduct.coupon?.id, 'view']">{{sysCouponProduct.coupon?.id}}</a>
                     </div>
                 </dd>
+                <dt><span jhiTranslate="plantMallApp.sysCouponProduct.product">Product</span></dt>
+                <dd>
+                    <div *ngIf="sysCouponProduct.product">
+                        <a [routerLink]="['/sys-product', sysCouponProduct.product?.id, 'view']">{{sysCouponProduct.product?.id}}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"

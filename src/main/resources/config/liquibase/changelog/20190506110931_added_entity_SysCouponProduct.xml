@@ -38,6 +38,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="product_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         <dropDefaultValue tableName="sys_coupon_product" columnName="create_time" columnDataType="datetime"/>

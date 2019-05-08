@@ -14,5 +14,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="sys_coupon"/>
 
+        <addForeignKeyConstraint baseColumnNames="product_id"
+                                 baseTableName="sys_coupon_product"
+                                 constraintName="fk_sys_coupon_product_product_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sys_product"/>
+
     </changeSet>
 </databaseChangeLog>

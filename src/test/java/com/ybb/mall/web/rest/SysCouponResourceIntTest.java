@@ -60,6 +60,9 @@ public class SysCouponResourceIntTest {
     private static final Integer DEFAULT_QUANTITY = 1;
     private static final Integer UPDATED_QUANTITY = 2;
 
+    private static final Integer DEFAULT_GET_NUMBER = 1;
+    private static final Integer UPDATED_GET_NUMBER = 2;
+
     private static final Integer DEFAULT_LIMIT = 1;
     private static final Integer UPDATED_LIMIT = 2;
 
@@ -133,6 +136,7 @@ public class SysCouponResourceIntTest {
             .name(DEFAULT_NAME)
             .value(DEFAULT_VALUE)
             .quantity(DEFAULT_QUANTITY)
+            .getNumber(DEFAULT_GET_NUMBER)
             .limit(DEFAULT_LIMIT)
             .startTime(DEFAULT_START_TIME)
             .endTime(DEFAULT_END_TIME)
@@ -168,6 +172,7 @@ public class SysCouponResourceIntTest {
         assertThat(testSysCoupon.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testSysCoupon.getValue()).isEqualTo(DEFAULT_VALUE);
         assertThat(testSysCoupon.getQuantity()).isEqualTo(DEFAULT_QUANTITY);
+        assertThat(testSysCoupon.getGetNumber()).isEqualTo(DEFAULT_GET_NUMBER);
         assertThat(testSysCoupon.getLimit()).isEqualTo(DEFAULT_LIMIT);
         assertThat(testSysCoupon.getStartTime()).isEqualTo(DEFAULT_START_TIME);
         assertThat(testSysCoupon.getEndTime()).isEqualTo(DEFAULT_END_TIME);
@@ -212,6 +217,7 @@ public class SysCouponResourceIntTest {
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].value").value(hasItem(DEFAULT_VALUE.intValue())))
             .andExpect(jsonPath("$.[*].quantity").value(hasItem(DEFAULT_QUANTITY)))
+            .andExpect(jsonPath("$.[*].getNumber").value(hasItem(DEFAULT_GET_NUMBER)))
             .andExpect(jsonPath("$.[*].limit").value(hasItem(DEFAULT_LIMIT)))
             .andExpect(jsonPath("$.[*].startTime").value(hasItem(sameInstant(DEFAULT_START_TIME))))
             .andExpect(jsonPath("$.[*].endTime").value(hasItem(sameInstant(DEFAULT_END_TIME))))
@@ -237,6 +243,7 @@ public class SysCouponResourceIntTest {
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.value").value(DEFAULT_VALUE.intValue()))
             .andExpect(jsonPath("$.quantity").value(DEFAULT_QUANTITY))
+            .andExpect(jsonPath("$.getNumber").value(DEFAULT_GET_NUMBER))
             .andExpect(jsonPath("$.limit").value(DEFAULT_LIMIT))
             .andExpect(jsonPath("$.startTime").value(sameInstant(DEFAULT_START_TIME)))
             .andExpect(jsonPath("$.endTime").value(sameInstant(DEFAULT_END_TIME)))
@@ -272,6 +279,7 @@ public class SysCouponResourceIntTest {
             .name(UPDATED_NAME)
             .value(UPDATED_VALUE)
             .quantity(UPDATED_QUANTITY)
+            .getNumber(UPDATED_GET_NUMBER)
             .limit(UPDATED_LIMIT)
             .startTime(UPDATED_START_TIME)
             .endTime(UPDATED_END_TIME)
@@ -294,6 +302,7 @@ public class SysCouponResourceIntTest {
         assertThat(testSysCoupon.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testSysCoupon.getValue()).isEqualTo(UPDATED_VALUE);
         assertThat(testSysCoupon.getQuantity()).isEqualTo(UPDATED_QUANTITY);
+        assertThat(testSysCoupon.getGetNumber()).isEqualTo(UPDATED_GET_NUMBER);
         assertThat(testSysCoupon.getLimit()).isEqualTo(UPDATED_LIMIT);
         assertThat(testSysCoupon.getStartTime()).isEqualTo(UPDATED_START_TIME);
         assertThat(testSysCoupon.getEndTime()).isEqualTo(UPDATED_END_TIME);

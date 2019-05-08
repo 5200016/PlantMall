@@ -1,0 +1,28 @@
+{
+    "plantMallApp": {
+        "sysCouponClassify": {
+            "home": {
+                "title": "Sys Coupon Classifies",
+                "createLabel": "创建新 Sys Coupon Classify",
+                "createOrEditLabel": "创建或编辑 Sys Coupon Classify"
+            },
+            "created": "Sys Coupon Classify {{ param }} 创建成功",
+            "updated": "Sys Coupon Classify {{ param }} 更新成功",
+            "deleted": "Sys Coupon Classify {{ param }} 删除成功",
+            "delete": {
+                "question": "你确定要删除 Sys Coupon Classify {{ id }} 吗？"
+            },
+            "detail": {
+                "title": "Sys Coupon Classify"
+            },
+            "createTime": "Create Time",
+            "updateTime": "Update Time",
+            "coupon": "Coupon",
+            "classify": "Classify",
+            "help": {
+                "createTime": "创建时间",
+                "updateTime": "更新时间"
+            }
+        }
+    }
+}

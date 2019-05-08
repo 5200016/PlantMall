@@ -19,6 +19,7 @@
             <th><span jhiTranslate="plantMallApp.sysCouponProduct.createTime">Create Time</span></th>
             <th><span jhiTranslate="plantMallApp.sysCouponProduct.updateTime">Update Time</span></th>
             <th><span jhiTranslate="plantMallApp.sysCouponProduct.coupon">Coupon</span></th>
+            <th><span jhiTranslate="plantMallApp.sysCouponProduct.product">Product</span></th>
             <th></th>
             </tr>
             </thead>
@@ -31,6 +32,11 @@
                 <td>
                     <div *ngIf="sysCouponProduct.coupon">
                         <a [routerLink]="['../sys-coupon', sysCouponProduct.coupon?.id, 'view' ]" >{{sysCouponProduct.coupon?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="sysCouponProduct.product">
+                        <a [routerLink]="['../sys-product', sysCouponProduct.product?.id, 'view' ]" >{{sysCouponProduct.product?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">

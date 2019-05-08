@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity SysCouponClassify.
+    -->
+    <changeSet id="20190508063003-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="coupon_id"
+                                 baseTableName="sys_coupon_classify"
+                                 constraintName="fk_sys_coupon_classify_coupon_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sys_coupon"/>
+
+        <addForeignKeyConstraint baseColumnNames="classify_id"
+                                 baseTableName="sys_coupon_classify"
+                                 constraintName="fk_sys_coupon_classify_classify_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sys_classify"/>
+
+    </changeSet>
+</databaseChangeLog>

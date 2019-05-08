@@ -10,6 +10,8 @@ import { ISysCouponProduct } from 'app/shared/model/sys-coupon-product.model';
 import { SysCouponProductService } from './sys-coupon-product.service';
 import { ISysCoupon } from 'app/shared/model/sys-coupon.model';
 import { SysCouponService } from 'app/entities/sys-coupon';
+import { ISysProduct } from 'app/shared/model/sys-product.model';
+import { SysProductService } from 'app/entities/sys-product';
 
 @Component({
     selector: 'jhi-sys-coupon-product-update',
@@ -20,6 +22,8 @@ export class SysCouponProductUpdateComponent implements OnInit {
     isSaving: boolean;
 
     syscoupons: ISysCoupon[];
+
+    sysproducts: ISysProduct[];
     createTime: string;
     updateTime: string;
 
@@ -27,6 +31,7 @@ export class SysCouponProductUpdateComponent implements OnInit {
         protected jhiAlertService: JhiAlertService,
         protected sysCouponProductService: SysCouponProductService,
         protected sysCouponService: SysCouponService,
+        protected sysProductService: SysProductService,
         protected activatedRoute: ActivatedRoute
     ) {}
 
@@ -40,6 +45,12 @@ export class SysCouponProductUpdateComponent implements OnInit {
         this.sysCouponService.query().subscribe(
             (res: HttpResponse<ISysCoupon[]>) => {
                 this.syscoupons = res.body;
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
+        this.sysProductService.query().subscribe(
+            (res: HttpResponse<ISysProduct[]>) => {
+                this.sysproducts = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
@@ -78,6 +89,10 @@ export class SysCouponProductUpdateComponent implements OnInit {
     }
 
     trackSysCouponById(index: number, item: ISysCoupon) {
+        return item.id;
+    }
+
+    trackSysProductById(index: number, item: ISysProduct) {
         return item.id;
     }
 }

@@ -1,0 +1,28 @@
+{
+    "plantMallApp": {
+        "sysCouponClassify": {
+            "home": {
+                "title": "Sys Coupon Classifies",
+                "createLabel": "建立一筆新的 Sys Coupon Classify",
+                "createOrEditLabel": "建立或編輯 Sys Coupon Classify"
+            },
+            "created": "新的 Sys Coupon Classify 建立成功，識別碼為 {{ param }}",
+            "updated": "識別碼為 {{ param }} 的 Sys Coupon Classify 更新成功",
+            "deleted": "識別碼為 {{ param }} 的 Sys Coupon Classify 刪除成功",
+            "delete": {
+                "question": "您確定要刪除 Sys Coupon Classify {{ id }} 嗎?"
+            },
+            "detail": {
+                "title": "Sys Coupon Classify"
+            },
+            "createTime": "Create Time",
+            "updateTime": "Update Time",
+            "coupon": "Coupon",
+            "classify": "Classify",
+            "help": {
+                "createTime": "创建时间",
+                "updateTime": "更新时间"
+            }
+        }
+    }
+}

@@ -14,12 +14,6 @@
                                  referencedColumnNames="id"
                                  referencedTableName="sys_user"/>
 
-        <addForeignKeyConstraint baseColumnNames="coupon_product_id"
-                                 baseTableName="sys_coupon_user"
-                                 constraintName="fk_sys_coupon_user_coupon_product_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="sys_coupon_product"/>
-
         <addForeignKeyConstraint baseColumnNames="coupon_id"
                                  baseTableName="sys_coupon_user"
                                  constraintName="fk_sys_coupon_user_coupon_id"

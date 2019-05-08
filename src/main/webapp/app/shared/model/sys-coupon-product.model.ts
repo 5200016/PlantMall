@@ -1,6 +1,6 @@
 import { Moment } from 'moment';
 import { ISysCoupon } from 'app/shared/model//sys-coupon.model';
-import { ISysCouponUser } from 'app/shared/model//sys-coupon-user.model';
+import { ISysProduct } from 'app/shared/model//sys-product.model';
 
 export interface ISysCouponProduct {
     id?: number;
@@ -8,7 +8,7 @@ export interface ISysCouponProduct {
     createTime?: Moment;
     updateTime?: Moment;
     coupon?: ISysCoupon;
-    couponUsers?: ISysCouponUser[];
+    product?: ISysProduct;
 }
 
 export class SysCouponProduct implements ISysCouponProduct {
@@ -18,6 +18,6 @@ export class SysCouponProduct implements ISysCouponProduct {
         public createTime?: Moment,
         public updateTime?: Moment,
         public coupon?: ISysCoupon,
-        public couponUsers?: ISysCouponUser[]
+        public product?: ISysProduct
     ) {}
 }

@@ -22,6 +22,11 @@
             "fieldType": "Integer"
         },
         {
+            "fieldName": "getNumber",
+            "javadoc": "已领张数",
+            "fieldType": "Integer"
+        },
+        {
             "fieldName": "limit",
             "javadoc": "限领数量",
             "fieldType": "Integer"
@@ -74,6 +79,12 @@
             "relationshipType": "one-to-many",
             "relationshipName": "couponProduct",
             "otherEntityName": "sysCouponProduct",
+            "otherEntityRelationshipName": "coupon"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "couponClassify",
+            "otherEntityName": "sysCouponClassify",
             "otherEntityRelationshipName": "coupon"
         }
     ],

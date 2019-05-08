@@ -38,6 +38,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="get_number" type="integer" remarks="已领张数">
+                <constraints nullable="true" />
+            </column>
+
             <column name="jhi_limit" type="integer" remarks="限领数量">
                 <constraints nullable="true" />
             </column>

@@ -1,0 +1,39 @@
+{
+    "name": "SysCouponClassify",
+    "fields": [
+        {
+            "fieldName": "createTime",
+            "javadoc": "创建时间",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "updateTime",
+            "javadoc": "更新时间",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "coupon",
+            "otherEntityName": "sysCoupon",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "classify",
+            "otherEntityName": "sysClassify",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190508063003",
+    "javadoc": "优惠券商品分类关联表",
+    "entityTableName": "sys_coupon_classify",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

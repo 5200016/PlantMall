@@ -26,19 +26,13 @@
         },
         {
             "relationshipType": "many-to-one",
-            "relationshipName": "couponProduct",
-            "otherEntityName": "sysCouponProduct",
-            "otherEntityField": "id"
-        },
-        {
-            "relationshipType": "many-to-one",
             "relationshipName": "coupon",
             "otherEntityName": "sysCoupon",
             "otherEntityField": "id"
         }
     ],
     "changelogDate": "20190506110932",
-    "javadoc": "优惠券使用表",
+    "javadoc": "优惠券用户关联表",
     "entityTableName": "sys_coupon_user",
     "dto": "no",
     "pagination": "no",

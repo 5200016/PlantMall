@@ -1,6 +1,7 @@
 import { Moment } from 'moment';
 import { ISysCouponUser } from 'app/shared/model//sys-coupon-user.model';
 import { ISysCouponProduct } from 'app/shared/model//sys-coupon-product.model';
+import { ISysCouponClassify } from 'app/shared/model//sys-coupon-classify.model';
 
 export interface ISysCoupon {
     id?: number;
@@ -8,6 +9,7 @@ export interface ISysCoupon {
     name?: string;
     value?: number;
     quantity?: number;
+    getNumber?: number;
     limit?: number;
     startTime?: Moment;
     endTime?: Moment;
@@ -18,6 +20,7 @@ export interface ISysCoupon {
     updateTime?: Moment;
     couponUsers?: ISysCouponUser[];
     couponProducts?: ISysCouponProduct[];
+    couponClassifies?: ISysCouponClassify[];
 }
 
 export class SysCoupon implements ISysCoupon {
@@ -27,6 +30,7 @@ export class SysCoupon implements ISysCoupon {
         public name?: string,
         public value?: number,
         public quantity?: number,
+        public getNumber?: number,
         public limit?: number,
         public startTime?: Moment,
         public endTime?: Moment,
@@ -36,6 +40,7 @@ export class SysCoupon implements ISysCoupon {
         public createTime?: Moment,
         public updateTime?: Moment,
         public couponUsers?: ISysCouponUser[],
-        public couponProducts?: ISysCouponProduct[]
+        public couponProducts?: ISysCouponProduct[],
+        public couponClassifies?: ISysCouponClassify[]
     ) {}
 }

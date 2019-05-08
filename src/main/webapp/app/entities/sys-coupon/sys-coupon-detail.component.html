@@ -1,0 +1,71 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="sysCoupon">
+            <h2><span jhiTranslate="plantMallApp.sysCoupon.detail.title">Sys Coupon</span> {{sysCoupon.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="plantMallApp.sysCoupon.type" [ngbTooltip]="'plantMallApp.sysCoupon.help.type' | translate">Type</span></dt>
+                <dd>
+                    <span>{{sysCoupon.type}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysCoupon.name" [ngbTooltip]="'plantMallApp.sysCoupon.help.name' | translate">Name</span></dt>
+                <dd>
+                    <span>{{sysCoupon.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysCoupon.value" [ngbTooltip]="'plantMallApp.sysCoupon.help.value' | translate">Value</span></dt>
+                <dd>
+                    <span>{{sysCoupon.value}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysCoupon.quantity" [ngbTooltip]="'plantMallApp.sysCoupon.help.quantity' | translate">Quantity</span></dt>
+                <dd>
+                    <span>{{sysCoupon.quantity}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysCoupon.limit" [ngbTooltip]="'plantMallApp.sysCoupon.help.limit' | translate">Limit</span></dt>
+                <dd>
+                    <span>{{sysCoupon.limit}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysCoupon.startTime" [ngbTooltip]="'plantMallApp.sysCoupon.help.startTime' | translate">Start Time</span></dt>
+                <dd>
+                    <span>{{sysCoupon.startTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysCoupon.endTime" [ngbTooltip]="'plantMallApp.sysCoupon.help.endTime' | translate">End Time</span></dt>
+                <dd>
+                    <span>{{sysCoupon.endTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysCoupon.description" [ngbTooltip]="'plantMallApp.sysCoupon.help.description' | translate">Description</span></dt>
+                <dd>
+                    <span>{{sysCoupon.description}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysCoupon.moneyOff" [ngbTooltip]="'plantMallApp.sysCoupon.help.moneyOff' | translate">Money Off</span></dt>
+                <dd>
+                    <span>{{sysCoupon.moneyOff}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysCoupon.range" [ngbTooltip]="'plantMallApp.sysCoupon.help.range' | translate">Range</span></dt>
+                <dd>
+                    <span>{{sysCoupon.range}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysCoupon.createTime" [ngbTooltip]="'plantMallApp.sysCoupon.help.createTime' | translate">Create Time</span></dt>
+                <dd>
+                    <span>{{sysCoupon.createTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysCoupon.updateTime" [ngbTooltip]="'plantMallApp.sysCoupon.help.updateTime' | translate">Update Time</span></dt>
+                <dd>
+                    <span>{{sysCoupon.updateTime}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/sys-coupon', sysCoupon.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

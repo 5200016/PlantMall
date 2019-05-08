@@ -1,9 +1,8 @@
 package com.ybb.mall.web.rest.controller;
 
 import com.codahale.metrics.annotation.Timed;
-import com.ybb.mall.service.SysUserService;
+import com.ybb.mall.service.SUserService;
 import com.ybb.mall.web.rest.util.ResultObj;
-import com.ybb.mall.web.rest.vm.AdminVM;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -22,11 +21,12 @@ import java.net.URISyntaxException;
 @RestController
 @RequestMapping("/mall")
 public class UserController {
-    private final SysUserService sysUserService;
+    private final SUserService userService;
 
-    public UserController(SysUserService sysUserService) {
-        this.sysUserService = sysUserService;
+    public UserController(SUserService userService) {
+        this.userService = userService;
     }
+
 
     /**
      * 根据手机号模糊查询用户列表（分页）
@@ -37,7 +37,7 @@ public class UserController {
     public ResultObj selectUserList(@ApiParam(name="phone",value="手机号",required=true) @RequestParam String phone,
                                     @ApiParam(name="pageNum",value="页码",required=true) @RequestParam Integer pageNum,
                                     @ApiParam(name="pageSize",value="数量",required=true) @RequestParam Integer pageSize) throws URISyntaxException {
-        return ResultObj.back(200, sysUserService.findUserList(phone, pageNum, pageSize));
+        return ResultObj.back(200, userService.findUserList(phone, pageNum, pageSize));
     }
 
     /**

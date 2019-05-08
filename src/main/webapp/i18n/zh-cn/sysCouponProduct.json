@@ -1,0 +1,30 @@
+{
+    "plantMallApp": {
+        "sysCouponProduct": {
+            "home": {
+                "title": "Sys Coupon Products",
+                "createLabel": "创建新 Sys Coupon Product",
+                "createOrEditLabel": "创建或编辑 Sys Coupon Product"
+            },
+            "created": "Sys Coupon Product {{ param }} 创建成功",
+            "updated": "Sys Coupon Product {{ param }} 更新成功",
+            "deleted": "Sys Coupon Product {{ param }} 删除成功",
+            "delete": {
+                "question": "你确定要删除 Sys Coupon Product {{ id }} 吗？"
+            },
+            "detail": {
+                "title": "Sys Coupon Product"
+            },
+            "residue": "Residue",
+            "createTime": "Create Time",
+            "updateTime": "Update Time",
+            "coupon": "Coupon",
+            "couponUser": "Coupon User",
+            "help": {
+                "residue": "剩余数量",
+                "createTime": "创建时间",
+                "updateTime": "更新时间"
+            }
+        }
+    }
+}

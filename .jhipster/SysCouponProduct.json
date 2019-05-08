@@ -1,0 +1,44 @@
+{
+    "name": "SysCouponProduct",
+    "fields": [
+        {
+            "fieldName": "residue",
+            "javadoc": "剩余数量",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "createTime",
+            "javadoc": "创建时间",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "updateTime",
+            "javadoc": "更新时间",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "coupon",
+            "otherEntityName": "sysCoupon",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "couponUser",
+            "otherEntityName": "sysCouponUser",
+            "otherEntityRelationshipName": "couponProduct"
+        }
+    ],
+    "changelogDate": "20190506110931",
+    "javadoc": "优惠券商品关联表",
+    "entityTableName": "sys_coupon_product",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

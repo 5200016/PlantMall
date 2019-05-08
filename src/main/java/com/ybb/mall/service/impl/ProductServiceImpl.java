@@ -18,6 +18,7 @@ import com.ybb.mall.web.rest.vm.product.InsertProductVM;
 import com.ybb.mall.web.rest.vm.product.UpdateProductVM;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -79,6 +80,11 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<ProductBriefDTO> findProductBrief() {
         return productRepository.findProductBrief();
+    }
+
+    @Override
+    public Page<ProductBriefDTO> findProductBriefByName(String name, Integer pageNum, Integer pageSize) {
+        return productRepository.findProductBriefByName(name, PageRequest.of(pageNum, pageSize));
     }
 
     @Override

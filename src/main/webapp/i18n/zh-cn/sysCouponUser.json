@@ -1,0 +1,31 @@
+{
+    "plantMallApp": {
+        "sysCouponUser": {
+            "home": {
+                "title": "Sys Coupon Users",
+                "createLabel": "创建新 Sys Coupon User",
+                "createOrEditLabel": "创建或编辑 Sys Coupon User"
+            },
+            "created": "Sys Coupon User {{ param }} 创建成功",
+            "updated": "Sys Coupon User {{ param }} 更新成功",
+            "deleted": "Sys Coupon User {{ param }} 删除成功",
+            "delete": {
+                "question": "你确定要删除 Sys Coupon User {{ id }} 吗？"
+            },
+            "detail": {
+                "title": "Sys Coupon User"
+            },
+            "useStatus": "Use Status",
+            "createTime": "Create Time",
+            "updateTime": "Update Time",
+            "user": "User",
+            "couponProduct": "Coupon Product",
+            "coupon": "Coupon",
+            "help": {
+                "useStatus": "使用状态",
+                "createTime": "创建时间",
+                "updateTime": "更新时间"
+            }
+        }
+    }
+}

@@ -109,6 +109,8 @@ public class SysUser implements Serializable {
     @OneToMany(mappedBy = "user")
     private Set<SysReceiverAddress> receiverAddresses = new HashSet<>();
     @OneToMany(mappedBy = "user")
+    private Set<SysCouponUser> couponUsers = new HashSet<>();
+    @OneToMany(mappedBy = "user")
     private Set<SysOrder> orders = new HashSet<>();
     @OneToMany(mappedBy = "user")
     private Set<SysReview> reviews = new HashSet<>();
@@ -327,6 +329,31 @@ public class SysUser implements Serializable {
 
     public void setReceiverAddresses(Set<SysReceiverAddress> sysReceiverAddresses) {
         this.receiverAddresses = sysReceiverAddresses;
+    }
+
+    public Set<SysCouponUser> getCouponUsers() {
+        return couponUsers;
+    }
+
+    public SysUser couponUsers(Set<SysCouponUser> sysCouponUsers) {
+        this.couponUsers = sysCouponUsers;
+        return this;
+    }
+
+    public SysUser addCouponUser(SysCouponUser sysCouponUser) {
+        this.couponUsers.add(sysCouponUser);
+        sysCouponUser.setUser(this);
+        return this;
+    }
+
+    public SysUser removeCouponUser(SysCouponUser sysCouponUser) {
+        this.couponUsers.remove(sysCouponUser);
+        sysCouponUser.setUser(null);
+        return this;
+    }
+
+    public void setCouponUsers(Set<SysCouponUser> sysCouponUsers) {
+        this.couponUsers = sysCouponUsers;
     }
 
     public Set<SysOrder> getOrders() {

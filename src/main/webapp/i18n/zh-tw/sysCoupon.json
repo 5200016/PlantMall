@@ -1,0 +1,48 @@
+{
+    "plantMallApp": {
+        "sysCoupon": {
+            "home": {
+                "title": "Sys Coupons",
+                "createLabel": "建立一筆新的 Sys Coupon",
+                "createOrEditLabel": "建立或編輯 Sys Coupon"
+            },
+            "created": "新的 Sys Coupon 建立成功，識別碼為 {{ param }}",
+            "updated": "識別碼為 {{ param }} 的 Sys Coupon 更新成功",
+            "deleted": "識別碼為 {{ param }} 的 Sys Coupon 刪除成功",
+            "delete": {
+                "question": "您確定要刪除 Sys Coupon {{ id }} 嗎?"
+            },
+            "detail": {
+                "title": "Sys Coupon"
+            },
+            "type": "Type",
+            "name": "Name",
+            "value": "Value",
+            "quantity": "Quantity",
+            "limit": "Limit",
+            "startTime": "Start Time",
+            "endTime": "End Time",
+            "description": "Description",
+            "moneyOff": "Money Off",
+            "range": "Range",
+            "createTime": "Create Time",
+            "updateTime": "Update Time",
+            "couponUser": "Coupon User",
+            "couponProduct": "Coupon Product",
+            "help": {
+                "type": "优惠券类型（0：商品优惠券 1：商品通用券 2：租赁优惠券）",
+                "name": "优惠券名称",
+                "value": "优惠券面值",
+                "quantity": "发放数量",
+                "limit": "限领数量",
+                "startTime": "有效期（起始日期）",
+                "endTime": "有效期（截止日期）",
+                "description": "使用描述",
+                "moneyOff": "满减",
+                "range": "适用范围（0：指定商品 1：分类商品）",
+                "createTime": "创建时间",
+                "updateTime": "更新时间"
+            }
+        }
+    }
+}

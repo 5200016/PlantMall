@@ -3,6 +3,7 @@ package com.ybb.mall.service;
 import com.ybb.mall.service.dto.product.cascade.ClassifyCascadeDTO;
 import com.ybb.mall.service.dto.product.classify.ClassifyDTO;
 import com.ybb.mall.service.dto.product.classify.ClassifyGroupDTO;
+import com.ybb.mall.service.dto.product.classify.ClassifyWebDTO;
 import com.ybb.mall.web.rest.util.ResultObj;
 import com.ybb.mall.web.rest.vm.product.classify.InsertClassifyVM;
 import com.ybb.mall.web.rest.vm.product.classify.UpdateClassifyVM;
@@ -54,4 +55,9 @@ public interface ClassifyService {
      * 查询商品分类（级联）
      */
     List<ClassifyCascadeDTO> findClassifyCascade();
+
+    /**
+     * 查询出售商品分类
+     */
+    Page<ClassifyWebDTO> findSellClassifyPage(Integer type, String name, Integer pageNum, Integer pageSize);
 }

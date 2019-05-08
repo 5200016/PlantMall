@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="sysCouponProduct">
+            <h2><span jhiTranslate="plantMallApp.sysCouponProduct.detail.title">Sys Coupon Product</span> {{sysCouponProduct.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="plantMallApp.sysCouponProduct.residue" [ngbTooltip]="'plantMallApp.sysCouponProduct.help.residue' | translate">Residue</span></dt>
+                <dd>
+                    <span>{{sysCouponProduct.residue}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysCouponProduct.createTime" [ngbTooltip]="'plantMallApp.sysCouponProduct.help.createTime' | translate">Create Time</span></dt>
+                <dd>
+                    <span>{{sysCouponProduct.createTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysCouponProduct.updateTime" [ngbTooltip]="'plantMallApp.sysCouponProduct.help.updateTime' | translate">Update Time</span></dt>
+                <dd>
+                    <span>{{sysCouponProduct.updateTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysCouponProduct.coupon">Coupon</span></dt>
+                <dd>
+                    <div *ngIf="sysCouponProduct.coupon">
+                        <a [routerLink]="['/sys-coupon', sysCouponProduct.coupon?.id, 'view']">{{sysCouponProduct.coupon?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/sys-coupon-product', sysCouponProduct.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

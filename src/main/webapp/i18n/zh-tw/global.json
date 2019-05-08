@@ -28,6 +28,9 @@
                 "sysOrderProduct": "Sys Order Product",
                 "sysMaintenancePersonnel": "Sys Maintenance Personnel",
                 "sysModule": "Sys Module",
+                "sysCoupon": "Sys Coupon",
+                "sysCouponProduct": "Sys Coupon Product",
+                "sysCouponUser": "Sys Coupon User",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

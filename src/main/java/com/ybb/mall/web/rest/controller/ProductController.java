@@ -116,6 +116,20 @@ public class ProductController {
         return ResultObj.back(200, productService.findProductBrief());
     }
 
+    /**
+     * 分页查询商品列表（简略信息）
+     *
+     * @return
+     * @throws URISyntaxException
+     */
+    @ApiOperation("分页查询商品列表（简略信息）")
+    @GetMapping("/product/brief/page")
+    @Timed
+    public ResultObj selectProductBriefByPageAndName(@ApiParam(name = "name", value = "商品名称", required = true) @RequestParam String name,
+                                                     @ApiParam(name = "pageNum", value = "页码", required = true) @RequestParam Integer pageNum,
+                                                     @ApiParam(name = "pageSize", value = "数量", required = true) @RequestParam Integer pageSize) throws URISyntaxException {
+        return ResultObj.back(200, productService.findProductBriefByName(name, pageNum, pageSize));
+    }
 
     /**
      * 新增商品
@@ -211,6 +225,22 @@ public class ProductController {
     @Timed
     public ResultObj selectClassifyCascade() throws URISyntaxException {
         return ResultObj.back(200, classifyService.findClassifyCascade());
+    }
+
+    /**
+     * 分页查询商品分类简略信息
+     *
+     * @return
+     * @throws URISyntaxException
+     */
+    @ApiOperation("分页查询商品分类简略信息")
+    @GetMapping("/classify/brief/page")
+    @Timed
+    public ResultObj selectClassifyBriefPage(@ApiParam(name = "name", value = "商品分类名称", required = true) @RequestParam String name,
+                                             @ApiParam(name = "type", value = "商品类型（0：出售， 1：租赁）", required = true) @RequestParam Integer type,
+                                             @ApiParam(name = "pageNum", value = "页码", required = true) @RequestParam Integer pageNum,
+                                             @ApiParam(name = "pageSize", value = "数量", required = true) @RequestParam Integer pageSize) throws URISyntaxException {
+        return ResultObj.back(200, classifyService.findSellClassifyPage(type, name, pageNum, pageSize));
     }
 
     /**

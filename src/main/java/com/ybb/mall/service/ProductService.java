@@ -29,6 +29,10 @@ public interface ProductService {
      */
     List<ProductBriefDTO> findProductBrief();
 
+    /**
+     * 分页查询商品列表（简略信息）
+     */
+    Page<ProductBriefDTO> findProductBriefByName(String name, Integer pageNum, Integer pageSize);
 
     /**
      * 新增商品

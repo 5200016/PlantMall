@@ -78,6 +78,12 @@
         },
         {
             "relationshipType": "one-to-many",
+            "relationshipName": "couponUser",
+            "otherEntityName": "sysCouponUser",
+            "otherEntityRelationshipName": "user"
+        },
+        {
+            "relationshipType": "one-to-many",
             "relationshipName": "order",
             "otherEntityName": "sysOrder",
             "otherEntityRelationshipName": "user"

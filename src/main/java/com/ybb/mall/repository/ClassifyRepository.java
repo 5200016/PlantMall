@@ -48,4 +48,15 @@ public interface ClassifyRepository extends JpaRepository<SysClassify, Long> {
 
     @Query("select sc from SysClassify sc order by sc.sort asc")
     List<SysClassify> findSysClassifyAndProduct();
+
+    /**
+     * 查询商品分类列表（根据排序字段正序）
+     * 条件：分类类型
+     */
+    @Query("select new com.ybb.mall.service.dto.product.classify.ClassifyWebDTO(sc.id, sc.name)" +
+        " from SysClassify sc" +
+        " where sc.type = ?1" +
+        " and sc.name like concat('%', ?2, '%')" +
+        " order by sc.sort asc")
+    Page<ClassifyWebDTO> findClassifyByTypePage(Integer type, String name, Pageable pageable);
 }

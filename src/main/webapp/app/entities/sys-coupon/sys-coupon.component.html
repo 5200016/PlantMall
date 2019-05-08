@@ -1,0 +1,76 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="plantMallApp.sysCoupon.home.title">Sys Coupons</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-sys-coupon" [routerLink]="['/sys-coupon/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="plantMallApp.sysCoupon.home.createLabel">
+            Create new Sys Coupon
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="sysCoupons">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="plantMallApp.sysCoupon.type">Type</span></th>
+            <th><span jhiTranslate="plantMallApp.sysCoupon.name">Name</span></th>
+            <th><span jhiTranslate="plantMallApp.sysCoupon.value">Value</span></th>
+            <th><span jhiTranslate="plantMallApp.sysCoupon.quantity">Quantity</span></th>
+            <th><span jhiTranslate="plantMallApp.sysCoupon.limit">Limit</span></th>
+            <th><span jhiTranslate="plantMallApp.sysCoupon.startTime">Start Time</span></th>
+            <th><span jhiTranslate="plantMallApp.sysCoupon.endTime">End Time</span></th>
+            <th><span jhiTranslate="plantMallApp.sysCoupon.description">Description</span></th>
+            <th><span jhiTranslate="plantMallApp.sysCoupon.moneyOff">Money Off</span></th>
+            <th><span jhiTranslate="plantMallApp.sysCoupon.range">Range</span></th>
+            <th><span jhiTranslate="plantMallApp.sysCoupon.createTime">Create Time</span></th>
+            <th><span jhiTranslate="plantMallApp.sysCoupon.updateTime">Update Time</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let sysCoupon of sysCoupons ;trackBy: trackId">
+                <td><a [routerLink]="['/sys-coupon', sysCoupon.id, 'view' ]">{{sysCoupon.id}}</a></td>
+                <td>{{sysCoupon.type}}</td>
+                <td>{{sysCoupon.name}}</td>
+                <td>{{sysCoupon.value}}</td>
+                <td>{{sysCoupon.quantity}}</td>
+                <td>{{sysCoupon.limit}}</td>
+                <td>{{sysCoupon.startTime | date:'medium'}}</td>
+                <td>{{sysCoupon.endTime | date:'medium'}}</td>
+                <td>{{sysCoupon.description}}</td>
+                <td>{{sysCoupon.moneyOff}}</td>
+                <td>{{sysCoupon.range}}</td>
+                <td>{{sysCoupon.createTime | date:'medium'}}</td>
+                <td>{{sysCoupon.updateTime | date:'medium'}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/sys-coupon', sysCoupon.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/sys-coupon', sysCoupon.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'sys-coupon/'+ sysCoupon.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

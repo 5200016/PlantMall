@@ -29,6 +29,7 @@
             "memberLevel": "Member Level",
             "role": "Role",
             "receiverAddress": "Receiver Address",
+            "couponUser": "Coupon User",
             "order": "Order",
             "review": "Review",
             "collection": "Collection",

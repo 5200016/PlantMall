@@ -1,0 +1,76 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="plantMallApp.sysCouponUser.home.title">Sys Coupon Users</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-sys-coupon-user" [routerLink]="['/sys-coupon-user/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="plantMallApp.sysCouponUser.home.createLabel">
+            Create new Sys Coupon User
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="sysCouponUsers">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="plantMallApp.sysCouponUser.useStatus">Use Status</span></th>
+            <th><span jhiTranslate="plantMallApp.sysCouponUser.createTime">Create Time</span></th>
+            <th><span jhiTranslate="plantMallApp.sysCouponUser.updateTime">Update Time</span></th>
+            <th><span jhiTranslate="plantMallApp.sysCouponUser.user">User</span></th>
+            <th><span jhiTranslate="plantMallApp.sysCouponUser.couponProduct">Coupon Product</span></th>
+            <th><span jhiTranslate="plantMallApp.sysCouponUser.coupon">Coupon</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let sysCouponUser of sysCouponUsers ;trackBy: trackId">
+                <td><a [routerLink]="['/sys-coupon-user', sysCouponUser.id, 'view' ]">{{sysCouponUser.id}}</a></td>
+                <td>{{sysCouponUser.useStatus}}</td>
+                <td>{{sysCouponUser.createTime | date:'medium'}}</td>
+                <td>{{sysCouponUser.updateTime | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="sysCouponUser.user">
+                        <a [routerLink]="['../sys-user', sysCouponUser.user?.id, 'view' ]" >{{sysCouponUser.user?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="sysCouponUser.couponProduct">
+                        <a [routerLink]="['../sys-coupon-product', sysCouponUser.couponProduct?.id, 'view' ]" >{{sysCouponUser.couponProduct?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="sysCouponUser.coupon">
+                        <a [routerLink]="['../sys-coupon', sysCouponUser.coupon?.id, 'view' ]" >{{sysCouponUser.coupon?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/sys-coupon-user', sysCouponUser.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/sys-coupon-user', sysCouponUser.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'sys-coupon-user/'+ sysCouponUser.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

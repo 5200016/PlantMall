@@ -1,0 +1,50 @@
+{
+    "name": "SysCouponUser",
+    "fields": [
+        {
+            "fieldName": "useStatus",
+            "javadoc": "使用状态",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "createTime",
+            "javadoc": "创建时间",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "updateTime",
+            "javadoc": "更新时间",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "user",
+            "otherEntityName": "sysUser",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "couponProduct",
+            "otherEntityName": "sysCouponProduct",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "coupon",
+            "otherEntityName": "sysCoupon",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190506110932",
+    "javadoc": "优惠券使用表",
+    "entityTableName": "sys_coupon_user",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,90 @@
+{
+    "name": "SysCoupon",
+    "fields": [
+        {
+            "fieldName": "type",
+            "javadoc": "优惠券类型（0：商品优惠券 1：商品通用券 2：租赁优惠券）",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "name",
+            "javadoc": "优惠券名称",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "value",
+            "javadoc": "优惠券面值",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "quantity",
+            "javadoc": "发放数量",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "limit",
+            "javadoc": "限领数量",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "startTime",
+            "javadoc": "有效期（起始日期）",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "endTime",
+            "javadoc": "有效期（截止日期）",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "description",
+            "javadoc": "使用描述",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        },
+        {
+            "fieldName": "moneyOff",
+            "javadoc": "满减",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "range",
+            "javadoc": "适用范围（0：指定商品 1：分类商品）",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "createTime",
+            "javadoc": "创建时间",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "updateTime",
+            "javadoc": "更新时间",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "couponUser",
+            "otherEntityName": "sysCouponUser",
+            "otherEntityRelationshipName": "coupon"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "couponProduct",
+            "otherEntityName": "sysCouponProduct",
+            "otherEntityRelationshipName": "coupon"
+        }
+    ],
+    "changelogDate": "20190506110930",
+    "javadoc": "优惠券表",
+    "entityTableName": "sys_coupon",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

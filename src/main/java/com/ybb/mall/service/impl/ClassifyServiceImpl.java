@@ -136,4 +136,9 @@ public class ClassifyServiceImpl implements ClassifyService {
         return result;
     }
 
+    @Override
+    public Page<ClassifyWebDTO> findSellClassifyPage(Integer type, String name, Integer pageNum, Integer pageSize) {
+        return classifyRepository.findClassifyByTypePage(type, name, PageRequest.of(pageNum, pageSize));
+    }
+
 }

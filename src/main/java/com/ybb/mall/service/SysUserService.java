@@ -2,7 +2,6 @@ package com.ybb.mall.service;
 
 import com.ybb.mall.domain.SysUser;
 
-import com.ybb.mall.service.dto.user.UserListDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -35,7 +34,7 @@ public interface SysUserService {
      * @return the list of entities
      */
     Page<SysUser> findAllWithEagerRelationships(Pageable pageable);
-
+    
     /**
      * Get the "id" sysUser.
      *
@@ -50,13 +49,4 @@ public interface SysUserService {
      * @param id the id of the entity
      */
     void delete(Long id);
-
-    /**
-     * 分页查询用户列表
-     * @param phone
-     * @param pageNum
-     * @param pageSize
-     * @return
-     */
-    Page<UserListDTO> findUserList(String phone, Integer pageNum, Integer pageSize);
 }

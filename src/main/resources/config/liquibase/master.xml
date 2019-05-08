@@ -26,6 +26,9 @@
     <include file="config/liquibase/changelog/20190429091030_added_entity_SysOrderProduct.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190505064432_added_entity_SysMaintenancePersonnel.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190505114408_added_entity_SysModule.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190506110930_added_entity_SysCoupon.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190506110931_added_entity_SysCouponProduct.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190506110932_added_entity_SysCouponUser.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20190415061351_added_entity_constraints_SysUser.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190415061356_added_entity_constraints_SysReceiverAddress.xml" relativeToChangelogFile="false"/>
@@ -39,5 +42,7 @@
     <include file="config/liquibase/changelog/20190429031429_added_entity_constraints_SysAppointment.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190429091030_added_entity_constraints_SysOrderProduct.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190505114408_added_entity_constraints_SysModule.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190506110931_added_entity_constraints_SysCouponProduct.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190506110932_added_entity_constraints_SysCouponUser.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

@@ -1,0 +1,53 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="sysCouponUser">
+            <h2><span jhiTranslate="plantMallApp.sysCouponUser.detail.title">Sys Coupon User</span> {{sysCouponUser.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="plantMallApp.sysCouponUser.useStatus" [ngbTooltip]="'plantMallApp.sysCouponUser.help.useStatus' | translate">Use Status</span></dt>
+                <dd>
+                    <span>{{sysCouponUser.useStatus}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysCouponUser.createTime" [ngbTooltip]="'plantMallApp.sysCouponUser.help.createTime' | translate">Create Time</span></dt>
+                <dd>
+                    <span>{{sysCouponUser.createTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysCouponUser.updateTime" [ngbTooltip]="'plantMallApp.sysCouponUser.help.updateTime' | translate">Update Time</span></dt>
+                <dd>
+                    <span>{{sysCouponUser.updateTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysCouponUser.user">User</span></dt>
+                <dd>
+                    <div *ngIf="sysCouponUser.user">
+                        <a [routerLink]="['/sys-user', sysCouponUser.user?.id, 'view']">{{sysCouponUser.user?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysCouponUser.couponProduct">Coupon Product</span></dt>
+                <dd>
+                    <div *ngIf="sysCouponUser.couponProduct">
+                        <a [routerLink]="['/sys-coupon-product', sysCouponUser.couponProduct?.id, 'view']">{{sysCouponUser.couponProduct?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysCouponUser.coupon">Coupon</span></dt>
+                <dd>
+                    <div *ngIf="sysCouponUser.coupon">
+                        <a [routerLink]="['/sys-coupon', sysCouponUser.coupon?.id, 'view']">{{sysCouponUser.coupon?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/sys-coupon-user', sysCouponUser.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -21,6 +21,7 @@
             "createTime": "Create Time",
             "updateTime": "Update Time",
             "receiverAddress": "Receiver Address",
+            "user": "User",
             "help": {
                 "time": "预约时间",
                 "remark": "预约备注",

@@ -62,6 +62,9 @@ public class SysReceiverAddressResourceIntTest {
     private static final Integer DEFAULT_STATUS = 1;
     private static final Integer UPDATED_STATUS = 2;
 
+    private static final Boolean DEFAULT_ACTIVE = false;
+    private static final Boolean UPDATED_ACTIVE = true;
+
     private static final ZonedDateTime DEFAULT_CREATE_TIME = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_CREATE_TIME = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
 
@@ -118,6 +121,7 @@ public class SysReceiverAddressResourceIntTest {
             .area(DEFAULT_AREA)
             .address(DEFAULT_ADDRESS)
             .status(DEFAULT_STATUS)
+            .active(DEFAULT_ACTIVE)
             .createTime(DEFAULT_CREATE_TIME)
             .updateTime(DEFAULT_UPDATE_TIME);
         return sysReceiverAddress;
@@ -148,6 +152,7 @@ public class SysReceiverAddressResourceIntTest {
         assertThat(testSysReceiverAddress.getArea()).isEqualTo(DEFAULT_AREA);
         assertThat(testSysReceiverAddress.getAddress()).isEqualTo(DEFAULT_ADDRESS);
         assertThat(testSysReceiverAddress.getStatus()).isEqualTo(DEFAULT_STATUS);
+        assertThat(testSysReceiverAddress.isActive()).isEqualTo(DEFAULT_ACTIVE);
         assertThat(testSysReceiverAddress.getCreateTime()).isEqualTo(DEFAULT_CREATE_TIME);
         assertThat(testSysReceiverAddress.getUpdateTime()).isEqualTo(DEFAULT_UPDATE_TIME);
     }
@@ -187,6 +192,7 @@ public class SysReceiverAddressResourceIntTest {
             .andExpect(jsonPath("$.[*].area").value(hasItem(DEFAULT_AREA.toString())))
             .andExpect(jsonPath("$.[*].address").value(hasItem(DEFAULT_ADDRESS.toString())))
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS)))
+            .andExpect(jsonPath("$.[*].active").value(hasItem(DEFAULT_ACTIVE.booleanValue())))
             .andExpect(jsonPath("$.[*].createTime").value(hasItem(sameInstant(DEFAULT_CREATE_TIME))))
             .andExpect(jsonPath("$.[*].updateTime").value(hasItem(sameInstant(DEFAULT_UPDATE_TIME))));
     }
@@ -207,6 +213,7 @@ public class SysReceiverAddressResourceIntTest {
             .andExpect(jsonPath("$.area").value(DEFAULT_AREA.toString()))
             .andExpect(jsonPath("$.address").value(DEFAULT_ADDRESS.toString()))
             .andExpect(jsonPath("$.status").value(DEFAULT_STATUS))
+            .andExpect(jsonPath("$.active").value(DEFAULT_ACTIVE.booleanValue()))
             .andExpect(jsonPath("$.createTime").value(sameInstant(DEFAULT_CREATE_TIME)))
             .andExpect(jsonPath("$.updateTime").value(sameInstant(DEFAULT_UPDATE_TIME)));
     }
@@ -237,6 +244,7 @@ public class SysReceiverAddressResourceIntTest {
             .area(UPDATED_AREA)
             .address(UPDATED_ADDRESS)
             .status(UPDATED_STATUS)
+            .active(UPDATED_ACTIVE)
             .createTime(UPDATED_CREATE_TIME)
             .updateTime(UPDATED_UPDATE_TIME);
 
@@ -254,6 +262,7 @@ public class SysReceiverAddressResourceIntTest {
         assertThat(testSysReceiverAddress.getArea()).isEqualTo(UPDATED_AREA);
         assertThat(testSysReceiverAddress.getAddress()).isEqualTo(UPDATED_ADDRESS);
         assertThat(testSysReceiverAddress.getStatus()).isEqualTo(UPDATED_STATUS);
+        assertThat(testSysReceiverAddress.isActive()).isEqualTo(UPDATED_ACTIVE);
         assertThat(testSysReceiverAddress.getCreateTime()).isEqualTo(UPDATED_CREATE_TIME);
         assertThat(testSysReceiverAddress.getUpdateTime()).isEqualTo(UPDATED_UPDATE_TIME);
     }

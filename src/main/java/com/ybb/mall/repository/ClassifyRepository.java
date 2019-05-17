@@ -2,6 +2,7 @@ package com.ybb.mall.repository;
 
 import com.ybb.mall.domain.SysClassify;
 import com.ybb.mall.service.dto.product.classify.ClassifyWebDTO;
+import com.ybb.mall.service.dto.wx.ClassifyDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -59,4 +60,17 @@ public interface ClassifyRepository extends JpaRepository<SysClassify, Long> {
         " and sc.name like concat('%', ?2, '%')" +
         " order by sc.sort asc")
     Page<ClassifyWebDTO> findClassifyByTypePage(Integer type, String name, Pageable pageable);
+
+    /**
+     * 查询商品分类列表（微信小程序）
+     */
+    @Query("select new com.ybb.mall.service.dto.wx.ClassifyDTO(sc.id, sc.name, sc.type) from SysClassify sc" +
+        " order by sc.type asc")
+    List<ClassifyDTO> findWXClassify();
+
+    /**
+     * 根据商品分类id查询商品
+     */
+    @Query("select sc from SysClassify sc where sc.id = ?1")
+    SysClassify findSysClassifyById(Long id);
 }

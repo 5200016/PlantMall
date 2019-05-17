@@ -116,3 +116,7 @@ application:
     plantImage: plantImage             # 植物图片
     homeImage: homeImage               # 首页广告图片
     moduleImage: moduleImage           # 首页模块图片
+
+    # 微信小程序参数
+    AppID: wx876b17cfbdcad9f3
+    AppSecret: a071243f751ffb1a4d58c80a70a31a24

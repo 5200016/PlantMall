@@ -35,6 +35,12 @@
             "relationshipName": "receiverAddress",
             "otherEntityName": "sysReceiverAddress",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "user",
+            "otherEntityName": "sysUser",
+            "otherEntityField": "id"
         }
     ],
     "changelogDate": "20190429031429",

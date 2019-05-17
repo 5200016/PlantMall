@@ -26,6 +26,12 @@ public class UpdateProductVM {
     private String name;
 
     /**
+     * 缩略图
+     */
+    @ApiModelProperty(value = "缩略图")
+    private String image;
+
+    /**
      * 商品租赁价格
      */
     @ApiModelProperty(value = "商品租赁价格")
@@ -71,6 +77,14 @@ public class UpdateProductVM {
 
     public List<Long> getClassifyId() {
         return classifyId;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public void setClassifyId(List<Long> classifyId) {
@@ -154,6 +168,7 @@ public class UpdateProductVM {
         return "UpdateProductVM{" +
             "id=" + id +
             ", name='" + name + '\'' +
+            ", image='" + image + '\'' +
             ", leasePrice=" + leasePrice +
             ", price=" + price +
             ", inventory=" + inventory +

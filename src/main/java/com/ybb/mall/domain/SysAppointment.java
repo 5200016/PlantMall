@@ -68,6 +68,10 @@ public class SysAppointment implements Serializable {
     @JsonIgnoreProperties("")
     private SysReceiverAddress receiverAddress;
 
+    @ManyToOne
+    @JsonIgnoreProperties("appointments")
+    private SysUser user;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -153,6 +157,19 @@ public class SysAppointment implements Serializable {
 
     public void setReceiverAddress(SysReceiverAddress sysReceiverAddress) {
         this.receiverAddress = sysReceiverAddress;
+    }
+
+    public SysUser getUser() {
+        return user;
+    }
+
+    public SysAppointment user(SysUser sysUser) {
+        this.user = sysUser;
+        return this;
+    }
+
+    public void setUser(SysUser sysUser) {
+        this.user = sysUser;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

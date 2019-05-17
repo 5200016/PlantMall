@@ -72,6 +72,12 @@
         },
         {
             "relationshipType": "one-to-many",
+            "relationshipName": "appointment",
+            "otherEntityName": "sysAppointment",
+            "otherEntityRelationshipName": "user"
+        },
+        {
+            "relationshipType": "one-to-many",
             "relationshipName": "receiverAddress",
             "otherEntityName": "sysReceiverAddress",
             "otherEntityRelationshipName": "user"

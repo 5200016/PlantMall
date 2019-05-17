@@ -54,4 +54,22 @@ public class AppointmentServiceImpl implements AppointmentService {
         }
         return ResultObj.backCRUDSuccess("处理成功");
     }
+
+    @Override
+    public Page<AppointmentDTO> findAppointmentListByStatus(Integer status, String openid, Integer pageNum, Integer pageSize) {
+        Integer statusFlag = 0;
+        if (!status.equals(-1)) {
+            statusFlag = 1;
+        }
+        return appointmentRepository.findAppointmentListByStatus(openid, status, statusFlag, PageRequest.of(pageNum, pageSize));
+    }
+
+    @Override
+    public ResultObj updateAppointmentById(Long id, Integer status) {
+        if(TypeUtils.isEmpty(id)){
+           return ResultObj.backCRUDError("操作失败");
+        }
+        appointmentRepository.updateAppointmentStatus(id, status);
+        return ResultObj.backCRUDSuccess("操作成功");
+    }
 }

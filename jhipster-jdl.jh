@@ -132,7 +132,20 @@ entity SysReceiverAddress {
      * 是否为默认地址（0：否 1：是）
      */
     status Integer,
+
+    /**
+     * 是否激活（false：否 true：是）
+     */
+    active Boolean,
+
+    /**
+     * 创建时间
+     */
     createTime ZonedDateTime,
+
+    /**
+     * 更新时间
+     */
     updateTime ZonedDateTime
 }
 
@@ -671,6 +684,7 @@ relationship ManyToOne {
      * 预约关联收货地址
      */
     SysAppointment{receiverAddress} to SysReceiverAddress,
+    SysAppointment{user} to SysUser{appointment},
 
     SysModule{classify} to SysClassify,
 	SysReceiverAddress{user} to SysUser{receiverAddress},

@@ -25,11 +25,15 @@
                 <dd>
                     <span>{{sysReceiverAddress.status}}</span>
                 </dd>
-                <dt><span jhiTranslate="plantMallApp.sysReceiverAddress.createTime">Create Time</span></dt>
+                <dt><span jhiTranslate="plantMallApp.sysReceiverAddress.active" [ngbTooltip]="'plantMallApp.sysReceiverAddress.help.active' | translate">Active</span></dt>
+                <dd>
+                    <span>{{sysReceiverAddress.active}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysReceiverAddress.createTime" [ngbTooltip]="'plantMallApp.sysReceiverAddress.help.createTime' | translate">Create Time</span></dt>
                 <dd>
                     <span>{{sysReceiverAddress.createTime}}</span>
                 </dd>
-                <dt><span jhiTranslate="plantMallApp.sysReceiverAddress.updateTime">Update Time</span></dt>
+                <dt><span jhiTranslate="plantMallApp.sysReceiverAddress.updateTime" [ngbTooltip]="'plantMallApp.sysReceiverAddress.help.updateTime' | translate">Update Time</span></dt>
                 <dd>
                     <span>{{sysReceiverAddress.updateTime}}</span>
                 </dd>

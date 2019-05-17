@@ -107,6 +107,8 @@ public class SysUser implements Serializable {
     private Set<SysRole> roles = new HashSet<>();
 
     @OneToMany(mappedBy = "user")
+    private Set<SysAppointment> appointments = new HashSet<>();
+    @OneToMany(mappedBy = "user")
     private Set<SysReceiverAddress> receiverAddresses = new HashSet<>();
     @OneToMany(mappedBy = "user")
     private Set<SysCouponUser> couponUsers = new HashSet<>();
@@ -304,6 +306,31 @@ public class SysUser implements Serializable {
 
     public void setRoles(Set<SysRole> sysRoles) {
         this.roles = sysRoles;
+    }
+
+    public Set<SysAppointment> getAppointments() {
+        return appointments;
+    }
+
+    public SysUser appointments(Set<SysAppointment> sysAppointments) {
+        this.appointments = sysAppointments;
+        return this;
+    }
+
+    public SysUser addAppointment(SysAppointment sysAppointment) {
+        this.appointments.add(sysAppointment);
+        sysAppointment.setUser(this);
+        return this;
+    }
+
+    public SysUser removeAppointment(SysAppointment sysAppointment) {
+        this.appointments.remove(sysAppointment);
+        sysAppointment.setUser(null);
+        return this;
+    }
+
+    public void setAppointments(Set<SysAppointment> sysAppointments) {
+        this.appointments = sysAppointments;
     }
 
     public Set<SysReceiverAddress> getReceiverAddresses() {

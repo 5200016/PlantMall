@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @Description : 商品
@@ -54,4 +55,21 @@ public interface ProductRepository extends JpaRepository<SysProduct, Long> {
      * 根据id查询商品
      */
     SysProduct findSysProductById(Long id);
+
+    /**
+     * 分页模糊查询商品列表（微信小程序）
+     * 条件：名称
+     */
+    @Query(value = "select distinct sp from SysProduct sp" +
+        " left join fetch sp.classifies" +
+        " where sp.name like concat('%', ?1, '%')")
+    List<SysProduct> findWXProductList(String name);
+
+    /**
+     * 根据id查询商品详情（微信小程序）
+     */
+    @Query(value = "select distinct sp from SysProduct sp" +
+        " left join fetch sp.images" +
+        " where sp.id = ?1")
+    Optional<SysProduct> findWXProductById(Long id);
 }

@@ -20,6 +20,26 @@ public class ApplicationProperties {
 
     private String moduleImage;
 
+    private String AppID;
+
+    private String AppSecret;
+
+    public String getAppID() {
+        return AppID;
+    }
+
+    public void setAppID(String appID) {
+        AppID = appID;
+    }
+
+    public String getAppSecret() {
+        return AppSecret;
+    }
+
+    public void setAppSecret(String appSecret) {
+        AppSecret = appSecret;
+    }
+
     public String getModuleImage() {
         return moduleImage;
     }

@@ -31,6 +31,12 @@
                         <a [routerLink]="['/sys-receiver-address', sysAppointment.receiverAddress?.id, 'view']">{{sysAppointment.receiverAddress?.id}}</a>
                     </div>
                 </dd>
+                <dt><span jhiTranslate="plantMallApp.sysAppointment.user">User</span></dt>
+                <dd>
+                    <div *ngIf="sysAppointment.user">
+                        <a [routerLink]="['/sys-user', sysAppointment.user?.id, 'view']">{{sysAppointment.user?.id}}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"

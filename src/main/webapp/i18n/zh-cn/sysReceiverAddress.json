@@ -20,6 +20,7 @@
             "area": "Area",
             "address": "Address",
             "status": "Status",
+            "active": "Active",
             "createTime": "Create Time",
             "updateTime": "Update Time",
             "user": "User",
@@ -29,7 +30,10 @@
                 "phone": "手机号",
                 "area": "收货地区",
                 "address": "收货详细地址",
-                "status": "是否为默认地址（0：否 1：是）"
+                "status": "是否为默认地址（0：否 1：是）",
+                "active": "是否激活（false：否 true：是）",
+                "createTime": "创建时间",
+                "updateTime": "更新时间"
             }
         }
     }

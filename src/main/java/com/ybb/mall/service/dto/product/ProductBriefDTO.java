@@ -3,6 +3,8 @@ package com.ybb.mall.service.dto.product;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import java.math.BigDecimal;
+
 /**
  * @Description : 商品简略信息
  * @Author 黄志成
@@ -18,10 +20,70 @@ public class ProductBriefDTO {
 
     private Integer inventory;
 
+    private Integer sale;
+
+    private BigDecimal price;
+
+    private BigDecimal leasePrice;
+
+    private String image;
+
+    private Integer classifyType;
+
     public ProductBriefDTO(Long id, String name, Integer inventory) {
         this.id = id;
         this.name = name;
         this.inventory = inventory;
+    }
+
+    public ProductBriefDTO(Long id, String name, Integer sale, BigDecimal price, BigDecimal leasePrice, String image, Integer classifyType) {
+        this.id = id;
+        this.name = name;
+        this.sale = sale;
+        this.price = price;
+        this.leasePrice = leasePrice;
+        this.image = image;
+        this.classifyType = classifyType;
+    }
+
+    public Integer getSale() {
+        return sale;
+    }
+
+    public void setSale(Integer sale) {
+        this.sale = sale;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public BigDecimal getLeasePrice() {
+        return leasePrice;
+    }
+
+    public void setLeasePrice(BigDecimal leasePrice) {
+        this.leasePrice = leasePrice;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public Integer getClassifyType() {
+        return classifyType;
+    }
+
+    public void setClassifyType(Integer classifyType) {
+        this.classifyType = classifyType;
     }
 
     public Long getId() {
@@ -80,4 +142,6 @@ public class ProductBriefDTO {
             ", inventory=" + inventory +
             '}';
     }
+
+
 }

@@ -31,6 +31,11 @@ public class ProductDTO implements Serializable {
     private String name;
 
     /**
+     * 商品图片
+     */
+    private String image;
+
+    /**
      * 商品租赁价格
      */
     private BigDecimal leasePrice;
@@ -68,6 +73,14 @@ public class ProductDTO implements Serializable {
 
     @JsonIgnore
     private Set<SysProductImage> images = new HashSet<>();
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public List<Long> getClassifyId() {
         return classifyId;

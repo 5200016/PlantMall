@@ -1,6 +1,7 @@
 import { Moment } from 'moment';
 import { ISysMemberLevel } from 'app/shared/model//sys-member-level.model';
 import { ISysRole } from 'app/shared/model//sys-role.model';
+import { ISysAppointment } from 'app/shared/model//sys-appointment.model';
 import { ISysReceiverAddress } from 'app/shared/model//sys-receiver-address.model';
 import { ISysCouponUser } from 'app/shared/model//sys-coupon-user.model';
 import { ISysOrder } from 'app/shared/model//sys-order.model';
@@ -22,6 +23,7 @@ export interface ISysUser {
     updateTime?: Moment;
     memberLevel?: ISysMemberLevel;
     roles?: ISysRole[];
+    appointments?: ISysAppointment[];
     receiverAddresses?: ISysReceiverAddress[];
     couponUsers?: ISysCouponUser[];
     orders?: ISysOrder[];
@@ -45,6 +47,7 @@ export class SysUser implements ISysUser {
         public updateTime?: Moment,
         public memberLevel?: ISysMemberLevel,
         public roles?: ISysRole[],
+        public appointments?: ISysAppointment[],
         public receiverAddresses?: ISysReceiverAddress[],
         public couponUsers?: ISysCouponUser[],
         public orders?: ISysOrder[],

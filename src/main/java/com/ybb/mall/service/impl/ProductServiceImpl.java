@@ -93,6 +93,7 @@ public class ProductServiceImpl implements ProductService {
         // 入库商品表
         SysProduct product = new SysProduct();
         product.setName(productVM.getName());
+        product.setImage(productVM.getImage());
         product.setLeasePrice(productVM.getLeasePrice());
         product.setInventory(productVM.getInventory());
         product.setPrice(productVM.getPrice());
@@ -149,6 +150,7 @@ public class ProductServiceImpl implements ProductService {
         SysProduct product = new SysProduct();
         product.setId(productVM.getId());
         product.setName(productVM.getName());
+        product.setImage(productVM.getImage());
         product.setLeasePrice(productVM.getLeasePrice());
         product.setPrice(productVM.getPrice());
         product.setInventory(productVM.getInventory());

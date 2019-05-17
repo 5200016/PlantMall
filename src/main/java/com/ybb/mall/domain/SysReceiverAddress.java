@@ -63,9 +63,24 @@ public class SysReceiverAddress implements Serializable {
     @Column(name = "status")
     private Integer status;
 
+    /**
+     * 是否激活（false：否 true：是）
+     */
+    @ApiModelProperty(value = "是否激活（false：否 true：是）")
+    @Column(name = "active")
+    private Boolean active;
+
+    /**
+     * 创建时间
+     */
+    @ApiModelProperty(value = "创建时间")
     @Column(name = "create_time")
     private ZonedDateTime createTime;
 
+    /**
+     * 更新时间
+     */
+    @ApiModelProperty(value = "更新时间")
     @Column(name = "update_time")
     private ZonedDateTime updateTime;
 
@@ -147,6 +162,19 @@ public class SysReceiverAddress implements Serializable {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Boolean isActive() {
+        return active;
+    }
+
+    public SysReceiverAddress active(Boolean active) {
+        this.active = active;
+        return this;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     public ZonedDateTime getCreateTime() {
@@ -243,6 +271,7 @@ public class SysReceiverAddress implements Serializable {
             ", area='" + getArea() + "'" +
             ", address='" + getAddress() + "'" +
             ", status=" + getStatus() +
+            ", active='" + isActive() + "'" +
             ", createTime='" + getCreateTime() + "'" +
             ", updateTime='" + getUpdateTime() + "'" +
             "}";

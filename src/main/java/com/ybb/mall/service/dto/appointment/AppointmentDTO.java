@@ -46,6 +46,16 @@ public class AppointmentDTO {
      */
     private String phone;
 
+    /**
+     * 地区
+     */
+    private String area;
+
+    /**
+     * 详细地址
+     */
+    private String address;
+
     public AppointmentDTO(Long id, ZonedDateTime time, String remark, Integer status, ZonedDateTime createTime, String name, String phone) {
         this.id = id;
         this.time = time;
@@ -54,6 +64,34 @@ public class AppointmentDTO {
         this.createTime = createTime;
         this.name = name;
         this.phone = phone;
+    }
+
+    public AppointmentDTO(Long id, ZonedDateTime time, String remark, Integer status, ZonedDateTime createTime, String name, String phone, String area, String address) {
+        this.id = id;
+        this.time = time;
+        this.remark = remark;
+        this.status = status;
+        this.createTime = createTime;
+        this.name = name;
+        this.phone = phone;
+        this.area = area;
+        this.address = address;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public Long getId() {
@@ -122,6 +160,8 @@ public class AppointmentDTO {
             ", createTime=" + createTime +
             ", name='" + name + '\'' +
             ", phone='" + phone + '\'' +
+            ", area='" + area + '\'' +
+            ", address='" + address + '\'' +
             '}';
     }
 }

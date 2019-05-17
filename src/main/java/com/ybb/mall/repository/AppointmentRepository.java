@@ -34,11 +34,24 @@ public interface AppointmentRepository extends JpaRepository<SysAppointment, Lon
      * 分页查询预约列表
      * 条件：用户姓名、联系方式（模糊查询），订单状态，（预留时间查询）
      */
-    @Query("select new com.ybb.mall.service.dto.appointment.AppointmentDTO(sa.id, sa.time, sa.remark, sa.status, sa.createTime, sra.name, sra.phone)" +
+    @Query("select new com.ybb.mall.service.dto.appointment.AppointmentDTO(sa.id, sa.time, sa.remark, sa.status, sa.createTime, sra.name, sra.phone, sra.area, sra.address)" +
         " from SysAppointment sa" +
         " left join SysReceiverAddress sra on sa.receiverAddress.id = sra.id" +
         " where (sra.name like concat('%', ?1, '%') or sra.phone like concat('%', ?1, '%'))" +
         " and (0 = ?3 or sa.status = ?2)" +
         " order by sa.time desc")
     Page<AppointmentDTO> findAppointmentList(String value, Integer status, Integer statusFlag, Pageable pageable);
+
+    /**
+     * 分页查询预约列表
+     * 条件：用户openid，订单状态，（预留时间查询）
+     */
+    @Query("select new com.ybb.mall.service.dto.appointment.AppointmentDTO(sa.id, sa.time, sa.remark, sa.status, sa.createTime, sra.name, sra.phone, sra.area, sra.address)" +
+        " from SysAppointment sa" +
+        " left join SysReceiverAddress sra on sa.receiverAddress.id = sra.id" +
+        " left join SysUser su on sa.user.id = su.id" +
+        " where su.openid = ?1" +
+        " and (0 = ?3 or sa.status = ?2)" +
+        " order by sa.time desc")
+    Page<AppointmentDTO> findAppointmentListByStatus(String openid, Integer status, Integer statusFlag, Pageable pageable);
 }

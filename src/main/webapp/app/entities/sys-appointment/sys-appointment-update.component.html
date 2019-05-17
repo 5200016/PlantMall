@@ -48,6 +48,13 @@
                         <option [ngValue]="sysReceiverAddressOption.id === sysAppointment.receiverAddress?.id ? sysAppointment.receiverAddress : sysReceiverAddressOption" *ngFor="let sysReceiverAddressOption of sysreceiveraddresses; trackBy: trackSysReceiverAddressById">{{sysReceiverAddressOption.id}}</option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysAppointment.user" for="field_user">User</label>
+                    <select class="form-control" id="field_user" name="user" [(ngModel)]="sysAppointment.user" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="sysUserOption.id === sysAppointment.user?.id ? sysAppointment.user : sysUserOption" *ngFor="let sysUserOption of sysusers; trackBy: trackSysUserById">{{sysUserOption.id}}</option>
+                    </select>
+                </div>
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

@@ -23,6 +23,12 @@ public class InsertProductVM {
     private String name;
 
     /**
+     * 缩略图
+     */
+    @ApiModelProperty(value = "缩略图")
+    private String image;
+
+    /**
      * 商品租赁价格
      */
     @ApiModelProperty(value = "商品租赁价格")
@@ -63,6 +69,14 @@ public class InsertProductVM {
      */
     @ApiModelProperty(value = "商品分类id集合")
     private List<Long> classifyId;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public List<Long> getClassifyId() {
         return classifyId;
@@ -132,6 +146,7 @@ public class InsertProductVM {
     public String toString() {
         return "InsertProductVM{" +
             "name='" + name + '\'' +
+            ", image='" + image + '\'' +
             ", leasePrice=" + leasePrice +
             ", price=" + price +
             ", inventory=" + inventory +

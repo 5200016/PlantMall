@@ -9,6 +9,7 @@ export interface ISysReceiverAddress {
     area?: string;
     address?: any;
     status?: number;
+    active?: boolean;
     createTime?: Moment;
     updateTime?: Moment;
     user?: ISysUser;
@@ -23,9 +24,12 @@ export class SysReceiverAddress implements ISysReceiverAddress {
         public area?: string,
         public address?: any,
         public status?: number,
+        public active?: boolean,
         public createTime?: Moment,
         public updateTime?: Moment,
         public user?: ISysUser,
         public orders?: ISysOrder[]
-    ) {}
+    ) {
+        this.active = this.active || false;
+    }
 }

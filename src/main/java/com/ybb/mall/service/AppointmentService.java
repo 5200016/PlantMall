@@ -25,4 +25,14 @@ public interface AppointmentService {
      * 修改预约状态
      */
     ResultObj updateAppointmentStatusBatch(List<Long> id);
+
+    /**
+     * 分页查询预约列表
+     */
+    Page<AppointmentDTO> findAppointmentListByStatus(Integer status, String openid, Integer pageNum, Integer pageSize);
+
+    /**
+     * 修改预约订单状态
+     */
+    ResultObj updateAppointmentById(Long id, Integer status);
 }

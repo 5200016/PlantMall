@@ -14,5 +14,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="sys_receiver_address"/>
 
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="sys_appointment"
+                                 constraintName="fk_sys_appointment_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sys_user"/>
+
     </changeSet>
 </databaseChangeLog>

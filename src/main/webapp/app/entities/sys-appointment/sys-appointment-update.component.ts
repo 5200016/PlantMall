@@ -10,6 +10,8 @@ import { ISysAppointment } from 'app/shared/model/sys-appointment.model';
 import { SysAppointmentService } from './sys-appointment.service';
 import { ISysReceiverAddress } from 'app/shared/model/sys-receiver-address.model';
 import { SysReceiverAddressService } from 'app/entities/sys-receiver-address';
+import { ISysUser } from 'app/shared/model/sys-user.model';
+import { SysUserService } from 'app/entities/sys-user';
 
 @Component({
     selector: 'jhi-sys-appointment-update',
@@ -20,6 +22,8 @@ export class SysAppointmentUpdateComponent implements OnInit {
     isSaving: boolean;
 
     sysreceiveraddresses: ISysReceiverAddress[];
+
+    sysusers: ISysUser[];
     time: string;
     createTime: string;
     updateTime: string;
@@ -29,6 +33,7 @@ export class SysAppointmentUpdateComponent implements OnInit {
         protected jhiAlertService: JhiAlertService,
         protected sysAppointmentService: SysAppointmentService,
         protected sysReceiverAddressService: SysReceiverAddressService,
+        protected sysUserService: SysUserService,
         protected activatedRoute: ActivatedRoute
     ) {}
 
@@ -43,6 +48,12 @@ export class SysAppointmentUpdateComponent implements OnInit {
         this.sysReceiverAddressService.query().subscribe(
             (res: HttpResponse<ISysReceiverAddress[]>) => {
                 this.sysreceiveraddresses = res.body;
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
+        this.sysUserService.query().subscribe(
+            (res: HttpResponse<ISysUser[]>) => {
+                this.sysusers = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
@@ -94,6 +105,10 @@ export class SysAppointmentUpdateComponent implements OnInit {
     }
 
     trackSysReceiverAddressById(index: number, item: ISysReceiverAddress) {
+        return item.id;
+    }
+
+    trackSysUserById(index: number, item: ISysUser) {
         return item.id;
     }
 }

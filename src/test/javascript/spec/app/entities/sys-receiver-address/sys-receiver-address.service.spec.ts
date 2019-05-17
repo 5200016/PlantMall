@@ -25,7 +25,7 @@ describe('Service Tests', () => {
             httpMock = injector.get(HttpTestingController);
             currentDate = moment();
 
-            elemDefault = new SysReceiverAddress(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 0, currentDate, currentDate);
+            elemDefault = new SysReceiverAddress(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 0, false, currentDate, currentDate);
         });
 
         describe('Service methods', async () => {
@@ -78,6 +78,7 @@ describe('Service Tests', () => {
                         area: 'BBBBBB',
                         address: 'BBBBBB',
                         status: 1,
+                        active: true,
                         createTime: currentDate.format(DATE_TIME_FORMAT),
                         updateTime: currentDate.format(DATE_TIME_FORMAT)
                     },
@@ -107,6 +108,7 @@ describe('Service Tests', () => {
                         area: 'BBBBBB',
                         address: 'BBBBBB',
                         status: 1,
+                        active: true,
                         createTime: currentDate.format(DATE_TIME_FORMAT),
                         updateTime: currentDate.format(DATE_TIME_FORMAT)
                     },

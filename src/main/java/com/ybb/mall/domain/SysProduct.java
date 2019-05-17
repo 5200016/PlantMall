@@ -89,7 +89,7 @@ public class SysProduct implements Serializable {
                inverseJoinColumns = @JoinColumn(name = "classifies_id", referencedColumnName = "id"))
     private Set<SysClassify> classifies = new HashSet<>();
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "product")
     private Set<SysProductImage> images = new HashSet<>();
     @OneToMany(mappedBy = "product")
     private Set<SysShoppingCar> shoppingCars = new HashSet<>();

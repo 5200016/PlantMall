@@ -112,6 +112,7 @@ jhipster:
 
 application:
     filePath: F:/CompanyProject/YbbProject/PlantMallPicture/ # 文件保存位置
+    # filePath: /home/hzc/plant-mall-file/ # 文件保存位置
     filePrefix: filedir                # 访问文件时 /file/文件路径
     plantImage: plantImage             # 植物图片
     homeImage: homeImage               # 首页广告图片

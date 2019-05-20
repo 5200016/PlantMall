@@ -1,7 +1,7 @@
 package com.ybb.mall.web.rest.controller;
 
 import com.codahale.metrics.annotation.Timed;
-import com.ybb.mall.service.SysCustomerServiceService;
+import com.ybb.mall.service.CustomerService;
 import com.ybb.mall.web.rest.util.ResultObj;
 import com.ybb.mall.web.rest.vm.customer.CustomerServiceVM;
 import io.swagger.annotations.Api;
@@ -21,11 +21,12 @@ import java.net.URISyntaxException;
 @RestController
 @RequestMapping("/mall")
 public class CustomerServiceController {
-    private final SysCustomerServiceService sysCustomerService;
+    private final CustomerService customerService;
 
-    public CustomerServiceController(SysCustomerServiceService sysCustomerService) {
-        this.sysCustomerService = sysCustomerService;
+    public CustomerServiceController(CustomerService customerService) {
+        this.customerService = customerService;
     }
+
 
     /**
      * 商城客服设置查询
@@ -36,19 +37,19 @@ public class CustomerServiceController {
     @GetMapping("/customer_service")
     @Timed
     public ResultObj selectCustomerService() throws URISyntaxException {
-        return ResultObj.back(200, sysCustomerService.findAll().get(0));
+        return ResultObj.back(200, customerService.findAll().get(0));
     }
 
     /**
      * 商城客服设置编辑
-     * @param customerService
+     * @param customerServiceVM
      * @return
      * @throws URISyntaxException
      */
     @ApiOperation("商城客服设置编辑")
     @PutMapping("/customer_service")
     @Timed
-    public ResultObj updateCustomerService(@RequestBody CustomerServiceVM customerService) throws URISyntaxException {
-        return sysCustomerService.updateCustomerService(customerService);
+    public ResultObj updateCustomerService(@RequestBody CustomerServiceVM customerServiceVM) throws URISyntaxException {
+        return customerService.updateCustomerService(customerServiceVM);
     }
 }

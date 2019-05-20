@@ -4,12 +4,12 @@ import com.codahale.metrics.annotation.Timed;
 import com.ybb.mall.service.AppointmentService;
 import com.ybb.mall.service.ReceiverAddressService;
 import com.ybb.mall.service.SUserService;
+import com.ybb.mall.service.wx.WXCustomerService;
 import com.ybb.mall.web.rest.controller.wx.vm.InsertUserAddressVM;
 import com.ybb.mall.web.rest.controller.wx.vm.UpdateAddressStatusVM;
 import com.ybb.mall.web.rest.controller.wx.vm.UpdateAppointmentStatusVM;
 import com.ybb.mall.web.rest.controller.wx.vm.UpdateUserAddressVM;
 import com.ybb.mall.web.rest.util.ResultObj;
-import com.ybb.mall.web.rest.util.TypeUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -34,10 +34,13 @@ public class WXUserController {
 
     private final ReceiverAddressService receiverAddressService;
 
-    public WXUserController(SUserService userService, AppointmentService appointmentService, ReceiverAddressService receiverAddressService) {
+    private final WXCustomerService wxCustomerService;
+
+    public WXUserController(SUserService userService, AppointmentService appointmentService, ReceiverAddressService receiverAddressService, WXCustomerService wxCustomerService) {
         this.userService = userService;
         this.appointmentService = appointmentService;
         this.receiverAddressService = receiverAddressService;
+        this.wxCustomerService = wxCustomerService;
     }
 
 
@@ -143,5 +146,17 @@ public class WXUserController {
     @Timed
     public ResultObj updateAppointmentStatusById(@RequestBody UpdateAppointmentStatusVM updateAppointmentStatusVM) throws URISyntaxException {
         return appointmentService.updateAppointmentById(updateAppointmentStatusVM.getId(), updateAppointmentStatusVM.getStatus());
+    }
+
+    /**
+     * 客服信息查询
+     * @return
+     * @throws URISyntaxException
+     */
+    @ApiOperation("客服信息查询")
+    @GetMapping("/customer_service")
+    @Timed
+    public ResultObj selectCustomerService() throws URISyntaxException {
+        return ResultObj.back(200, wxCustomerService.findAll().get(0));
     }
 }

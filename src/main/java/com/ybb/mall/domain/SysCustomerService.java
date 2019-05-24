@@ -1,6 +1,7 @@
 package com.ybb.mall.domain;
 
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 
@@ -22,19 +23,39 @@ public class SysCustomerService implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * 客服电话
+     */
+    @ApiModelProperty(value = "客服电话")
     @Column(name = "phone")
     private String phone;
 
+    /**
+     * 邮箱
+     */
+    @ApiModelProperty(value = "邮箱")
     @Column(name = "email")
     private String email;
 
+    /**
+     * 公司地址
+     */
+    @ApiModelProperty(value = "公司地址")
     @Lob
     @Column(name = "address")
     private String address;
 
+    /**
+     * 创建时间
+     */
+    @ApiModelProperty(value = "创建时间")
     @Column(name = "create_time")
     private ZonedDateTime createTime;
 
+    /**
+     * 更新时间
+     */
+    @ApiModelProperty(value = "更新时间")
     @Column(name = "update_time")
     private ZonedDateTime updateTime;
 

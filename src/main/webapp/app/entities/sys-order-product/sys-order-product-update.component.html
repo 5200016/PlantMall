@@ -15,6 +15,11 @@
                         [(ngModel)]="sysOrderProduct.productStatus" />
                 </div>
                 <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysOrderProduct.productNumber" for="field_productNumber" [ngbTooltip]="'plantMallApp.sysOrderProduct.help.productNumber' | translate">Product Number</label>
+                    <input type="number" class="form-control" name="productNumber" id="field_productNumber"
+                        [(ngModel)]="sysOrderProduct.productNumber" />
+                </div>
+                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="plantMallApp.sysOrderProduct.createTime" for="field_createTime" [ngbTooltip]="'plantMallApp.sysOrderProduct.help.createTime' | translate">Create Time</label>
                     <div class="d-flex">
                         <input id="field_createTime" type="datetime-local" class="form-control" name="createTime" [(ngModel)]="createTime"

@@ -3,7 +3,6 @@ package com.ybb.mall.service.impl;
 import com.ybb.mall.service.SysProductService;
 import com.ybb.mall.domain.SysProduct;
 import com.ybb.mall.repository.SysProductRepository;
-import com.ybb.mall.service.dto.product.ProductBriefDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,7 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -63,7 +61,7 @@ public class SysProductServiceImpl implements SysProductService {
     public Page<SysProduct> findAllWithEagerRelationships(Pageable pageable) {
         return sysProductRepository.findAllWithEagerRelationships(pageable);
     }
-
+    
 
     /**
      * Get one sysProduct by id.
@@ -88,12 +86,4 @@ public class SysProductServiceImpl implements SysProductService {
         log.debug("Request to delete SysProduct : {}", id);
         sysProductRepository.deleteById(id);
     }
-
-//    public static void main(String[] args) {
-//        List<ProductBriefDTO> a = new ArrayList<>();
-//        a.add(new ProductBriefDTO(1L, "a", 100));
-//        a.add(new ProductBriefDTO(2L, "b", 100));
-//        a.add(new ProductBriefDTO(1L, "a", 100));
-//        a.parallelStream().distinct().forEach(System.out::println);
-//    }
 }

@@ -36,4 +36,10 @@ public interface ModuleRepository extends JpaRepository<SysModule, Long> {
     @Query("select new com.ybb.mall.service.dto.wx.ModuleDTO(sm.name, sm.icon, sm.image, sm.imageDisable, sm.type, sm.styleType, sm.homeMenu, sm.homeBottom, sm.path, sm.classify)" +
         " from SysModule sm where sm.homeBottom = 1 order by sm.sort asc")
     List<ModuleDTO> findMenuList();
+
+    /**
+     * 根据类型查询模块信息
+     */
+    @Query("select sm from SysModule sm where sm.type = ?1 order by sm.createTime asc")
+    List<SysModule> findModuleByType(Integer type);
 }

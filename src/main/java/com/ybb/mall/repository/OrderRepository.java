@@ -42,4 +42,41 @@ public interface OrderRepository extends JpaRepository<SysOrder, Long> {
      * 根据订单id查询
      */
     SysOrder findSysOrderById(Long id);
+
+    /**
+     * 分页查询订单列表（微信小程序）
+     * 条件：用户id订单状态
+     */
+    @Query(
+        value = "select so" +
+            " from SysOrder so" +
+            " left join fetch so.user" +
+            " left join fetch so.receiverAddress" +
+            " left join fetch so.orderProducts" +
+            " where so.user.id = ?1" +
+            " and (0 = ?3 or so.status = ?2)" +
+            " order by so.createTime desc",
+        countQuery = "select count(so) from SysOrder so" +
+            " order by so.createTime desc"
+    )
+    Page<SysOrder> findOrderListByUserId(Long userId, Integer status, Integer statusFlag, Pageable pageable);
+
+    /**
+     * 分页查询用户养护计划列表（微信小程序）
+     * 条件：用户id
+     */
+    @Query(
+        value = "select so" +
+            " from SysOrder so" +
+            " left join fetch so.user" +
+            " left join fetch so.receiverAddress" +
+            " left join fetch so.orderProducts" +
+            " where so.user.id = ?1" +
+            " and so.type = 1" +
+            " and so.status = 3" +
+            " order by so.createTime desc",
+        countQuery = "select count(so) from SysOrder so" +
+            " order by so.createTime desc"
+    )
+    Page<SysOrder> findOrderServiceListByUserId(Long userId, Pageable pageable);
 }

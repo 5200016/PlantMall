@@ -60,12 +60,8 @@ public class SysAppointment implements Serializable {
     @Column(name = "update_time")
     private ZonedDateTime updateTime;
 
-    /**
-     * 预约关联收货地址
-     */
-    @ApiModelProperty(value = "预约关联收货地址")
     @ManyToOne
-    @JsonIgnoreProperties("")
+    @JsonIgnoreProperties("appointments")
     private SysReceiverAddress receiverAddress;
 
     @ManyToOne

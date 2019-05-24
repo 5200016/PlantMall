@@ -61,4 +61,16 @@ public class WXHomeController {
         return wxModuleService.findModuleListByType(type);
     }
 
+    /**
+     * 根据模块类型查询模块信息
+     *
+     * @return
+     * @throws URISyntaxException
+     */
+    @ApiOperation("根据模块类型查询模块信息")
+    @GetMapping("/module/type")
+    @Timed
+    public ResultObj selectModuleByType(@ApiParam(name = "type", value = "类型（0：商品分类 1：预约服务，2：植物志）", required = true) @RequestParam Integer type) throws URISyntaxException {
+        return wxModuleService.findModuleListByModuleType(type);
+    }
 }

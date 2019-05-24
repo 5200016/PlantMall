@@ -5,6 +5,7 @@ import { ISysProduct } from 'app/shared/model//sys-product.model';
 export interface ISysOrderProduct {
     id?: number;
     productStatus?: number;
+    productNumber?: number;
     createTime?: Moment;
     updateTime?: Moment;
     order?: ISysOrder;
@@ -15,6 +16,7 @@ export class SysOrderProduct implements ISysOrderProduct {
     constructor(
         public id?: number,
         public productStatus?: number,
+        public productNumber?: number,
         public createTime?: Moment,
         public updateTime?: Moment,
         public order?: ISysOrder,

@@ -16,12 +16,14 @@
                 "title": "Sys Order Product"
             },
             "productStatus": "Product Status",
+            "productNumber": "Product Number",
             "createTime": "Create Time",
             "updateTime": "Update Time",
             "order": "Order",
             "product": "Product",
             "help": {
                 "productStatus": "商品状态（0：无状态 1：已清除 2：补加）",
+                "productNumber": "商品数量",
                 "createTime": "创建时间",
                 "updateTime": "更新时间"
             }

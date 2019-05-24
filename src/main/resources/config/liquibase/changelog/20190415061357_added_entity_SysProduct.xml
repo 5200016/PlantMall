@@ -50,11 +50,11 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="create_time" type="datetime">
+            <column name="create_time" type="datetime" remarks="创建时间">
                 <constraints nullable="true" />
             </column>
 
-            <column name="update_time" type="datetime">
+            <column name="update_time" type="datetime" remarks="更新时间">
                 <constraints nullable="true" />
             </column>
 

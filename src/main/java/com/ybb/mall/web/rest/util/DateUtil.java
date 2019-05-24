@@ -145,7 +145,6 @@ public class DateUtil {
 	    return ZonedDateTime.now();
     }
     public static ZonedDateTime changeShanghaiToUTC(String beijingDateTimeStr){
-	    beijingDateTimeStr = beijingDateTimeStr + " 00:00:00";
         DateTimeFormatter beijingFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").withZone(ZoneId.of("Asia/Shanghai"));
         if(StringUtils.isBlank(beijingDateTimeStr)){
             return null;

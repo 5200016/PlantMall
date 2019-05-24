@@ -45,14 +45,14 @@
                         [(ngModel)]="sysProduct.description" ></textarea>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysProduct.createTime" for="field_createTime">Create Time</label>
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysProduct.createTime" for="field_createTime" [ngbTooltip]="'plantMallApp.sysProduct.help.createTime' | translate">Create Time</label>
                     <div class="d-flex">
                         <input id="field_createTime" type="datetime-local" class="form-control" name="createTime" [(ngModel)]="createTime"
                         />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysProduct.updateTime" for="field_updateTime">Update Time</label>
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysProduct.updateTime" for="field_updateTime" [ngbTooltip]="'plantMallApp.sysProduct.help.updateTime' | translate">Update Time</label>
                     <div class="d-flex">
                         <input id="field_updateTime" type="datetime-local" class="form-control" name="updateTime" [(ngModel)]="updateTime"
                         />

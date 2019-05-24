@@ -19,7 +19,14 @@
             "email": "Email",
             "address": "Address",
             "createTime": "Create Time",
-            "updateTime": "Update Time"
+            "updateTime": "Update Time",
+            "help": {
+                "phone": "客服电话",
+                "email": "邮箱",
+                "address": "公司地址",
+                "createTime": "创建时间",
+                "updateTime": "更新时间"
+            }
         }
     }
 }

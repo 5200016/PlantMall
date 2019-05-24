@@ -1,8 +1,6 @@
 package com.ybb.mall.service;
 
 import com.ybb.mall.domain.SysCustomerService;
-import com.ybb.mall.web.rest.util.ResultObj;
-import com.ybb.mall.web.rest.vm.customer.CustomerServiceVM;
 
 import java.util.List;
 import java.util.Optional;
@@ -42,11 +40,4 @@ public interface SysCustomerServiceService {
      * @param id the id of the entity
      */
     void delete(Long id);
-
-    /**
-     * 编辑商城客服设置
-     * @param customerService
-     * @return
-     */
-    ResultObj updateCustomerService(CustomerServiceVM customerService);
 }

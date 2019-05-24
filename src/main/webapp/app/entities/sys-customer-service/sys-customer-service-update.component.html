@@ -10,29 +10,29 @@
                         [(ngModel)]="sysCustomerService.id" readonly />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysCustomerService.phone" for="field_phone">Phone</label>
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysCustomerService.phone" for="field_phone" [ngbTooltip]="'plantMallApp.sysCustomerService.help.phone' | translate">Phone</label>
                     <input type="text" class="form-control" name="phone" id="field_phone"
                         [(ngModel)]="sysCustomerService.phone" />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysCustomerService.email" for="field_email">Email</label>
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysCustomerService.email" for="field_email" [ngbTooltip]="'plantMallApp.sysCustomerService.help.email' | translate">Email</label>
                     <input type="text" class="form-control" name="email" id="field_email"
                         [(ngModel)]="sysCustomerService.email" />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysCustomerService.address" for="field_address">Address</label>
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysCustomerService.address" for="field_address" [ngbTooltip]="'plantMallApp.sysCustomerService.help.address' | translate">Address</label>
                     <textarea class="form-control" name="address" id="field_address"
                         [(ngModel)]="sysCustomerService.address" ></textarea>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysCustomerService.createTime" for="field_createTime">Create Time</label>
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysCustomerService.createTime" for="field_createTime" [ngbTooltip]="'plantMallApp.sysCustomerService.help.createTime' | translate">Create Time</label>
                     <div class="d-flex">
                         <input id="field_createTime" type="datetime-local" class="form-control" name="createTime" [(ngModel)]="createTime"
                         />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysCustomerService.updateTime" for="field_updateTime">Update Time</label>
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysCustomerService.updateTime" for="field_updateTime" [ngbTooltip]="'plantMallApp.sysCustomerService.help.updateTime' | translate">Update Time</label>
                     <div class="d-flex">
                         <input id="field_updateTime" type="datetime-local" class="form-control" name="updateTime" [(ngModel)]="updateTime"
                         />

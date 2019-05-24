@@ -1,6 +1,7 @@
 package com.ybb.mall.web.rest.controller.wx;
 
 import com.codahale.metrics.annotation.Timed;
+import com.ybb.mall.service.SysPlantLogService;
 import com.ybb.mall.service.wx.WXClassifyService;
 import com.ybb.mall.service.wx.WXProductService;
 import com.ybb.mall.web.rest.util.ResultObj;
@@ -26,11 +27,14 @@ import java.net.URISyntaxException;
 @RequestMapping("/mall/wx")
 public class WXProductController {
 
+    private final SysPlantLogService plantLogService;
+
     private final WXClassifyService wxClassifyService;
 
     private final WXProductService wxProductService;
 
-    public WXProductController(WXClassifyService wxClassifyService, WXProductService wxProductService) {
+    public WXProductController(SysPlantLogService plantLogService, WXClassifyService wxClassifyService, WXProductService wxProductService) {
+        this.plantLogService = plantLogService;
         this.wxClassifyService = wxClassifyService;
         this.wxProductService = wxProductService;
     }
@@ -77,5 +81,20 @@ public class WXProductController {
     @Timed
     public ResultObj selectProductById(@ApiParam(name = "id", value = "商品id", required = true) @RequestParam Long id) throws URISyntaxException {
         return wxProductService.findWXProductById(id);
+    }
+
+    /**
+     * 分页模糊查询植物志列表
+     *
+     * @return
+     * @throws URISyntaxException
+     */
+    @ApiOperation("分页模糊查询植物志列表")
+    @GetMapping("/plant_log")
+    @Timed
+    public ResultObj selectPlantLogList(@ApiParam(name = "name", value = "植物名称", required = true) @RequestParam String name,
+                                        @ApiParam(name = "pageNum", value = "页码", required = true) @RequestParam Integer pageNum,
+                                        @ApiParam(name = "pageSize", value = "数量", required = true) @RequestParam Integer pageSize) throws URISyntaxException {
+        return ResultObj.back(200, plantLogService.findPlantList(name, pageNum, pageSize));
     }
 }

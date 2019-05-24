@@ -75,4 +75,13 @@ public class WXModuleServiceImpl implements WXModuleService {
         }
         return ResultObj.backCRUDError("暂无数据");
     }
+
+    @Override
+    public ResultObj findModuleListByModuleType(Integer moduleType) {
+        List<SysModule> moduleList = moduleRepository.findModuleByType(moduleType);
+        if(!TypeUtils.isEmpty(moduleList)){
+            return ResultObj.back(200, moduleList.get(0));
+        }
+        return ResultObj.back(200, null);
+    }
 }

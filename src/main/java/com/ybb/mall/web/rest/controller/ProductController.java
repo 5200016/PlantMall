@@ -290,7 +290,7 @@ public class ProductController {
      * @return
      * @throws URISyntaxException
      */
-    @ApiOperation("充值项目列表查询")
+    @ApiOperation("分页模糊查询植物志列表")
     @GetMapping("/plant_log")
     @Timed
     public ResultObj selectPlantLogList(@ApiParam(name = "name", value = "植物名称", required = true) @RequestParam String name,

@@ -1,18 +1,14 @@
-package com.ybb.mall.service;
+package com.ybb.mall.service.wx;
 
-import com.ybb.mall.domain.SysReceiverAddress;
 import com.ybb.mall.web.rest.controller.wx.vm.InsertUserAddressVM;
 import com.ybb.mall.web.rest.controller.wx.vm.UpdateAddressStatusVM;
 import com.ybb.mall.web.rest.controller.wx.vm.UpdateUserAddressVM;
 import com.ybb.mall.web.rest.util.ResultObj;
 
-import java.util.List;
-import java.util.Optional;
-
 /**
- * 用户收货地址
+ * 微信小程序-收货地址管理
  */
-public interface ReceiverAddressService {
+public interface WXReceiverAddressService {
 
     /**
      * 根据openid分页查询用户地址
@@ -36,7 +32,7 @@ public interface ReceiverAddressService {
     ResultObj insertUserAddress(InsertUserAddressVM insertUserAddressVM);
 
     /**
-     * 根据id查询地址
+     * 根据id查询收货地址
      * @param id
      * @return
      */

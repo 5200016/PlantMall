@@ -43,7 +43,9 @@
                 "nickname": "用户昵称",
                 "sex": "用户性别",
                 "integral": "用户积分",
-                "growthValue": "用户成长值"
+                "growthValue": "用户成长值",
+                "createTime": "创建时间",
+                "updateTime": "更新时间"
             }
         }
     }

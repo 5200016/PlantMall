@@ -16,6 +16,7 @@ public interface SysOrderMapper extends EntityMapper<OrderDTO, SysOrder> {
     @Mapping(source = "maintenancePersonnel.id", target = "maintenancePersonnelId")
     OrderDTO toDto(SysOrder sysOrder);
 
+    @Mapping(target = "orderProducts", ignore = true)
     @Mapping(source = "userId", target = "user")
     @Mapping(source = "receiverAddressId", target = "receiverAddress")
     @Mapping(source = "maintenancePersonnelId", target = "maintenancePersonnel")

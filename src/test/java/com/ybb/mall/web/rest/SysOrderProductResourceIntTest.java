@@ -49,6 +49,9 @@ public class SysOrderProductResourceIntTest {
     private static final Integer DEFAULT_PRODUCT_STATUS = 1;
     private static final Integer UPDATED_PRODUCT_STATUS = 2;
 
+    private static final Integer DEFAULT_PRODUCT_NUMBER = 1;
+    private static final Integer UPDATED_PRODUCT_NUMBER = 2;
+
     private static final ZonedDateTime DEFAULT_CREATE_TIME = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_CREATE_TIME = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
 
@@ -101,6 +104,7 @@ public class SysOrderProductResourceIntTest {
     public static SysOrderProduct createEntity(EntityManager em) {
         SysOrderProduct sysOrderProduct = new SysOrderProduct()
             .productStatus(DEFAULT_PRODUCT_STATUS)
+            .productNumber(DEFAULT_PRODUCT_NUMBER)
             .createTime(DEFAULT_CREATE_TIME)
             .updateTime(DEFAULT_UPDATE_TIME);
         return sysOrderProduct;
@@ -127,6 +131,7 @@ public class SysOrderProductResourceIntTest {
         assertThat(sysOrderProductList).hasSize(databaseSizeBeforeCreate + 1);
         SysOrderProduct testSysOrderProduct = sysOrderProductList.get(sysOrderProductList.size() - 1);
         assertThat(testSysOrderProduct.getProductStatus()).isEqualTo(DEFAULT_PRODUCT_STATUS);
+        assertThat(testSysOrderProduct.getProductNumber()).isEqualTo(DEFAULT_PRODUCT_NUMBER);
         assertThat(testSysOrderProduct.getCreateTime()).isEqualTo(DEFAULT_CREATE_TIME);
         assertThat(testSysOrderProduct.getUpdateTime()).isEqualTo(DEFAULT_UPDATE_TIME);
     }
@@ -162,6 +167,7 @@ public class SysOrderProductResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(sysOrderProduct.getId().intValue())))
             .andExpect(jsonPath("$.[*].productStatus").value(hasItem(DEFAULT_PRODUCT_STATUS)))
+            .andExpect(jsonPath("$.[*].productNumber").value(hasItem(DEFAULT_PRODUCT_NUMBER)))
             .andExpect(jsonPath("$.[*].createTime").value(hasItem(sameInstant(DEFAULT_CREATE_TIME))))
             .andExpect(jsonPath("$.[*].updateTime").value(hasItem(sameInstant(DEFAULT_UPDATE_TIME))));
     }
@@ -178,6 +184,7 @@ public class SysOrderProductResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(sysOrderProduct.getId().intValue()))
             .andExpect(jsonPath("$.productStatus").value(DEFAULT_PRODUCT_STATUS))
+            .andExpect(jsonPath("$.productNumber").value(DEFAULT_PRODUCT_NUMBER))
             .andExpect(jsonPath("$.createTime").value(sameInstant(DEFAULT_CREATE_TIME)))
             .andExpect(jsonPath("$.updateTime").value(sameInstant(DEFAULT_UPDATE_TIME)));
     }
@@ -204,6 +211,7 @@ public class SysOrderProductResourceIntTest {
         em.detach(updatedSysOrderProduct);
         updatedSysOrderProduct
             .productStatus(UPDATED_PRODUCT_STATUS)
+            .productNumber(UPDATED_PRODUCT_NUMBER)
             .createTime(UPDATED_CREATE_TIME)
             .updateTime(UPDATED_UPDATE_TIME);
 
@@ -217,6 +225,7 @@ public class SysOrderProductResourceIntTest {
         assertThat(sysOrderProductList).hasSize(databaseSizeBeforeUpdate);
         SysOrderProduct testSysOrderProduct = sysOrderProductList.get(sysOrderProductList.size() - 1);
         assertThat(testSysOrderProduct.getProductStatus()).isEqualTo(UPDATED_PRODUCT_STATUS);
+        assertThat(testSysOrderProduct.getProductNumber()).isEqualTo(UPDATED_PRODUCT_NUMBER);
         assertThat(testSysOrderProduct.getCreateTime()).isEqualTo(UPDATED_CREATE_TIME);
         assertThat(testSysOrderProduct.getUpdateTime()).isEqualTo(UPDATED_UPDATE_TIME);
     }

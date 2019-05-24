@@ -89,6 +89,8 @@ public class SysReceiverAddress implements Serializable {
     private SysUser user;
 
     @OneToMany(mappedBy = "receiverAddress")
+    private Set<SysAppointment> appointments = new HashSet<>();
+    @OneToMany(mappedBy = "receiverAddress")
     private Set<SysOrder> orders = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -214,6 +216,31 @@ public class SysReceiverAddress implements Serializable {
 
     public void setUser(SysUser sysUser) {
         this.user = sysUser;
+    }
+
+    public Set<SysAppointment> getAppointments() {
+        return appointments;
+    }
+
+    public SysReceiverAddress appointments(Set<SysAppointment> sysAppointments) {
+        this.appointments = sysAppointments;
+        return this;
+    }
+
+    public SysReceiverAddress addAppointment(SysAppointment sysAppointment) {
+        this.appointments.add(sysAppointment);
+        sysAppointment.setReceiverAddress(this);
+        return this;
+    }
+
+    public SysReceiverAddress removeAppointment(SysAppointment sysAppointment) {
+        this.appointments.remove(sysAppointment);
+        sysAppointment.setReceiverAddress(null);
+        return this;
+    }
+
+    public void setAppointments(Set<SysAppointment> sysAppointments) {
+        this.appointments = sysAppointments;
     }
 
     public Set<SysOrder> getOrders() {

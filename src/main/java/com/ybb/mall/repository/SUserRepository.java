@@ -44,4 +44,11 @@ public interface SUserRepository extends JpaRepository<SysUser, Long> {
     @Query("select su from SysUser su" +
         " where su.openid = ?1")
     SysUser findDatabaseUserByOpenid(String openid);
+
+    /**
+     * 根据openid查询用户表数据
+     */
+    @Query("select su from SysUser su" +
+        " where su.id = ?1")
+    SysUser findDatabaseUserById(Long id);
 }

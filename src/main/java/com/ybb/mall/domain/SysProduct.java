@@ -77,9 +77,17 @@ public class SysProduct implements Serializable {
     @Column(name = "description")
     private String description;
 
+    /**
+     * 创建时间
+     */
+    @ApiModelProperty(value = "创建时间")
     @Column(name = "create_time")
     private ZonedDateTime createTime;
 
+    /**
+     * 更新时间
+     */
+    @ApiModelProperty(value = "更新时间")
     @Column(name = "update_time")
     private ZonedDateTime updateTime;
 
@@ -89,7 +97,7 @@ public class SysProduct implements Serializable {
                inverseJoinColumns = @JoinColumn(name = "classifies_id", referencedColumnName = "id"))
     private Set<SysClassify> classifies = new HashSet<>();
 
-    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "product")
+    @OneToMany(mappedBy = "product")
     private Set<SysProductImage> images = new HashSet<>();
     @OneToMany(mappedBy = "product")
     private Set<SysShoppingCar> shoppingCars = new HashSet<>();

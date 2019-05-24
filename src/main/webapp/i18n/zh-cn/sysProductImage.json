@@ -20,7 +20,9 @@
             "updateTime": "Update Time",
             "product": "Product",
             "help": {
-                "url": "商品图片路径"
+                "url": "商品图片路径",
+                "createTime": "创建时间",
+                "updateTime": "更新时间"
             }
         }
     }

@@ -57,6 +57,16 @@ public class OrderDTO {
 
     private SysReceiverAddress receiverAddress;
 
+    private Set<SysOrderProduct> orderProducts = new HashSet<>();
+
+    public Set<SysOrderProduct> getOrderProducts() {
+        return orderProducts;
+    }
+
+    public void setOrderProducts(Set<SysOrderProduct> orderProducts) {
+        this.orderProducts = orderProducts;
+    }
+
     public String getMaintenanceTime() {
         return maintenanceTime;
     }
@@ -231,6 +241,7 @@ public class OrderDTO {
             ", maintenancePersonnelId=" + maintenancePersonnelId +
             ", user=" + user +
             ", receiverAddress=" + receiverAddress +
+            ", orderProducts=" + orderProducts +
             '}';
     }
 }

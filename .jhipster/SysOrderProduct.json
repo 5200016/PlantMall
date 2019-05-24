@@ -7,6 +7,11 @@
             "fieldType": "Integer"
         },
         {
+            "fieldName": "productNumber",
+            "javadoc": "商品数量",
+            "fieldType": "Integer"
+        },
+        {
             "fieldName": "createTime",
             "javadoc": "创建时间",
             "fieldType": "ZonedDateTime"

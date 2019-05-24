@@ -112,15 +112,16 @@ public class OrderServiceImpl implements OrderService {
         // 更新商品库存
         SysProduct sysProduct = productRepository.findSysProductById(reissueProductVM.getProductId());
         Integer inventory = sysProduct.getInventory();
-        if(inventory <= 0){
+        if(inventory <= reissueProductVM.getProductNumber()){
             return ResultObj.backCRUDError("补发失败，该商品库存不足");
         }else {
-            sysProduct.setInventory(inventory - 1);
+            sysProduct.setInventory(inventory - reissueProductVM.getProductNumber());
             productRepository.save(sysProduct);
         }
 
         SysOrderProduct orderProduct = new SysOrderProduct();
         orderProduct.setProductStatus(2);
+        orderProduct.setProductNumber(reissueProductVM.getProductNumber());
 
         SysProduct product = new SysProduct();
         product.setId(reissueProductVM.getProductId());

@@ -8,9 +8,19 @@ package com.ybb.mall.web.rest.vm.order;
  */
 
 public class ReissueProductVM {
+    private Integer productNumber;
+
     private Long productId;
 
     private Long orderId;
+
+    public Integer getProductNumber() {
+        return productNumber;
+    }
+
+    public void setProductNumber(Integer productNumber) {
+        this.productNumber = productNumber;
+    }
 
     public Long getProductId() {
         return productId;
@@ -31,7 +41,8 @@ public class ReissueProductVM {
     @Override
     public String toString() {
         return "ReissueProductVM{" +
-            "productId=" + productId +
+            "productNumber=" + productNumber +
+            ", productId=" + productId +
             ", orderId=" + orderId +
             '}';
     }

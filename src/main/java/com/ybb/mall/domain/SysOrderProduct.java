@@ -32,6 +32,13 @@ public class SysOrderProduct implements Serializable {
     private Integer productStatus;
 
     /**
+     * 商品数量
+     */
+    @ApiModelProperty(value = "商品数量")
+    @Column(name = "product_number")
+    private Integer productNumber;
+
+    /**
      * 创建时间
      */
     @ApiModelProperty(value = "创建时间")
@@ -73,6 +80,19 @@ public class SysOrderProduct implements Serializable {
 
     public void setProductStatus(Integer productStatus) {
         this.productStatus = productStatus;
+    }
+
+    public Integer getProductNumber() {
+        return productNumber;
+    }
+
+    public SysOrderProduct productNumber(Integer productNumber) {
+        this.productNumber = productNumber;
+        return this;
+    }
+
+    public void setProductNumber(Integer productNumber) {
+        this.productNumber = productNumber;
     }
 
     public ZonedDateTime getCreateTime() {
@@ -153,6 +173,7 @@ public class SysOrderProduct implements Serializable {
         return "SysOrderProduct{" +
             "id=" + getId() +
             ", productStatus=" + getProductStatus() +
+            ", productNumber=" + getProductNumber() +
             ", createTime='" + getCreateTime() + "'" +
             ", updateTime='" + getUpdateTime() + "'" +
             "}";

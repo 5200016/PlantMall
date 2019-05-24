@@ -31,7 +31,6 @@
     "relationships": [
         {
             "relationshipType": "many-to-one",
-            "javadoc": "预约关联收货地址",
             "relationshipName": "receiverAddress",
             "otherEntityName": "sysReceiverAddress",
             "otherEntityField": "id"

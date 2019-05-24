@@ -90,9 +90,17 @@ public class SysUser implements Serializable {
     @Column(name = "growth_value")
     private Integer growthValue;
 
+    /**
+     * 创建时间
+     */
+    @ApiModelProperty(value = "创建时间")
     @Column(name = "create_time")
     private ZonedDateTime createTime;
 
+    /**
+     * 更新时间
+     */
+    @ApiModelProperty(value = "更新时间")
     @Column(name = "update_time")
     private ZonedDateTime updateTime;
 

@@ -16,4 +16,10 @@ public interface WXModuleService {
      * @return
      */
     ResultObj findModuleListByType(Integer type);
+
+    /**
+     * 根据模块类型查询模块
+     * @return
+     */
+    ResultObj findModuleListByModuleType(Integer moduleType);
 }

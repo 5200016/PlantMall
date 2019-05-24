@@ -24,6 +24,7 @@
             "createTime": "Create Time",
             "updateTime": "Update Time",
             "user": "User",
+            "appointment": "Appointment",
             "order": "Order",
             "help": {
                 "name": "收货人姓名",

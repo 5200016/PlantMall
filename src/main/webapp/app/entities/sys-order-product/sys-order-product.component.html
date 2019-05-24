@@ -16,6 +16,7 @@
             <tr>
             <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="plantMallApp.sysOrderProduct.productStatus">Product Status</span></th>
+            <th><span jhiTranslate="plantMallApp.sysOrderProduct.productNumber">Product Number</span></th>
             <th><span jhiTranslate="plantMallApp.sysOrderProduct.createTime">Create Time</span></th>
             <th><span jhiTranslate="plantMallApp.sysOrderProduct.updateTime">Update Time</span></th>
             <th><span jhiTranslate="plantMallApp.sysOrderProduct.order">Order</span></th>
@@ -27,6 +28,7 @@
             <tr *ngFor="let sysOrderProduct of sysOrderProducts ;trackBy: trackId">
                 <td><a [routerLink]="['/sys-order-product', sysOrderProduct.id, 'view' ]">{{sysOrderProduct.id}}</a></td>
                 <td>{{sysOrderProduct.productStatus}}</td>
+                <td>{{sysOrderProduct.productNumber}}</td>
                 <td>{{sysOrderProduct.createTime | date:'medium'}}</td>
                 <td>{{sysOrderProduct.updateTime | date:'medium'}}</td>
                 <td>

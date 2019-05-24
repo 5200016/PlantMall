@@ -1,9 +1,9 @@
-package com.ybb.mall.service.impl;
+package com.ybb.mall.service.wx.impl;
 
 import com.ybb.mall.domain.SysReceiverAddress;
 import com.ybb.mall.domain.SysUser;
 import com.ybb.mall.repository.ReceiverAddressRepository;
-import com.ybb.mall.service.ReceiverAddressService;
+import com.ybb.mall.service.wx.WXReceiverAddressService;
 import com.ybb.mall.web.rest.controller.wx.vm.InsertUserAddressVM;
 import com.ybb.mall.web.rest.controller.wx.vm.UpdateAddressStatusVM;
 import com.ybb.mall.web.rest.controller.wx.vm.UpdateUserAddressVM;
@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * @Description : 用户收货地址
+ * @Description : 微信小程序-收货地址管理
  * @Author 黄志成
  * @Date 2019-05-13
  * @Version
@@ -25,11 +25,11 @@ import java.util.List;
 
 @Service
 @Transactional
-public class ReceiverAddressServiceImpl implements ReceiverAddressService {
+public class WXReceiverAddressServiceImpl implements WXReceiverAddressService {
 
     private final ReceiverAddressRepository receiverAddressRepository;
 
-    public ReceiverAddressServiceImpl(ReceiverAddressRepository receiverAddressRepository) {
+    public WXReceiverAddressServiceImpl(ReceiverAddressRepository receiverAddressRepository) {
         this.receiverAddressRepository = receiverAddressRepository;
     }
 

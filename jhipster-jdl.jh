@@ -46,7 +46,15 @@ entity SysUser {
      * 用户成长值
      */
     growthValue Integer,
+
+    /**
+     * 创建时间
+     */
     createTime ZonedDateTime,
+
+    /**
+     * 更新时间
+     */
     updateTime ZonedDateTime
 }
 
@@ -187,7 +195,15 @@ entity SysProduct {
      * 商品描述
      */
     description TextBlob,
+
+    /**
+     * 创建时间
+     */
     createTime ZonedDateTime,
+
+    /**
+     * 更新时间
+     */
     updateTime ZonedDateTime
 }
 
@@ -209,7 +225,15 @@ entity SysClassify{
      * 排序等级
      */
     sort Integer,
+
+    /**
+     * 创建时间
+     */
     createTime ZonedDateTime,
+
+    /**
+     * 更新时间
+     */
     updateTime ZonedDateTime
 }
 
@@ -217,10 +241,29 @@ entity SysClassify{
  * 客服表
  */
 entity SysCustomerService{
+    /**
+     * 客服电话
+     */
     phone String,
+
+    /**
+     * 邮箱
+     */
     email String,
+
+    /**
+     * 公司地址
+     */
     address TextBlob,
+
+    /**
+     * 创建时间
+     */
     createTime ZonedDateTime,
+
+    /**
+     * 更新时间
+     */
     updateTime ZonedDateTime
 }
 
@@ -390,7 +433,15 @@ entity SysProductImage{
     * 商品图片路径
     */
     url String,
+
+    /**
+     * 创建时间
+     */
     createTime ZonedDateTime,
+
+    /**
+     * 更新时间
+     */
     updateTime ZonedDateTime
 }
 
@@ -432,6 +483,11 @@ entity SysOrderProduct{
      * 商品状态（0：无状态 1：已清除 2：补加）
      */
     productStatus Integer,
+
+    /**
+     * 商品数量
+     */
+    productNumber Integer,
 
     /**
      * 创建时间
@@ -680,10 +736,7 @@ relationship ManyToOne {
      */
     SysBanner{classify} to SysClassify,
 
-    /**
-     * 预约关联收货地址
-     */
-    SysAppointment{receiverAddress} to SysReceiverAddress,
+    SysAppointment{receiverAddress} to SysReceiverAddress{appointment},
     SysAppointment{user} to SysUser{appointment},
 
     SysModule{classify} to SysClassify,

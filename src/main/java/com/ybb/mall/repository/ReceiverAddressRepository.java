@@ -34,7 +34,7 @@ public interface ReceiverAddressRepository extends JpaRepository<SysReceiverAddr
     List<SysReceiverAddress> findAddressByOpenidAndId(String openid, Long id);
 
     /**
-     * 根据openid查询用户地址列表
+     * 根据id查询收货地址
      */
     @Query("select sra from SysReceiverAddress sra where sra.id = ?1")
     SysReceiverAddress findAddressById(Long id);

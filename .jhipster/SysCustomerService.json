@@ -3,23 +3,28 @@
     "fields": [
         {
             "fieldName": "phone",
+            "javadoc": "客服电话",
             "fieldType": "String"
         },
         {
             "fieldName": "email",
+            "javadoc": "邮箱",
             "fieldType": "String"
         },
         {
             "fieldName": "address",
+            "javadoc": "公司地址",
             "fieldType": "byte[]",
             "fieldTypeBlobContent": "text"
         },
         {
             "fieldName": "createTime",
+            "javadoc": "创建时间",
             "fieldType": "ZonedDateTime"
         },
         {
             "fieldName": "updateTime",
+            "javadoc": "更新时间",
             "fieldType": "ZonedDateTime"
         }
     ],

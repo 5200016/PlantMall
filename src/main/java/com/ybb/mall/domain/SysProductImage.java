@@ -31,9 +31,17 @@ public class SysProductImage implements Serializable {
     @Column(name = "url")
     private String url;
 
+    /**
+     * 创建时间
+     */
+    @ApiModelProperty(value = "创建时间")
     @Column(name = "create_time")
     private ZonedDateTime createTime;
 
+    /**
+     * 更新时间
+     */
+    @ApiModelProperty(value = "更新时间")
     @Column(name = "update_time")
     private ZonedDateTime updateTime;
 

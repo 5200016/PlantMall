@@ -8,8 +8,8 @@ import { JhiAlertService } from 'ng-jhipster';
 
 import { ISysShoppingCar } from 'app/shared/model/sys-shopping-car.model';
 import { SysShoppingCarService } from './sys-shopping-car.service';
-import { ISysProduct } from 'app/shared/model/sys-product.model';
-import { SysProductService } from 'app/entities/sys-product';
+import { ISysUser } from 'app/shared/model/sys-user.model';
+import { SysUserService } from 'app/entities/sys-user';
 
 @Component({
     selector: 'jhi-sys-shopping-car-update',
@@ -19,14 +19,14 @@ export class SysShoppingCarUpdateComponent implements OnInit {
     sysShoppingCar: ISysShoppingCar;
     isSaving: boolean;
 
-    sysproducts: ISysProduct[];
+    sysusers: ISysUser[];
     createTime: string;
     updateTime: string;
 
     constructor(
         protected jhiAlertService: JhiAlertService,
         protected sysShoppingCarService: SysShoppingCarService,
-        protected sysProductService: SysProductService,
+        protected sysUserService: SysUserService,
         protected activatedRoute: ActivatedRoute
     ) {}
 
@@ -37,9 +37,9 @@ export class SysShoppingCarUpdateComponent implements OnInit {
             this.createTime = this.sysShoppingCar.createTime != null ? this.sysShoppingCar.createTime.format(DATE_TIME_FORMAT) : null;
             this.updateTime = this.sysShoppingCar.updateTime != null ? this.sysShoppingCar.updateTime.format(DATE_TIME_FORMAT) : null;
         });
-        this.sysProductService.query().subscribe(
-            (res: HttpResponse<ISysProduct[]>) => {
-                this.sysproducts = res.body;
+        this.sysUserService.query().subscribe(
+            (res: HttpResponse<ISysUser[]>) => {
+                this.sysusers = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
@@ -77,7 +77,7 @@ export class SysShoppingCarUpdateComponent implements OnInit {
         this.jhiAlertService.error(errorMessage, null, null);
     }
 
-    trackSysProductById(index: number, item: ISysProduct) {
+    trackSysUserById(index: number, item: ISysUser) {
         return item.id;
     }
 }

@@ -100,7 +100,7 @@ public class SysProduct implements Serializable {
     @OneToMany(mappedBy = "product")
     private Set<SysProductImage> images = new HashSet<>();
     @OneToMany(mappedBy = "product")
-    private Set<SysShoppingCar> shoppingCars = new HashSet<>();
+    private Set<SysShoppingProduct> shoppingProducts = new HashSet<>();
     @OneToMany(mappedBy = "product")
     private Set<SysReview> reviews = new HashSet<>();
     @OneToMany(mappedBy = "product")
@@ -281,29 +281,29 @@ public class SysProduct implements Serializable {
         this.images = sysProductImages;
     }
 
-    public Set<SysShoppingCar> getShoppingCars() {
-        return shoppingCars;
+    public Set<SysShoppingProduct> getShoppingProducts() {
+        return shoppingProducts;
     }
 
-    public SysProduct shoppingCars(Set<SysShoppingCar> sysShoppingCars) {
-        this.shoppingCars = sysShoppingCars;
+    public SysProduct shoppingProducts(Set<SysShoppingProduct> sysShoppingProducts) {
+        this.shoppingProducts = sysShoppingProducts;
         return this;
     }
 
-    public SysProduct addShoppingCar(SysShoppingCar sysShoppingCar) {
-        this.shoppingCars.add(sysShoppingCar);
-        sysShoppingCar.setProduct(this);
+    public SysProduct addShoppingProduct(SysShoppingProduct sysShoppingProduct) {
+        this.shoppingProducts.add(sysShoppingProduct);
+        sysShoppingProduct.setProduct(this);
         return this;
     }
 
-    public SysProduct removeShoppingCar(SysShoppingCar sysShoppingCar) {
-        this.shoppingCars.remove(sysShoppingCar);
-        sysShoppingCar.setProduct(null);
+    public SysProduct removeShoppingProduct(SysShoppingProduct sysShoppingProduct) {
+        this.shoppingProducts.remove(sysShoppingProduct);
+        sysShoppingProduct.setProduct(null);
         return this;
     }
 
-    public void setShoppingCars(Set<SysShoppingCar> sysShoppingCars) {
-        this.shoppingCars = sysShoppingCars;
+    public void setShoppingProducts(Set<SysShoppingProduct> sysShoppingProducts) {
+        this.shoppingProducts = sysShoppingProducts;
     }
 
     public Set<SysReview> getReviews() {

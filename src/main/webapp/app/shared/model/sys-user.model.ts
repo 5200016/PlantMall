@@ -5,6 +5,7 @@ import { ISysAppointment } from 'app/shared/model//sys-appointment.model';
 import { ISysReceiverAddress } from 'app/shared/model//sys-receiver-address.model';
 import { ISysCouponUser } from 'app/shared/model//sys-coupon-user.model';
 import { ISysOrder } from 'app/shared/model//sys-order.model';
+import { ISysShoppingCar } from 'app/shared/model//sys-shopping-car.model';
 import { ISysReview } from 'app/shared/model//sys-review.model';
 import { ISysCollection } from 'app/shared/model//sys-collection.model';
 
@@ -27,6 +28,7 @@ export interface ISysUser {
     receiverAddresses?: ISysReceiverAddress[];
     couponUsers?: ISysCouponUser[];
     orders?: ISysOrder[];
+    shoppingCars?: ISysShoppingCar[];
     reviews?: ISysReview[];
     collections?: ISysCollection[];
 }
@@ -51,6 +53,7 @@ export class SysUser implements ISysUser {
         public receiverAddresses?: ISysReceiverAddress[],
         public couponUsers?: ISysCouponUser[],
         public orders?: ISysOrder[],
+        public shoppingCars?: ISysShoppingCar[],
         public reviews?: ISysReview[],
         public collections?: ISysCollection[]
     ) {}

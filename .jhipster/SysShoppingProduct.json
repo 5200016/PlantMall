@@ -1,0 +1,49 @@
+{
+    "name": "SysShoppingProduct",
+    "fields": [
+        {
+            "fieldName": "productNumber",
+            "javadoc": "商品数量",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "productType",
+            "javadoc": "商品类型（0：出售商品 1：租赁商品）",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "createTime",
+            "javadoc": "创建时间",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "updateTime",
+            "javadoc": "更新时间",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "shoppingCar",
+            "otherEntityName": "sysShoppingCar",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "product",
+            "otherEntityName": "sysProduct",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190527023309",
+    "javadoc": "购物车商品关联表",
+    "entityTableName": "sys_shopping_product",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -35,14 +35,12 @@
     "relationships": [
         {
             "relationshipType": "many-to-one",
-            "javadoc": "广告图片关联商品",
             "relationshipName": "product",
             "otherEntityName": "sysProduct",
             "otherEntityField": "id"
         },
         {
             "relationshipType": "many-to-one",
-            "javadoc": "广告图片关联商品分类",
             "relationshipName": "classify",
             "otherEntityName": "sysClassify",
             "otherEntityField": "id"

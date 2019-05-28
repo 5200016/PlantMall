@@ -1,7 +1,7 @@
 import { Moment } from 'moment';
 import { ISysClassify } from 'app/shared/model//sys-classify.model';
 import { ISysProductImage } from 'app/shared/model//sys-product-image.model';
-import { ISysShoppingCar } from 'app/shared/model//sys-shopping-car.model';
+import { ISysShoppingProduct } from 'app/shared/model//sys-shopping-product.model';
 import { ISysReview } from 'app/shared/model//sys-review.model';
 import { ISysCollection } from 'app/shared/model//sys-collection.model';
 
@@ -18,7 +18,7 @@ export interface ISysProduct {
     updateTime?: Moment;
     classifies?: ISysClassify[];
     images?: ISysProductImage[];
-    shoppingCars?: ISysShoppingCar[];
+    shoppingProducts?: ISysShoppingProduct[];
     reviews?: ISysReview[];
     collections?: ISysCollection[];
 }
@@ -37,7 +37,7 @@ export class SysProduct implements ISysProduct {
         public updateTime?: Moment,
         public classifies?: ISysClassify[],
         public images?: ISysProductImage[],
-        public shoppingCars?: ISysShoppingCar[],
+        public shoppingProducts?: ISysShoppingProduct[],
         public reviews?: ISysReview[],
         public collections?: ISysCollection[]
     ) {}

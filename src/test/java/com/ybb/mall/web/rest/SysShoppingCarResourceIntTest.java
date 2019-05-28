@@ -46,6 +46,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = PlantMallApp.class)
 public class SysShoppingCarResourceIntTest {
 
+    private static final Integer DEFAULT_TYPE = 1;
+    private static final Integer UPDATED_TYPE = 2;
+
     private static final ZonedDateTime DEFAULT_CREATE_TIME = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_CREATE_TIME = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
 
@@ -97,6 +100,7 @@ public class SysShoppingCarResourceIntTest {
      */
     public static SysShoppingCar createEntity(EntityManager em) {
         SysShoppingCar sysShoppingCar = new SysShoppingCar()
+            .type(DEFAULT_TYPE)
             .createTime(DEFAULT_CREATE_TIME)
             .updateTime(DEFAULT_UPDATE_TIME);
         return sysShoppingCar;
@@ -122,6 +126,7 @@ public class SysShoppingCarResourceIntTest {
         List<SysShoppingCar> sysShoppingCarList = sysShoppingCarRepository.findAll();
         assertThat(sysShoppingCarList).hasSize(databaseSizeBeforeCreate + 1);
         SysShoppingCar testSysShoppingCar = sysShoppingCarList.get(sysShoppingCarList.size() - 1);
+        assertThat(testSysShoppingCar.getType()).isEqualTo(DEFAULT_TYPE);
         assertThat(testSysShoppingCar.getCreateTime()).isEqualTo(DEFAULT_CREATE_TIME);
         assertThat(testSysShoppingCar.getUpdateTime()).isEqualTo(DEFAULT_UPDATE_TIME);
     }
@@ -156,10 +161,11 @@ public class SysShoppingCarResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(sysShoppingCar.getId().intValue())))
+            .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE)))
             .andExpect(jsonPath("$.[*].createTime").value(hasItem(sameInstant(DEFAULT_CREATE_TIME))))
             .andExpect(jsonPath("$.[*].updateTime").value(hasItem(sameInstant(DEFAULT_UPDATE_TIME))));
     }
-
+    
     @Test
     @Transactional
     public void getSysShoppingCar() throws Exception {
@@ -171,6 +177,7 @@ public class SysShoppingCarResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(sysShoppingCar.getId().intValue()))
+            .andExpect(jsonPath("$.type").value(DEFAULT_TYPE))
             .andExpect(jsonPath("$.createTime").value(sameInstant(DEFAULT_CREATE_TIME)))
             .andExpect(jsonPath("$.updateTime").value(sameInstant(DEFAULT_UPDATE_TIME)));
     }
@@ -196,6 +203,7 @@ public class SysShoppingCarResourceIntTest {
         // Disconnect from session so that the updates on updatedSysShoppingCar are not directly saved in db
         em.detach(updatedSysShoppingCar);
         updatedSysShoppingCar
+            .type(UPDATED_TYPE)
             .createTime(UPDATED_CREATE_TIME)
             .updateTime(UPDATED_UPDATE_TIME);
 
@@ -208,6 +216,7 @@ public class SysShoppingCarResourceIntTest {
         List<SysShoppingCar> sysShoppingCarList = sysShoppingCarRepository.findAll();
         assertThat(sysShoppingCarList).hasSize(databaseSizeBeforeUpdate);
         SysShoppingCar testSysShoppingCar = sysShoppingCarList.get(sysShoppingCarList.size() - 1);
+        assertThat(testSysShoppingCar.getType()).isEqualTo(UPDATED_TYPE);
         assertThat(testSysShoppingCar.getCreateTime()).isEqualTo(UPDATED_CREATE_TIME);
         assertThat(testSysShoppingCar.getUpdateTime()).isEqualTo(UPDATED_UPDATE_TIME);
     }

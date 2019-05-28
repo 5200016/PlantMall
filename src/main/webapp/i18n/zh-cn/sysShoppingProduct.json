@@ -1,0 +1,32 @@
+{
+    "plantMallApp": {
+        "sysShoppingProduct": {
+            "home": {
+                "title": "Sys Shopping Products",
+                "createLabel": "创建新 Sys Shopping Product",
+                "createOrEditLabel": "创建或编辑 Sys Shopping Product"
+            },
+            "created": "Sys Shopping Product {{ param }} 创建成功",
+            "updated": "Sys Shopping Product {{ param }} 更新成功",
+            "deleted": "Sys Shopping Product {{ param }} 删除成功",
+            "delete": {
+                "question": "你确定要删除 Sys Shopping Product {{ id }} 吗？"
+            },
+            "detail": {
+                "title": "Sys Shopping Product"
+            },
+            "productNumber": "Product Number",
+            "productType": "Product Type",
+            "createTime": "Create Time",
+            "updateTime": "Update Time",
+            "shoppingCar": "Shopping Car",
+            "product": "Product",
+            "help": {
+                "productNumber": "商品数量",
+                "productType": "商品类型（0：出售商品 1：租赁商品）",
+                "createTime": "创建时间",
+                "updateTime": "更新时间"
+            }
+        }
+    }
+}

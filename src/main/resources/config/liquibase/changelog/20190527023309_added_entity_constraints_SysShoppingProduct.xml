@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity SysShoppingProduct.
+    -->
+    <changeSet id="20190527023309-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="shopping_car_id"
+                                 baseTableName="sys_shopping_product"
+                                 constraintName="fk_sys_shopping_product_shopping_car_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sys_shopping_car"/>
+
+        <addForeignKeyConstraint baseColumnNames="product_id"
+                                 baseTableName="sys_shopping_product"
+                                 constraintName="fk_sys_shopping_product_product_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sys_product"/>
+
+    </changeSet>
+</databaseChangeLog>

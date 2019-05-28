@@ -2,20 +2,33 @@
     "name": "SysShoppingCar",
     "fields": [
         {
+            "fieldName": "type",
+            "javadoc": "类型（0：出售商品 1：租赁商品）",
+            "fieldType": "Integer"
+        },
+        {
             "fieldName": "createTime",
+            "javadoc": "创建时间",
             "fieldType": "ZonedDateTime"
         },
         {
             "fieldName": "updateTime",
+            "javadoc": "更新时间",
             "fieldType": "ZonedDateTime"
         }
     ],
     "relationships": [
         {
             "relationshipType": "many-to-one",
-            "relationshipName": "product",
-            "otherEntityName": "sysProduct",
+            "relationshipName": "user",
+            "otherEntityName": "sysUser",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "shoppingProduct",
+            "otherEntityName": "sysShoppingProduct",
+            "otherEntityRelationshipName": "shoppingCar"
         }
     ],
     "changelogDate": "20190415061402",

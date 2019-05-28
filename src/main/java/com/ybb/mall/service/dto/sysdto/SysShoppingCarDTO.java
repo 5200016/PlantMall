@@ -1,8 +1,12 @@
 package com.ybb.mall.service.dto.sysdto;
 
+import com.ybb.mall.domain.SysShoppingProduct;
+
 import java.io.Serializable;
 import java.time.ZonedDateTime;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A DTO for the SysShoppingCar entity.
@@ -11,11 +15,13 @@ public class SysShoppingCarDTO implements Serializable {
 
     private Long id;
 
+    private Integer type;
+
     private ZonedDateTime createTime;
 
     private ZonedDateTime updateTime;
 
-    private Long productId;
+    private Set<SysShoppingProduct> shoppingProducts = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -23,6 +29,14 @@ public class SysShoppingCarDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     public ZonedDateTime getCreateTime() {
@@ -41,12 +55,12 @@ public class SysShoppingCarDTO implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public Long getProductId() {
-        return productId;
+    public Set<SysShoppingProduct> getShoppingProducts() {
+        return shoppingProducts;
     }
 
-    public void setProductId(Long sysProductId) {
-        this.productId = sysProductId;
+    public void setShoppingProducts(Set<SysShoppingProduct> shoppingProducts) {
+        this.shoppingProducts = shoppingProducts;
     }
 
     @Override
@@ -73,10 +87,11 @@ public class SysShoppingCarDTO implements Serializable {
     @Override
     public String toString() {
         return "SysShoppingCarDTO{" +
-            "id=" + getId() +
-            ", createTime='" + getCreateTime() + "'" +
-            ", updateTime='" + getUpdateTime() + "'" +
-            ", product=" + getProductId() +
-            "}";
+            "id=" + id +
+            ", type=" + type +
+            ", createTime=" + createTime +
+            ", updateTime=" + updateTime +
+            ", shoppingProducts=" + shoppingProducts +
+            '}';
     }
 }

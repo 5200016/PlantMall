@@ -1,0 +1,72 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="plantMallApp.sysShoppingProduct.home.title">Sys Shopping Products</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-sys-shopping-product" [routerLink]="['/sys-shopping-product/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="plantMallApp.sysShoppingProduct.home.createLabel">
+            Create new Sys Shopping Product
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="sysShoppingProducts">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="plantMallApp.sysShoppingProduct.productNumber">Product Number</span></th>
+            <th><span jhiTranslate="plantMallApp.sysShoppingProduct.productType">Product Type</span></th>
+            <th><span jhiTranslate="plantMallApp.sysShoppingProduct.createTime">Create Time</span></th>
+            <th><span jhiTranslate="plantMallApp.sysShoppingProduct.updateTime">Update Time</span></th>
+            <th><span jhiTranslate="plantMallApp.sysShoppingProduct.shoppingCar">Shopping Car</span></th>
+            <th><span jhiTranslate="plantMallApp.sysShoppingProduct.product">Product</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let sysShoppingProduct of sysShoppingProducts ;trackBy: trackId">
+                <td><a [routerLink]="['/sys-shopping-product', sysShoppingProduct.id, 'view' ]">{{sysShoppingProduct.id}}</a></td>
+                <td>{{sysShoppingProduct.productNumber}}</td>
+                <td>{{sysShoppingProduct.productType}}</td>
+                <td>{{sysShoppingProduct.createTime | date:'medium'}}</td>
+                <td>{{sysShoppingProduct.updateTime | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="sysShoppingProduct.shoppingCar">
+                        <a [routerLink]="['../sys-shopping-car', sysShoppingProduct.shoppingCar?.id, 'view' ]" >{{sysShoppingProduct.shoppingCar?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="sysShoppingProduct.product">
+                        <a [routerLink]="['../sys-product', sysShoppingProduct.product?.id, 'view' ]" >{{sysShoppingProduct.product?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/sys-shopping-product', sysShoppingProduct.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/sys-shopping-product', sysShoppingProduct.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'sys-shopping-product/'+ sysShoppingProduct.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

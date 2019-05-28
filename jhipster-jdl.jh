@@ -376,7 +376,45 @@ entity SysOrder {
  * 购物车表
  */
 entity SysShoppingCar{
+
+    /**
+     * 类型（0：出售商品 1：租赁商品）
+     */
+    type Integer,
+
+    /**
+     * 创建时间
+     */
     createTime ZonedDateTime,
+
+    /**
+     * 更新时间
+     */
+    updateTime ZonedDateTime
+}
+
+/**
+ * 购物车商品关联表
+ */
+entity SysShoppingProduct{
+    /**
+     * 商品数量
+     */
+    productNumber Integer,
+
+    /**
+     * 商品类型（0：出售商品 1：租赁商品）
+     */
+    productType Integer,
+
+    /**
+     * 创建时间
+     */
+    createTime ZonedDateTime,
+
+    /**
+     * 更新时间
+     */
     updateTime ZonedDateTime
 }
 
@@ -726,14 +764,7 @@ entity SysCouponUser{
 }
 
 relationship ManyToOne {
-    /**
-     * 广告图片关联商品
-     */
     SysBanner{product} to SysProduct,
-
-    /**
-     * 广告图片关联商品分类
-     */
     SysBanner{classify} to SysClassify,
 
     SysAppointment{receiverAddress} to SysReceiverAddress{appointment},
@@ -749,17 +780,25 @@ relationship ManyToOne {
 	SysCouponClassify{coupon} to SysCoupon{couponClassify},
 	SysCouponClassify{classify} to SysClassify,
 
-    SysOrder{user} to SysUser{order},
     SysOrderProduct{order} to SysOrder{orderProduct},
     SysOrderProduct{product} to SysProduct,
+
+    SysOrder{user} to SysUser{order},
     SysOrder{receiverAddress} to SysReceiverAddress{order},
     SysOrder{maintenancePersonnel} to SysMaintenancePersonnel{order},
+
     SysProductImage{product} to SysProduct{image},
-    SysShoppingCar{product} to SysProduct{shoppingCar},
+
+    SysShoppingCar{user} to SysUser{shoppingCar},
+    SysShoppingProduct{shoppingCar} to SysShoppingCar{shoppingProduct},
+    SysShoppingProduct{product} to SysProduct{shoppingProduct},
+
     SysReview{product} to SysProduct{review},
     SysReview{user} to SysUser{review},
+
     SysCollection{user} to SysUser{collection},
     SysCollection{product} to SysProduct{collection},
+
     SysUser{memberLevel} to SysMemberLevel{user}
 }
 

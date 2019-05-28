@@ -15,6 +15,15 @@ public class SubmitOrderVM {
     private String payNo;
     private Long userId;
     private Long receiveAddressId;
+    private List<Long> shoppingProductIdList;
+
+    public List<Long> getShoppingProductIdList() {
+        return shoppingProductIdList;
+    }
+
+    public void setShoppingProductIdList(List<Long> shoppingProductIdList) {
+        this.shoppingProductIdList = shoppingProductIdList;
+    }
 
     public List<SellVM> getSell() {
         return sell;
@@ -65,6 +74,7 @@ public class SubmitOrderVM {
             ", payNo='" + payNo + '\'' +
             ", userId=" + userId +
             ", receiveAddressId=" + receiveAddressId +
+            ", shoppingProductIdList=" + shoppingProductIdList +
             '}';
     }
 }

@@ -66,18 +66,10 @@ public class SysBanner implements Serializable {
     @Column(name = "update_time")
     private ZonedDateTime updateTime;
 
-    /**
-     * 广告图片关联商品
-     */
-    @ApiModelProperty(value = "广告图片关联商品")
     @ManyToOne
     @JsonIgnoreProperties("")
     private SysProduct product;
 
-    /**
-     * 广告图片关联商品分类
-     */
-    @ApiModelProperty(value = "广告图片关联商品分类")
     @ManyToOne
     @JsonIgnoreProperties("")
     private SysClassify classify;

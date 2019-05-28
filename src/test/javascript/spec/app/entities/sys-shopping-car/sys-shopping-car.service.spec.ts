@@ -25,7 +25,7 @@ describe('Service Tests', () => {
             httpMock = injector.get(HttpTestingController);
             currentDate = moment();
 
-            elemDefault = new SysShoppingCar(0, currentDate, currentDate);
+            elemDefault = new SysShoppingCar(0, 0, currentDate, currentDate);
         });
 
         describe('Service methods', async () => {
@@ -73,6 +73,7 @@ describe('Service Tests', () => {
             it('should update a SysShoppingCar', async () => {
                 const returnedFromService = Object.assign(
                     {
+                        type: 1,
                         createTime: currentDate.format(DATE_TIME_FORMAT),
                         updateTime: currentDate.format(DATE_TIME_FORMAT)
                     },
@@ -97,6 +98,7 @@ describe('Service Tests', () => {
             it('should return a list of SysShoppingCar', async () => {
                 const returnedFromService = Object.assign(
                     {
+                        type: 1,
                         createTime: currentDate.format(DATE_TIME_FORMAT),
                         updateTime: currentDate.format(DATE_TIME_FORMAT)
                     },

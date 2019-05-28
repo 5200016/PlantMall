@@ -8,13 +8,12 @@ import org.mapstruct.Mapping;
 /**
  * Mapper for the entity SysShoppingCar and its DTO SysShoppingCarDTO.
  */
-@Mapper(componentModel = "spring", uses = {SysProductMapper.class})
+@Mapper(componentModel = "spring", uses = {})
 public interface SysShoppingCarMapper extends EntityMapper<SysShoppingCarDTO, SysShoppingCar> {
-
-    @Mapping(source = "product.id", target = "productId")
     SysShoppingCarDTO toDto(SysShoppingCar sysShoppingCar);
 
-    @Mapping(source = "productId", target = "product")
+    @Mapping(target = "shoppingProducts", ignore = true)
+
     SysShoppingCar toEntity(SysShoppingCarDTO sysShoppingCarDTO);
 
     default SysShoppingCar fromId(Long id) {

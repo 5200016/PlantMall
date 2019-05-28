@@ -12,7 +12,6 @@ import org.mapstruct.Mapping;
 public interface SysProductMapper extends EntityMapper<ProductDTO, SysProduct> {
 
     @Mapping(target = "images", ignore = true)
-    @Mapping(target = "shoppingCars", ignore = true)
     @Mapping(target = "reviews", ignore = true)
     @Mapping(target = "collections", ignore = true)
     SysProduct toEntity(ProductDTO sysProductDTO);

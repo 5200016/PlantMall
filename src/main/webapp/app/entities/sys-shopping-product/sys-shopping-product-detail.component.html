@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="sysShoppingProduct">
+            <h2><span jhiTranslate="plantMallApp.sysShoppingProduct.detail.title">Sys Shopping Product</span> {{sysShoppingProduct.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="plantMallApp.sysShoppingProduct.productNumber" [ngbTooltip]="'plantMallApp.sysShoppingProduct.help.productNumber' | translate">Product Number</span></dt>
+                <dd>
+                    <span>{{sysShoppingProduct.productNumber}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysShoppingProduct.productType" [ngbTooltip]="'plantMallApp.sysShoppingProduct.help.productType' | translate">Product Type</span></dt>
+                <dd>
+                    <span>{{sysShoppingProduct.productType}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysShoppingProduct.createTime" [ngbTooltip]="'plantMallApp.sysShoppingProduct.help.createTime' | translate">Create Time</span></dt>
+                <dd>
+                    <span>{{sysShoppingProduct.createTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysShoppingProduct.updateTime" [ngbTooltip]="'plantMallApp.sysShoppingProduct.help.updateTime' | translate">Update Time</span></dt>
+                <dd>
+                    <span>{{sysShoppingProduct.updateTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysShoppingProduct.shoppingCar">Shopping Car</span></dt>
+                <dd>
+                    <div *ngIf="sysShoppingProduct.shoppingCar">
+                        <a [routerLink]="['/sys-shopping-car', sysShoppingProduct.shoppingCar?.id, 'view']">{{sysShoppingProduct.shoppingCar?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysShoppingProduct.product">Product</span></dt>
+                <dd>
+                    <div *ngIf="sysShoppingProduct.product">
+                        <a [routerLink]="['/sys-product', sysShoppingProduct.product?.id, 'view']">{{sysShoppingProduct.product?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/sys-shopping-product', sysShoppingProduct.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

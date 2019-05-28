@@ -15,20 +15,22 @@
             <thead>
             <tr>
             <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="plantMallApp.sysShoppingCar.type">Type</span></th>
             <th><span jhiTranslate="plantMallApp.sysShoppingCar.createTime">Create Time</span></th>
             <th><span jhiTranslate="plantMallApp.sysShoppingCar.updateTime">Update Time</span></th>
-            <th><span jhiTranslate="plantMallApp.sysShoppingCar.product">Product</span></th>
+            <th><span jhiTranslate="plantMallApp.sysShoppingCar.user">User</span></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let sysShoppingCar of sysShoppingCars ;trackBy: trackId">
                 <td><a [routerLink]="['/sys-shopping-car', sysShoppingCar.id, 'view' ]">{{sysShoppingCar.id}}</a></td>
+                <td>{{sysShoppingCar.type}}</td>
                 <td>{{sysShoppingCar.createTime | date:'medium'}}</td>
                 <td>{{sysShoppingCar.updateTime | date:'medium'}}</td>
                 <td>
-                    <div *ngIf="sysShoppingCar.product">
-                        <a [routerLink]="['../sys-product', sysShoppingCar.product?.id, 'view' ]" >{{sysShoppingCar.product?.id}}</a>
+                    <div *ngIf="sysShoppingCar.user">
+                        <a [routerLink]="['../sys-user', sysShoppingCar.user?.id, 'view' ]" >{{sysShoppingCar.user?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">

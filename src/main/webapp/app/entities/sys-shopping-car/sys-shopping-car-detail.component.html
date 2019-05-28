@@ -5,18 +5,22 @@
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="plantMallApp.sysShoppingCar.createTime">Create Time</span></dt>
+                <dt><span jhiTranslate="plantMallApp.sysShoppingCar.type" [ngbTooltip]="'plantMallApp.sysShoppingCar.help.type' | translate">Type</span></dt>
+                <dd>
+                    <span>{{sysShoppingCar.type}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysShoppingCar.createTime" [ngbTooltip]="'plantMallApp.sysShoppingCar.help.createTime' | translate">Create Time</span></dt>
                 <dd>
                     <span>{{sysShoppingCar.createTime}}</span>
                 </dd>
-                <dt><span jhiTranslate="plantMallApp.sysShoppingCar.updateTime">Update Time</span></dt>
+                <dt><span jhiTranslate="plantMallApp.sysShoppingCar.updateTime" [ngbTooltip]="'plantMallApp.sysShoppingCar.help.updateTime' | translate">Update Time</span></dt>
                 <dd>
                     <span>{{sysShoppingCar.updateTime}}</span>
                 </dd>
-                <dt><span jhiTranslate="plantMallApp.sysShoppingCar.product">Product</span></dt>
+                <dt><span jhiTranslate="plantMallApp.sysShoppingCar.user">User</span></dt>
                 <dd>
-                    <div *ngIf="sysShoppingCar.product">
-                        <a [routerLink]="['/sys-product', sysShoppingCar.product?.id, 'view']">{{sysShoppingCar.product?.id}}</a>
+                    <div *ngIf="sysShoppingCar.user">
+                        <a [routerLink]="['/sys-user', sysShoppingCar.user?.id, 'view']">{{sysShoppingCar.user?.id}}</a>
                     </div>
                 </dd>
             </dl>

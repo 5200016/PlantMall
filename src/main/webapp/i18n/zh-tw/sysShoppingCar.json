@@ -15,9 +15,16 @@
             "detail": {
                 "title": "Sys Shopping Car"
             },
+            "type": "Type",
             "createTime": "Create Time",
             "updateTime": "Update Time",
-            "product": "Product"
+            "user": "User",
+            "shoppingProduct": "Shopping Product",
+            "help": {
+                "type": "类型（0：出售商品 1：租赁商品）",
+                "createTime": "创建时间",
+                "updateTime": "更新时间"
+            }
         }
     }
 }

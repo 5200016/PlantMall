@@ -123,6 +123,8 @@ public class SysUser implements Serializable {
     @OneToMany(mappedBy = "user")
     private Set<SysOrder> orders = new HashSet<>();
     @OneToMany(mappedBy = "user")
+    private Set<SysShoppingCar> shoppingCars = new HashSet<>();
+    @OneToMany(mappedBy = "user")
     private Set<SysReview> reviews = new HashSet<>();
     @OneToMany(mappedBy = "user")
     private Set<SysCollection> collections = new HashSet<>();
@@ -414,6 +416,31 @@ public class SysUser implements Serializable {
 
     public void setOrders(Set<SysOrder> sysOrders) {
         this.orders = sysOrders;
+    }
+
+    public Set<SysShoppingCar> getShoppingCars() {
+        return shoppingCars;
+    }
+
+    public SysUser shoppingCars(Set<SysShoppingCar> sysShoppingCars) {
+        this.shoppingCars = sysShoppingCars;
+        return this;
+    }
+
+    public SysUser addShoppingCar(SysShoppingCar sysShoppingCar) {
+        this.shoppingCars.add(sysShoppingCar);
+        sysShoppingCar.setUser(this);
+        return this;
+    }
+
+    public SysUser removeShoppingCar(SysShoppingCar sysShoppingCar) {
+        this.shoppingCars.remove(sysShoppingCar);
+        sysShoppingCar.setUser(null);
+        return this;
+    }
+
+    public void setShoppingCars(Set<SysShoppingCar> sysShoppingCars) {
+        this.shoppingCars = sysShoppingCars;
     }
 
     public Set<SysReview> getReviews() {

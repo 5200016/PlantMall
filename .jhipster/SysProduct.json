@@ -65,8 +65,8 @@
         },
         {
             "relationshipType": "one-to-many",
-            "relationshipName": "shoppingCar",
-            "otherEntityName": "sysShoppingCar",
+            "relationshipName": "shoppingProduct",
+            "otherEntityName": "sysShoppingProduct",
             "otherEntityRelationshipName": "product"
         },
         {

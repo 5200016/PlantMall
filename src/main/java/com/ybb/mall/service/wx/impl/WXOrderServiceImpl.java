@@ -2,7 +2,6 @@ package com.ybb.mall.service.wx.impl;
 
 import com.ybb.mall.domain.*;
 import com.ybb.mall.repository.*;
-import com.ybb.mall.service.dto.order.OrderDTO;
 import com.ybb.mall.service.mapper.SysOrderMapper;
 import com.ybb.mall.service.wx.WXOrderService;
 import com.ybb.mall.web.rest.controller.wx.vm.order.LeaseProductVM;
@@ -13,7 +12,6 @@ import com.ybb.mall.web.rest.util.DateUtil;
 import com.ybb.mall.web.rest.util.ResultObj;
 import com.ybb.mall.web.rest.util.TypeUtils;
 import com.ybb.mall.web.rest.util.WxUtil;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,16 +36,19 @@ public class WXOrderServiceImpl implements WXOrderService {
 
     private final AppointmentRepository appointmentRepository;
 
+    private final ShoppingProductRepository shoppingProductRepository;
+
     private final SysOrderMapper orderMapper;
 
     private final ReceiverAddressRepository receiverAddressRepository;
 
     private final SUserRepository userRepository;
 
-    public WXOrderServiceImpl(OrderRepository orderRepository, OrderProductRepository orderProductRepository, AppointmentRepository appointmentRepository, SysOrderMapper orderMapper, ReceiverAddressRepository receiverAddressRepository, SUserRepository userRepository) {
+    public WXOrderServiceImpl(OrderRepository orderRepository, OrderProductRepository orderProductRepository, AppointmentRepository appointmentRepository, ShoppingProductRepository shoppingProductRepository, SysOrderMapper orderMapper, ReceiverAddressRepository receiverAddressRepository, SUserRepository userRepository) {
         this.orderRepository = orderRepository;
         this.orderProductRepository = orderProductRepository;
         this.appointmentRepository = appointmentRepository;
+        this.shoppingProductRepository = shoppingProductRepository;
         this.orderMapper = orderMapper;
         this.receiverAddressRepository = receiverAddressRepository;
         this.userRepository = userRepository;
@@ -139,8 +140,18 @@ public class WXOrderServiceImpl implements WXOrderService {
                 orderProductList.add(orderProduct);
             }
         }
-
         orderProductRepository.saveAll(orderProductList);
+
+        if(!TypeUtils.isEmpty(submitOrder.getShoppingProductIdList())){
+            List<SysShoppingProduct> list = new ArrayList<>();
+            for(Long id : submitOrder.getShoppingProductIdList()){
+                SysShoppingProduct object = new SysShoppingProduct();
+                object.setId(id);
+                list.add(object);
+            }
+            shoppingProductRepository.deleteInBatch(list);
+        }
+
         return ResultObj.backCRUDSuccess("下单成功");
     }
 

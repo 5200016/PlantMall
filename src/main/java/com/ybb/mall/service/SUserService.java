@@ -6,6 +6,7 @@ import com.ybb.mall.web.rest.controller.wx.vm.InsertUserAddressVM;
 import com.ybb.mall.web.rest.controller.wx.vm.UpdateAddressStatusVM;
 import com.ybb.mall.web.rest.controller.wx.vm.UpdateUserAddressVM;
 import com.ybb.mall.web.rest.util.ResultObj;
+import com.ybb.mall.web.rest.vm.user.UpdateUserVM;
 import org.springframework.data.domain.Page;
 
 /**
@@ -28,4 +29,11 @@ public interface SUserService {
      * @return
      */
     ResultObj findUserByOpenid(String openid);
+
+    /**
+     * 修改用户信息
+     * @param updateUser
+     * @return
+     */
+    ResultObj updateUserInfo(UpdateUserVM updateUser);
 }

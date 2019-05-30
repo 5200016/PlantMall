@@ -1,0 +1,27 @@
+{
+    "plantMallApp": {
+        "sysForm": {
+            "home": {
+                "title": "Sys Forms",
+                "createLabel": "创建新 Sys Form",
+                "createOrEditLabel": "创建或编辑 Sys Form"
+            },
+            "created": "Sys Form {{ param }} 创建成功",
+            "updated": "Sys Form {{ param }} 更新成功",
+            "deleted": "Sys Form {{ param }} 删除成功",
+            "delete": {
+                "question": "你确定要删除 Sys Form {{ id }} 吗？"
+            },
+            "detail": {
+                "title": "Sys Form"
+            },
+            "formId": "Form Id",
+            "validity": "Validity",
+            "user": "User",
+            "help": {
+                "formId": "微信formId",
+                "validity": "有效期天数（默认6天）"
+            }
+        }
+    }
+}

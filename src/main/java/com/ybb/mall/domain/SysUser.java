@@ -123,7 +123,11 @@ public class SysUser implements Serializable {
     @OneToMany(mappedBy = "user")
     private Set<SysOrder> orders = new HashSet<>();
     @OneToMany(mappedBy = "user")
+    private Set<SysMaintenancePersonnel> maintenancePersonnels = new HashSet<>();
+    @OneToMany(mappedBy = "user")
     private Set<SysShoppingCar> shoppingCars = new HashSet<>();
+    @OneToMany(mappedBy = "user")
+    private Set<SysForm> forms = new HashSet<>();
     @OneToMany(mappedBy = "user")
     private Set<SysReview> reviews = new HashSet<>();
     @OneToMany(mappedBy = "user")
@@ -418,6 +422,31 @@ public class SysUser implements Serializable {
         this.orders = sysOrders;
     }
 
+    public Set<SysMaintenancePersonnel> getMaintenancePersonnels() {
+        return maintenancePersonnels;
+    }
+
+    public SysUser maintenancePersonnels(Set<SysMaintenancePersonnel> sysMaintenancePersonnels) {
+        this.maintenancePersonnels = sysMaintenancePersonnels;
+        return this;
+    }
+
+    public SysUser addMaintenancePersonnel(SysMaintenancePersonnel sysMaintenancePersonnel) {
+        this.maintenancePersonnels.add(sysMaintenancePersonnel);
+        sysMaintenancePersonnel.setUser(this);
+        return this;
+    }
+
+    public SysUser removeMaintenancePersonnel(SysMaintenancePersonnel sysMaintenancePersonnel) {
+        this.maintenancePersonnels.remove(sysMaintenancePersonnel);
+        sysMaintenancePersonnel.setUser(null);
+        return this;
+    }
+
+    public void setMaintenancePersonnels(Set<SysMaintenancePersonnel> sysMaintenancePersonnels) {
+        this.maintenancePersonnels = sysMaintenancePersonnels;
+    }
+
     public Set<SysShoppingCar> getShoppingCars() {
         return shoppingCars;
     }
@@ -441,6 +470,31 @@ public class SysUser implements Serializable {
 
     public void setShoppingCars(Set<SysShoppingCar> sysShoppingCars) {
         this.shoppingCars = sysShoppingCars;
+    }
+
+    public Set<SysForm> getForms() {
+        return forms;
+    }
+
+    public SysUser forms(Set<SysForm> sysForms) {
+        this.forms = sysForms;
+        return this;
+    }
+
+    public SysUser addForm(SysForm sysForm) {
+        this.forms.add(sysForm);
+        sysForm.setUser(this);
+        return this;
+    }
+
+    public SysUser removeForm(SysForm sysForm) {
+        this.forms.remove(sysForm);
+        sysForm.setUser(null);
+        return this;
+    }
+
+    public void setForms(Set<SysForm> sysForms) {
+        this.forms = sysForms;
     }
 
     public Set<SysReview> getReviews() {

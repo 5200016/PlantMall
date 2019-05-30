@@ -16,16 +16,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class WXInterfaceUtil {
 
-    private static String APP_ID ;
+    private static String AppId ;
 
-    private static String SECRET ;
+    private static String AppSecret ;
 
     private final ApplicationProperties applicationProperties;
 
     public WXInterfaceUtil(ApplicationProperties applicationProperties) {
         this.applicationProperties = applicationProperties;
-        APP_ID = applicationProperties.getAppID();
-        SECRET = applicationProperties.getAppSecret();
+        AppId = applicationProperties.getAppID();
+        AppSecret = applicationProperties.getAppSecret();
     }
 
     public static void sendGroupMessage(String content, String openId) {
@@ -54,10 +54,8 @@ public class WXInterfaceUtil {
      * @return
      */
     public static String getAccessToken(){
-        String url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + "wxa401c86f7a8497d3" + "&secret=" + "f34cfcaa6decb2cccde0d03696560560";
+        String url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + AppId + "&secret=" + AppSecret;
         JSONObject result = OkHttpUtil.getRequest(url , null);
-
-        System.out.println(result);
         if(!result.containsKey("errcode")){
             return result.getString("access_token");
         }else{

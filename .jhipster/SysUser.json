@@ -98,8 +98,20 @@
         },
         {
             "relationshipType": "one-to-many",
+            "relationshipName": "maintenancePersonnel",
+            "otherEntityName": "sysMaintenancePersonnel",
+            "otherEntityRelationshipName": "user"
+        },
+        {
+            "relationshipType": "one-to-many",
             "relationshipName": "shoppingCar",
             "otherEntityName": "sysShoppingCar",
+            "otherEntityRelationshipName": "user"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "form",
+            "otherEntityName": "sysForm",
             "otherEntityRelationshipName": "user"
         },
         {

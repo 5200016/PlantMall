@@ -5,17 +5,9 @@
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="plantMallApp.sysMaintenancePersonnel.openid" [ngbTooltip]="'plantMallApp.sysMaintenancePersonnel.help.openid' | translate">Openid</span></dt>
+                <dt><span jhiTranslate="plantMallApp.sysMaintenancePersonnel.status" [ngbTooltip]="'plantMallApp.sysMaintenancePersonnel.help.status' | translate">Status</span></dt>
                 <dd>
-                    <span>{{sysMaintenancePersonnel.openid}}</span>
-                </dd>
-                <dt><span jhiTranslate="plantMallApp.sysMaintenancePersonnel.name" [ngbTooltip]="'plantMallApp.sysMaintenancePersonnel.help.name' | translate">Name</span></dt>
-                <dd>
-                    <span>{{sysMaintenancePersonnel.name}}</span>
-                </dd>
-                <dt><span jhiTranslate="plantMallApp.sysMaintenancePersonnel.phone" [ngbTooltip]="'plantMallApp.sysMaintenancePersonnel.help.phone' | translate">Phone</span></dt>
-                <dd>
-                    <span>{{sysMaintenancePersonnel.phone}}</span>
+                    <span>{{sysMaintenancePersonnel.status}}</span>
                 </dd>
                 <dt><span jhiTranslate="plantMallApp.sysMaintenancePersonnel.createTime" [ngbTooltip]="'plantMallApp.sysMaintenancePersonnel.help.createTime' | translate">Create Time</span></dt>
                 <dd>
@@ -24,6 +16,12 @@
                 <dt><span jhiTranslate="plantMallApp.sysMaintenancePersonnel.updateTime" [ngbTooltip]="'plantMallApp.sysMaintenancePersonnel.help.updateTime' | translate">Update Time</span></dt>
                 <dd>
                     <span>{{sysMaintenancePersonnel.updateTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysMaintenancePersonnel.user">User</span></dt>
+                <dd>
+                    <div *ngIf="sysMaintenancePersonnel.user">
+                        <a [routerLink]="['/sys-user', sysMaintenancePersonnel.user?.id, 'view']">{{sysMaintenancePersonnel.user?.id}}</a>
+                    </div>
                 </dd>
             </dl>
 

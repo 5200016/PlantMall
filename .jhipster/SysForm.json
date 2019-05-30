@@ -1,0 +1,33 @@
+{
+    "name": "SysForm",
+    "fields": [
+        {
+            "fieldName": "formId",
+            "javadoc": "微信formId",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "validity",
+            "javadoc": "有效期天数（默认6天）",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "user",
+            "otherEntityName": "sysUser",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190530064009",
+    "javadoc": "微信formId表",
+    "entityTableName": "sys_form",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

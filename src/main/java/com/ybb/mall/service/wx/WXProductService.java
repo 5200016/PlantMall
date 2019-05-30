@@ -1,6 +1,7 @@
 package com.ybb.mall.service.wx;
 
 import com.ybb.mall.domain.SysProduct;
+import com.ybb.mall.web.rest.controller.wx.vm.order.ProductOperationVM;
 import com.ybb.mall.web.rest.util.ResultObj;
 
 /**
@@ -20,4 +21,9 @@ public interface WXProductService {
      * 根据id查询商品详情
      */
     ResultObj findWXProductById(Long id);
+
+    /**
+     * 商品数量加减运算
+     */
+    ResultObj shoppingProductOperation(ProductOperationVM productOperation);
 }

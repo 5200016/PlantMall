@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
 
+import java.util.List;
+
 /**
  * @Description : 订单
  * @Author 黄志成
@@ -79,4 +81,14 @@ public interface OrderRepository extends JpaRepository<SysOrder, Long> {
             " order by so.createTime desc"
     )
     Page<SysOrder> findOrderServiceListByUserId(Long userId, Pageable pageable);
+
+    /**
+     * 养护人员分页查询订单列表
+     */
+    @Query("select so from" +
+        " SysMaintenancePersonnel smp left join SysOrder so on smp.id = so.maintenancePersonnel.id" +
+        " where smp.user.id = ?1" +
+        " and so.id is not null" +
+        " order by so.createTime desc")
+    Page<SysOrder> findOrderListByMaintenance(Long userId, Pageable pageable);
 }

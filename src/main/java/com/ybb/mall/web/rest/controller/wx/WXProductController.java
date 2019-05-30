@@ -4,14 +4,12 @@ import com.codahale.metrics.annotation.Timed;
 import com.ybb.mall.service.SysPlantLogService;
 import com.ybb.mall.service.wx.WXClassifyService;
 import com.ybb.mall.service.wx.WXProductService;
+import com.ybb.mall.web.rest.controller.wx.vm.order.ProductOperationVM;
 import com.ybb.mall.web.rest.util.ResultObj;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URISyntaxException;
 
@@ -81,6 +79,19 @@ public class WXProductController {
     @Timed
     public ResultObj selectProductById(@ApiParam(name = "id", value = "商品id", required = true) @RequestParam Long id) throws URISyntaxException {
         return wxProductService.findWXProductById(id);
+    }
+
+    /**
+     * 商品数量加减运算
+     *
+     * @return
+     * @throws URISyntaxException
+     */
+    @ApiOperation("商品数量加减运算")
+    @PutMapping("/product/operation")
+    @Timed
+    public ResultObj productOperation(@RequestBody ProductOperationVM productOperation) throws URISyntaxException {
+        return wxProductService.shoppingProductOperation(productOperation);
     }
 
     /**

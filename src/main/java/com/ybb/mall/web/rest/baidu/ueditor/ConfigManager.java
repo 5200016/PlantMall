@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.ybb.mall.web.rest.baidu.ueditor.define.ActionMap;
 import org.apache.commons.io.IOUtils;
+import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.net.URISyntaxException;
@@ -157,7 +158,6 @@ public final class ConfigManager {
 
 		//String configContent = this.readFile( this.getConfigPath() );
 		String configContent = this.filter(IOUtils.toString(this.getClass().getClassLoader().getResourceAsStream("config.json")));
-
 		try{
 			JSONObject jsonConfig = JSONObject.parseObject( configContent );
 			this.jsonConfig = jsonConfig;

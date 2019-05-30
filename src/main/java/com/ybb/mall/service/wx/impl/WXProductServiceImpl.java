@@ -1,19 +1,20 @@
 package com.ybb.mall.service.wx.impl;
 
-import com.ybb.mall.domain.SysClassify;
-import com.ybb.mall.domain.SysProductImage;
+import com.ybb.mall.domain.*;
 import com.ybb.mall.repository.ProductRepository;
+import com.ybb.mall.repository.ShoppingCarRepository;
+import com.ybb.mall.repository.ShoppingProductRepository;
 import com.ybb.mall.service.dto.product.ProductBriefDTO;
 import com.ybb.mall.service.dto.product.ProductDTO;
 import com.ybb.mall.service.dto.product.ProductImageDTO;
 import com.ybb.mall.service.mapper.SysProductMapper;
 import com.ybb.mall.service.wx.WXProductService;
+import com.ybb.mall.web.rest.controller.wx.vm.order.ProductOperationVM;
+import com.ybb.mall.web.rest.util.DateUtil;
 import com.ybb.mall.web.rest.util.ResultObj;
 import com.ybb.mall.web.rest.util.TypeUtils;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,9 +36,15 @@ public class WXProductServiceImpl implements WXProductService {
 
     private final SysProductMapper productMapper;
 
-    public WXProductServiceImpl(ProductRepository productRepository, SysProductMapper productMapper) {
+    private final ShoppingProductRepository shoppingProductRepository;
+
+    private final ShoppingCarRepository shoppingCarRepository;
+
+    public WXProductServiceImpl(ProductRepository productRepository, SysProductMapper productMapper, ShoppingProductRepository shoppingProductRepository, ShoppingCarRepository shoppingCarRepository) {
         this.productRepository = productRepository;
         this.productMapper = productMapper;
+        this.shoppingProductRepository = shoppingProductRepository;
+        this.shoppingCarRepository = shoppingCarRepository;
     }
 
     @Override
@@ -96,5 +103,58 @@ public class WXProductServiceImpl implements WXProductService {
 
         product.setImageList(images);
         return ResultObj.back(200, product);
+    }
+
+    @Override
+    public ResultObj shoppingProductOperation(ProductOperationVM productOperation) {
+        SysShoppingCar shoppingCar = shoppingCarRepository.findShoppingCar(productOperation.getUserId(), productOperation.getProductType());
+        if(TypeUtils.isEmpty(shoppingCar)){
+            SysShoppingCar sysShoppingCar = new SysShoppingCar();
+            sysShoppingCar.setCreateTime(DateUtil.getZoneDateTime());
+            sysShoppingCar.setType(productOperation.getProductType());
+            sysShoppingCar.setUpdateTime(DateUtil.getZoneDateTime());
+
+            SysUser sysUser = new SysUser();
+            sysUser.setId(productOperation.getUserId());
+            sysShoppingCar.setUser(sysUser);
+
+            shoppingCar = shoppingCarRepository.save(sysShoppingCar);
+        }
+
+        SysShoppingProduct shoppingProduct = shoppingProductRepository.findShoppingProduct(productOperation.getUserId(), productOperation.getProductId(), productOperation.getProductType());
+        if(TypeUtils.isEmpty(shoppingProduct)){
+            SysShoppingProduct sysShoppingProduct = new SysShoppingProduct();
+            sysShoppingProduct.setProductNumber(1);
+            sysShoppingProduct.setProductType(productOperation.getProductType());
+            sysShoppingProduct.setCreateTime(DateUtil.getZoneDateTime());
+            sysShoppingProduct.setUpdateTime(DateUtil.getZoneDateTime());
+
+            SysProduct product = new SysProduct();
+            product.setId(productOperation.getProductId());
+            sysShoppingProduct.setProduct(product);
+
+            sysShoppingProduct.setShoppingCar(shoppingCar);
+            shoppingProductRepository.save(sysShoppingProduct);
+        }else {
+            Integer productNumber = shoppingProduct.getProductNumber();
+            switch (productOperation.getType()){
+                case 0:
+                    Integer number = productNumber - productOperation.getNumber();
+                    if(number > 0){
+                        shoppingProduct.setProductNumber(number);
+                        shoppingProductRepository.save(shoppingProduct);
+                    }else {
+                        shoppingProductRepository.deleteById(shoppingProduct.getId());
+                    }
+                    break;
+                case 1:
+                    shoppingProduct.setProductNumber(productNumber + productOperation.getNumber());
+                    shoppingProductRepository.save(shoppingProduct);
+                    break;
+            }
+
+        }
+
+        return ResultObj.backCRUDSuccess("操作成功");
     }
 }

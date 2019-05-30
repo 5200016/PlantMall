@@ -3,6 +3,7 @@ package com.ybb.mall.web.rest.controller;
 import com.codahale.metrics.annotation.Timed;
 import com.ybb.mall.service.SUserService;
 import com.ybb.mall.web.rest.util.ResultObj;
+import com.ybb.mall.web.rest.vm.user.UpdateUserVM;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -56,8 +57,8 @@ public class UserController {
     @ApiOperation("根据手机号模糊查询用户列表 RequestBody")
     @PutMapping("/user")
     @Timed
-    public ResultObj updateUser(@ApiParam(name="phone",value="手机号",required=true) @RequestParam String phone) throws URISyntaxException {
-        return null;
+    public ResultObj updateUser(@RequestBody UpdateUserVM updateUser) throws URISyntaxException {
+        return userService.updateUserInfo(updateUser);
     }
 
     /**

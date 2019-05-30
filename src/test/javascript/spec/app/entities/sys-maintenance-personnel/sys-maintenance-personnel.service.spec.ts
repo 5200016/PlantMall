@@ -25,7 +25,7 @@ describe('Service Tests', () => {
             httpMock = injector.get(HttpTestingController);
             currentDate = moment();
 
-            elemDefault = new SysMaintenancePersonnel(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', currentDate, currentDate);
+            elemDefault = new SysMaintenancePersonnel(0, 0, currentDate, currentDate);
         });
 
         describe('Service methods', async () => {
@@ -73,9 +73,7 @@ describe('Service Tests', () => {
             it('should update a SysMaintenancePersonnel', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        openid: 'BBBBBB',
-                        name: 'BBBBBB',
-                        phone: 'BBBBBB',
+                        status: 1,
                         createTime: currentDate.format(DATE_TIME_FORMAT),
                         updateTime: currentDate.format(DATE_TIME_FORMAT)
                     },
@@ -100,9 +98,7 @@ describe('Service Tests', () => {
             it('should return a list of SysMaintenancePersonnel', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        openid: 'BBBBBB',
-                        name: 'BBBBBB',
-                        phone: 'BBBBBB',
+                        status: 1,
                         createTime: currentDate.format(DATE_TIME_FORMAT),
                         updateTime: currentDate.format(DATE_TIME_FORMAT)
                     },

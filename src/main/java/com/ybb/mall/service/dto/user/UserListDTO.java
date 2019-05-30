@@ -17,8 +17,9 @@ public class UserListDTO {
     private Integer integral;
     private Integer growthValue;
     private String memberLevel;
+    private Long maintenancePersonnelId;
 
-    public UserListDTO(Long id, String avatar, String nickname, String username, String sex, String phone, Integer integral, Integer growthValue, String memberLevel) {
+    public UserListDTO(Long id, String avatar, String nickname, String username, String sex, String phone, Integer integral, Integer growthValue, String memberLevel, Long maintenancePersonnelId) {
         this.id = id;
         this.avatar = avatar;
         this.nickname = nickname;
@@ -28,6 +29,15 @@ public class UserListDTO {
         this.integral = integral;
         this.growthValue = growthValue;
         this.memberLevel = memberLevel;
+        this.maintenancePersonnelId = maintenancePersonnelId;
+    }
+
+    public Long getMaintenancePersonnelId() {
+        return maintenancePersonnelId;
+    }
+
+    public void setMaintenancePersonnelId(Long maintenancePersonnelId) {
+        this.maintenancePersonnelId = maintenancePersonnelId;
     }
 
     public Long getId() {
@@ -102,6 +112,7 @@ public class UserListDTO {
         this.memberLevel = memberLevel;
     }
 
+
     @Override
     public String toString() {
         return "UserListDTO{" +
@@ -114,6 +125,7 @@ public class UserListDTO {
             ", integral=" + integral +
             ", growthValue=" + growthValue +
             ", memberLevel='" + memberLevel + '\'' +
+            ", maintenancePersonnelId=" + maintenancePersonnelId +
             '}';
     }
 }

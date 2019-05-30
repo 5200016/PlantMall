@@ -15,22 +15,24 @@
             <thead>
             <tr>
             <th><span jhiTranslate="global.field.id">ID</span></th>
-            <th><span jhiTranslate="plantMallApp.sysMaintenancePersonnel.openid">Openid</span></th>
-            <th><span jhiTranslate="plantMallApp.sysMaintenancePersonnel.name">Name</span></th>
-            <th><span jhiTranslate="plantMallApp.sysMaintenancePersonnel.phone">Phone</span></th>
+            <th><span jhiTranslate="plantMallApp.sysMaintenancePersonnel.status">Status</span></th>
             <th><span jhiTranslate="plantMallApp.sysMaintenancePersonnel.createTime">Create Time</span></th>
             <th><span jhiTranslate="plantMallApp.sysMaintenancePersonnel.updateTime">Update Time</span></th>
+            <th><span jhiTranslate="plantMallApp.sysMaintenancePersonnel.user">User</span></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let sysMaintenancePersonnel of sysMaintenancePersonnels ;trackBy: trackId">
                 <td><a [routerLink]="['/sys-maintenance-personnel', sysMaintenancePersonnel.id, 'view' ]">{{sysMaintenancePersonnel.id}}</a></td>
-                <td>{{sysMaintenancePersonnel.openid}}</td>
-                <td>{{sysMaintenancePersonnel.name}}</td>
-                <td>{{sysMaintenancePersonnel.phone}}</td>
+                <td>{{sysMaintenancePersonnel.status}}</td>
                 <td>{{sysMaintenancePersonnel.createTime | date:'medium'}}</td>
                 <td>{{sysMaintenancePersonnel.updateTime | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="sysMaintenancePersonnel.user">
+                        <a [routerLink]="['../sys-user', sysMaintenancePersonnel.user?.id, 'view' ]" >{{sysMaintenancePersonnel.user?.id}}</a>
+                    </div>
+                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

@@ -1,10 +1,12 @@
 package com.ybb.mall.service.wx;
 
+import com.ybb.mall.domain.SysOrder;
 import com.ybb.mall.service.dto.order.OrderDTO;
 import com.ybb.mall.web.rest.controller.wx.vm.order.SubmitAppointmentOrderVM;
 import com.ybb.mall.web.rest.controller.wx.vm.order.SubmitOrderVM;
 import com.ybb.mall.web.rest.util.ResultObj;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  * @Description : 微信小程序-订单管理
@@ -62,4 +64,11 @@ public interface WXOrderService {
      */
     ResultObj findMaintenanceByOrderId(Long id);
 
+    /**
+     * 养护人员分页查询订单列表
+     * @param userId
+     * @param pageable
+     * @return
+     */
+    ResultObj findOrderListByMaintenance(Long userId, Integer pageNum, Integer pageSize);
 }

@@ -10,19 +10,9 @@
                         [(ngModel)]="sysMaintenancePersonnel.id" readonly />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysMaintenancePersonnel.openid" for="field_openid" [ngbTooltip]="'plantMallApp.sysMaintenancePersonnel.help.openid' | translate">Openid</label>
-                    <input type="text" class="form-control" name="openid" id="field_openid"
-                        [(ngModel)]="sysMaintenancePersonnel.openid" />
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysMaintenancePersonnel.name" for="field_name" [ngbTooltip]="'plantMallApp.sysMaintenancePersonnel.help.name' | translate">Name</label>
-                    <input type="text" class="form-control" name="name" id="field_name"
-                        [(ngModel)]="sysMaintenancePersonnel.name" />
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="plantMallApp.sysMaintenancePersonnel.phone" for="field_phone" [ngbTooltip]="'plantMallApp.sysMaintenancePersonnel.help.phone' | translate">Phone</label>
-                    <input type="text" class="form-control" name="phone" id="field_phone"
-                        [(ngModel)]="sysMaintenancePersonnel.phone" />
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysMaintenancePersonnel.status" for="field_status" [ngbTooltip]="'plantMallApp.sysMaintenancePersonnel.help.status' | translate">Status</label>
+                    <input type="number" class="form-control" name="status" id="field_status"
+                        [(ngModel)]="sysMaintenancePersonnel.status" />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="plantMallApp.sysMaintenancePersonnel.createTime" for="field_createTime" [ngbTooltip]="'plantMallApp.sysMaintenancePersonnel.help.createTime' | translate">Create Time</label>
@@ -39,6 +29,13 @@
                     </div>
                 </div>
 
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysMaintenancePersonnel.user" for="field_user">User</label>
+                    <select class="form-control" id="field_user" name="user" [(ngModel)]="sysMaintenancePersonnel.user" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="sysUserOption.id === sysMaintenancePersonnel.user?.id ? sysMaintenancePersonnel.user : sysUserOption" *ngFor="let sysUserOption of sysusers; trackBy: trackSysUserById">{{sysUserOption.id}}</option>
+                    </select>
+                </div>
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

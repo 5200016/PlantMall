@@ -1,7 +1,9 @@
 package com.ybb.mall.web.rest.util;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.ybb.mall.config.ApplicationProperties;
+import com.ybb.mall.web.rest.vm.UEditorVM;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -86,5 +88,17 @@ public class UploadUtils {
         jsonObject.put("url",fullUrl);
 
         return ResultObj.backInfo(true, 200, "上传成功", jsonObject);
+    }
+
+    public static String uploadUEditor(MultipartFile file, String filePath, String fileName){
+        new File(getFullPath(filePath, fileName)).mkdirs();
+        UEditorVM editor = new UEditorVM();
+        editor.setOriginal(file.getOriginalFilename());
+        editor.setSize(String.valueOf(file.getSize()));
+        editor.setState("SUCCESS");
+        editor.setTitle("上传后文件名+后缀");
+        editor.setType(file.getContentType());
+        editor.setUrl(documentUrl + uploadDoc(file, fileName));
+        return JSON.toJSONString(editor);
     }
 }

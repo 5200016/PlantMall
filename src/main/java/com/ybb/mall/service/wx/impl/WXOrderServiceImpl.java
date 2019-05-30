@@ -12,7 +12,9 @@ import com.ybb.mall.web.rest.util.DateUtil;
 import com.ybb.mall.web.rest.util.ResultObj;
 import com.ybb.mall.web.rest.util.TypeUtils;
 import com.ybb.mall.web.rest.util.WxUtil;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -201,5 +203,10 @@ public class WXOrderServiceImpl implements WXOrderService {
     @Override
     public ResultObj findMaintenanceByOrderId(Long id) {
         return ResultObj.back(200, orderRepository.findSysOrderById(id));
+    }
+
+    @Override
+    public ResultObj findOrderListByMaintenance(Long userId, Integer pageNum, Integer pageSize) {
+        return ResultObj.back(200, orderRepository.findOrderListByMaintenance(userId, PageRequest.of(pageNum, pageSize)));
     }
 }

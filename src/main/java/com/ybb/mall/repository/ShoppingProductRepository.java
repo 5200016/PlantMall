@@ -11,6 +11,17 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ShoppingProductRepository extends JpaRepository<SysShoppingProduct, Long> {
+
     @Query("select ssp from SysShoppingProduct ssp where ssp.id = ?1")
     SysShoppingProduct findShoppingProductById(Long id);
+
+    /**
+     * 根据商品id及类型查询购物车商品
+     */
+    @Query("select ssp from" +
+        " SysShoppingProduct ssp left join SysShoppingCar ssc on ssp.shoppingCar.id = ssc.id" +
+        " where ssc.user.id = ?1" +
+        " and ssp.product.id = ?2" +
+        " and ssp.productType = ?3")
+    SysShoppingProduct findShoppingProduct(Long userId, Long productId, Integer productType);
 }

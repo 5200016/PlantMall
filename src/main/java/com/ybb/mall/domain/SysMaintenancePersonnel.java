@@ -1,6 +1,7 @@
 package com.ybb.mall.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -27,25 +28,11 @@ public class SysMaintenancePersonnel implements Serializable {
     private Long id;
 
     /**
-     * 微信openid
+     * 人员状态（0：空闲 1：已安排）
      */
-    @ApiModelProperty(value = "微信openid")
-    @Column(name = "openid")
-    private String openid;
-
-    /**
-     * 姓名
-     */
-    @ApiModelProperty(value = "姓名")
-    @Column(name = "name")
-    private String name;
-
-    /**
-     * 手机号
-     */
-    @ApiModelProperty(value = "手机号")
-    @Column(name = "phone")
-    private String phone;
+    @ApiModelProperty(value = "人员状态（0：空闲 1：已安排）")
+    @Column(name = "status")
+    private Integer status;
 
     /**
      * 创建时间
@@ -61,6 +48,10 @@ public class SysMaintenancePersonnel implements Serializable {
     @Column(name = "update_time")
     private ZonedDateTime updateTime;
 
+    @ManyToOne
+    @JsonIgnoreProperties("maintenancePersonnels")
+    private SysUser user;
+
     @OneToMany(mappedBy = "maintenancePersonnel")
     private Set<SysOrder> orders = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -72,43 +63,17 @@ public class SysMaintenancePersonnel implements Serializable {
         this.id = id;
     }
 
-    public String getOpenid() {
-        return openid;
+    public Integer getStatus() {
+        return status;
     }
 
-    public SysMaintenancePersonnel openid(String openid) {
-        this.openid = openid;
+    public SysMaintenancePersonnel status(Integer status) {
+        this.status = status;
         return this;
     }
 
-    public void setOpenid(String openid) {
-        this.openid = openid;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public SysMaintenancePersonnel name(String name) {
-        this.name = name;
-        return this;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public SysMaintenancePersonnel phone(String phone) {
-        this.phone = phone;
-        return this;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public ZonedDateTime getCreateTime() {
@@ -135,6 +100,19 @@ public class SysMaintenancePersonnel implements Serializable {
 
     public void setUpdateTime(ZonedDateTime updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public SysUser getUser() {
+        return user;
+    }
+
+    public SysMaintenancePersonnel user(SysUser sysUser) {
+        this.user = sysUser;
+        return this;
+    }
+
+    public void setUser(SysUser sysUser) {
+        this.user = sysUser;
     }
 
     public Set<SysOrder> getOrders() {
@@ -187,9 +165,7 @@ public class SysMaintenancePersonnel implements Serializable {
     public String toString() {
         return "SysMaintenancePersonnel{" +
             "id=" + getId() +
-            ", openid='" + getOpenid() + "'" +
-            ", name='" + getName() + "'" +
-            ", phone='" + getPhone() + "'" +
+            ", status=" + getStatus() +
             ", createTime='" + getCreateTime() + "'" +
             ", updateTime='" + getUpdateTime() + "'" +
             "}";

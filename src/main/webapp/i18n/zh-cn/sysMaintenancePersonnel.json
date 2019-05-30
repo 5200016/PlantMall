@@ -15,16 +15,13 @@
             "detail": {
                 "title": "Sys Maintenance Personnel"
             },
-            "openid": "Openid",
-            "name": "Name",
-            "phone": "Phone",
+            "status": "Status",
             "createTime": "Create Time",
             "updateTime": "Update Time",
+            "user": "User",
             "order": "Order",
             "help": {
-                "openid": "微信openid",
-                "name": "姓名",
-                "phone": "手机号",
+                "status": "人员状态（0：空闲 1：已安排）",
                 "createTime": "创建时间",
                 "updateTime": "更新时间"
             }

@@ -27,4 +27,12 @@ public interface ShoppingCarRepository extends JpaRepository<SysShoppingCar, Lon
             " order by ssc.createTime desc, ssc.type desc"
     )
     Page<SysShoppingCar> findShoppingCarList(Long userId, Pageable pageable);
+
+    /**
+     * 根据用户id及商品类型查询购物车
+     */
+    @Query("select ssc from SysShoppingCar ssc" +
+        " where ssc.user.id = ?1" +
+        " and ssc.type = ?2")
+    SysShoppingCar findShoppingCar(Long userId, Integer type);
 }

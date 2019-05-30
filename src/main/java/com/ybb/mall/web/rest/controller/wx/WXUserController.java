@@ -4,6 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 import com.ybb.mall.service.AppointmentService;
 import com.ybb.mall.service.SUserService;
 import com.ybb.mall.service.wx.WXCustomerService;
+import com.ybb.mall.service.wx.WXOrderService;
 import com.ybb.mall.web.rest.controller.wx.vm.UpdateAppointmentStatusVM;
 import com.ybb.mall.web.rest.util.ResultObj;
 import io.swagger.annotations.Api;
@@ -30,10 +31,13 @@ public class WXUserController {
 
     private final WXCustomerService wxCustomerService;
 
-    public WXUserController(SUserService userService, AppointmentService appointmentService, WXCustomerService wxCustomerService) {
+    private final WXOrderService wxOrderService;
+
+    public WXUserController(SUserService userService, AppointmentService appointmentService, WXCustomerService wxCustomerService, WXOrderService wxOrderService) {
         this.userService = userService;
         this.appointmentService = appointmentService;
         this.wxCustomerService = wxCustomerService;
+        this.wxOrderService = wxOrderService;
     }
 
 
@@ -88,5 +92,17 @@ public class WXUserController {
     @Timed
     public ResultObj selectCustomerService() throws URISyntaxException {
         return ResultObj.back(200, wxCustomerService.findAll().get(0));
+    }
+
+    /**
+     * 养护人员查询养护计划列表
+     */
+    @ApiOperation("养护人员查询养护计划列表")
+    @GetMapping("/user/maintenance")
+    @Timed
+    public ResultObj selectUserMaintenanceList(@ApiParam(name = "userId", value = "用户id", required = true) @RequestParam Long userId,
+                                               @ApiParam(name = "pageNum", value = "页码", required = true) @RequestParam Integer pageNum,
+                                               @ApiParam(name = "pageSize", value = "数量", required = true) @RequestParam Integer pageSize) throws URISyntaxException {
+        return wxOrderService.findOrderListByMaintenance(userId, pageNum, pageSize);
     }
 }

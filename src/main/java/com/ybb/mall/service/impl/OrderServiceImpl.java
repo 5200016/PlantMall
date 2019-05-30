@@ -4,6 +4,7 @@ import com.ybb.mall.domain.SysMaintenancePersonnel;
 import com.ybb.mall.domain.SysOrder;
 import com.ybb.mall.domain.SysOrderProduct;
 import com.ybb.mall.domain.SysProduct;
+import com.ybb.mall.repository.MaintenancePersonnelRepository;
 import com.ybb.mall.repository.OrderProductRepository;
 import com.ybb.mall.repository.OrderRepository;
 import com.ybb.mall.repository.ProductRepository;
@@ -41,13 +42,16 @@ public class OrderServiceImpl implements OrderService {
 
     private final OrderProductRepository orderProductRepository;
 
+    private final MaintenancePersonnelRepository maintenancePersonnelRepository;
+
     private final ProductRepository productRepository;
 
     private final SysOrderMapper orderMapper;
 
-    public OrderServiceImpl(OrderRepository orderRepository, OrderProductRepository orderProductRepository, ProductRepository productRepository, SysOrderMapper orderMapper) {
+    public OrderServiceImpl(OrderRepository orderRepository, OrderProductRepository orderProductRepository, MaintenancePersonnelRepository maintenancePersonnelRepository, ProductRepository productRepository, SysOrderMapper orderMapper) {
         this.orderRepository = orderRepository;
         this.orderProductRepository = orderProductRepository;
+        this.maintenancePersonnelRepository = maintenancePersonnelRepository;
         this.productRepository = productRepository;
         this.orderMapper = orderMapper;
     }
@@ -155,8 +159,11 @@ public class OrderServiceImpl implements OrderService {
             }
             order.setMaintenanceTime(StringUtils.join(timeList.toArray(), ","));
         }
-        SysMaintenancePersonnel sysMaintenancePersonnel = new SysMaintenancePersonnel();
-        sysMaintenancePersonnel.setId(setMaintenanceVM.getMaintenancePersonnelId());
+        SysMaintenancePersonnel sysMaintenancePersonnel = maintenancePersonnelRepository.findPersonnelById(setMaintenanceVM.getMaintenancePersonnelId());
+        if(!TypeUtils.isEmpty(sysMaintenancePersonnel)){
+            sysMaintenancePersonnel.setStatus(1);
+            maintenancePersonnelRepository.save(sysMaintenancePersonnel);
+        }
         order.setMaintenancePersonnel(sysMaintenancePersonnel);
 
         orderRepository.save(order);

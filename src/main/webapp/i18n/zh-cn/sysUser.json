@@ -32,7 +32,9 @@
             "receiverAddress": "Receiver Address",
             "couponUser": "Coupon User",
             "order": "Order",
+            "maintenancePersonnel": "Maintenance Personnel",
             "shoppingCar": "Shopping Car",
+            "form": "Form",
             "review": "Review",
             "collection": "Collection",
             "help": {

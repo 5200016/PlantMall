@@ -46,14 +46,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = PlantMallApp.class)
 public class SysMaintenancePersonnelResourceIntTest {
 
-    private static final String DEFAULT_OPENID = "AAAAAAAAAA";
-    private static final String UPDATED_OPENID = "BBBBBBBBBB";
-
-    private static final String DEFAULT_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_NAME = "BBBBBBBBBB";
-
-    private static final String DEFAULT_PHONE = "AAAAAAAAAA";
-    private static final String UPDATED_PHONE = "BBBBBBBBBB";
+    private static final Integer DEFAULT_STATUS = 1;
+    private static final Integer UPDATED_STATUS = 2;
 
     private static final ZonedDateTime DEFAULT_CREATE_TIME = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_CREATE_TIME = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
@@ -106,9 +100,7 @@ public class SysMaintenancePersonnelResourceIntTest {
      */
     public static SysMaintenancePersonnel createEntity(EntityManager em) {
         SysMaintenancePersonnel sysMaintenancePersonnel = new SysMaintenancePersonnel()
-            .openid(DEFAULT_OPENID)
-            .name(DEFAULT_NAME)
-            .phone(DEFAULT_PHONE)
+            .status(DEFAULT_STATUS)
             .createTime(DEFAULT_CREATE_TIME)
             .updateTime(DEFAULT_UPDATE_TIME);
         return sysMaintenancePersonnel;
@@ -134,9 +126,7 @@ public class SysMaintenancePersonnelResourceIntTest {
         List<SysMaintenancePersonnel> sysMaintenancePersonnelList = sysMaintenancePersonnelRepository.findAll();
         assertThat(sysMaintenancePersonnelList).hasSize(databaseSizeBeforeCreate + 1);
         SysMaintenancePersonnel testSysMaintenancePersonnel = sysMaintenancePersonnelList.get(sysMaintenancePersonnelList.size() - 1);
-        assertThat(testSysMaintenancePersonnel.getOpenid()).isEqualTo(DEFAULT_OPENID);
-        assertThat(testSysMaintenancePersonnel.getName()).isEqualTo(DEFAULT_NAME);
-        assertThat(testSysMaintenancePersonnel.getPhone()).isEqualTo(DEFAULT_PHONE);
+        assertThat(testSysMaintenancePersonnel.getStatus()).isEqualTo(DEFAULT_STATUS);
         assertThat(testSysMaintenancePersonnel.getCreateTime()).isEqualTo(DEFAULT_CREATE_TIME);
         assertThat(testSysMaintenancePersonnel.getUpdateTime()).isEqualTo(DEFAULT_UPDATE_TIME);
     }
@@ -171,9 +161,7 @@ public class SysMaintenancePersonnelResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(sysMaintenancePersonnel.getId().intValue())))
-            .andExpect(jsonPath("$.[*].openid").value(hasItem(DEFAULT_OPENID.toString())))
-            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
-            .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE.toString())))
+            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS)))
             .andExpect(jsonPath("$.[*].createTime").value(hasItem(sameInstant(DEFAULT_CREATE_TIME))))
             .andExpect(jsonPath("$.[*].updateTime").value(hasItem(sameInstant(DEFAULT_UPDATE_TIME))));
     }
@@ -189,9 +177,7 @@ public class SysMaintenancePersonnelResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(sysMaintenancePersonnel.getId().intValue()))
-            .andExpect(jsonPath("$.openid").value(DEFAULT_OPENID.toString()))
-            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
-            .andExpect(jsonPath("$.phone").value(DEFAULT_PHONE.toString()))
+            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS))
             .andExpect(jsonPath("$.createTime").value(sameInstant(DEFAULT_CREATE_TIME)))
             .andExpect(jsonPath("$.updateTime").value(sameInstant(DEFAULT_UPDATE_TIME)));
     }
@@ -217,9 +203,7 @@ public class SysMaintenancePersonnelResourceIntTest {
         // Disconnect from session so that the updates on updatedSysMaintenancePersonnel are not directly saved in db
         em.detach(updatedSysMaintenancePersonnel);
         updatedSysMaintenancePersonnel
-            .openid(UPDATED_OPENID)
-            .name(UPDATED_NAME)
-            .phone(UPDATED_PHONE)
+            .status(UPDATED_STATUS)
             .createTime(UPDATED_CREATE_TIME)
             .updateTime(UPDATED_UPDATE_TIME);
 
@@ -232,9 +216,7 @@ public class SysMaintenancePersonnelResourceIntTest {
         List<SysMaintenancePersonnel> sysMaintenancePersonnelList = sysMaintenancePersonnelRepository.findAll();
         assertThat(sysMaintenancePersonnelList).hasSize(databaseSizeBeforeUpdate);
         SysMaintenancePersonnel testSysMaintenancePersonnel = sysMaintenancePersonnelList.get(sysMaintenancePersonnelList.size() - 1);
-        assertThat(testSysMaintenancePersonnel.getOpenid()).isEqualTo(UPDATED_OPENID);
-        assertThat(testSysMaintenancePersonnel.getName()).isEqualTo(UPDATED_NAME);
-        assertThat(testSysMaintenancePersonnel.getPhone()).isEqualTo(UPDATED_PHONE);
+        assertThat(testSysMaintenancePersonnel.getStatus()).isEqualTo(UPDATED_STATUS);
         assertThat(testSysMaintenancePersonnel.getCreateTime()).isEqualTo(UPDATED_CREATE_TIME);
         assertThat(testSysMaintenancePersonnel.getUpdateTime()).isEqualTo(UPDATED_UPDATE_TIME);
     }

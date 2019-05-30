@@ -4,9 +4,12 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
 import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
+import { JhiAlertService } from 'ng-jhipster';
 
 import { ISysMaintenancePersonnel } from 'app/shared/model/sys-maintenance-personnel.model';
 import { SysMaintenancePersonnelService } from './sys-maintenance-personnel.service';
+import { ISysUser } from 'app/shared/model/sys-user.model';
+import { SysUserService } from 'app/entities/sys-user';
 
 @Component({
     selector: 'jhi-sys-maintenance-personnel-update',
@@ -15,10 +18,17 @@ import { SysMaintenancePersonnelService } from './sys-maintenance-personnel.serv
 export class SysMaintenancePersonnelUpdateComponent implements OnInit {
     sysMaintenancePersonnel: ISysMaintenancePersonnel;
     isSaving: boolean;
+
+    sysusers: ISysUser[];
     createTime: string;
     updateTime: string;
 
-    constructor(protected sysMaintenancePersonnelService: SysMaintenancePersonnelService, protected activatedRoute: ActivatedRoute) {}
+    constructor(
+        protected jhiAlertService: JhiAlertService,
+        protected sysMaintenancePersonnelService: SysMaintenancePersonnelService,
+        protected sysUserService: SysUserService,
+        protected activatedRoute: ActivatedRoute
+    ) {}
 
     ngOnInit() {
         this.isSaving = false;
@@ -29,6 +39,12 @@ export class SysMaintenancePersonnelUpdateComponent implements OnInit {
             this.updateTime =
                 this.sysMaintenancePersonnel.updateTime != null ? this.sysMaintenancePersonnel.updateTime.format(DATE_TIME_FORMAT) : null;
         });
+        this.sysUserService.query().subscribe(
+            (res: HttpResponse<ISysUser[]>) => {
+                this.sysusers = res.body;
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
     }
 
     previousState() {
@@ -60,5 +76,13 @@ export class SysMaintenancePersonnelUpdateComponent implements OnInit {
 
     protected onSaveError() {
         this.isSaving = false;
+    }
+
+    protected onError(errorMessage: string) {
+        this.jhiAlertService.error(errorMessage, null, null);
+    }
+
+    trackSysUserById(index: number, item: ISysUser) {
+        return item.id;
     }
 }

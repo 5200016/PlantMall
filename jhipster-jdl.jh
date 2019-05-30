@@ -543,19 +543,9 @@ entity SysOrderProduct{
  */
 entity SysMaintenancePersonnel{
     /**
-     * 微信openid
+     * 人员状态（0：空闲 1：已安排）
      */
-    openid String,
-
-    /**
-     * 姓名
-     */
-    name String,
-
-    /**
-     * 手机号
-     */
-    phone String,
+    status Integer,
 
     /**
      * 创建时间
@@ -741,7 +731,6 @@ entity SysCouponClassify{
     updateTime ZonedDateTime
 }
 
-
 /**
  * 优惠券用户关联表
  */
@@ -761,6 +750,22 @@ entity SysCouponUser{
      * 更新时间
      */
     updateTime ZonedDateTime
+}
+
+/**
+ * 微信formId表
+ */
+entity SysForm{
+
+   /**
+    * 微信formId
+    */
+    formId String,
+
+    /**
+     * 有效期天数（默认6天）
+     */
+    validity Integer
 }
 
 relationship ManyToOne {
@@ -787,11 +792,15 @@ relationship ManyToOne {
     SysOrder{receiverAddress} to SysReceiverAddress{order},
     SysOrder{maintenancePersonnel} to SysMaintenancePersonnel{order},
 
+    SysMaintenancePersonnel{user} to SysUser{maintenancePersonnel},
+
     SysProductImage{product} to SysProduct{image},
 
     SysShoppingCar{user} to SysUser{shoppingCar},
     SysShoppingProduct{shoppingCar} to SysShoppingCar{shoppingProduct},
     SysShoppingProduct{product} to SysProduct{shoppingProduct},
+
+    SysForm{user} to SysUser{form},
 
     SysReview{product} to SysProduct{review},
     SysReview{user} to SysUser{review},

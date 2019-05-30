@@ -2,11 +2,12 @@ package com.ybb.mall.web.rest.controller.wx;
 
 import com.codahale.metrics.annotation.Timed;
 import com.ybb.mall.service.WXService;
+import com.ybb.mall.service.wx.WXFormService;
 import com.ybb.mall.web.rest.controller.wx.vm.WXBindVM;
+import com.ybb.mall.web.rest.controller.wx.vm.WXFormVM;
 import com.ybb.mall.web.rest.util.ResultObj;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URISyntaxException;
@@ -25,8 +26,11 @@ public class WXController {
 
     private final WXService wxService;
 
-    public WXController(WXService wxService) {
+    private final WXFormService wxFormService;
+
+    public WXController(WXService wxService, WXFormService wxFormService) {
         this.wxService = wxService;
+        this.wxFormService = wxFormService;
     }
 
     /**
@@ -47,5 +51,15 @@ public class WXController {
     @Timed
     public ResultObj bindPhone(@RequestBody WXBindVM wxBindVM) throws URISyntaxException {
         return wxService.decodeUserPhone(wxBindVM.getOpenid(), wxBindVM.getEncryptedData(), wxBindVM.getIv(), wxBindVM.getCode());
+    }
+
+    /**
+     * 微信formId存储
+     */
+    @ApiOperation("微信formId存储")
+    @PostMapping("/form")
+    @Timed
+    public ResultObj saveFormId(@RequestBody WXFormVM wxFormVM) throws URISyntaxException {
+        return wxFormService.insertForm(wxFormVM);
     }
 }

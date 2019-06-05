@@ -1,19 +1,14 @@
 package com.ybb.mall.service.impl;
 
-import com.ybb.mall.domain.SysMaintenancePersonnel;
-import com.ybb.mall.domain.SysOrder;
-import com.ybb.mall.domain.SysOrderProduct;
-import com.ybb.mall.domain.SysProduct;
-import com.ybb.mall.repository.MaintenancePersonnelRepository;
-import com.ybb.mall.repository.OrderProductRepository;
-import com.ybb.mall.repository.OrderRepository;
-import com.ybb.mall.repository.ProductRepository;
+import com.ybb.mall.domain.*;
+import com.ybb.mall.repository.*;
 import com.ybb.mall.service.OrderService;
 import com.ybb.mall.service.dto.order.OrderDTO;
 import com.ybb.mall.service.mapper.SysOrderMapper;
 import com.ybb.mall.web.rest.util.DateUtil;
 import com.ybb.mall.web.rest.util.ResultObj;
 import com.ybb.mall.web.rest.util.TypeUtils;
+import com.ybb.mall.web.rest.util.WXInterfaceUtil;
 import com.ybb.mall.web.rest.vm.order.OrderVM;
 import com.ybb.mall.web.rest.vm.order.ReissueProductVM;
 import com.ybb.mall.web.rest.vm.order.SetMaintenanceVM;
@@ -48,12 +43,15 @@ public class OrderServiceImpl implements OrderService {
 
     private final SysOrderMapper orderMapper;
 
-    public OrderServiceImpl(OrderRepository orderRepository, OrderProductRepository orderProductRepository, MaintenancePersonnelRepository maintenancePersonnelRepository, ProductRepository productRepository, SysOrderMapper orderMapper) {
+    private final FormRepository formRepository;
+
+    public OrderServiceImpl(OrderRepository orderRepository, OrderProductRepository orderProductRepository, MaintenancePersonnelRepository maintenancePersonnelRepository, ProductRepository productRepository, SysOrderMapper orderMapper, FormRepository formRepository) {
         this.orderRepository = orderRepository;
         this.orderProductRepository = orderProductRepository;
         this.maintenancePersonnelRepository = maintenancePersonnelRepository;
         this.productRepository = productRepository;
         this.orderMapper = orderMapper;
+        this.formRepository = formRepository;
     }
 
     @Override
@@ -167,6 +165,22 @@ public class OrderServiceImpl implements OrderService {
         order.setMaintenancePersonnel(sysMaintenancePersonnel);
 
         orderRepository.save(order);
+
+        sendMessage(order.getUser(), "管理员已为您的绿植设置养护计划，请前往小程序核对信息");
+        sendMessage(sysMaintenancePersonnel.getUser(), "管理员已为您设置养护任务，请前往小程序核对客户信息");
         return ResultObj.backCRUDSuccess("设置成功");
+    }
+
+    public void sendMessage(SysUser user, String content){
+        if(!TypeUtils.isEmpty(user)){
+            Long id = user.getId();
+            String openid = user.getOpenid();
+
+            List<SysForm> formList = formRepository.findFormIdByUserId(id);
+            if(!TypeUtils.isEmpty(formList)){
+                WXInterfaceUtil.sendMessageToUser(openid, formList.get(0).getFormId(), content);
+                formRepository.delete(formList.get(0));
+            }
+        }
     }
 }

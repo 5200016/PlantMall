@@ -89,6 +89,11 @@ public class SysPlantLogServiceImpl implements SysPlantLogService {
     }
 
     @Override
+    public SysPlantLog findPlantLogById(Long id) {
+        return sysPlantLogRepository.findPlantLogById(id);
+    }
+
+    @Override
     public ResultObj insertPlantLog(InsertPlantLogVM plantLog) {
         SysPlantLog sysPlantLog = new SysPlantLog();
         sysPlantLog.setName(plantLog.getName());

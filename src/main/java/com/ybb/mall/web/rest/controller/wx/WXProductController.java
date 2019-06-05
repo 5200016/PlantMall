@@ -108,4 +108,17 @@ public class WXProductController {
                                         @ApiParam(name = "pageSize", value = "数量", required = true) @RequestParam Integer pageSize) throws URISyntaxException {
         return ResultObj.back(200, plantLogService.findPlantList(name, pageNum, pageSize));
     }
+
+    /**
+     * 分页模糊查询植物志列表
+     *
+     * @return
+     * @throws URISyntaxException
+     */
+    @ApiOperation("分页模糊查询植物志列表")
+    @GetMapping("/plant_log/{id}")
+    @Timed
+    public ResultObj selectPlantLogById(@ApiParam(name = "id", value = "植物id", required = true) @PathVariable Long id) throws URISyntaxException {
+        return ResultObj.back(200, plantLogService.findPlantLogById(id));
+    }
 }

@@ -67,8 +67,14 @@ public interface WXOrderService {
     /**
      * 养护人员分页查询订单列表
      * @param userId
-     * @param pageable
+     * @param pageNum
+     * @param pageSize
      * @return
      */
     ResultObj findOrderListByMaintenance(Long userId, Integer pageNum, Integer pageSize);
+
+    /**
+     * 删除订单
+     */
+    ResultObj deleteOrderById(Long id);
 }

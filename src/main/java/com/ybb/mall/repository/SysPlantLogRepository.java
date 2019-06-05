@@ -22,4 +22,10 @@ public interface SysPlantLogRepository extends JpaRepository<SysPlantLog, Long> 
         " spl.name like concat('%', ?1, '%')" +
         " order by spl.createTime desc")
     Page<SysPlantLog> findPlantList(String name, Pageable pageable);
+
+    /**
+     * 根据id查询植物志
+     */
+    @Query("select spl from SysPlantLog spl where spl.id = ?1")
+    SysPlantLog findPlantLogById(Long id);
 }

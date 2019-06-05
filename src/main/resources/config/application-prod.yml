@@ -15,9 +15,9 @@
 
 logging:
     level:
-        ROOT: DEBUG
-        com.ybb.mall: DEBUG
-        io.github.jhipster: DEBUG
+        ROOT: INFO
+        com.ybb.mall: INFO
+        io.github.jhipster: INFO
 
 spring:
     profiles:
@@ -35,7 +35,7 @@ spring:
         # username: root
         # password: hzc123456
 
-        url: jdbc:mysql://localhost:3306/plant_mall?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
+        url: jdbc:mysql://127.0.0.1:3306/plant_mall?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
         username: root
         password: 123456
         hikari:

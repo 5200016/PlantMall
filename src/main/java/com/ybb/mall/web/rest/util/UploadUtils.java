@@ -81,7 +81,10 @@ public class UploadUtils {
 
         //创建文件夹
         new File(getFullPath(filePath, fileName)).mkdirs();
-
+        System.out.println("****************");
+        System.out.println(filePath);
+        System.out.println(fileName);
+        System.out.println("****************");
         String url = uploadDoc(file, fileName);
         String fullUrl = documentUrl + url ;
         JSONObject jsonObject = new JSONObject();

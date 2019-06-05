@@ -52,6 +52,11 @@ public interface SysPlantLogService {
     Page<SysPlantLog> findPlantList(String name, Integer pageNum, Integer pageSize);
 
     /**
+     * 植物志id
+     */
+    SysPlantLog findPlantLogById(Long id);
+
+    /**
      * 新增植物志
      */
     ResultObj insertPlantLog(InsertPlantLogVM plantLog);

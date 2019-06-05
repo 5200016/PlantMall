@@ -134,7 +134,7 @@ public class SysOrder implements Serializable {
     @JsonIgnoreProperties("orders")
     private SysMaintenancePersonnel maintenancePersonnel;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
     private Set<SysOrderProduct> orderProducts = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {

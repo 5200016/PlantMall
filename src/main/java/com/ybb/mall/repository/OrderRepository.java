@@ -91,4 +91,17 @@ public interface OrderRepository extends JpaRepository<SysOrder, Long> {
         " and so.id is not null" +
         " order by so.createTime desc")
     Page<SysOrder> findOrderListByMaintenance(Long userId, Pageable pageable);
+
+    /**
+     * 根据用户id，订单号查询订单及其商品
+     */
+    @Query(
+        value = "select so" +
+            " from SysOrder so" +
+            " left join fetch so.user" +
+            " left join fetch so.receiverAddress" +
+            " left join fetch so.orderProducts" +
+            " where so.user.id = ?1" +
+            " and so.payNo = ?2")
+    List<SysOrder> findOrderByUserIdAndTradeNo(Long userId, String payNo);
 }

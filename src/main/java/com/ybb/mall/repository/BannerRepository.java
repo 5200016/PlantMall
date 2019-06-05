@@ -23,7 +23,7 @@ public interface BannerRepository extends JpaRepository<SysBanner, Long> {
      * @param type（0：轮播图 1：图文信息）
      * @return
      */
-    @Query("select new com.ybb.mall.service.dto.home.BannerDTO(sb.id, sb.type, sb.image, sb.sort, sb.createTime, sp.id, sp.name,  sc.id, sc.name)" +
+    @Query("select new com.ybb.mall.service.dto.home.BannerDTO(sb.id, sb.path, sb.type, sb.image, sb.sort, sb.createTime, sp.id, sp.name,  sc.id, sc.name)" +
         " from SysBanner sb" +
         " left join SysClassify sc on sb.classify.id = sc.id" +
         " left join SysProduct sp on sb.product.id = sp.id" +

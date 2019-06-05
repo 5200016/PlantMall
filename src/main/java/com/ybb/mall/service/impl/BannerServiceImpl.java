@@ -4,6 +4,7 @@ import com.ybb.mall.domain.SysBanner;
 import com.ybb.mall.domain.SysClassify;
 import com.ybb.mall.domain.SysProduct;
 import com.ybb.mall.repository.BannerRepository;
+import com.ybb.mall.repository.ClassifyRepository;
 import com.ybb.mall.service.BannerService;
 import com.ybb.mall.service.dto.home.BannerDTO;
 import com.ybb.mall.web.rest.util.DateUtil;
@@ -30,8 +31,11 @@ public class BannerServiceImpl implements BannerService {
 
     private final BannerRepository bannerRepository;
 
-    public BannerServiceImpl(BannerRepository bannerRepository) {
+    private final ClassifyRepository classifyRepository;
+
+    public BannerServiceImpl(BannerRepository bannerRepository, ClassifyRepository classifyRepository) {
         this.bannerRepository = bannerRepository;
+        this.classifyRepository = classifyRepository;
     }
 
     @Override
@@ -58,22 +62,23 @@ public class BannerServiceImpl implements BannerService {
         banner.setImage(bannerVM.getImage());
         banner.setSort(bannerVM.getSort());
         banner.setType(bannerVM.getType());
-        banner.setPath(bannerVM.getPath());
+
         banner.setCreateTime(DateUtil.getZoneDateTime());
         banner.setUpdateTime(DateUtil.getZoneDateTime());
 
         if(!TypeUtils.isEmpty(bannerVM.getCascadeId())){
-            SysClassify sysClassify = new SysClassify();
+            SysClassify sysClassify = classifyRepository.findSysClassifyById(bannerVM.getCascadeId().get(0));
             SysProduct sysProduct = new SysProduct();
             Integer size = bannerVM.getCascadeId().size();
             if(size.equals(1)){
-                sysClassify.setId(bannerVM.getCascadeId().get(0));
+                banner.setPath("pages/product/list/index?id=" + sysClassify.getId() + "&classifyType=" + sysClassify.getType() + "&classifyId=" + sysClassify.getId());
                 banner.setClassify(sysClassify);
             }
             if(size.equals(2)){
-                sysClassify.setId(bannerVM.getCascadeId().get(0));
+                Long productId = bannerVM.getCascadeId().get(1);
+                banner.setPath("pages/product/detail/index?id=" + productId + "&classifyType=" + sysClassify.getType());
                 banner.setClassify(sysClassify);
-                sysProduct.setId(bannerVM.getCascadeId().get(1));
+                sysProduct.setId(productId);
                 banner.setProduct(sysProduct);
             }
         }
@@ -98,16 +103,17 @@ public class BannerServiceImpl implements BannerService {
         if(!TypeUtils.isEmpty(bannerVM.getCascadeId())){
 
             SysProduct sysProduct = new SysProduct();
-            SysClassify sysClassify = new SysClassify();
+            SysClassify sysClassify = classifyRepository.findSysClassifyById(bannerVM.getCascadeId().get(0));
             Integer size = bannerVM.getCascadeId().size();
             if(size.equals(2)){
-                sysClassify.setId(bannerVM.getCascadeId().get(0));
-                sysProduct.setId(bannerVM.getCascadeId().get(1));
+                Long productId = bannerVM.getCascadeId().get(1);
+                sysProduct.setId(productId);
+                banner.setPath("pages/product/detail/index?id=" + productId + "&classifyType=" + sysClassify.getType());
                 banner.setClassify(sysClassify);
                 banner.setProduct(sysProduct);
             }
             if(size.equals(1)){
-                sysClassify.setId(bannerVM.getCascadeId().get(0));
+                banner.setPath("pages/product/list/index?id=" + sysClassify.getId() + "&classifyType=" + sysClassify.getType() + "&classifyId=" + sysClassify.getId());
                 banner.setClassify(sysClassify);
             }
 

@@ -88,13 +88,13 @@ public class WXOrderController {
     }
 
     /**
-     * 删除订单
+     * 取消订单
      */
-    @ApiOperation("删除订单")
-    @DeleteMapping("/order")
+    @ApiOperation("取消订单")
+    @DeleteMapping("/order/cancel")
     @Timed
     public ResultObj deleteOrder(@ApiParam(name = "id", value = "订单id", required = true) @RequestParam Long id) throws URISyntaxException {
-        return null;
+        return wxOrderService.deleteOrderById(id);
     }
 
     /**

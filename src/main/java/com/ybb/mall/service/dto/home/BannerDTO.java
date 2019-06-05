@@ -15,6 +15,8 @@ public class BannerDTO {
 
     private Long id;
 
+    private String path;
+
     private Integer type;
 
     private String image;
@@ -33,8 +35,9 @@ public class BannerDTO {
 
     private List<Long> cascadeId = new ArrayList<>();
 
-    public BannerDTO(Long id, Integer type, String image, Integer sort, ZonedDateTime createTime, Long productId, String productName, Long classifyId, String classifyName) {
+    public BannerDTO(Long id, String path, Integer type, String image, Integer sort, ZonedDateTime createTime, Long productId, String productName, Long classifyId, String classifyName) {
         this.id = id;
+        this.path = path;
         this.type = type;
         this.image = image;
         this.sort = sort;
@@ -43,6 +46,14 @@ public class BannerDTO {
         this.productName = productName;
         this.classifyId = classifyId;
         this.classifyName = classifyName;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public Integer getType() {
@@ -129,6 +140,7 @@ public class BannerDTO {
     public String toString() {
         return "BannerDTO{" +
             "id=" + id +
+            ", path='" + path + '\'' +
             ", type='" + type + '\'' +
             ", image='" + image + '\'' +
             ", sort=" + sort +

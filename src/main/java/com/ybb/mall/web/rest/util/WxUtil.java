@@ -50,7 +50,7 @@ public class WxUtil {
     public static final String WX_PAY_SIGN_FAIL = "<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[check signature FAIL]]></return_msg></xml>";
 
     /** 微信支付回调地址路径 */
-    public static final String NOTIFY_URL = "http://examination.winsour.com/api/notifyCallback";
+    public static final String NOTIFY_URL = "http://47.100.4.198/mall/wx/notifyCallback";
 
     /** 微信获取微信用户授权后用户信息 地址路径 */
     public static final String OAUTH2_USERINFO_URL = "/wx/getOAuth2UserInfo.do";

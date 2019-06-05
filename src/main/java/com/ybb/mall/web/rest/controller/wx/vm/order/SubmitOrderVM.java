@@ -1,5 +1,6 @@
 package com.ybb.mall.web.rest.controller.wx.vm.order;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -12,10 +13,20 @@ import java.util.List;
 public class SubmitOrderVM {
     private List<SellVM> sell;
     private LeaseVM lease;
-    private String payNo;
     private Long userId;
+    private String payPrice;
+    private String openid;
     private Long receiveAddressId;
+    private String payNo;
     private List<Long> shoppingProductIdList;
+
+    public String getPayNo() {
+        return payNo;
+    }
+
+    public void setPayNo(String payNo) {
+        this.payNo = payNo;
+    }
 
     public List<Long> getShoppingProductIdList() {
         return shoppingProductIdList;
@@ -23,6 +34,22 @@ public class SubmitOrderVM {
 
     public void setShoppingProductIdList(List<Long> shoppingProductIdList) {
         this.shoppingProductIdList = shoppingProductIdList;
+    }
+
+    public String getPayPrice() {
+        return payPrice;
+    }
+
+    public void setPayPrice(String payPrice) {
+        this.payPrice = payPrice;
+    }
+
+    public String getOpenid() {
+        return openid;
+    }
+
+    public void setOpenid(String openid) {
+        this.openid = openid;
     }
 
     public List<SellVM> getSell() {
@@ -40,15 +67,6 @@ public class SubmitOrderVM {
     public void setLease(LeaseVM lease) {
         this.lease = lease;
     }
-
-    public String getPayNo() {
-        return payNo;
-    }
-
-    public void setPayNo(String payNo) {
-        this.payNo = payNo;
-    }
-
 
     public Long getUserId() {
         return userId;
@@ -71,9 +89,11 @@ public class SubmitOrderVM {
         return "SubmitOrderVM{" +
             "sell=" + sell +
             ", lease=" + lease +
-            ", payNo='" + payNo + '\'' +
             ", userId=" + userId +
+            ", payPrice='" + payPrice + '\'' +
+            ", openid='" + openid + '\'' +
             ", receiveAddressId=" + receiveAddressId +
+            ", payNo='" + payNo + '\'' +
             ", shoppingProductIdList=" + shoppingProductIdList +
             '}';
     }

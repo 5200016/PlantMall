@@ -2,6 +2,7 @@ package com.ybb.mall.service.impl;
 
 import com.ybb.mall.domain.SysClassify;
 import com.ybb.mall.domain.SysModule;
+import com.ybb.mall.repository.ClassifyRepository;
 import com.ybb.mall.repository.ModuleRepository;
 import com.ybb.mall.service.ModuleService;
 import com.ybb.mall.service.dto.home.ModuleDTO;
@@ -28,10 +29,13 @@ public class ModuleServiceImpl implements ModuleService {
 
     private final ModuleRepository moduleRepository;
 
+    private final ClassifyRepository classifyRepository;
+
     private final SysModuleMapper moduleMapper;
 
-    public ModuleServiceImpl(ModuleRepository moduleRepository, SysModuleMapper moduleMapper) {
+    public ModuleServiceImpl(ModuleRepository moduleRepository, ClassifyRepository classifyRepository, SysModuleMapper moduleMapper) {
         this.moduleRepository = moduleRepository;
+        this.classifyRepository = classifyRepository;
         this.moduleMapper = moduleMapper;
     }
 
@@ -60,14 +64,21 @@ public class ModuleServiceImpl implements ModuleService {
     public ResultObj insertModule(InsertModuleVM moduleVM) {
         SysModule module = new SysModule();
         if(!TypeUtils.isEmpty(moduleVM.getTypeList())){
-            if(moduleVM.getTypeList().size() == 2){
-                SysClassify classify = new SysClassify();
-                classify.setId(moduleVM.getTypeList().get(1).longValue());
-
-                module.setType(moduleVM.getTypeList().get(0));
-                module.setClassify(classify);
-            }else {
-                module.setType(moduleVM.getTypeList().get(0));
+            switch(moduleVM.getTypeList().get(0)){
+                case 0:
+                    SysClassify classify = classifyRepository.findSysClassifyById(moduleVM.getTypeList().get(1).longValue());
+                    module.setPath("pages/product/list/index?id=" + classify.getId() + "&classifyType=" + classify.getType() + "&classifyId=" + classify.getId());
+                    module.setType(moduleVM.getTypeList().get(0));
+                    module.setClassify(classify);
+                    break;
+                case 1:
+                    module.setPath("pages/cart/appointment/index");
+                    module.setType(moduleVM.getTypeList().get(0));
+                    break;
+                case 2:
+                    module.setPath("pages/cart/plant_log/index");
+                    module.setType(moduleVM.getTypeList().get(0));
+                    break;
             }
         }
         module.setName(moduleVM.getName());
@@ -77,7 +88,6 @@ public class ModuleServiceImpl implements ModuleService {
         module.setStyleType(moduleVM.getStyleType());
         module.setHomeBottom(moduleVM.getHomeBottom());
         module.setHomeMenu(moduleVM.getHomeMenu());
-        module.setPath(moduleVM.getPath());
         module.setSort(moduleVM.getSort());
         module.setCreateTime(DateUtil.getZoneDateTime());
         module.setUpdateTime(DateUtil.getZoneDateTime());
@@ -93,14 +103,21 @@ public class ModuleServiceImpl implements ModuleService {
         SysModule module = new SysModule();
         module.setId(moduleVM.getId());
         if(!TypeUtils.isEmpty(moduleVM.getTypeList())){
-            if(moduleVM.getTypeList().size() == 2){
-                SysClassify classify = new SysClassify();
-                classify.setId(moduleVM.getTypeList().get(1).longValue());
-
-                module.setClassify(classify);
-                module.setType(moduleVM.getTypeList().get(0));
-            }else {
-                module.setType(moduleVM.getTypeList().get(0));
+            switch(moduleVM.getTypeList().get(0)){
+                case 0:
+                    SysClassify classify = classifyRepository.findSysClassifyById(moduleVM.getTypeList().get(1).longValue());
+                    module.setType(moduleVM.getTypeList().get(0));
+                    module.setPath("pages/product/list/index?id=" + classify.getId() + "&classifyType=" + classify.getType() + "&classifyId=" + classify.getId());
+                    module.setClassify(classify);
+                    break;
+                case 1:
+                    module.setPath("pages/cart/appointment/index");
+                    module.setType(moduleVM.getTypeList().get(0));
+                    break;
+                case 2:
+                    module.setPath("pages/cart/plant_log/index");
+                    module.setType(moduleVM.getTypeList().get(0));
+                    break;
             }
         }
         module.setName(moduleVM.getName());
@@ -110,7 +127,6 @@ public class ModuleServiceImpl implements ModuleService {
         module.setHomeBottom(moduleVM.getHomeBottom());
         module.setStyleType(moduleVM.getStyleType());
         module.setHomeMenu(moduleVM.getHomeMenu());
-        module.setPath(moduleVM.getPath());
         module.setSort(moduleVM.getSort());
         module.setCreateTime(moduleVM.getCreateTime());
         module.setUpdateTime(DateUtil.getZoneDateTime());

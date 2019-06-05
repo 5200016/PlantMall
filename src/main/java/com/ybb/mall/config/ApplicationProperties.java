@@ -20,24 +20,45 @@ public class ApplicationProperties {
 
     private String moduleImage;
 
-    private String AppID;
+    private String appID;
 
-    private String AppSecret;
+    private String appSecret;
+
+    private String mchID;
+
+    private String key;
+
 
     public String getAppID() {
-        return AppID;
+        return appID;
     }
 
     public void setAppID(String appID) {
-        AppID = appID;
+        this.appID = appID;
     }
 
     public String getAppSecret() {
-        return AppSecret;
+        return appSecret;
     }
 
     public void setAppSecret(String appSecret) {
-        AppSecret = appSecret;
+        this.appSecret = appSecret;
+    }
+
+    public String getMchID() {
+        return mchID;
+    }
+
+    public void setMchID(String mchID) {
+        this.mchID = mchID;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public String getModuleImage() {

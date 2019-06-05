@@ -111,13 +111,18 @@ jhipster:
 # ===================================================================
 
 application:
-    filePath: F:/CompanyProject/YbbProject/PlantMallPicture/ # 文件保存位置
-    # filePath: /home/hzc/plant-mall-file/ # 文件保存位置
+    # filePath: F:/CompanyProject/YbbProject/PlantMallPicture/ # 文件保存位置
+    filePath: /home/project/plant-mall-file/ # 文件保存位置
     filePrefix: filedir                # 访问文件时 /file/文件路径
     plantImage: plantImage             # 植物图片
     homeImage: homeImage               # 首页广告图片
     moduleImage: moduleImage           # 首页模块图片
 
     # 微信小程序参数
-    AppID: wx876b17cfbdcad9f3
-    AppSecret: a071243f751ffb1a4d58c80a70a31a24
+    appID: wx876b17cfbdcad9f3
+    appSecret: a071243f751ffb1a4d58c80a70a31a24
+
+    # 微信小程序支付
+    mchID: 1483722652                              # 商户id
+    key: ZHIdcx1904mscheFURNIing612zdzn89          # 商户密钥
+

@@ -1,6 +1,7 @@
 package com.ybb.mall.web.rest.controller.wx;
 
 import com.codahale.metrics.annotation.Timed;
+import com.ybb.mall.service.ReviewService;
 import com.ybb.mall.service.SysPlantLogService;
 import com.ybb.mall.service.wx.WXClassifyService;
 import com.ybb.mall.service.wx.WXProductService;
@@ -31,10 +32,13 @@ public class WXProductController {
 
     private final WXProductService wxProductService;
 
-    public WXProductController(SysPlantLogService plantLogService, WXClassifyService wxClassifyService, WXProductService wxProductService) {
+    private final ReviewService reviewService;
+
+    public WXProductController(SysPlantLogService plantLogService, WXClassifyService wxClassifyService, WXProductService wxProductService, ReviewService reviewService) {
         this.plantLogService = plantLogService;
         this.wxClassifyService = wxClassifyService;
         this.wxProductService = wxProductService;
+        this.reviewService = reviewService;
     }
 
     /**
@@ -110,15 +114,43 @@ public class WXProductController {
     }
 
     /**
-     * 分页模糊查询植物志列表
+     * 根据id查询植物志
      *
      * @return
      * @throws URISyntaxException
      */
-    @ApiOperation("分页模糊查询植物志列表")
+    @ApiOperation("根据id查询植物志")
     @GetMapping("/plant_log/{id}")
     @Timed
     public ResultObj selectPlantLogById(@ApiParam(name = "id", value = "植物id", required = true) @PathVariable Long id) throws URISyntaxException {
         return ResultObj.back(200, plantLogService.findPlantLogById(id));
+    }
+
+    /**
+     * 根据商品id查询评论列表
+     * @param id
+     * @return
+     * @throws URISyntaxException
+     */
+    @ApiOperation("根据商品id查询评论列表")
+    @GetMapping("/review")
+    @Timed
+    public ResultObj selectProductReviewList(@ApiParam(name = "id", value = "商品id", required = true) @RequestParam Long id) throws URISyntaxException {
+        return reviewService.findProductReviewList(id);
+    }
+
+    /**
+     * 根据商品id分页查询评论列表
+     * @param id
+     * @return
+     * @throws URISyntaxException
+     */
+    @ApiOperation("根据商品id分页查询评论列表")
+    @GetMapping("/review/page")
+    @Timed
+    public ResultObj selectProductReviewListPage(@ApiParam(name = "id", value = "商品id", required = true) @RequestParam Long id,
+                                                 @ApiParam(name = "pageNum", value = "页码", required = true) @RequestParam Integer pageNum,
+                                                 @ApiParam(name = "pageSize", value = "数量", required = true) @RequestParam Integer pageSize) throws URISyntaxException {
+        return reviewService.findProductReviewListPage(id, pageNum, pageSize);
     }
 }

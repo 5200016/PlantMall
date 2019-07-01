@@ -33,9 +33,9 @@ public class ProductController {
 
     private final ProductService productService;
 
-    private final SysReviewService reviewService;
+    private final ReviewService reviewService;
 
-    public ProductController(SysPlantLogService plantLogService, ClassifyService classifyService, ProductService productService, SysReviewService reviewService) {
+    public ProductController(SysPlantLogService plantLogService, ClassifyService classifyService, ProductService productService, ReviewService reviewService) {
         this.plantLogService = plantLogService;
         this.classifyService = classifyService;
         this.productService = productService;

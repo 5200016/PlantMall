@@ -78,6 +78,13 @@ public class SysProduct implements Serializable {
     private String description;
 
     /**
+     * 是否激活（false：否 true：是）
+     */
+    @ApiModelProperty(value = "是否激活（false：否 true：是）")
+    @Column(name = "active")
+    private Boolean active;
+
+    /**
      * 创建时间
      */
     @ApiModelProperty(value = "创建时间")
@@ -203,6 +210,19 @@ public class SysProduct implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Boolean isActive() {
+        return active;
+    }
+
+    public SysProduct active(Boolean active) {
+        this.active = active;
+        return this;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     public ZonedDateTime getCreateTime() {
@@ -388,6 +408,7 @@ public class SysProduct implements Serializable {
             ", inventory=" + getInventory() +
             ", sale=" + getSale() +
             ", description='" + getDescription() + "'" +
+            ", active='" + isActive() + "'" +
             ", createTime='" + getCreateTime() + "'" +
             ", updateTime='" + getUpdateTime() + "'" +
             "}";

@@ -38,6 +38,11 @@
             "fieldTypeBlobContent": "text"
         },
         {
+            "fieldName": "active",
+            "javadoc": "是否激活（false：否 true：是）",
+            "fieldType": "Boolean"
+        },
+        {
             "fieldName": "createTime",
             "javadoc": "创建时间",
             "fieldType": "ZonedDateTime"

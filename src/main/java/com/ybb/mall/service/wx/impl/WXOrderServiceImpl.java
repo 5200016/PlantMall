@@ -4,17 +4,14 @@ import com.ybb.mall.domain.*;
 import com.ybb.mall.repository.*;
 import com.ybb.mall.service.mapper.SysOrderMapper;
 import com.ybb.mall.service.wx.WXOrderService;
-import com.ybb.mall.web.rest.controller.wx.vm.order.LeaseProductVM;
-import com.ybb.mall.web.rest.controller.wx.vm.order.SellVM;
 import com.ybb.mall.web.rest.controller.wx.vm.order.SubmitAppointmentOrderVM;
 import com.ybb.mall.web.rest.controller.wx.vm.order.SubmitOrderVM;
+import com.ybb.mall.web.rest.controller.wx.vm.review.DataVM;
+import com.ybb.mall.web.rest.controller.wx.vm.review.ReviewBriefVM;
 import com.ybb.mall.web.rest.util.DateUtil;
 import com.ybb.mall.web.rest.util.ResultObj;
 import com.ybb.mall.web.rest.util.TypeUtils;
-import com.ybb.mall.web.rest.util.WxUtil;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,16 +39,19 @@ public class WXOrderServiceImpl implements WXOrderService {
 
     private final SysOrderMapper orderMapper;
 
+    private final ReviewRepository reviewRepository;
+
     private final ReceiverAddressRepository receiverAddressRepository;
 
     private final SUserRepository userRepository;
 
-    public WXOrderServiceImpl(OrderRepository orderRepository, OrderProductRepository orderProductRepository, AppointmentRepository appointmentRepository, ShoppingProductRepository shoppingProductRepository, SysOrderMapper orderMapper, ReceiverAddressRepository receiverAddressRepository, SUserRepository userRepository) {
+    public WXOrderServiceImpl(OrderRepository orderRepository, OrderProductRepository orderProductRepository, AppointmentRepository appointmentRepository, ShoppingProductRepository shoppingProductRepository, SysOrderMapper orderMapper, ReviewRepository reviewRepository, ReceiverAddressRepository receiverAddressRepository, SUserRepository userRepository) {
         this.orderRepository = orderRepository;
         this.orderProductRepository = orderProductRepository;
         this.appointmentRepository = appointmentRepository;
         this.shoppingProductRepository = shoppingProductRepository;
         this.orderMapper = orderMapper;
+        this.reviewRepository = reviewRepository;
         this.receiverAddressRepository = receiverAddressRepository;
         this.userRepository = userRepository;
     }
@@ -83,12 +83,46 @@ public class WXOrderServiceImpl implements WXOrderService {
     }
 
     @Override
+    public ResultObj insertOrderReview(ReviewBriefVM reviewBrief) {
+        SysOrder order = orderRepository.findSysOrderById(reviewBrief.getOrderId());
+        order.setStatus(5);
+        orderRepository.save(order);
+
+        SysUser user = new SysUser();
+        user.setId(reviewBrief.getUserId());
+
+        List<DataVM> dataList = reviewBrief.getData();
+        List<SysReview> reviewList = new ArrayList<>();
+        if(!TypeUtils.isEmpty(dataList)){
+            for(DataVM data : dataList){
+                SysReview review = new SysReview();
+                review.setContent(data.getContent());
+                review.setUser(user);
+                review.setCreateTime(DateUtil.getZoneDateTime());
+                review.setUpdateTime(DateUtil.getZoneDateTime());
+
+                SysProduct product = new SysProduct();
+                product.setId(data.getProductId());
+                review.setProduct(product);
+                reviewList.add(review);
+            }
+            reviewRepository.saveAll(reviewList);
+        }
+        return ResultObj.backCRUDSuccess("发布成功");
+    }
+
+    @Override
     public ResultObj findOrderListByUserId(Long userId, Integer status, Integer pageNum, Integer pageSize) {
         Integer statusFlag = 0;
         if (!TypeUtils.isEmpty(status) && !status.equals(-1)) {
             statusFlag = 1;
         }
         return ResultObj.back(200, orderRepository.findOrderListByUserId(userId, status, statusFlag, PageRequest.of(pageNum, pageSize)).map(orderMapper::toDto));
+    }
+
+    @Override
+    public ResultObj findOrderByOrderId(Long orderId) {
+        return ResultObj.back(200, orderMapper.toDto(orderRepository.findInfoByOrderId(orderId)));
     }
 
     @Override

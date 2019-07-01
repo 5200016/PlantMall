@@ -74,6 +74,9 @@ public class SysProductResourceIntTest {
     private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
 
+    private static final Boolean DEFAULT_ACTIVE = false;
+    private static final Boolean UPDATED_ACTIVE = true;
+
     private static final ZonedDateTime DEFAULT_CREATE_TIME = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_CREATE_TIME = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
 
@@ -138,6 +141,7 @@ public class SysProductResourceIntTest {
             .inventory(DEFAULT_INVENTORY)
             .sale(DEFAULT_SALE)
             .description(DEFAULT_DESCRIPTION)
+            .active(DEFAULT_ACTIVE)
             .createTime(DEFAULT_CREATE_TIME)
             .updateTime(DEFAULT_UPDATE_TIME);
         return sysProduct;
@@ -170,6 +174,7 @@ public class SysProductResourceIntTest {
         assertThat(testSysProduct.getInventory()).isEqualTo(DEFAULT_INVENTORY);
         assertThat(testSysProduct.getSale()).isEqualTo(DEFAULT_SALE);
         assertThat(testSysProduct.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
+        assertThat(testSysProduct.isActive()).isEqualTo(DEFAULT_ACTIVE);
         assertThat(testSysProduct.getCreateTime()).isEqualTo(DEFAULT_CREATE_TIME);
         assertThat(testSysProduct.getUpdateTime()).isEqualTo(DEFAULT_UPDATE_TIME);
     }
@@ -211,6 +216,7 @@ public class SysProductResourceIntTest {
             .andExpect(jsonPath("$.[*].inventory").value(hasItem(DEFAULT_INVENTORY)))
             .andExpect(jsonPath("$.[*].sale").value(hasItem(DEFAULT_SALE)))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
+            .andExpect(jsonPath("$.[*].active").value(hasItem(DEFAULT_ACTIVE.booleanValue())))
             .andExpect(jsonPath("$.[*].createTime").value(hasItem(sameInstant(DEFAULT_CREATE_TIME))))
             .andExpect(jsonPath("$.[*].updateTime").value(hasItem(sameInstant(DEFAULT_UPDATE_TIME))));
     }
@@ -266,6 +272,7 @@ public class SysProductResourceIntTest {
             .andExpect(jsonPath("$.inventory").value(DEFAULT_INVENTORY))
             .andExpect(jsonPath("$.sale").value(DEFAULT_SALE))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
+            .andExpect(jsonPath("$.active").value(DEFAULT_ACTIVE.booleanValue()))
             .andExpect(jsonPath("$.createTime").value(sameInstant(DEFAULT_CREATE_TIME)))
             .andExpect(jsonPath("$.updateTime").value(sameInstant(DEFAULT_UPDATE_TIME)));
     }
@@ -298,6 +305,7 @@ public class SysProductResourceIntTest {
             .inventory(UPDATED_INVENTORY)
             .sale(UPDATED_SALE)
             .description(UPDATED_DESCRIPTION)
+            .active(UPDATED_ACTIVE)
             .createTime(UPDATED_CREATE_TIME)
             .updateTime(UPDATED_UPDATE_TIME);
 
@@ -317,6 +325,7 @@ public class SysProductResourceIntTest {
         assertThat(testSysProduct.getInventory()).isEqualTo(UPDATED_INVENTORY);
         assertThat(testSysProduct.getSale()).isEqualTo(UPDATED_SALE);
         assertThat(testSysProduct.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
+        assertThat(testSysProduct.isActive()).isEqualTo(UPDATED_ACTIVE);
         assertThat(testSysProduct.getCreateTime()).isEqualTo(UPDATED_CREATE_TIME);
         assertThat(testSysProduct.getUpdateTime()).isEqualTo(UPDATED_UPDATE_TIME);
     }

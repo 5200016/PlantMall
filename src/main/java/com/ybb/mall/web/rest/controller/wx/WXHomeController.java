@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.net.URISyntaxException;
 
 /**
- * @Description : 微信小程序-商品管理
+ * @Description : 微信小程序-首页管理
  * @Author 黄志成
  * @Date 2019-05-20
  * @Version
  */
 
-@Api(description = "微信小程序-商品管理")
+@Api(description = "微信小程序-首页管理")
 @RestController
 @RequestMapping("/mall/wx")
 public class WXHomeController {

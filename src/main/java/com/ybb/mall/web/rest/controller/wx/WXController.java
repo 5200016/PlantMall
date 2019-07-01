@@ -115,9 +115,9 @@ public class WXController {
     }
 
     /**
-     * 支付完成修改订状态并删除购物车
+     * 支付完成修改订状态
      */
-    @ApiOperation("支付完成修改订状态并删除购物车")
+    @ApiOperation("支付完成修改订状态")
     @PostMapping("/pay/finish")
     @Timed
     public ResultObj payFinish(@RequestBody SubmitOrderVM submitOrder) throws URISyntaxException {

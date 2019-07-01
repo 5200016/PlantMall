@@ -22,6 +22,7 @@
             "inventory": "Inventory",
             "sale": "Sale",
             "description": "Description",
+            "active": "Active",
             "createTime": "Create Time",
             "updateTime": "Update Time",
             "classify": "Classify",
@@ -37,6 +38,7 @@
                 "inventory": "商品库存",
                 "sale": "商品销售量",
                 "description": "商品描述",
+                "active": "是否激活（false：否 true：是）",
                 "createTime": "创建时间",
                 "updateTime": "更新时间"
             }

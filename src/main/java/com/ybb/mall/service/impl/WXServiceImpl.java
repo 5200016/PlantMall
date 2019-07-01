@@ -193,10 +193,11 @@ public class WXServiceImpl implements WXService {
         // 订单金额
         BigDecimal value = new BigDecimal(submitOrder.getPayPrice());
         BigDecimal coefficient = new BigDecimal(100);
-        String payPrice = value.multiply(coefficient).toString();
+        BigDecimal price = value.multiply(coefficient).setScale(0, BigDecimal.ROUND_HALF_UP);
+        String payPrice = price.toString();
 
         // 生成待付款订单
-        createOrder(submitOrder, 0);
+        createOrder(submitOrder, 0, tradeNo);
 
         String appId = applicationProperties.getAppID();
         String mchId = applicationProperties.getMchID();
@@ -223,10 +224,11 @@ public class WXServiceImpl implements WXService {
         secondPayData.put("package", "prepay_id=" + data.get("prepay_id"));
         secondPayData.put("signType", "MD5");
         secondPayData.put("paySign", WxUtil.generateSignature(secondPayData, key));
+        secondPayData.put("payNo", tradeNo);
         return ResultObj.back(200, secondPayData);
     }
 
-    public void createOrder(SubmitOrderVM submitOrder, Integer status){
+    public void createOrder(SubmitOrderVM submitOrder, Integer status, String payNo){
         // 处理出售商品订单
         List<SysOrderProduct> orderProductList = new ArrayList<>();
         List<SellVM> sellVMList = submitOrder.getSell();
@@ -235,6 +237,7 @@ public class WXServiceImpl implements WXService {
             SysOrder order = new SysOrder();
             order.setTradeNo(WxUtil.getTradeNoMethod());
             order.setPrice(sellVM.getTotalPrice());
+            order.setPayNo(payNo);
             order.setType(0);
             order.setPayType(0);
             order.setStatus(status);
@@ -276,6 +279,7 @@ public class WXServiceImpl implements WXService {
             order.setTradeNo(WxUtil.getTradeNoMethod());
             order.setPrice(submitOrder.getLease().getTotalPrice());
             order.setStatus(status);
+            order.setPayNo(payNo);
             order.setType(1);
             order.setPayType(0);
             order.setNumber(submitOrder.getLease().getNumber());
@@ -336,27 +340,10 @@ public class WXServiceImpl implements WXService {
         List<SysProduct> productList = new ArrayList<>();
         List<OrderDTO> orderDTOList = orderList.stream().map(orderMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
         for(OrderDTO data : orderDTOList){
-            Set<SysOrderProduct> orderProductList = data.getOrderProducts();
-            for(SysOrderProduct orderProduct : orderProductList){
-                SysProduct product = orderProduct.getProduct();
-                Integer productNumber = orderProduct.getProductNumber();
-                if(!TypeUtils.isEmpty(product)){
-                    Integer inventory = product.getInventory() - productNumber;
-                    if(inventory < 0){
-                        inventory = 0;
-                    }
-                    product.setInventory(inventory);
-
-                    Integer sale = product.getSale() + productNumber;
-                    product.setSale(sale);
-                    productList.add(product);
-                }
-            }
+            productList.addAll(synchronizedProduct(data));
         }
         productRepository.saveAll(productList);
-
-
-        return null;
+        return ResultObj.backCRUDSuccess("支付成功");
     }
 
     @Override
@@ -366,7 +353,8 @@ public class WXServiceImpl implements WXService {
         // 订单金额
         BigDecimal value = new BigDecimal(waitPayOrderVM.getTotalPrice());
         BigDecimal coefficient = new BigDecimal(100);
-        String payPrice = value.multiply(coefficient).toString();
+        BigDecimal price = value.multiply(coefficient).setScale(0, BigDecimal.ROUND_HALF_UP);
+        String payPrice = price.toString();
 
         String appId = applicationProperties.getAppID();
         String key = applicationProperties.getKey();
@@ -393,15 +381,43 @@ public class WXServiceImpl implements WXService {
         secondPayData.put("package", "prepay_id=" + data.get("prepay_id"));
         secondPayData.put("signType", "MD5");
         secondPayData.put("paySign", WxUtil.generateSignature(secondPayData, key));
+        secondPayData.put("payNo", tradeNo);
         return ResultObj.back(200, secondPayData);
     }
 
     @Override
     public ResultObj updateWaitPayOrder(UpdateOrderStatusVM orderStatusVM) {
         SysOrder order = orderRepository.findSysOrderById(orderStatusVM.getId());
+        OrderDTO orderDTO = orderMapper.toDto(order);
+
+        // 同步商品库存
+        List<SysProduct> productList = synchronizedProduct(orderDTO);
+        productRepository.saveAll(productList);
+
         order.setStatus(1);
         order.setPayNo(orderStatusVM.getPayNo());
         orderRepository.save(order);
         return ResultObj.backCRUDSuccess("修改成功");
+    }
+
+    public List<SysProduct> synchronizedProduct(OrderDTO data){
+        List<SysProduct> productList = new ArrayList<>();
+        Set<SysOrderProduct> orderProductList = data.getOrderProducts();
+        for(SysOrderProduct orderProduct : orderProductList){
+            SysProduct product = orderProduct.getProduct();
+            Integer productNumber = orderProduct.getProductNumber();
+            if(!TypeUtils.isEmpty(product)){
+                Integer inventory = product.getInventory() - productNumber;
+                if(inventory < 0){
+                    inventory = 0;
+                }
+                product.setInventory(inventory);
+
+                Integer sale = product.getSale() + productNumber;
+                product.setSale(sale);
+                productList.add(product);
+            }
+        }
+        return productList;
     }
 }

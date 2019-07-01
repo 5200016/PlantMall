@@ -14,6 +14,7 @@ export interface ISysProduct {
     inventory?: number;
     sale?: number;
     description?: any;
+    active?: boolean;
     createTime?: Moment;
     updateTime?: Moment;
     classifies?: ISysClassify[];
@@ -33,6 +34,7 @@ export class SysProduct implements ISysProduct {
         public inventory?: number,
         public sale?: number,
         public description?: any,
+        public active?: boolean,
         public createTime?: Moment,
         public updateTime?: Moment,
         public classifies?: ISysClassify[],
@@ -40,5 +42,7 @@ export class SysProduct implements ISysProduct {
         public shoppingProducts?: ISysShoppingProduct[],
         public reviews?: ISysReview[],
         public collections?: ISysCollection[]
-    ) {}
+    ) {
+        this.active = this.active || false;
+    }
 }

@@ -18,8 +18,9 @@ public class WXUserDTO {
     private Integer growthValue;
     private String memberLevel;
     private String openid;
+    private Long maintenanceId;
 
-    public WXUserDTO(Long id, String avatar, String nickname, String username, String sex, String phone, Integer integral, Integer growthValue, String memberLevel, String openid) {
+    public WXUserDTO(Long id, String avatar, String nickname, String username, String sex, String phone, Integer integral, Integer growthValue, String memberLevel, String openid, Long maintenanceId) {
         this.id = id;
         this.avatar = avatar;
         this.nickname = nickname;
@@ -30,6 +31,15 @@ public class WXUserDTO {
         this.growthValue = growthValue;
         this.memberLevel = memberLevel;
         this.openid = openid;
+        this.maintenanceId = maintenanceId;
+    }
+
+    public Long getMaintenanceId() {
+        return maintenanceId;
+    }
+
+    public void setMaintenanceId(Long maintenanceId) {
+        this.maintenanceId = maintenanceId;
     }
 
     public Long getId() {
@@ -125,6 +135,7 @@ public class WXUserDTO {
             ", growthValue=" + growthValue +
             ", memberLevel='" + memberLevel + '\'' +
             ", openid='" + openid + '\'' +
+            ", maintenanceId='" + maintenanceId + '\'' +
             '}';
     }
 }

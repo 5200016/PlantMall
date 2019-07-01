@@ -102,6 +102,7 @@ public class ProductServiceImpl implements ProductService {
         product.setCreateTime(DateUtil.getZoneDateTime());
         product.setClassifies(productAndClassifyRelation(productVM.getClassifyId()));
         product.setUpdateTime(DateUtil.getZoneDateTime());
+        product.setActive(true);
         SysProduct sysProduct = productRepository.save(product);
 
         // 入库商品图片表
@@ -159,6 +160,7 @@ public class ProductServiceImpl implements ProductService {
         product.setCreateTime(productVM.getCreateTime());
         product.setClassifies(productAndClassifyRelation(productVM.getClassifyId()));
         product.setUpdateTime(DateUtil.getZoneDateTime());
+        product.setActive(true);
         productRepository.save(product);
         return ResultObj.backCRUDSuccess("编辑成功");
     }
@@ -168,7 +170,9 @@ public class ProductServiceImpl implements ProductService {
         if(TypeUtils.isEmpty(id)){
             ResultObj.backCRUDSuccess("删除失败（商品id不能为空）");
         }
-        productRepository.deleteById(id);
+        SysProduct product = productRepository.findSysProductById(id);
+        product.setActive(false);
+        productRepository.save(product);
         return ResultObj.backCRUDSuccess("删除成功");
     }
 

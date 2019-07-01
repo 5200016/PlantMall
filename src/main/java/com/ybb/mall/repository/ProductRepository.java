@@ -29,6 +29,7 @@ public interface ProductRepository extends JpaRepository<SysProduct, Long> {
         " left join fetch sp.classifies" +
         " left join fetch sp.images" +
         " where sp.name like concat('%', ?1, '%')" +
+        " and sp.active = true" +
         " order by sp.createTime desc",
         countQuery = "select count(sp) from SysProduct sp" +
             " where sp.name like concat('%', ?1, '%')" +
@@ -39,7 +40,8 @@ public interface ProductRepository extends JpaRepository<SysProduct, Long> {
      * 查询商品列表（简略信息：id，name，inventory）
      */
     @Query("select new com.ybb.mall.service.dto.product.ProductBriefDTO(sp.id, sp.name, sp.inventory)" +
-        " from SysProduct sp")
+        " from SysProduct sp" +
+        " where sp.active = true")
     List<ProductBriefDTO> findProductBrief();
 
     /**
@@ -48,7 +50,8 @@ public interface ProductRepository extends JpaRepository<SysProduct, Long> {
      */
     @Query("select new com.ybb.mall.service.dto.product.ProductBriefDTO(sp.id, sp.name, sp.inventory)" +
         " from SysProduct sp" +
-        " where sp.name like concat('%', ?1, '%')")
+        " where sp.name like concat('%', ?1, '%')" +
+        " and sp.active = true")
     Page<ProductBriefDTO> findProductBriefByName(String name, Pageable pageable);
 
     /**
@@ -62,7 +65,8 @@ public interface ProductRepository extends JpaRepository<SysProduct, Long> {
      */
     @Query(value = "select distinct sp from SysProduct sp" +
         " left join fetch sp.classifies" +
-        " where sp.name like concat('%', ?1, '%')")
+        " where sp.name like concat('%', ?1, '%')" +
+        " and sp.active = true")
     List<SysProduct> findWXProductList(String name);
 
     /**

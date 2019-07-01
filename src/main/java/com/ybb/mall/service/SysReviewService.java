@@ -44,19 +44,4 @@ public interface SysReviewService {
      * @param id the id of the entity
      */
     void delete(Long id);
-
-    /**
-     * 根据商品id分页查询商品评论
-     */
-    Page<ReviewDTO> findByProductId(Long id, String nickname, Integer pageNum, Integer pageSize);
-
-    /**
-     * 根据id删除商品评论
-     */
-    ResultObj deleteProductReview(Long id);
-    /**
-     * 批量删除商品评论
-     */
-    ResultObj deleteProductReviewBatch(List<Long> id);
-
 }

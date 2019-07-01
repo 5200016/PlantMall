@@ -34,8 +34,9 @@ public interface SUserRepository extends JpaRepository<SysUser, Long> {
     /**
      * 根据openid查询用户信息
      */
-    @Query("select new com.ybb.mall.service.dto.user.WXUserDTO(su.id, su.avatar, su.nickname, su.username, su.sex, su.phone, su.integral, su.growthValue, sml.name, su.openid) from SysUser su" +
+    @Query("select new com.ybb.mall.service.dto.user.WXUserDTO(su.id, su.avatar, su.nickname, su.username, su.sex, su.phone, su.integral, su.growthValue, sml.name, su.openid, smp.id) from SysUser su" +
         " left join SysMemberLevel sml on su.memberLevel.id = sml.id" +
+        " left join SysMaintenancePersonnel smp on su.id = smp.user.id" +
         " where su.openid = ?1")
     WXUserDTO findUserByOpenid(String openid);
 

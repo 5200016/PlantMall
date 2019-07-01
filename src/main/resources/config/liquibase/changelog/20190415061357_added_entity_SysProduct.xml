@@ -50,6 +50,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="active" type="boolean" remarks="是否激活（false：否 true：是）">
+                <constraints nullable="true" />
+            </column>
+
             <column name="create_time" type="datetime" remarks="创建时间">
                 <constraints nullable="true" />
             </column>

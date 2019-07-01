@@ -4,6 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 import com.ybb.mall.service.wx.WXOrderService;
 import com.ybb.mall.web.rest.controller.wx.vm.order.SubmitAppointmentOrderVM;
 import com.ybb.mall.web.rest.controller.wx.vm.order.SubmitOrderVM;
+import com.ybb.mall.web.rest.controller.wx.vm.review.ReviewBriefVM;
 import com.ybb.mall.web.rest.util.ResultObj;
 import com.ybb.mall.web.rest.vm.order.OrderVM;
 import io.swagger.annotations.Api;
@@ -56,6 +57,16 @@ public class WXOrderController {
     }
 
     /**
+     * 根据订单id查询详情
+     */
+    @ApiOperation("根据订单id查询详情")
+    @GetMapping("/order/id")
+    @Timed
+    public ResultObj selectOrderById(@ApiParam(name = "orderId", value = "订单id", required = true) @RequestParam Long orderId) throws URISyntaxException {
+        return wxOrderService.findOrderByOrderId(orderId);
+    }
+
+    /**
      * 查询用户租赁订单绿植养护列表
      */
     @ApiOperation("查询用户订单列表")
@@ -105,5 +116,15 @@ public class WXOrderController {
     @Timed
     public ResultObj createAppointmentOrder(@RequestBody SubmitAppointmentOrderVM submitAppointmentOrder) throws URISyntaxException {
         return wxOrderService.insertAppointmentOrder(submitAppointmentOrder);
+    }
+
+    /**
+     * 订单评价
+     */
+    @ApiOperation("订单评价")
+    @PostMapping("/review")
+    @Timed
+    public ResultObj createOrderReview(@RequestBody ReviewBriefVM reviewBrief) throws URISyntaxException {
+        return wxOrderService.insertOrderReview(reviewBrief);
     }
 }

@@ -82,32 +82,5 @@ public class SysReviewServiceImpl implements SysReviewService {
         sysReviewRepository.deleteById(id);
     }
 
-    @Override
-    public Page<ReviewDTO> findByProductId(Long id, String nickname, Integer pageNum, Integer pageSize) {
-        return sysReviewRepository.findByProductId(id, nickname, PageRequest.of(pageNum, pageSize));
-    }
 
-    @Override
-    public ResultObj deleteProductReview(Long id) {
-        if(TypeUtils.isEmpty(id)){
-            return ResultObj.backCRUDError("删除失败（id不能为空）");
-        }
-        sysReviewRepository.deleteById(id);
-        return ResultObj.backCRUDSuccess("删除成功");
-    }
-
-    @Override
-    public ResultObj deleteProductReviewBatch(List<Long> id) {
-        if(TypeUtils.isEmpty(id)){
-            return ResultObj.backCRUDError("请选择删除项");
-        }
-        List<SysReview> reviews = new ArrayList<>();
-        for (Long data : id){
-            SysReview sysReview = new SysReview();
-            sysReview.setId(data);
-            reviews.add(sysReview);
-        }
-        sysReviewRepository.deleteInBatch(reviews);
-        return ResultObj.backCRUDSuccess("删除成功");
-    }
 }

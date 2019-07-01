@@ -4,6 +4,7 @@ import com.ybb.mall.domain.SysOrder;
 import com.ybb.mall.service.dto.order.OrderDTO;
 import com.ybb.mall.web.rest.controller.wx.vm.order.SubmitAppointmentOrderVM;
 import com.ybb.mall.web.rest.controller.wx.vm.order.SubmitOrderVM;
+import com.ybb.mall.web.rest.controller.wx.vm.review.ReviewBriefVM;
 import com.ybb.mall.web.rest.util.ResultObj;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -32,6 +33,13 @@ public interface WXOrderService {
     ResultObj insertAppointmentOrder(SubmitAppointmentOrderVM submitAppointmentOrder);
 
     /**
+     * 订单评价
+     * @param reviewBrief
+     * @return
+     */
+    ResultObj insertOrderReview(ReviewBriefVM reviewBrief);
+
+    /**
      * 根据用户id查询订单列表
      * @param userId
      * @param status
@@ -40,6 +48,13 @@ public interface WXOrderService {
      * @return
      */
     ResultObj findOrderListByUserId(Long userId, Integer status, Integer pageNum, Integer pageSize);
+
+    /**
+     * 根据订单id查询订单详情
+     * @param orderId
+     * @return
+     */
+    ResultObj findOrderByOrderId(Long orderId);
 
     /**
      * 修改订单状态

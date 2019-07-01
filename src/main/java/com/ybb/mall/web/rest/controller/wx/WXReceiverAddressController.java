@@ -20,7 +20,7 @@ import java.net.URISyntaxException;
  * @Version
  */
 
-@Api(description = "微信小程序-用户管理")
+@Api(description = "微信小程序-收货地址管理")
 @RestController
 @RequestMapping("/mall/wx")
 public class WXReceiverAddressController {

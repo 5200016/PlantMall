@@ -104,4 +104,31 @@ public interface OrderRepository extends JpaRepository<SysOrder, Long> {
             " where so.user.id = ?1" +
             " and so.payNo = ?2")
     List<SysOrder> findOrderByUserIdAndTradeNo(Long userId, String payNo);
+
+    /**
+     * 根据订单id查询详情
+     */
+    @Query(
+        value = "select so" +
+            " from SysOrder so" +
+            " left join fetch so.user" +
+            " left join fetch so.receiverAddress" +
+            " left join fetch so.orderProducts" +
+            " where so.id = ?1")
+    SysOrder findInfoByOrderId(Long orderId);
+
+    /**
+     * 分页查询订单列表
+     * 条件：订单号（模糊查询），订单类型，订单状态，收货人、手机号
+     */
+    @Query(
+        value = "select so" +
+            " from SysOrder so" +
+            " left join fetch so.user" +
+            " left join fetch so.receiverAddress" +
+            " left join fetch so.maintenancePersonnel" +
+            " where so.type = 1" +
+            " and so.maintenanceTime like concat('%', ?1,'%')" +
+            " and so.maintenancePlanStatus = 1")
+    List<SysOrder> findOrderListByTime(String time);
 }

@@ -197,6 +197,11 @@ entity SysProduct {
     description TextBlob,
 
     /**
+     * 是否激活（false：否 true：是）
+     */
+    active Boolean,
+
+    /**
      * 创建时间
      */
     createTime ZonedDateTime,

@@ -94,6 +94,12 @@
             "relationshipName": "orderProduct",
             "otherEntityName": "sysOrderProduct",
             "otherEntityRelationshipName": "order"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "maintenanceFinish",
+            "otherEntityName": "sysMaintenanceFinish",
+            "otherEntityRelationshipName": "order"
         }
     ],
     "changelogDate": "20190415061401",

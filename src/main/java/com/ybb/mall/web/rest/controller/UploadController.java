@@ -78,4 +78,19 @@ public class UploadController {
         return UploadUtils.start(file, applicationProperties.getFilePath(), applicationProperties.getModuleImage());
 
     }
+
+    /**
+     * 上传普通文件
+     * @param request
+     * @param file
+     * @return
+     * @throws URISyntaxException
+     */
+    @ApiOperation("上传普通文件")
+    @PostMapping("/file/ordinary")
+    @Timed
+    public ResultObj uploadOrdinary(@ApiParam(name="file",value="上传文件",required=true) HttpServletRequest request, @RequestParam MultipartFile file) throws URISyntaxException {
+        return UploadUtils.start(file, applicationProperties.getFilePath(), applicationProperties.getOrdinary());
+
+    }
 }

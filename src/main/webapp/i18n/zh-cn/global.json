@@ -34,6 +34,7 @@
                 "sysCouponClassify": "Sys Coupon Classify",
                 "sysShoppingProduct": "Sys Shopping Product",
                 "sysForm": "Sys Form",
+                "sysMaintenanceFinish": "Sys Maintenance Finish",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

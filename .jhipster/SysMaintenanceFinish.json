@@ -1,0 +1,43 @@
+{
+    "name": "SysMaintenanceFinish",
+    "fields": [
+        {
+            "fieldName": "time",
+            "javadoc": "完成时间",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "url",
+            "javadoc": "照片路径",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createTime",
+            "javadoc": "创建时间",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "updateTime",
+            "javadoc": "更新时间",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "order",
+            "otherEntityName": "sysOrder",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190702111238",
+    "javadoc": "养护任务完成表",
+    "entityTableName": "sys_maintenance_finish",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

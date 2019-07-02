@@ -32,6 +32,7 @@
             "receiverAddress": "Receiver Address",
             "maintenancePersonnel": "Maintenance Personnel",
             "orderProduct": "Order Product",
+            "maintenanceFinish": "Maintenance Finish",
             "help": {
                 "tradeNo": "订单号",
                 "payNo": "支付单号",

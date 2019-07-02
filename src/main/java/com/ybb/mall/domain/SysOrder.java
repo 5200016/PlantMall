@@ -134,8 +134,10 @@ public class SysOrder implements Serializable {
     @JsonIgnoreProperties("orders")
     private SysMaintenancePersonnel maintenancePersonnel;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
+    @OneToMany(mappedBy = "order")
     private Set<SysOrderProduct> orderProducts = new HashSet<>();
+    @OneToMany(mappedBy = "order")
+    private Set<SysMaintenanceFinish> maintenanceFinishes = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -376,6 +378,31 @@ public class SysOrder implements Serializable {
 
     public void setOrderProducts(Set<SysOrderProduct> sysOrderProducts) {
         this.orderProducts = sysOrderProducts;
+    }
+
+    public Set<SysMaintenanceFinish> getMaintenanceFinishes() {
+        return maintenanceFinishes;
+    }
+
+    public SysOrder maintenanceFinishes(Set<SysMaintenanceFinish> sysMaintenanceFinishes) {
+        this.maintenanceFinishes = sysMaintenanceFinishes;
+        return this;
+    }
+
+    public SysOrder addMaintenanceFinish(SysMaintenanceFinish sysMaintenanceFinish) {
+        this.maintenanceFinishes.add(sysMaintenanceFinish);
+        sysMaintenanceFinish.setOrder(this);
+        return this;
+    }
+
+    public SysOrder removeMaintenanceFinish(SysMaintenanceFinish sysMaintenanceFinish) {
+        this.maintenanceFinishes.remove(sysMaintenanceFinish);
+        sysMaintenanceFinish.setOrder(null);
+        return this;
+    }
+
+    public void setMaintenanceFinishes(Set<SysMaintenanceFinish> sysMaintenanceFinishes) {
+        this.maintenanceFinishes = sysMaintenanceFinishes;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

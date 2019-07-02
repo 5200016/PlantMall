@@ -20,6 +20,8 @@ public class ApplicationProperties {
 
     private String moduleImage;
 
+    private String ordinary;
+
     private String appID;
 
     private String appSecret;
@@ -28,6 +30,13 @@ public class ApplicationProperties {
 
     private String key;
 
+    public String getOrdinary() {
+        return ordinary;
+    }
+
+    public void setOrdinary(String ordinary) {
+        this.ordinary = ordinary;
+    }
 
     public String getAppID() {
         return appID;

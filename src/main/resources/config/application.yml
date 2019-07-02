@@ -117,6 +117,7 @@ application:
     plantImage: plantImage             # 植物图片
     homeImage: homeImage               # 首页广告图片
     moduleImage: moduleImage           # 首页模块图片
+    ordinary: ordinary                 # 普通文件夹
 
     # 微信小程序参数
     appID: wx876b17cfbdcad9f3

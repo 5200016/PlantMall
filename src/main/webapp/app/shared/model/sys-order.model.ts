@@ -3,6 +3,7 @@ import { ISysUser } from 'app/shared/model//sys-user.model';
 import { ISysReceiverAddress } from 'app/shared/model//sys-receiver-address.model';
 import { ISysMaintenancePersonnel } from 'app/shared/model//sys-maintenance-personnel.model';
 import { ISysOrderProduct } from 'app/shared/model//sys-order-product.model';
+import { ISysMaintenanceFinish } from 'app/shared/model//sys-maintenance-finish.model';
 
 export interface ISysOrder {
     id?: number;
@@ -23,6 +24,7 @@ export interface ISysOrder {
     receiverAddress?: ISysReceiverAddress;
     maintenancePersonnel?: ISysMaintenancePersonnel;
     orderProducts?: ISysOrderProduct[];
+    maintenanceFinishes?: ISysMaintenanceFinish[];
 }
 
 export class SysOrder implements ISysOrder {
@@ -44,6 +46,7 @@ export class SysOrder implements ISysOrder {
         public user?: ISysUser,
         public receiverAddress?: ISysReceiverAddress,
         public maintenancePersonnel?: ISysMaintenancePersonnel,
-        public orderProducts?: ISysOrderProduct[]
+        public orderProducts?: ISysOrderProduct[],
+        public maintenanceFinishes?: ISysMaintenanceFinish[]
     ) {}
 }

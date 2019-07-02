@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-sys-maintenance-finish-heading" jhiTranslate="plantMallApp.sysMaintenanceFinish.home.createOrEditLabel">Create or edit a Sys Maintenance Finish</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!sysMaintenanceFinish.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="sysMaintenanceFinish.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysMaintenanceFinish.time" for="field_time" [ngbTooltip]="'plantMallApp.sysMaintenanceFinish.help.time' | translate">Time</label>
+                    <input type="text" class="form-control" name="time" id="field_time"
+                        [(ngModel)]="sysMaintenanceFinish.time" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysMaintenanceFinish.url" for="field_url" [ngbTooltip]="'plantMallApp.sysMaintenanceFinish.help.url' | translate">Url</label>
+                    <input type="text" class="form-control" name="url" id="field_url"
+                        [(ngModel)]="sysMaintenanceFinish.url" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysMaintenanceFinish.createTime" for="field_createTime" [ngbTooltip]="'plantMallApp.sysMaintenanceFinish.help.createTime' | translate">Create Time</label>
+                    <div class="d-flex">
+                        <input id="field_createTime" type="datetime-local" class="form-control" name="createTime" [(ngModel)]="createTime"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysMaintenanceFinish.updateTime" for="field_updateTime" [ngbTooltip]="'plantMallApp.sysMaintenanceFinish.help.updateTime' | translate">Update Time</label>
+                    <div class="d-flex">
+                        <input id="field_updateTime" type="datetime-local" class="form-control" name="updateTime" [(ngModel)]="updateTime"
+                        />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="plantMallApp.sysMaintenanceFinish.order" for="field_order">Order</label>
+                    <select class="form-control" id="field_order" name="order" [(ngModel)]="sysMaintenanceFinish.order" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="sysOrderOption.id === sysMaintenanceFinish.order?.id ? sysMaintenanceFinish.order : sysOrderOption" *ngFor="let sysOrderOption of sysorders; trackBy: trackSysOrderById">{{sysOrderOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

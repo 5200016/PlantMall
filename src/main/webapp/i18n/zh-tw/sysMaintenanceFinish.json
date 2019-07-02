@@ -1,0 +1,31 @@
+{
+    "plantMallApp": {
+        "sysMaintenanceFinish": {
+            "home": {
+                "title": "Sys Maintenance Finishes",
+                "createLabel": "建立一筆新的 Sys Maintenance Finish",
+                "createOrEditLabel": "建立或編輯 Sys Maintenance Finish"
+            },
+            "created": "新的 Sys Maintenance Finish 建立成功，識別碼為 {{ param }}",
+            "updated": "識別碼為 {{ param }} 的 Sys Maintenance Finish 更新成功",
+            "deleted": "識別碼為 {{ param }} 的 Sys Maintenance Finish 刪除成功",
+            "delete": {
+                "question": "您確定要刪除 Sys Maintenance Finish {{ id }} 嗎?"
+            },
+            "detail": {
+                "title": "Sys Maintenance Finish"
+            },
+            "time": "Time",
+            "url": "Url",
+            "createTime": "Create Time",
+            "updateTime": "Update Time",
+            "order": "Order",
+            "help": {
+                "time": "完成时间",
+                "url": "照片路径",
+                "createTime": "创建时间",
+                "updateTime": "更新时间"
+            }
+        }
+    }
+}

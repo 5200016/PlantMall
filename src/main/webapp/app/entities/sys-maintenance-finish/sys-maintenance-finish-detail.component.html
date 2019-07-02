@@ -1,0 +1,45 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="sysMaintenanceFinish">
+            <h2><span jhiTranslate="plantMallApp.sysMaintenanceFinish.detail.title">Sys Maintenance Finish</span> {{sysMaintenanceFinish.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="plantMallApp.sysMaintenanceFinish.time" [ngbTooltip]="'plantMallApp.sysMaintenanceFinish.help.time' | translate">Time</span></dt>
+                <dd>
+                    <span>{{sysMaintenanceFinish.time}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysMaintenanceFinish.url" [ngbTooltip]="'plantMallApp.sysMaintenanceFinish.help.url' | translate">Url</span></dt>
+                <dd>
+                    <span>{{sysMaintenanceFinish.url}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysMaintenanceFinish.createTime" [ngbTooltip]="'plantMallApp.sysMaintenanceFinish.help.createTime' | translate">Create Time</span></dt>
+                <dd>
+                    <span>{{sysMaintenanceFinish.createTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysMaintenanceFinish.updateTime" [ngbTooltip]="'plantMallApp.sysMaintenanceFinish.help.updateTime' | translate">Update Time</span></dt>
+                <dd>
+                    <span>{{sysMaintenanceFinish.updateTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="plantMallApp.sysMaintenanceFinish.order">Order</span></dt>
+                <dd>
+                    <div *ngIf="sysMaintenanceFinish.order">
+                        <a [routerLink]="['/sys-order', sysMaintenanceFinish.order?.id, 'view']">{{sysMaintenanceFinish.order?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/sys-maintenance-finish', sysMaintenanceFinish.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

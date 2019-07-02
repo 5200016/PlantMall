@@ -27,6 +27,7 @@ import { PlantMallSysCouponUserModule } from './sys-coupon-user/sys-coupon-user.
 import { PlantMallSysCouponClassifyModule } from './sys-coupon-classify/sys-coupon-classify.module';
 import { PlantMallSysShoppingProductModule } from './sys-shopping-product/sys-shopping-product.module';
 import { PlantMallSysFormModule } from './sys-form/sys-form.module';
+import { PlantMallSysMaintenanceFinishModule } from './sys-maintenance-finish/sys-maintenance-finish.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -59,6 +60,7 @@ import { PlantMallSysFormModule } from './sys-form/sys-form.module';
         PlantMallSysCouponClassifyModule,
         PlantMallSysShoppingProductModule,
         PlantMallSysFormModule,
+        PlantMallSysMaintenanceFinishModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

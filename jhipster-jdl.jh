@@ -357,9 +357,9 @@ entity SysOrder {
     maintenancePlanStatus Integer,
 
     /**
-     * 养护完成
+     * 养护时间
      */
-    finish TextBlob,
+    maintenanceTime TextBlob,
 
     /**
      * 养护描述

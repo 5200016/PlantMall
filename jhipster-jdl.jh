@@ -357,9 +357,9 @@ entity SysOrder {
     maintenancePlanStatus Integer,
 
     /**
-     * 养护时间
+     * 养护完成
      */
-    maintenanceTime TextBlob,
+    finish TextBlob,
 
     /**
      * 养护描述
@@ -551,6 +551,31 @@ entity SysMaintenancePersonnel{
      * 人员状态（0：空闲 1：已安排）
      */
     status Integer,
+
+    /**
+     * 创建时间
+     */
+    createTime ZonedDateTime,
+
+    /**
+     * 更新时间
+     */
+    updateTime ZonedDateTime
+}
+
+/**
+ * 养护任务完成表
+ */
+entity SysMaintenanceFinish{
+    /**
+     * 完成时间
+     */
+    time String,
+
+    /**
+     * 照片路径
+     */
+    url String,
 
     /**
      * 创建时间
@@ -798,6 +823,8 @@ relationship ManyToOne {
     SysOrder{maintenancePersonnel} to SysMaintenancePersonnel{order},
 
     SysMaintenancePersonnel{user} to SysUser{maintenancePersonnel},
+
+    SysMaintenanceFinish{order} to SysOrder{maintenanceFinish},
 
     SysProductImage{product} to SysProduct{image},
 

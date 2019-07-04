@@ -1,6 +1,7 @@
 package com.ybb.mall.repository;
 
 import com.ybb.mall.service.dto.order.OrderDTO;
+import com.ybb.mall.service.dto.wx.MaintenanceInfoDTO;
 import org.springframework.stereotype.Repository;
 import com.ybb.mall.domain.SysOrder;
 import com.ybb.mall.service.dto.order.OrderListDTO;
@@ -85,12 +86,11 @@ public interface OrderRepository extends JpaRepository<SysOrder, Long> {
     /**
      * 养护人员分页查询订单列表
      */
-    @Query("select so from" +
-        " SysMaintenancePersonnel smp left join SysOrder so on smp.id = so.maintenancePersonnel.id" +
+    @Query("select new com.ybb.mall.service.dto.wx.MaintenanceInfoDTO(so) from SysMaintenancePersonnel smp left join SysOrder so on smp.id = so.maintenancePersonnel.id" +
         " where smp.user.id = ?1" +
         " and so.id is not null" +
         " order by so.createTime desc")
-    Page<SysOrder> findOrderListByMaintenance(Long userId, Pageable pageable);
+    Page<MaintenanceInfoDTO> findOrderListByMaintenance(Long userId, Pageable pageable);
 
     /**
      * 根据用户id，订单号查询订单及其商品

@@ -6,6 +6,7 @@ import com.ybb.mall.web.rest.controller.wx.vm.order.SubmitAppointmentOrderVM;
 import com.ybb.mall.web.rest.controller.wx.vm.order.SubmitOrderVM;
 import com.ybb.mall.web.rest.controller.wx.vm.review.ReviewBriefVM;
 import com.ybb.mall.web.rest.util.ResultObj;
+import com.ybb.mall.web.rest.vm.maintenance.FinishMaintenanceVM;
 import com.ybb.mall.web.rest.vm.order.OrderVM;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -126,5 +127,31 @@ public class WXOrderController {
     @Timed
     public ResultObj createOrderReview(@RequestBody ReviewBriefVM reviewBrief) throws URISyntaxException {
         return wxOrderService.insertOrderReview(reviewBrief);
+    }
+
+    /**
+     * 提交养护计划记录
+     *
+     * @return
+     * @throws URISyntaxException
+     */
+    @ApiOperation("提交养护计划记录")
+    @PostMapping("/maintenance/time")
+    @Timed
+    public ResultObj submitMaintenanceTime(@RequestBody FinishMaintenanceVM finishMaintenance) throws URISyntaxException {
+        return wxOrderService.insertMaintenanceTime(finishMaintenance);
+    }
+
+    /**
+     * 根据订单id查询养护记录
+     *
+     * @return
+     * @throws URISyntaxException
+     */
+    @ApiOperation("根据订单id查询养护记录")
+    @GetMapping("/maintenance/order_id")
+    @Timed
+    public ResultObj selectMaintenanceByOrderId(@ApiParam(name = "orderId", value = "订单id", required = true) @RequestParam Long orderId) throws URISyntaxException {
+        return wxOrderService.findMaintenanceFinishByOrderId(orderId);
     }
 }

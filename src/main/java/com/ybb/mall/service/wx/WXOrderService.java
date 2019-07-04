@@ -6,6 +6,7 @@ import com.ybb.mall.web.rest.controller.wx.vm.order.SubmitAppointmentOrderVM;
 import com.ybb.mall.web.rest.controller.wx.vm.order.SubmitOrderVM;
 import com.ybb.mall.web.rest.controller.wx.vm.review.ReviewBriefVM;
 import com.ybb.mall.web.rest.util.ResultObj;
+import com.ybb.mall.web.rest.vm.maintenance.FinishMaintenanceVM;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -92,4 +93,17 @@ public interface WXOrderService {
      * 删除订单
      */
     ResultObj deleteOrderById(Long id);
+
+    /**
+     * 新增养护计划记录
+     * @return
+     */
+    ResultObj insertMaintenanceTime(FinishMaintenanceVM finishMaintenance);
+
+    /**
+     * 根据订单id查询养护记录
+     * @param orderId
+     * @return
+     */
+    ResultObj findMaintenanceFinishByOrderId(Long orderId);
 }

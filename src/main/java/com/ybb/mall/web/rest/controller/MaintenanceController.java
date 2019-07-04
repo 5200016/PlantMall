@@ -7,10 +7,7 @@ import com.ybb.mall.web.rest.vm.maintenance.FinishMaintenanceVM;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URISyntaxException;
 
@@ -44,16 +41,5 @@ public class MaintenanceController {
         return ResultObj.back(200, maintenancePersonnelService.findMaintenancePersonnelList());
     }
 
-    /**
-     * 提交养护计划记录
-     *
-     * @return
-     * @throws URISyntaxException
-     */
-    @ApiOperation("提交养护计划记录")
-    @GetMapping("/maintenance/time")
-    @Timed
-    public ResultObj submitMaintenanceTime(@RequestBody FinishMaintenanceVM finishMaintenance) throws URISyntaxException {
-        return null;
-    }
+
 }

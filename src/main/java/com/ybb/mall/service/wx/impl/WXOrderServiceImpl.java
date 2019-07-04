@@ -1,7 +1,10 @@
 package com.ybb.mall.service.wx.impl;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.ybb.mall.domain.*;
 import com.ybb.mall.repository.*;
+import com.ybb.mall.service.dto.wx.MaintenanceInfoDTO;
 import com.ybb.mall.service.mapper.SysOrderMapper;
 import com.ybb.mall.service.wx.WXOrderService;
 import com.ybb.mall.web.rest.controller.wx.vm.order.SubmitAppointmentOrderVM;
@@ -11,6 +14,8 @@ import com.ybb.mall.web.rest.controller.wx.vm.review.ReviewBriefVM;
 import com.ybb.mall.web.rest.util.DateUtil;
 import com.ybb.mall.web.rest.util.ResultObj;
 import com.ybb.mall.web.rest.util.TypeUtils;
+import com.ybb.mall.web.rest.vm.maintenance.FinishMaintenanceVM;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,7 +50,9 @@ public class WXOrderServiceImpl implements WXOrderService {
 
     private final SUserRepository userRepository;
 
-    public WXOrderServiceImpl(OrderRepository orderRepository, OrderProductRepository orderProductRepository, AppointmentRepository appointmentRepository, ShoppingProductRepository shoppingProductRepository, SysOrderMapper orderMapper, ReviewRepository reviewRepository, ReceiverAddressRepository receiverAddressRepository, SUserRepository userRepository) {
+    private final MaintenanceFinishRepository maintenanceFinishRepository;
+
+    public WXOrderServiceImpl(OrderRepository orderRepository, OrderProductRepository orderProductRepository, AppointmentRepository appointmentRepository, ShoppingProductRepository shoppingProductRepository, SysOrderMapper orderMapper, ReviewRepository reviewRepository, ReceiverAddressRepository receiverAddressRepository, SUserRepository userRepository, MaintenanceFinishRepository maintenanceFinishRepository) {
         this.orderRepository = orderRepository;
         this.orderProductRepository = orderProductRepository;
         this.appointmentRepository = appointmentRepository;
@@ -54,6 +61,7 @@ public class WXOrderServiceImpl implements WXOrderService {
         this.reviewRepository = reviewRepository;
         this.receiverAddressRepository = receiverAddressRepository;
         this.userRepository = userRepository;
+        this.maintenanceFinishRepository = maintenanceFinishRepository;
     }
 
     @Override
@@ -145,12 +153,57 @@ public class WXOrderServiceImpl implements WXOrderService {
 
     @Override
     public ResultObj findOrderListByMaintenance(Long userId, Integer pageNum, Integer pageSize) {
-        return ResultObj.back(200, orderRepository.findOrderListByMaintenance(userId, PageRequest.of(pageNum, pageSize)));
+        Page<MaintenanceInfoDTO> maintenanceInfo = orderRepository.findOrderListByMaintenance(userId, PageRequest.of(pageNum, pageSize));
+        for(MaintenanceInfoDTO data : maintenanceInfo.getContent()){
+            List<SysMaintenanceFinish> maintenanceFinishes = maintenanceFinishRepository.findMaintenanceFinishByOrderId(data.getOrder().getId());
+            JSONArray array = new JSONArray();
+            for(SysMaintenanceFinish res : maintenanceFinishes){
+                JSONObject object = new JSONObject();
+                object.put("time", res.getTime());
+                object.put("url", res.getUrl());
+                array.add(object);
+            }
+            data.setFinish(array);
+        }
+        return ResultObj.back(200, maintenanceInfo);
     }
 
     @Override
     public ResultObj deleteOrderById(Long id) {
         orderRepository.deleteById(id);
         return ResultObj.backCRUDSuccess("取消成功");
+    }
+
+    @Override
+    public ResultObj insertMaintenanceTime(FinishMaintenanceVM finishMaintenance) {
+
+        List<SysMaintenanceFinish> data = maintenanceFinishRepository.findMaintenanceFinishByOrderIdAndTime(finishMaintenance.getOrderId(), finishMaintenance.getTime());
+        if(!TypeUtils.isEmpty(data)){
+            return ResultObj.backCRUDError("您已提交");
+        }
+        SysMaintenanceFinish maintenanceFinish = new SysMaintenanceFinish();
+        maintenanceFinish.setTime(finishMaintenance.getTime());
+        maintenanceFinish.setUrl(finishMaintenance.getUrl());
+        maintenanceFinish.setCreateTime(DateUtil.getZoneDateTime());
+        maintenanceFinish.setUpdateTime(DateUtil.getZoneDateTime());
+
+        SysOrder order = new SysOrder();
+        order.setId(finishMaintenance.getOrderId());
+        maintenanceFinish.setOrder(order);
+        maintenanceFinishRepository.save(maintenanceFinish);
+        return ResultObj.backCRUDSuccess("新增成功");
+    }
+
+    @Override
+    public ResultObj findMaintenanceFinishByOrderId(Long orderId) {
+        List<SysMaintenanceFinish> result = maintenanceFinishRepository.findMaintenanceFinishByOrderId(orderId);
+        JSONArray array = new JSONArray();
+        for(SysMaintenanceFinish data : result){
+            JSONObject object = new JSONObject();
+            object.put("time", data.getTime());
+            object.put("url", data.getUrl());
+            array.add(object);
+        }
+        return ResultObj.back(200, array);
     }
 }

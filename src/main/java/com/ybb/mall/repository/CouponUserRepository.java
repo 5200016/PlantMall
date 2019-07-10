@@ -26,6 +26,15 @@ public interface CouponUserRepository extends JpaRepository<SysCouponUser, Long>
     Long countCouponByUserId(Long userId, Long couponId);
 
     /**
+     * 查询用户未使用的某一优惠券
+     */
+    @Query("select scu from SysCouponUser scu" +
+        " where scu.user.id = ?1" +
+        " and scu.coupon.id = ?2" +
+        " and scu.useStatus = 0")
+    List<SysCouponUser> findCouponInfoByUserId(Long userId, Long couponId);
+
+    /**
      * 根据userId，使用状态分页查询优惠券
      */
     @Query("select scu from SysCouponUser scu" +

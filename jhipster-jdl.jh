@@ -568,9 +568,14 @@ entity SysMaintenancePersonnel{
  */
 entity SysMaintenanceFinish{
     /**
-     * 完成时间
+     * 计划时间
      */
     time String,
+
+    /**
+     * 完成时间
+     */
+    finishTime String,
 
     /**
      * 照片路径

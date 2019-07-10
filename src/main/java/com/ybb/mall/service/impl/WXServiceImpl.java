@@ -14,7 +14,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -48,7 +47,11 @@ public class WXServiceImpl implements WXService {
 
     private final SUserRepository userRepository;
 
-    public WXServiceImpl(OrderRepository orderRepository, OrderProductRepository orderProductRepository, SysOrderMapper orderMapper, ProductRepository productRepository, ShoppingProductRepository shoppingProductRepository, ShoppingCarRepository shoppingCarRepository, ApplicationProperties applicationProperties, SUserRepository userRepository) {
+    private final CouponRepository couponRepository;
+
+    private final CouponUserRepository couponUserRepository;
+
+    public WXServiceImpl(OrderRepository orderRepository, OrderProductRepository orderProductRepository, SysOrderMapper orderMapper, ProductRepository productRepository, ShoppingProductRepository shoppingProductRepository, ShoppingCarRepository shoppingCarRepository, ApplicationProperties applicationProperties, SUserRepository userRepository, CouponRepository couponRepository, CouponUserRepository couponUserRepository) {
         this.orderRepository = orderRepository;
         this.orderProductRepository = orderProductRepository;
         this.orderMapper = orderMapper;
@@ -57,6 +60,8 @@ public class WXServiceImpl implements WXService {
         this.shoppingCarRepository = shoppingCarRepository;
         this.applicationProperties = applicationProperties;
         this.userRepository = userRepository;
+        this.couponRepository = couponRepository;
+        this.couponUserRepository = couponUserRepository;
     }
 
 
@@ -187,11 +192,15 @@ public class WXServiceImpl implements WXService {
 
     @Override
     public ResultObj wxPayMethod(SubmitOrderVM submitOrder) throws Exception {
+        BigDecimal value = new BigDecimal(submitOrder.getPayPrice());
+        if(!TypeUtils.isEmpty(submitOrder.getLeaseCouponId())){
+            SysCoupon coupon = couponRepository.findCouponById(submitOrder.getLeaseCouponId());
+            value = value.subtract(coupon.getValue());
+        }
 
         // 订单号
         String tradeNo =  WxUtil.getTradeNoMethod();
         // 订单金额
-        BigDecimal value = new BigDecimal(submitOrder.getPayPrice());
         BigDecimal coefficient = new BigDecimal(100);
         BigDecimal price = value.multiply(coefficient).setScale(0, BigDecimal.ROUND_HALF_UP);
         String payPrice = price.toString();
@@ -229,6 +238,9 @@ public class WXServiceImpl implements WXService {
     }
 
     public void createOrder(SubmitOrderVM submitOrder, Integer status, String payNo){
+
+        SysCoupon coupon = couponRepository.findCouponById(submitOrder.getLeaseCouponId());
+
         // 处理出售商品订单
         List<SysOrderProduct> orderProductList = new ArrayList<>();
         List<SellVM> sellVMList = submitOrder.getSell();
@@ -277,7 +289,7 @@ public class WXServiceImpl implements WXService {
         if(!TypeUtils.isEmpty(submitOrder.getLease().getProductList())){
             SysOrder order = new SysOrder();
             order.setTradeNo(WxUtil.getTradeNoMethod());
-            order.setPrice(submitOrder.getLease().getTotalPrice());
+            order.setPrice(submitOrder.getLease().getTotalPrice().subtract(coupon.getValue()));
             order.setStatus(status);
             order.setPayNo(payNo);
             order.setType(1);
@@ -323,6 +335,15 @@ public class WXServiceImpl implements WXService {
                 list.add(object);
             }
             shoppingProductRepository.deleteInBatch(list);
+        }
+
+        if(!TypeUtils.isEmpty(submitOrder.getLeaseCouponId())){
+            List<SysCouponUser> couponList = couponUserRepository.findCouponInfoByUserId(submitOrder.getUserId(), submitOrder.getLeaseCouponId());
+            if(!TypeUtils.isEmpty(couponList)){
+                SysCouponUser couponUser = couponList.get(0);
+                couponUser.setUseStatus(1);
+                couponUserRepository.save(couponUser);
+            }
         }
     }
 

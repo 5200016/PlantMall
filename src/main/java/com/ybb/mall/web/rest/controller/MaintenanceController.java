@@ -2,8 +2,8 @@ package com.ybb.mall.web.rest.controller;
 
 import com.codahale.metrics.annotation.Timed;
 import com.ybb.mall.service.MaintenancePersonnelService;
+import com.ybb.mall.service.wx.WXOrderService;
 import com.ybb.mall.web.rest.util.ResultObj;
-import com.ybb.mall.web.rest.vm.maintenance.FinishMaintenanceVM;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -24,8 +24,11 @@ import java.net.URISyntaxException;
 public class MaintenanceController {
     private final MaintenancePersonnelService maintenancePersonnelService;
 
-    public MaintenanceController(MaintenancePersonnelService maintenancePersonnelService) {
+    private final WXOrderService wxOrderService;
+
+    public MaintenanceController(MaintenancePersonnelService maintenancePersonnelService, WXOrderService wxOrderService) {
         this.maintenancePersonnelService = maintenancePersonnelService;
+        this.wxOrderService = wxOrderService;
     }
 
     /**
@@ -41,5 +44,16 @@ public class MaintenanceController {
         return ResultObj.back(200, maintenancePersonnelService.findMaintenancePersonnelList());
     }
 
-
+    /**
+     * 根据订单id查询养护记录
+     *
+     * @return
+     * @throws URISyntaxException
+     */
+    @ApiOperation("根据订单id查询养护记录")
+    @GetMapping("/maintenance/order_id")
+    @Timed
+    public ResultObj selectMaintenanceByOrderId(@ApiParam(name = "orderId", value = "订单id", required = true) @RequestParam Long orderId) throws URISyntaxException {
+        return wxOrderService.findMaintenanceFinishByOrderId(orderId);
+    }
 }

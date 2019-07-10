@@ -3,6 +3,11 @@
     "fields": [
         {
             "fieldName": "time",
+            "javadoc": "计划时间",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "finishTime",
             "javadoc": "完成时间",
             "fieldType": "String"
         },

@@ -49,6 +49,9 @@ public class SysMaintenanceFinishResourceIntTest {
     private static final String DEFAULT_TIME = "AAAAAAAAAA";
     private static final String UPDATED_TIME = "BBBBBBBBBB";
 
+    private static final String DEFAULT_FINISH_TIME = "AAAAAAAAAA";
+    private static final String UPDATED_FINISH_TIME = "BBBBBBBBBB";
+
     private static final String DEFAULT_URL = "AAAAAAAAAA";
     private static final String UPDATED_URL = "BBBBBBBBBB";
 
@@ -104,6 +107,7 @@ public class SysMaintenanceFinishResourceIntTest {
     public static SysMaintenanceFinish createEntity(EntityManager em) {
         SysMaintenanceFinish sysMaintenanceFinish = new SysMaintenanceFinish()
             .time(DEFAULT_TIME)
+            .finishTime(DEFAULT_FINISH_TIME)
             .url(DEFAULT_URL)
             .createTime(DEFAULT_CREATE_TIME)
             .updateTime(DEFAULT_UPDATE_TIME);
@@ -131,6 +135,7 @@ public class SysMaintenanceFinishResourceIntTest {
         assertThat(sysMaintenanceFinishList).hasSize(databaseSizeBeforeCreate + 1);
         SysMaintenanceFinish testSysMaintenanceFinish = sysMaintenanceFinishList.get(sysMaintenanceFinishList.size() - 1);
         assertThat(testSysMaintenanceFinish.getTime()).isEqualTo(DEFAULT_TIME);
+        assertThat(testSysMaintenanceFinish.getFinishTime()).isEqualTo(DEFAULT_FINISH_TIME);
         assertThat(testSysMaintenanceFinish.getUrl()).isEqualTo(DEFAULT_URL);
         assertThat(testSysMaintenanceFinish.getCreateTime()).isEqualTo(DEFAULT_CREATE_TIME);
         assertThat(testSysMaintenanceFinish.getUpdateTime()).isEqualTo(DEFAULT_UPDATE_TIME);
@@ -167,6 +172,7 @@ public class SysMaintenanceFinishResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(sysMaintenanceFinish.getId().intValue())))
             .andExpect(jsonPath("$.[*].time").value(hasItem(DEFAULT_TIME.toString())))
+            .andExpect(jsonPath("$.[*].finishTime").value(hasItem(DEFAULT_FINISH_TIME.toString())))
             .andExpect(jsonPath("$.[*].url").value(hasItem(DEFAULT_URL.toString())))
             .andExpect(jsonPath("$.[*].createTime").value(hasItem(sameInstant(DEFAULT_CREATE_TIME))))
             .andExpect(jsonPath("$.[*].updateTime").value(hasItem(sameInstant(DEFAULT_UPDATE_TIME))));
@@ -184,6 +190,7 @@ public class SysMaintenanceFinishResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(sysMaintenanceFinish.getId().intValue()))
             .andExpect(jsonPath("$.time").value(DEFAULT_TIME.toString()))
+            .andExpect(jsonPath("$.finishTime").value(DEFAULT_FINISH_TIME.toString()))
             .andExpect(jsonPath("$.url").value(DEFAULT_URL.toString()))
             .andExpect(jsonPath("$.createTime").value(sameInstant(DEFAULT_CREATE_TIME)))
             .andExpect(jsonPath("$.updateTime").value(sameInstant(DEFAULT_UPDATE_TIME)));
@@ -211,6 +218,7 @@ public class SysMaintenanceFinishResourceIntTest {
         em.detach(updatedSysMaintenanceFinish);
         updatedSysMaintenanceFinish
             .time(UPDATED_TIME)
+            .finishTime(UPDATED_FINISH_TIME)
             .url(UPDATED_URL)
             .createTime(UPDATED_CREATE_TIME)
             .updateTime(UPDATED_UPDATE_TIME);
@@ -225,6 +233,7 @@ public class SysMaintenanceFinishResourceIntTest {
         assertThat(sysMaintenanceFinishList).hasSize(databaseSizeBeforeUpdate);
         SysMaintenanceFinish testSysMaintenanceFinish = sysMaintenanceFinishList.get(sysMaintenanceFinishList.size() - 1);
         assertThat(testSysMaintenanceFinish.getTime()).isEqualTo(UPDATED_TIME);
+        assertThat(testSysMaintenanceFinish.getFinishTime()).isEqualTo(UPDATED_FINISH_TIME);
         assertThat(testSysMaintenanceFinish.getUrl()).isEqualTo(UPDATED_URL);
         assertThat(testSysMaintenanceFinish.getCreateTime()).isEqualTo(UPDATED_CREATE_TIME);
         assertThat(testSysMaintenanceFinish.getUpdateTime()).isEqualTo(UPDATED_UPDATE_TIME);

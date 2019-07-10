@@ -16,12 +16,14 @@
                 "title": "Sys Maintenance Finish"
             },
             "time": "Time",
+            "finishTime": "Finish Time",
             "url": "Url",
             "createTime": "Create Time",
             "updateTime": "Update Time",
             "order": "Order",
             "help": {
-                "time": "完成时间",
+                "time": "计划时间",
+                "finishTime": "完成时间",
                 "url": "照片路径",
                 "createTime": "创建时间",
                 "updateTime": "更新时间"

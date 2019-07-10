@@ -25,7 +25,7 @@ describe('Service Tests', () => {
             httpMock = injector.get(HttpTestingController);
             currentDate = moment();
 
-            elemDefault = new SysMaintenanceFinish(0, 'AAAAAAA', 'AAAAAAA', currentDate, currentDate);
+            elemDefault = new SysMaintenanceFinish(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', currentDate, currentDate);
         });
 
         describe('Service methods', async () => {
@@ -74,6 +74,7 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         time: 'BBBBBB',
+                        finishTime: 'BBBBBB',
                         url: 'BBBBBB',
                         createTime: currentDate.format(DATE_TIME_FORMAT),
                         updateTime: currentDate.format(DATE_TIME_FORMAT)
@@ -100,6 +101,7 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         time: 'BBBBBB',
+                        finishTime: 'BBBBBB',
                         url: 'BBBBBB',
                         createTime: currentDate.format(DATE_TIME_FORMAT),
                         updateTime: currentDate.format(DATE_TIME_FORMAT)

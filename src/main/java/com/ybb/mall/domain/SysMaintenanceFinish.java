@@ -25,11 +25,18 @@ public class SysMaintenanceFinish implements Serializable {
     private Long id;
 
     /**
+     * 计划时间
+     */
+    @ApiModelProperty(value = "计划时间")
+    @Column(name = "jhi_time")
+    private String time;
+
+    /**
      * 完成时间
      */
     @ApiModelProperty(value = "完成时间")
-    @Column(name = "jhi_time")
-    private String time;
+    @Column(name = "finish_time")
+    private String finishTime;
 
     /**
      * 照片路径
@@ -76,6 +83,19 @@ public class SysMaintenanceFinish implements Serializable {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getFinishTime() {
+        return finishTime;
+    }
+
+    public SysMaintenanceFinish finishTime(String finishTime) {
+        this.finishTime = finishTime;
+        return this;
+    }
+
+    public void setFinishTime(String finishTime) {
+        this.finishTime = finishTime;
     }
 
     public String getUrl() {
@@ -156,6 +176,7 @@ public class SysMaintenanceFinish implements Serializable {
         return "SysMaintenanceFinish{" +
             "id=" + getId() +
             ", time='" + getTime() + "'" +
+            ", finishTime='" + getFinishTime() + "'" +
             ", url='" + getUrl() + "'" +
             ", createTime='" + getCreateTime() + "'" +
             ", updateTime='" + getUpdateTime() + "'" +

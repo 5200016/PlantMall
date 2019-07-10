@@ -19,6 +19,15 @@ public class SubmitOrderVM {
     private Long receiveAddressId;
     private String payNo;
     private List<Long> shoppingProductIdList;
+    private Long leaseCouponId;
+
+    public Long getLeaseCouponId() {
+        return leaseCouponId;
+    }
+
+    public void setLeaseCouponId(Long leaseCouponId) {
+        this.leaseCouponId = leaseCouponId;
+    }
 
     public String getPayNo() {
         return payNo;
@@ -95,6 +104,7 @@ public class SubmitOrderVM {
             ", receiveAddressId=" + receiveAddressId +
             ", payNo='" + payNo + '\'' +
             ", shoppingProductIdList=" + shoppingProductIdList +
+            ", leaseCouponId=" + leaseCouponId +
             '}';
     }
 }

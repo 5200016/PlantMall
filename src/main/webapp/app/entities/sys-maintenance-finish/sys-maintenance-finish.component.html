@@ -16,6 +16,7 @@
             <tr>
             <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="plantMallApp.sysMaintenanceFinish.time">Time</span></th>
+            <th><span jhiTranslate="plantMallApp.sysMaintenanceFinish.finishTime">Finish Time</span></th>
             <th><span jhiTranslate="plantMallApp.sysMaintenanceFinish.url">Url</span></th>
             <th><span jhiTranslate="plantMallApp.sysMaintenanceFinish.createTime">Create Time</span></th>
             <th><span jhiTranslate="plantMallApp.sysMaintenanceFinish.updateTime">Update Time</span></th>
@@ -27,6 +28,7 @@
             <tr *ngFor="let sysMaintenanceFinish of sysMaintenanceFinishes ;trackBy: trackId">
                 <td><a [routerLink]="['/sys-maintenance-finish', sysMaintenanceFinish.id, 'view' ]">{{sysMaintenanceFinish.id}}</a></td>
                 <td>{{sysMaintenanceFinish.time}}</td>
+                <td>{{sysMaintenanceFinish.finishTime}}</td>
                 <td>{{sysMaintenanceFinish.url}}</td>
                 <td>{{sysMaintenanceFinish.createTime | date:'medium'}}</td>
                 <td>{{sysMaintenanceFinish.updateTime | date:'medium'}}</td>

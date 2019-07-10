@@ -141,17 +141,4 @@ public class WXOrderController {
     public ResultObj submitMaintenanceTime(@RequestBody FinishMaintenanceVM finishMaintenance) throws URISyntaxException {
         return wxOrderService.insertMaintenanceTime(finishMaintenance);
     }
-
-    /**
-     * 根据订单id查询养护记录
-     *
-     * @return
-     * @throws URISyntaxException
-     */
-    @ApiOperation("根据订单id查询养护记录")
-    @GetMapping("/maintenance/order_id")
-    @Timed
-    public ResultObj selectMaintenanceByOrderId(@ApiParam(name = "orderId", value = "订单id", required = true) @RequestParam Long orderId) throws URISyntaxException {
-        return wxOrderService.findMaintenanceFinishByOrderId(orderId);
-    }
 }

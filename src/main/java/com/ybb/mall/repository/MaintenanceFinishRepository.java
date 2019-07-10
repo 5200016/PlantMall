@@ -17,7 +17,7 @@ public interface MaintenanceFinishRepository extends JpaRepository<SysMaintenanc
     /**
      * 根据订单id查询养护任务记录
      */
-    @Query("select smf from SysMaintenanceFinish smf where smf.order.id = ?1")
+    @Query("select smf from SysMaintenanceFinish smf where smf.order.id = ?1 order by smf.time asc")
     List<SysMaintenanceFinish> findMaintenanceFinishByOrderId(Long orderId);
 
     /**

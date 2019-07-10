@@ -184,6 +184,7 @@ public class WXOrderServiceImpl implements WXOrderService {
         SysMaintenanceFinish maintenanceFinish = new SysMaintenanceFinish();
         maintenanceFinish.setTime(finishMaintenance.getTime());
         maintenanceFinish.setUrl(finishMaintenance.getUrl());
+        maintenanceFinish.setFinishTime(DateUtil.getCurrentDate("yyyy-MM-dd"));
         maintenanceFinish.setCreateTime(DateUtil.getZoneDateTime());
         maintenanceFinish.setUpdateTime(DateUtil.getZoneDateTime());
 
@@ -202,6 +203,7 @@ public class WXOrderServiceImpl implements WXOrderService {
             JSONObject object = new JSONObject();
             object.put("time", data.getTime());
             object.put("url", data.getUrl());
+            object.put("finishTime", data.getFinishTime());
             array.add(object);
         }
         return ResultObj.back(200, array);

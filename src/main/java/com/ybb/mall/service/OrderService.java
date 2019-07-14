@@ -4,6 +4,7 @@ import com.ybb.mall.domain.SysOrderProduct;
 import com.ybb.mall.service.dto.order.OrderDTO;
 import com.ybb.mall.service.dto.order.OrderListDTO;
 import com.ybb.mall.web.rest.util.ResultObj;
+import com.ybb.mall.web.rest.vm.order.InsertOrderVM;
 import com.ybb.mall.web.rest.vm.order.OrderVM;
 import com.ybb.mall.web.rest.vm.order.ReissueProductVM;
 import com.ybb.mall.web.rest.vm.order.SetMaintenanceVM;
@@ -25,6 +26,12 @@ public interface OrderService {
      * 条件：订单号（模糊查询），订单类型，订单状态，用户昵称、姓名、手机号（模糊查询）
      */
     Page<OrderDTO> findOrderList(String tradeNo, Integer type, Integer status, String value, Integer pageNum, Integer pageSize);
+
+    /**
+     * 新增订单
+     * @return
+     */
+    ResultObj insertOrder(InsertOrderVM orderVM);
 
     /**
      * 批量发货

@@ -39,7 +39,7 @@ public interface ProductRepository extends JpaRepository<SysProduct, Long> {
     /**
      * 查询商品列表（简略信息：id，name，inventory）
      */
-    @Query("select new com.ybb.mall.service.dto.product.ProductBriefDTO(sp.id, sp.name, sp.inventory)" +
+    @Query("select new com.ybb.mall.service.dto.product.ProductBriefDTO(sp.id, sp.name, sp.inventory, sp.leasePrice)" +
         " from SysProduct sp" +
         " where sp.active = true")
     List<ProductBriefDTO> findProductBrief();

@@ -4,6 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 import com.ybb.mall.domain.SysOrderProduct;
 import com.ybb.mall.service.OrderService;
 import com.ybb.mall.web.rest.util.ResultObj;
+import com.ybb.mall.web.rest.vm.order.InsertOrderVM;
 import com.ybb.mall.web.rest.vm.order.OrderVM;
 import com.ybb.mall.web.rest.vm.order.ReissueProductVM;
 import com.ybb.mall.web.rest.vm.order.SetMaintenanceVM;
@@ -48,6 +49,19 @@ public class OrderController {
                                      @ApiParam(name = "pageNum", value = "页码", required = true) @RequestParam Integer pageNum,
                                      @ApiParam(name = "pageSize", value = "数量", required = true) @RequestParam Integer pageSize) throws URISyntaxException {
         return ResultObj.back(200, orderService.findOrderList(tradeNo, type, status, value, pageNum, pageSize));
+    }
+
+    /**
+     * 新增订单
+     *
+     * @return
+     * @throws URISyntaxException
+     */
+    @ApiOperation("新增订单")
+    @PostMapping("/order")
+    @Timed
+    public ResultObj insertOrder(@RequestBody InsertOrderVM orderVM) throws URISyntaxException {
+        return orderService.insertOrder(orderVM);
     }
 
     /**

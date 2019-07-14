@@ -17,6 +17,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * 用户管理
  */
@@ -39,6 +41,11 @@ public class SUserServiceImpl implements SUserService {
     @Override
     public Page<UserListDTO> findUserList(String phone, Integer pageNum, Integer pageSize) {
         return userRepository.findUserList(phone, PageRequest.of(pageNum, pageSize));
+    }
+
+    @Override
+    public List<UserListDTO> findUserListBrief() {
+        return userRepository.findUserListBrief();
     }
 
     @Override

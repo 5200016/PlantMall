@@ -36,6 +36,13 @@ public class ProductBriefDTO {
         this.inventory = inventory;
     }
 
+    public ProductBriefDTO(Long id, String name, Integer inventory, BigDecimal leasePrice) {
+        this.id = id;
+        this.name = name;
+        this.inventory = inventory;
+        this.leasePrice = leasePrice;
+    }
+
     public ProductBriefDTO(Long id, String name, Integer sale, BigDecimal price, BigDecimal leasePrice, String image, Integer classifyType) {
         this.id = id;
         this.name = name;

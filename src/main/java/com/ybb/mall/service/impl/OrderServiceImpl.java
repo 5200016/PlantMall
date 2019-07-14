@@ -1,17 +1,15 @@
 package com.ybb.mall.service.impl;
+import com.ybb.mall.domain.SysMaintenancePersonnel;
+import com.ybb.mall.domain.SysReceiverAddress;
+import com.ybb.mall.domain.SysUser;
 
 import com.ybb.mall.domain.*;
 import com.ybb.mall.repository.*;
 import com.ybb.mall.service.OrderService;
 import com.ybb.mall.service.dto.order.OrderDTO;
 import com.ybb.mall.service.mapper.SysOrderMapper;
-import com.ybb.mall.web.rest.util.DateUtil;
-import com.ybb.mall.web.rest.util.ResultObj;
-import com.ybb.mall.web.rest.util.TypeUtils;
-import com.ybb.mall.web.rest.util.WXInterfaceUtil;
-import com.ybb.mall.web.rest.vm.order.OrderVM;
-import com.ybb.mall.web.rest.vm.order.ReissueProductVM;
-import com.ybb.mall.web.rest.vm.order.SetMaintenanceVM;
+import com.ybb.mall.web.rest.util.*;
+import com.ybb.mall.web.rest.vm.order.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -45,13 +43,16 @@ public class OrderServiceImpl implements OrderService {
 
     private final FormRepository formRepository;
 
-    public OrderServiceImpl(OrderRepository orderRepository, OrderProductRepository orderProductRepository, MaintenancePersonnelRepository maintenancePersonnelRepository, ProductRepository productRepository, SysOrderMapper orderMapper, FormRepository formRepository) {
+    private final ReceiverAddressRepository receiverAddressRepository;
+
+    public OrderServiceImpl(OrderRepository orderRepository, OrderProductRepository orderProductRepository, MaintenancePersonnelRepository maintenancePersonnelRepository, ProductRepository productRepository, SysOrderMapper orderMapper, FormRepository formRepository, ReceiverAddressRepository receiverAddressRepository) {
         this.orderRepository = orderRepository;
         this.orderProductRepository = orderProductRepository;
         this.maintenancePersonnelRepository = maintenancePersonnelRepository;
         this.productRepository = productRepository;
         this.orderMapper = orderMapper;
         this.formRepository = formRepository;
+        this.receiverAddressRepository = receiverAddressRepository;
     }
 
     @Override
@@ -61,6 +62,84 @@ public class OrderServiceImpl implements OrderService {
             statusFlag = 1;
         }
         return orderRepository.findOrderList(tradeNo, type, status, statusFlag, value, PageRequest.of(pageNum, pageSize)).map(orderMapper::toDto);
+    }
+
+    @Override
+    public ResultObj insertOrder(InsertOrderVM orderVM) {
+
+        // 商品总数
+        Integer productNumber = 0;
+        for(OrderProductVM product : orderVM.getProducts()){
+            productNumber += product.getProductNumber();
+        }
+
+        SysUser user = new SysUser();
+        user.setId(orderVM.getUserId());
+
+        // 用户收货地址信息入库
+        SysReceiverAddress receiverAddress = new SysReceiverAddress();
+        receiverAddress.setName(orderVM.getName());
+        receiverAddress.setPhone(orderVM.getPhone());
+        receiverAddress.setArea(orderVM.getArea());
+        receiverAddress.setAddress(orderVM.getAddress());
+        receiverAddress.setStatus(0);
+        receiverAddress.setActive(true);
+        receiverAddress.setCreateTime(DateUtil.getZoneDateTime());
+        receiverAddress.setUpdateTime(DateUtil.getZoneDateTime());
+        receiverAddress.setUser(user);
+        receiverAddress = receiverAddressRepository.save(receiverAddress);
+
+        // 订单信息入库
+        SysOrder order = new SysOrder();
+        order.setTradeNo(WxUtil.getTradeNoMethod());
+        order.setPayNo("");
+        order.setPrice(orderVM.getPrice());
+        order.setType(1);
+        order.setPayType(0);
+        order.setStatus(0);
+        order.setNumber(productNumber);
+        order.setDescription(orderVM.getDescription());
+        order.setMaintenancePlanStatus(0);
+        order.setCreateTime(DateUtil.getZoneDateTime());
+        order.setUpdateTime(DateUtil.getZoneDateTime());
+
+        order.setUser(user);
+        order.setReceiverAddress(receiverAddress);
+
+        order = orderRepository.save(order);
+
+        // 订单商品入库并更新商品库存
+        List<SysOrderProduct> sysOrderProducts = new ArrayList<>();
+        List<SysProduct> sysProducts = new ArrayList<>();
+        for(OrderProductVM product : orderVM.getProducts()){
+            SysProduct sysProduct = productRepository.findSysProductById(product.getProductId());
+            Integer inventory = sysProduct.getInventory();
+            if(inventory <= product.getProductNumber()){
+                sysProduct.setInventory(0);
+            }else {
+                sysProduct.setInventory(inventory - product.getProductNumber());
+            }
+
+            SysOrderProduct orderProduct = new SysOrderProduct();
+            orderProduct.setProductStatus(0);
+            orderProduct.setProductNumber(product.getProductNumber());
+
+            orderProduct.setOrder(order);
+
+            SysProduct newProduct = new SysProduct();
+            newProduct.setId(product.getProductId());
+            orderProduct.setProduct(newProduct);
+
+            orderProduct.setCreateTime(DateUtil.getZoneDateTime());
+            orderProduct.setUpdateTime(DateUtil.getZoneDateTime());
+
+            sysOrderProducts.add(orderProduct);
+            sysProducts.add(sysProduct);
+        }
+        productRepository.saveAll(sysProducts);
+        orderProductRepository.saveAll(sysOrderProducts);
+
+        return ResultObj.backCRUDSuccess("新增成功");
     }
 
     @Override

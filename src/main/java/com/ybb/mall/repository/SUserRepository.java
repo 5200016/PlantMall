@@ -32,6 +32,16 @@ public interface SUserRepository extends JpaRepository<SysUser, Long> {
     Page<UserListDTO> findUserList(String phone, Pageable pageable);
 
     /**
+     * 分页模糊查询用户列表（后台管理）
+     * 条件：手机号
+     */
+    @Query("select new com.ybb.mall.service.dto.user.UserListDTO(su.id, su.avatar, su.nickname, su.username, su.sex, su.phone, su.integral, su.growthValue, sml.name, smp.id) from SysUser su" +
+        " left join SysMemberLevel sml on su.memberLevel.id = sml.id" +
+        " left join SysMaintenancePersonnel smp on su.id = smp.user.id" +
+        " order by su.createTime desc")
+    List<UserListDTO> findUserListBrief();
+
+    /**
      * 根据openid查询用户信息
      */
     @Query("select new com.ybb.mall.service.dto.user.WXUserDTO(su.id, su.avatar, su.nickname, su.username, su.sex, su.phone, su.integral, su.growthValue, sml.name, su.openid, smp.id) from SysUser su" +

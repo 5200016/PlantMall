@@ -289,7 +289,13 @@ public class WXServiceImpl implements WXService {
         if(!TypeUtils.isEmpty(submitOrder.getLease().getProductList())){
             SysOrder order = new SysOrder();
             order.setTradeNo(WxUtil.getTradeNoMethod());
-            order.setPrice(submitOrder.getLease().getTotalPrice().subtract(coupon.getValue()));
+
+            if(!TypeUtils.isEmpty(coupon)){
+                order.setPrice(submitOrder.getLease().getTotalPrice().subtract(coupon.getValue()));
+            }else {
+                order.setPrice(submitOrder.getLease().getTotalPrice());
+            }
+
             order.setStatus(status);
             order.setPayNo(payNo);
             order.setType(1);

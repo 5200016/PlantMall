@@ -9,6 +9,8 @@ import com.ybb.mall.web.rest.util.ResultObj;
 import com.ybb.mall.web.rest.vm.user.UpdateUserVM;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
+
 /**
  * 用户管理
  */
@@ -22,6 +24,12 @@ public interface SUserService {
      * @return
      */
     Page<UserListDTO> findUserList(String phone, Integer pageNum, Integer pageSize);
+
+    /**
+     * 查询用户列表
+     * @return
+     */
+    List<UserListDTO> findUserListBrief();
 
     /**
      * 根据openid查询用户信息

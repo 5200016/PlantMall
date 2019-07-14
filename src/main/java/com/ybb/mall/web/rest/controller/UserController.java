@@ -32,7 +32,7 @@ public class UserController {
     /**
      * 根据手机号模糊查询用户列表（分页）
      */
-    @ApiOperation("根据手机号模糊查询用户列表（分页） RequestParam")
+    @ApiOperation("根据手机号模糊查询用户列表（分页）")
     @GetMapping("/users")
     @Timed
     public ResultObj selectUserList(@ApiParam(name="phone",value="手机号",required=true) @RequestParam String phone,
@@ -42,9 +42,19 @@ public class UserController {
     }
 
     /**
+     * 查询用户简略信息
+     */
+    @ApiOperation("查询用户简略信息")
+    @GetMapping("/users/brief")
+    @Timed
+    public ResultObj selectUserListBrief() throws URISyntaxException {
+        return ResultObj.back(200, userService.findUserListBrief());
+    }
+
+    /**
      * 新增用户
      */
-    @ApiOperation("新增用户 RequestBody")
+    @ApiOperation("新增用户")
     @PostMapping("/user")
     @Timed
     public ResultObj insertUser(@ApiParam(name="phone",value="手机号",required=true) @RequestParam String phone) throws URISyntaxException {
@@ -54,7 +64,7 @@ public class UserController {
     /**
      * 修改用户
      */
-    @ApiOperation("修改用户 RequestBody")
+    @ApiOperation("修改用户")
     @PutMapping("/user")
     @Timed
     public ResultObj updateUser(@RequestBody UpdateUserVM updateUser) throws URISyntaxException {
@@ -64,7 +74,7 @@ public class UserController {
     /**
      * 删除用户
      */
-    @ApiOperation("删除用户 RequestBody")
+    @ApiOperation("删除用户")
     @DeleteMapping("/user/{id}")
     @Timed
     public ResultObj deleteUser(@ApiParam(name="id",value="主键id",required=true) @PathVariable Long id) throws URISyntaxException {
